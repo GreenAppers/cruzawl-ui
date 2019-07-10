@@ -42,7 +42,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       DateTime next = now;
       for (int i = 0; i < len; i++) {
         next = next.subtract(widget.bucketDuration);
-        data.add(TimeSeriesBlocks(next, i));
+        data.add(TimeSeriesBlocks(next, 0));
       }
     }
 
