@@ -105,14 +105,13 @@ class _BlockWidgetState extends State<BlockWidget> {
         trailing: Text(block.header.height.toString()),
       ),
       ListTile(
-        title: Text('Target'),
-        trailing: Text(wideStyle
-            ? block.header.target.toJson()
-            : widget.currency.formatTarget(block.header.target)),
-      ),
-      ListTile(
         title: Text('Nonce'),
         trailing: Text(block.header.nonce.toString()),
+      ),
+      buildListTile(
+        Text('Target'),
+        wideStyle,
+        Text(block.header.target.toJson()),
       ),
       buildListTile(
         Text('Id'),
