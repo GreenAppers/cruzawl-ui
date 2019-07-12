@@ -35,10 +35,12 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     loading = true;
     totalBlocks = 0;
 
-    final DateTime now = DateTime.now(), end = now.subtract(widget.totalDuration);
+    final DateTime now = DateTime.now(),
+        end = now.subtract(widget.totalDuration);
     final List<TimeSeriesBlocks> data = List<TimeSeriesBlocks>();
     {
-      final int len = divideDuration(widget.totalDuration, widget.bucketDuration) + 1;
+      final int len =
+          divideDuration(widget.totalDuration, widget.bucketDuration) + 1;
       DateTime next = now;
       for (int i = 0; i < len; i++) {
         next = next.subtract(widget.bucketDuration);
@@ -48,7 +50,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
     Peer peer = await widget.currency.network.getPeer();
     int fetchBlock = 50, height = widget.tip.height;
-    List<Future<BlockHeaderMessage>> blocks = List<Future<BlockHeaderMessage>>(fetchBlock);
+    List<Future<BlockHeaderMessage>> blocks =
+        List<Future<BlockHeaderMessage>>(fetchBlock);
 
     for (bool done = false; !done && height >= 0; /**/) {
       int count = 0;
@@ -116,10 +119,10 @@ class TimeSeriesBlocks {
 }
 
 charts.Color chartColor(Color color) =>
-  charts.Color(r: color.red, g: color.green, b: color.blue, a: color.alpha);
+    charts.Color(r: color.red, g: color.green, b: color.blue, a: color.alpha);
 
 int divideDuration(Duration q, Duration d) =>
-  (q.inMicroseconds / d.inMicroseconds).ceil();
-    
+    (q.inMicroseconds / d.inMicroseconds).ceil();
+
 DateTime blockTime(BlockHeader header) =>
-  DateTime.fromMillisecondsSinceEpoch(header.time * 1000);
+    DateTime.fromMillisecondsSinceEpoch(header.time * 1000);
