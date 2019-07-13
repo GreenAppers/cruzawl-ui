@@ -29,7 +29,8 @@ class ExternalAddressWidget extends StatefulWidget {
 }
 
 class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
-  num balance;
+  num balance, maturing = 0;
+  int maturesHeight = 0;
   bool loading = false;
   TransactionIterator iter;
   List<Transaction> transactions;
@@ -39,6 +40,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
     if (loading || !widget.currency.network.hasPeer) return;
     loading = true;
 
+    int tipHeight = widget.currency.network.tip.height;
     Peer peer = await widget.currency.network.getPeer();
     PublicAddress address =
         widget.currency.fromPublicAddressJson(widget.addressText);
@@ -52,18 +54,30 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       }
     }
 
-    TransactionIteratorResults results = await peer.getTransactions(address,
-        startHeight: iter == null ? null : iter.height,
-        startIndex: iter == null ? null : iter.index,
-        endHeight: iter == null ? null : 0);
+    do {
+      TransactionIteratorResults results = await peer.getTransactions(address,
+          startHeight: iter == null ? null : iter.height,
+          startIndex: iter == null ? null : iter.index,
+          endHeight: iter == null ? null : 0);
+      if (results == null) break;
 
-    if (results != null) {
+      for (Transaction transaction in results.transactions) {
+        bool toWallet = widget.addressText == transaction.toText; 
+        bool mature = transaction.maturity == null || transaction.maturity <= tipHeight;
+        if (toWallet && !mature) {
+          maturing += transaction.amount;
+          maturesHeight = max(maturesHeight, transaction.maturity);
+        }
+      }
+
       if (transactions == null)
         transactions = results.transactions;
       else
         transactions.addAll(results.transactions);
       iter = TransactionIterator(results.height, results.index);
-    }
+
+      // Load most recent 100 blocks worth of transactions
+    } while (iter.height > max(0, tipHeight - 100));
 
     loading = false;
     setState(() {});
@@ -123,6 +137,12 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
         trailing: Text(widget.currency.format(balance)),
       ),
     ];
+
+    if (maturing > 0)
+      header.add(ListTile(
+        title: Text('Maturing', style: labelTextStyle),
+        trailing: Text(widget.currency.format(maturing)),
+      ));
 
     return SimpleScaffold(
       widget.title ?? "Address ${widget.addressText}",
