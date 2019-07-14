@@ -30,7 +30,7 @@ class ExternalAddressWidget extends StatefulWidget {
 
 class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
   num balance, maturing = 0;
-  int maturesHeight = 0;
+  int maturesHeight = 0, earliestSeen;
   bool loading = false;
   TransactionIterator iter;
   List<Transaction> transactions;
@@ -62,12 +62,15 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       if (results == null) break;
 
       for (Transaction transaction in results.transactions) {
-        bool toWallet = widget.addressText == transaction.toText; 
-        bool mature = transaction.maturity == null || transaction.maturity <= tipHeight;
+        bool toWallet = widget.addressText == transaction.toText;
+        bool mature =
+            transaction.maturity == null || transaction.maturity <= tipHeight;
         if (toWallet && !mature) {
           maturing += transaction.amount;
           maturesHeight = max(maturesHeight, transaction.maturity);
         }
+        if (earliestSeen == null || transaction.height < earliestSeen)
+          earliestSeen = transaction.height;
       }
 
       if (transactions == null)
@@ -142,6 +145,11 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       header.add(ListTile(
         title: Text('Maturing', style: labelTextStyle),
         trailing: Text(widget.currency.format(maturing)),
+      ));
+    if (fullyLoaded)
+      header.add(ListTile(
+        title: Text('Earliest Seen', style: labelTextStyle),
+        trailing: Text(earliestSeen.toString()),
       ));
 
     return SimpleScaffold(

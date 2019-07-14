@@ -29,6 +29,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   List<charts.Series<TimeSeriesBlocks, DateTime>> series;
   int totalBlocks;
   bool loading = false;
+  BlockHeader last;
 
   void load(Color color) async {
     if (loading || !widget.currency.network.hasPeer) return;
@@ -48,6 +49,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       }
     }
 
+    last = null;
     Peer peer = await widget.currency.network.getPeer();
     int fetchBlock = 50, height = widget.tip.height;
     List<Future<BlockHeaderMessage>> blocks =
@@ -68,6 +70,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         if ((done = !blockTime(header).isAfter(end))) break;
 
         totalBlocks++;
+        last = header;
         Duration offset = now.difference(blockTime(header));
         int bucket = divideDuration(offset, widget.bucketDuration);
         assert(bucket < data.length, 'failed $bucket < ${data.length}');
@@ -100,8 +103,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               "Loading...", Center(child: CircularProgressIndicator()));
     }
 
+    String hashRate = widget.currency.formatHashRate(last == null ? '0' : widget.tip.hashRate(last));
+
     return SimpleScaffold(
-        '$totalBlocks blocks in last ${widget.totalDuration.toString()}',
+        '$hashRate, $totalBlocks blocks in last ${widget.totalDuration.toString()}',
         charts.TimeSeriesChart(
           series,
           animate: false,
