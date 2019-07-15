@@ -307,3 +307,36 @@ Widget buildListTile(Widget title, bool wideStyle, Widget widget) {
           padding: EdgeInsets.only(bottom: 16),
           child: ListTile(title: Center(child: title), subtitle: widget));
 }
+
+Map<String, ThemeData> themes = <String, ThemeData>{
+  'red': ThemeData(primarySwatch: Colors.red, accentColor: Colors.redAccent),
+  'pink': ThemeData(primarySwatch: Colors.pink, accentColor: Colors.pinkAccent),
+  'purple':
+      ThemeData(primarySwatch: Colors.purple, accentColor: Colors.purpleAccent),
+  'deepPurple': ThemeData(
+      primarySwatch: Colors.deepPurple, accentColor: Colors.deepPurpleAccent),
+  'indigo':
+      ThemeData(primarySwatch: Colors.indigo, accentColor: Colors.indigoAccent),
+  'blue': ThemeData(primarySwatch: Colors.blue, accentColor: Colors.blueAccent),
+  'lightBlue': ThemeData(
+      primarySwatch: Colors.lightBlue, accentColor: Colors.lightBlueAccent),
+  'cyan': ThemeData(primarySwatch: Colors.cyan, accentColor: Colors.cyanAccent),
+  'teal': ThemeData(primarySwatch: Colors.teal, accentColor: Colors.tealAccent),
+  'green':
+      ThemeData(primarySwatch: Colors.green, accentColor: Colors.greenAccent),
+  'lightGreen': ThemeData(
+      primarySwatch: Colors.lightGreen, accentColor: Colors.lightGreenAccent),
+  'lime': ThemeData(primarySwatch: Colors.lime, accentColor: Colors.limeAccent),
+  'yellow':
+      ThemeData(primarySwatch: Colors.yellow, accentColor: Colors.yellowAccent),
+  'amber':
+      ThemeData(primarySwatch: Colors.amber, accentColor: Colors.amberAccent),
+  'orange':
+      ThemeData(primarySwatch: Colors.orange, accentColor: Colors.orangeAccent),
+  'deepOrange': ThemeData(
+      primarySwatch: Colors.deepOrange, accentColor: Colors.orangeAccent),
+  'brown':
+      ThemeData(primarySwatch: Colors.brown, accentColor: Colors.brown[100]),
+  'blueGrey': ThemeData(
+      primarySwatch: Colors.blueGrey, accentColor: Colors.blueGrey[100]),
+};
