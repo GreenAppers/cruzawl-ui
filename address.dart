@@ -55,6 +55,10 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
     }
 
     do {
+      if (iter != null) {
+        if (iter.index == 0) iter.height--;
+        else iter.index--;
+      }
       TransactionIteratorResults results = await peer.getTransactions(address,
           startHeight: iter == null ? null : iter.height,
           startIndex: iter == null ? null : iter.index,
