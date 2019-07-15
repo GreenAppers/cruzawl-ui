@@ -103,10 +103,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               "Loading...", Center(child: CircularProgressIndicator()));
     }
 
-    String hashRate = widget.currency.formatHashRate(last == null ? '0' : widget.tip.hashRate(last));
+    String hashRate = widget.currency.formatHashRate(last == null ? '0 H/s' : widget.tip.hashRate(last));
+    String duration = widget.currency.formatDuration(widget.totalDuration);
 
     return SimpleScaffold(
-        '$hashRate, $totalBlocks blocks in last ${widget.totalDuration.toString()}',
+        '$hashRate, $totalBlocks blocks in last $duration',
         charts.TimeSeriesChart(
           series,
           animate: false,
