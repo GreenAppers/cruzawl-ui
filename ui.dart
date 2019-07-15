@@ -1,4 +1,4 @@
-// Copyright 2019 cruzbit developers
+// Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
 import 'package:flutter_web/gestures.dart'
@@ -9,8 +9,14 @@ import 'package:flutter_web/services.dart'
     if (dart.library.io) 'package:flutter/services.dart';
 
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
+
+class SimpleScaffoldActions extends Model {
+  final List<Widget> actions;
+  SimpleScaffoldActions(this.actions);
+}
 
 class SimpleScaffold extends StatelessWidget {
   final String title;
@@ -21,6 +27,8 @@ class SimpleScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final SimpleScaffoldActions actions =
+        ScopedModel.of<SimpleScaffoldActions>(context);
     return Scaffold(
         appBar: GradientAppBar(
           leading:
@@ -31,6 +39,7 @@ class SimpleScaffold extends StatelessWidget {
               fontFamily: 'MartelSans',
             ),
           ),
+          actions: actions == null ? null : actions.actions,
           backgroundColorStart: theme.primaryColor,
           backgroundColorEnd: theme.accentColor,
         ),
