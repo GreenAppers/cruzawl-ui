@@ -26,6 +26,14 @@ class CruzallPreferences extends SembastPreferences {
   set insecureDeviceWarning(bool value) =>
       setPreference('insecureDeviceWarning', value);
 
+  bool get unitTestBeforeCreating => data['unitTestBeforeCreating'] ?? false;
+  set unitTestBeforeCreating(bool value) =>
+      setPreference('unitTestBeforeCreating', value);
+
+  bool get verifyAddressEveryLoad => data['verifyAddressEveryLoad'] ?? false;
+  set verifyAddressEveryLoad(bool value) =>
+      setPreference('verifyAddressEveryLoad', value);
+
   bool get walletNameInTitle => data['walletNameInTitle'] ?? false;
   set walletNameInTitle(bool value) =>
       setPreference('walletNameInTitle', value);

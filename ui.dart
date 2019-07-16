@@ -28,8 +28,11 @@ class SimpleScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     SimpleScaffoldActions actions;
-    try { actions = ScopedModel.of<SimpleScaffoldActions>(context); }
-    catch(error) { actions = null; }
+    try {
+      actions = ScopedModel.of<SimpleScaffoldActions>(context);
+    } catch (error) {
+      actions = null;
+    }
 
     return Scaffold(
         appBar: GradientAppBar(
