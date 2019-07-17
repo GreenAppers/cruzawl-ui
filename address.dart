@@ -102,8 +102,8 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
   Widget build(BuildContext context) {
     if (transactions == null) {
       load();
-      return SimpleScaffold(
-          "Loading...", Center(child: CircularProgressIndicator()));
+      return SimpleScaffold(Center(child: CircularProgressIndicator()),
+          title: "Loading...");
     }
 
     final Size screenSize = MediaQuery.of(context).size;
@@ -159,7 +159,6 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       ));
 
     return SimpleScaffold(
-      widget.title ?? "Address ${widget.addressText}",
       Container(
         constraints: widget.maxWidth == null
             ? null
@@ -201,6 +200,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
           },
         ),
       ),
+      title: widget.title ?? "Address ${widget.addressText}",
     );
   }
 }

@@ -36,24 +36,32 @@ class _BlockWidgetState extends State<BlockWidget> {
   String blockId;
   int blockHeight;
   Block block;
+  BlockHeader prevBlock;
   _BlockWidgetState(this.isTip);
 
   void load() async {
     if (loading || !widget.currency.network.hasPeer) return;
+    Peer peer = await widget.currency.network.getPeer();
     loading = true;
 
     BlockMessage message;
     if ((blockHeight = widget.blockHeight) != null) {
-      message = await (await widget.currency.network.getPeer())
-          .getBlock(height: blockHeight);
+      message = await peer.getBlock(height: blockHeight);
       if (message != null) blockId = message.id.toJson();
     } else {
       blockId = widget.blockId ?? widget.currency.network.tipId.toJson();
-      message = await (await widget.currency.network.getPeer())
-          .getBlock(id: CruzBlockId.fromJson(blockId));
+      message = await peer.getBlock(id: CruzBlockId.fromJson(blockId));
     }
 
-    if (message != null) block = message.block;
+    if (message != null) {
+      if (message.block.header.previous != null) {
+        BlockHeaderMessage prevMessage =
+            await peer.getBlockHeader(id: message.block.header.previous);
+        if (prevMessage != null) prevBlock = prevMessage.header;
+      }
+      block = message.block;
+    }
+
     loading = false;
     setState(() {});
   }
@@ -77,8 +85,8 @@ class _BlockWidgetState extends State<BlockWidget> {
     if (block == null) {
       load();
       return widget.loadingWidget ??
-          SimpleScaffold(
-              "Loading...", Center(child: CircularProgressIndicator()));
+          SimpleScaffold(Center(child: CircularProgressIndicator()),
+              title: "Loading...");
     }
 
     final Size screenSize = MediaQuery.of(context).size;
@@ -104,15 +112,18 @@ class _BlockWidgetState extends State<BlockWidget> {
         title: Text('Height'),
         trailing: Text(block.header.height.toString()),
       ),
-      ListTile(
-        title: Text('Nonce'),
-        trailing: Text(block.header.nonce.toString()),
-      ),
-      buildListTile(
-        Text('Target'),
-        wideStyle,
-        Text(block.header.target.toJson()),
-      ),
+    ];
+
+    if (prevBlock != null)
+      header.add(
+        ListTile(
+          title: Text('Delta Hash Power'),
+          trailing: Text(
+              widget.currency.formatHashRate(block.header.hashRate(prevBlock))),
+        ),
+      );
+
+    header.add(
       buildListTile(
         Text('Id'),
         wideStyle,
@@ -121,6 +132,9 @@ class _BlockWidgetState extends State<BlockWidget> {
           onTap: () => Navigator.of(context).pushNamed('/block/' + blockId),
         ),
       ),
+    );
+
+    header.add(
       buildListTile(
         Text('Previous'),
         wideStyle,
@@ -130,14 +144,34 @@ class _BlockWidgetState extends State<BlockWidget> {
               Navigator.of(context).pushNamed('/block/' + previousBlockId),
         ),
       ),
+    );
+
+    header.add(
+      ListTile(
+        title: Text('Nonce'),
+        trailing: Text(block.header.nonce.toString()),
+      ),
+    );
+
+    header.add(
+      buildListTile(
+        Text('Target'),
+        wideStyle,
+        Text(block.header.target.toJson()),
+      ),
+    );
+
+    header.add(
       buildListTile(
           Text('Chain Work'), wideStyle, Text(block.header.chainWork.toJson())),
+    );
+
+    header.add(
       buildListTile(Text('Hash List Root'), wideStyle,
           Text(block.header.hashListRoot.toJson())),
-    ];
+    );
 
     return SimpleScaffold(
-      widget.title ?? (isTip ? "Tip " : "Block ") + blockId,
       Container(
         constraints: widget.maxWidth == null
             ? null
@@ -169,6 +203,7 @@ class _BlockWidgetState extends State<BlockWidget> {
           },
         ),
       ),
+      title: widget.title ?? (isTip ? "Tip " : "Block ") + blockId,
     );
   }
 }

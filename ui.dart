@@ -20,9 +20,8 @@ class SimpleScaffoldActions extends Model {
 
 class SimpleScaffold extends StatelessWidget {
   final String title;
-  final Widget body;
-  final Widget secondColumn;
-  SimpleScaffold(this.title, this.body, {this.secondColumn});
+  final Widget body, secondColumn, titleWidget;
+  SimpleScaffold(this.body, {this.title, this.titleWidget, this.secondColumn});
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +37,8 @@ class SimpleScaffold extends StatelessWidget {
         appBar: GradientAppBar(
           leading:
               backButtonBuilder != null ? backButtonBuilder(context) : null,
-          title: Text(
-            title,
-            style: TextStyle(
-              fontFamily: 'MartelSans',
-            ),
-          ),
+          title: titleWidget ??
+              Text(title, style: TextStyle(fontFamily: 'MartelSans')),
           actions: actions == null ? null : actions.actions,
           backgroundColorStart: theme.primaryColor,
           backgroundColorEnd: theme.accentColor,

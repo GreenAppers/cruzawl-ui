@@ -76,8 +76,8 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   Widget build(BuildContext context) {
     if (transaction == null) {
       load();
-      return SimpleScaffold(
-          "Loading", Center(child: CircularProgressIndicator()));
+      return SimpleScaffold(Center(child: CircularProgressIndicator()),
+          title: "Loading...");
     }
 
     final TextStyle labelTextStyle = TextStyle(
@@ -167,7 +167,6 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     ));
 
     return SimpleScaffold(
-      "Transaction",
       Container(
         constraints: widget.maxWidth == null
             ? null
@@ -177,6 +176,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           children: ret,
         ),
       ),
+      title: "Transaction",
     );
   }
 }
