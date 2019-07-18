@@ -1,7 +1,8 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart'
+    if (dart.library.io) 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 
@@ -24,7 +25,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
   Widget build(BuildContext context) {
     final Cruzawl appState =
         ScopedModel.of<Cruzawl>(context, rebuildOnChange: true);
-    final PeerNetwork network = appState.wallet.currency.network;
+    final PeerNetwork network = appState.currency.network;
     final ThemeData theme = Theme.of(context);
 
     peers = appState.preferences.peers;
@@ -35,7 +36,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
         value: appState.preferences.networkEnabled,
         onChanged: (bool value) {
           appState.preferences.networkEnabled = value;
-          appState.reconnectPeers(appState.wallet.currency);
+          appState.reconnectPeers(appState.currency);
           appState.setState(() {});
         },
         secondary: const Icon(Icons.vpn_lock),
@@ -152,7 +153,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
               setState(() {
                 peers.removeAt(selectedPeerIndex);
                 appState.preferences.peers = peers;
-                appState.reconnectPeers(appState.wallet.currency);
+                appState.reconnectPeers(appState.currency);
               });
               Navigator.of(context).pop();
             },
@@ -178,7 +179,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
   @override
   Widget build(BuildContext c) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Currency currency = appState.wallet.currency;
+    final Currency currency = appState.currency;
     final PeerNetwork network = currency.network;
     final List<PeerPreference> peers = appState.preferences.peers;
 

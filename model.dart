@@ -5,9 +5,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart'
+    if (dart.library.io) 'package:flutter/material.dart';
 
-import 'package:package_info/package_info.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tweetnacl/tweetnacl.dart' as tweetnacl;
 
@@ -17,10 +17,16 @@ import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
 import 'package:cruzawl/wallet.dart';
 
+class PackageInfo {
+  final String appName, packageName, version, buildNumber;
+  PackageInfo(this.appName, this.packageName, this.version, this.buildNumber);
+}
+
 class WalletModel extends Model {
   final Wallet wallet;
   WalletModel(this.wallet) {
-    if (wallet.notifyListeners != null) throw FormatException('Wallet already bound');
+    if (wallet.notifyListeners != null)
+      throw FormatException('Wallet already bound');
     wallet.notifyListeners = notifyListeners;
   }
 
@@ -34,6 +40,7 @@ class Cruzawl extends Model {
   bool isTrustFall;
   Directory dataDir;
   WalletModel wallet;
+  Currency currency;
   List<WalletModel> wallets = <WalletModel>[];
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
@@ -65,7 +72,8 @@ class Cruzawl extends Model {
   void openedWallet(Wallet x) {
     if (x.fatal != null) {
       if (fatal == null) {
-        fatal = FlutterErrorDetails(exception: x.fatal.exception, stack: x.fatal.stack);
+        fatal = FlutterErrorDetails(
+            exception: x.fatal.exception, stack: x.fatal.stack);
         debugPrint(fatal.toString());
       }
     } else {
@@ -74,13 +82,18 @@ class Cruzawl extends Model {
     notifyListeners();
   }
 
+  void setWallet(WalletModel x) {
+    wallet = x;
+    currency = wallet.wallet.currency;
+  }
+
   String getWalletFilename(String walletName) =>
       dataDir.path + Platform.pathSeparator + walletName + walletSuffix;
 
   Wallet addWallet(Wallet x, {bool store = true}) {
     walletsLoading++;
     x.balanceChanged = notifyListeners;
-    wallet = WalletModel(x);
+    setWallet(WalletModel(x));
     wallets.add(wallet);
     if (store) {
       Map<String, String> loadedWallets = preferences.wallets;
@@ -94,7 +107,7 @@ class Cruzawl extends Model {
     assert(wallets.length > 1);
     String name = wallet.wallet.name;
     wallets.remove(wallet);
-    wallet = wallets[0];
+    setWallet(wallets[0]);
     if (store) {
       Map<String, String> loadedWallets = preferences.wallets;
       loadedWallets.remove(name);
@@ -103,16 +116,27 @@ class Cruzawl extends Model {
     File(getWalletFilename(name)).deleteSync();
   }
 
-  void changeActiveWallet(WalletModel x) => setState(() => wallet = x);
+  void changeActiveWallet(WalletModel x) => setState(() => setWallet(x));
 
   void updateWallets(Currency currency) {
-    for (WalletModel m in wallets)
-      if (m.wallet.currency == currency) m.wallet.updateTip();
+    if (wallets.isEmpty) {
+      debugPrint('updated ${currency.network.tipHeight}');
+      notifyListeners();
+    } else
+      for (WalletModel m in wallets) {
+        if (m.wallet.currency == currency) m.wallet.updateTip();
+      }
   }
 
-  void reloadWallets(Currency currency) {
-    for (WalletModel m in wallets)
-      if (m.wallet.currency == currency) m.wallet.reload();
+  void reloadWallets(Currency currency) async {
+    if (wallets.isEmpty) {
+      if (currency.network.hasPeer)
+        (await currency.network.getPeer())
+            .filterAdd(currency.nullAddress, (v) {});
+    } else
+      for (WalletModel m in wallets) {
+        if (m.wallet.currency == currency) m.wallet.reload();
+      }
     notifyListeners();
   }
 

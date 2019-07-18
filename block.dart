@@ -4,8 +4,6 @@
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
-import 'package:scoped_model/scoped_model.dart';
-
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
@@ -114,7 +112,18 @@ class _BlockWidgetState extends State<BlockWidget> {
       ),
     ];
 
-    if (prevBlock != null)
+    if (prevBlock != null) {
+      Duration duration = Duration(seconds: block.header.time - prevBlock.time);
+      int seconds = duration.inSeconds - duration.inMinutes * 60;
+      header.add(
+        ListTile(
+          title: Text('Delta Time'),
+          trailing: Text(duration.inMinutes > 0
+              ? ('${duration.inMinutes} minutes' +
+                  (seconds != 0 ? ' $seconds seconds' : ''))
+              : '${duration.inSeconds} seconds'),
+        ),
+      );
       header.add(
         ListTile(
           title: Text('Delta Hash Power'),
@@ -122,6 +131,7 @@ class _BlockWidgetState extends State<BlockWidget> {
               widget.currency.formatHashRate(block.header.hashRate(prevBlock))),
         ),
       );
+    }
 
     header.add(
       buildListTile(

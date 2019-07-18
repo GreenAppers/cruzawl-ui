@@ -7,10 +7,8 @@ import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
-import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
 
 import 'transaction.dart';
@@ -20,7 +18,7 @@ class ExternalAddressWidget extends StatefulWidget {
   final Currency currency;
   final String addressText, title;
   final Widget loadingWidget;
-  double maxWidth;
+  final double maxWidth;
   ExternalAddressWidget(this.currency, this.addressText,
       {this.loadingWidget, this.maxWidth, this.title});
 

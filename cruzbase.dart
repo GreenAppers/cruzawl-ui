@@ -22,7 +22,8 @@ class CruzbaseWidget extends StatefulWidget {
       this.bucketDuration = const Duration(minutes: 1)});
 
   @override
-  _CruzbaseWidgetState createState() => _CruzbaseWidgetState(totalDuration, bucketDuration);
+  _CruzbaseWidgetState createState() =>
+      _CruzbaseWidgetState(totalDuration, bucketDuration);
 }
 
 class _CruzbaseWidgetState extends State<CruzbaseWidget> {
@@ -34,19 +35,21 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   _CruzbaseWidgetState(this.totalDuration, this.bucketDuration);
 
   void setIntervalHourly() {
-    if (!loading) setState(() {
-      totalDuration = const Duration(hours: 1);
-      bucketDuration = const Duration(minutes: 1);
-      series = null;
-    });
+    if (!loading)
+      setState(() {
+        totalDuration = const Duration(hours: 1);
+        bucketDuration = const Duration(minutes: 1);
+        series = null;
+      });
   }
-  
+
   void setIntervalDaily() {
-    if (!loading) setState(() {
-      totalDuration = const Duration(days: 1);
-      bucketDuration = const Duration(hours: 1);
-      series = null;
-    });
+    if (!loading)
+      setState(() {
+        totalDuration = const Duration(days: 1);
+        bucketDuration = const Duration(hours: 1);
+        series = null;
+      });
   }
 
   void load(Color color) async {
@@ -153,8 +156,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             Text(' in last ', style: titleStyle),
             (PopupMenuBuilder()
                   ..addItem(text: 'day', onSelected: setIntervalDaily)
-                  ..addItem(text: 'hour', onSelected: setIntervalHourly)
-                  )
+                  ..addItem(text: 'hour', onSelected: setIntervalHourly))
                 .build(
                     child: Text('$duration', style: linkStyle), padding: null),
             Text(', height=${widget.tip.height}'),
