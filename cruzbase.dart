@@ -4,7 +4,6 @@
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
-import 'package:flutter_web/foundation.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 import 'package:cruzawl/currency.dart';
