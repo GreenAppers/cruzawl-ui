@@ -8,6 +8,7 @@ import 'dart:typed_data';
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
+import 'package:sembast/sembast.dart' as sembast;
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tweetnacl/tweetnacl.dart' as tweetnacl;
 
@@ -34,6 +35,7 @@ class WalletModel extends Model {
 }
 
 class Cruzawl extends Model {
+  sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
   FlutterErrorDetails fatal;
   PackageInfo packageInfo;
@@ -44,7 +46,8 @@ class Cruzawl extends Model {
   List<WalletModel> wallets = <WalletModel>[];
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
-  Cruzawl(this.preferences, this.dataDir, {this.packageInfo, this.isTrustFall});
+  Cruzawl(this.databaseFactory, this.preferences, this.dataDir,
+      {this.packageInfo, this.isTrustFall=false});
 
   void setState(VoidCallback stateChangeCb) {
     stateChangeCb();
@@ -64,8 +67,8 @@ class Cruzawl extends Model {
   void openWallets() {
     Map<String, String> loadedWallets = preferences.wallets;
     loadedWallets.forEach((k, v) => addWallet(
-        Wallet.fromFile(getWalletFilename(k), Seed(base64.decode(v)),
-            preferences, debugPrint, openedWallet),
+        Wallet.fromFile(databaseFactory, getWalletFilename(k),
+            Seed(base64.decode(v)), preferences, debugPrint, openedWallet),
         store: false));
   }
 
