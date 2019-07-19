@@ -18,6 +18,8 @@ import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
 import 'package:cruzawl/wallet.dart';
 
+typedef SetClipboardText = void Function(BuildContext, String);
+
 class PackageInfo {
   final String appName, packageName, version, buildNumber;
   PackageInfo(this.appName, this.packageName, this.version, this.buildNumber);
@@ -35,6 +37,7 @@ class WalletModel extends Model {
 }
 
 class Cruzawl extends Model {
+  SetClipboardText setClipboardText;
   sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
   FlutterErrorDetails fatal;
@@ -46,8 +49,10 @@ class Cruzawl extends Model {
   List<WalletModel> wallets = <WalletModel>[];
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
-  Cruzawl(this.databaseFactory, this.preferences, this.dataDir,
-      {this.packageInfo, this.isTrustFall=false});
+
+  Cruzawl(this.setClipboardText, this.databaseFactory, this.preferences,
+      this.dataDir,
+      {this.packageInfo, this.isTrustFall = false});
 
   void setState(VoidCallback stateChangeCb) {
     stateChangeCb();

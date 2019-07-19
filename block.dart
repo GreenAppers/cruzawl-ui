@@ -1,8 +1,12 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+import 'dart:convert';
+
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
+
+import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
@@ -10,6 +14,7 @@ import 'package:cruzawl/network.dart';
 
 import 'transaction.dart';
 import 'ui.dart';
+import 'model.dart';
 
 class BlockWidget extends StatefulWidget {
   final Currency currency;
@@ -87,6 +92,7 @@ class _BlockWidgetState extends State<BlockWidget> {
               title: "Loading...");
     }
 
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
     final TextStyle linkStyle = TextStyle(
@@ -134,6 +140,13 @@ class _BlockWidgetState extends State<BlockWidget> {
     }
 
     header.add(
+      ListTile(
+        title: Text('Nonce'),
+        trailing: Text(block.header.nonce.toString()),
+      ),
+    );
+
+    header.add(
       buildListTile(
         Text('Id'),
         wideStyle,
@@ -157,13 +170,6 @@ class _BlockWidgetState extends State<BlockWidget> {
     );
 
     header.add(
-      ListTile(
-        title: Text('Nonce'),
-        trailing: Text(block.header.nonce.toString()),
-      ),
-    );
-
-    header.add(
       buildListTile(
         Text('Target'),
         wideStyle,
@@ -181,13 +187,20 @@ class _BlockWidgetState extends State<BlockWidget> {
           Text(block.header.hashListRoot.toJson())),
     );
 
+    List<Widget> footer = <Widget>[
+      RaisedGradientButton(
+        labelText: 'Copy',
+        onPressed: () =>
+            appState.setClipboardText(context, jsonEncode(block)),
+      )];
+
     return SimpleScaffold(
       Container(
         constraints: widget.maxWidth == null
             ? null
             : BoxConstraints(maxWidth: widget.maxWidth),
         child: ListView.builder(
-          itemCount: header.length +
+          itemCount: header.length + footer.length +
               (block.transactions.length > 0 ? 1 : 0) +
               block.transactions.length,
           itemBuilder: (BuildContext context, int index) {
@@ -197,7 +210,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                   child: Text('Transactions (${block.header.transactionCount})',
                       style: labelTextStyle));
             int transactionIndex = index - header.length - 1;
-            if (transactionIndex < block.transactions.length)
+            if (transactionIndex < block.transactions.length) {
               return TransactionListTile(
                 widget.currency,
                 block.transactions[transactionIndex],
@@ -209,7 +222,11 @@ class _BlockWidgetState extends State<BlockWidget> {
                 onToTap: (tx) =>
                     Navigator.of(context).pushNamed('/address/' + tx.toText),
               );
-            return Center(child: CircularProgressIndicator());
+            } else {
+              int footerIndex = transactionIndex - block.transactions.length;
+              if (footerIndex < footer.length) return footer[footerIndex];
+              return null;
+            }
           },
         ),
       ),

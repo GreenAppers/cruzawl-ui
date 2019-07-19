@@ -7,9 +7,12 @@ import 'dart:math';
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
+import 'package:scoped_model/scoped_model.dart';
+
 import 'package:cruzawl/currency.dart';
 
 import 'ui.dart';
+import 'model.dart';
 
 class TransactionInfo {
   Color color;
@@ -86,29 +89,30 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     );
     final TextStyle valueTextStyle = TextStyle(color: Colors.black);
     final int tipHeight = widget.currency.network.tipHeight ?? 0;
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
 
     List<Widget> ret = <Widget>[
       ListTile(
         title: Text('Date', style: labelTextStyle),
         subtitle: CopyableText(widget.currency.formatTime(transaction.time),
-            style: valueTextStyle),
+            appState.setClipboardText, style: valueTextStyle),
       ),
       ListTile(
         title: Text('From', style: labelTextStyle),
-        subtitle: CopyableText(transaction.fromText, style: valueTextStyle),
+        subtitle: CopyableText(transaction.fromText, appState.setClipboardText, style: valueTextStyle),
       ),
       ListTile(
         title: Text('To', style: labelTextStyle),
-        subtitle: CopyableText(transaction.toText, style: valueTextStyle),
+        subtitle: CopyableText(transaction.toText, appState.setClipboardText, style: valueTextStyle),
       ),
       ListTile(
         title: Text('Id', style: labelTextStyle),
         subtitle:
-            CopyableText(transaction.id().toJson(), style: valueTextStyle),
+            CopyableText(transaction.id().toJson(), appState.setClipboardText, style: valueTextStyle),
       ),
       ListTile(
         title: Text('Memo', style: labelTextStyle),
-        subtitle: CopyableText(transaction.memo ?? '', style: valueTextStyle),
+        subtitle: CopyableText(transaction.memo ?? '', appState.setClipboardText, style: valueTextStyle),
       ),
       ListTile(
         title: Text('Amount', style: labelTextStyle),
@@ -163,7 +167,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     ret.add(RaisedGradientButton(
       labelText: 'Copy',
       onPressed: () =>
-          CopyableText.setClipboardText(context, jsonEncode(transaction)),
+          appState.setClipboardText(context, jsonEncode(transaction)),
     ));
 
     return SimpleScaffold(

@@ -7,12 +7,14 @@ import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
 import 'transaction.dart';
 import 'ui.dart';
+import 'model.dart';
 
 class ExternalAddressWidget extends StatefulWidget {
   final Currency currency;
@@ -104,6 +106,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
           title: "Loading...");
     }
 
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
     final TextStyle linkStyle = TextStyle(
@@ -136,7 +139,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       Center(
         child: Container(
           padding: EdgeInsets.only(right: 32),
-          child: CopyableText(widget.addressText),
+          child: CopyableText(widget.addressText, appState.setClipboardText),
         ),
       ),
       ListTile(

@@ -12,6 +12,7 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
+import 'model.dart';
 
 class SimpleScaffoldActions extends Model {
   final List<Widget> actions;
@@ -269,7 +270,8 @@ class CopyableText extends StatelessWidget {
   final String text;
   final TextStyle style;
   final VoidCallback onTap;
-  CopyableText(this.text, {this.style, this.onTap});
+  final SetClipboardText setClipboardText;
+  CopyableText(this.text, this.setClipboardText, {this.style, this.onTap});
 
   @override
   Widget build(BuildContext context) => Container(
@@ -293,11 +295,6 @@ class CopyableText extends StatelessWidget {
           ],
         ),
       );
-
-  static void setClipboardText(BuildContext context, String text) {
-    Clipboard.setData(ClipboardData(text: text)).then((result) =>
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Copied.'))));
-  }
 }
 
 List<DropdownMenuItem<String>> buildDropdownMenuItem(List<String> x) {
