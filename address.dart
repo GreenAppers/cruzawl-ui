@@ -83,7 +83,13 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
         transactions = results.transactions;
       else
         transactions.addAll(results.transactions);
-      iter = TransactionIterator(results.height, results.index);
+
+      if (iter != null &&
+          (results.height > iter.height ||
+              (results.height == iter.height && results.index > iter.index)))
+        iter = TransactionIterator(0, 0);
+      else
+        iter = TransactionIterator(results.height, results.index);
 
       // Load most recent 100 blocks worth of transactions
     } while (iter.height > max(0, tipHeight - 100));
