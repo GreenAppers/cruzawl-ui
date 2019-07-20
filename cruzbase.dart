@@ -5,10 +5,12 @@ import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
+import 'model.dart';
 import 'ui.dart';
 
 class CruzbaseWidget extends StatefulWidget {

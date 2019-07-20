@@ -18,6 +18,8 @@ import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
 import 'package:cruzawl/wallet.dart';
 
+import 'ui.dart';
+
 typedef SetClipboardText = void Function(BuildContext, String);
 
 class PackageInfo {
@@ -37,6 +39,7 @@ class WalletModel extends Model {
 }
 
 class Cruzawl extends Model {
+  AppTheme theme;
   SetClipboardText setClipboardText;
   sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
@@ -52,12 +55,16 @@ class Cruzawl extends Model {
 
   Cruzawl(this.setClipboardText, this.databaseFactory, this.preferences,
       this.dataDir,
-      {this.packageInfo, this.isTrustFall = false});
+      {this.packageInfo, this.isTrustFall = false}) {
+    setTheme();
+  }
 
   void setState(VoidCallback stateChangeCb) {
     stateChangeCb();
     notifyListeners();
   }
+
+  void setTheme() => theme = themes[preferences.theme] ?? themes['teal'];
 
   bool unlockWallets(String password) {
     try {
@@ -85,6 +92,8 @@ class Cruzawl extends Model {
         debugPrint(fatal.toString());
       }
     } else {
+      if (wallet.wallet == x)
+        currency = x.currency; // Replace [LoadingCurrency]
       walletsLoading--;
     }
     notifyListeners();

@@ -108,9 +108,8 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
 
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
     final TextStyle linkStyle = TextStyle(
-      color: theme.accentColor,
+      color: appState.theme.linkColor,
       decoration: TextDecoration.underline,
     );
     final TextStyle labelTextStyle = TextStyle(

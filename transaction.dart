@@ -95,24 +95,30 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       ListTile(
         title: Text('Date', style: labelTextStyle),
         subtitle: CopyableText(widget.currency.formatTime(transaction.time),
-            appState.setClipboardText, style: valueTextStyle),
+            appState.setClipboardText,
+            style: valueTextStyle),
       ),
       ListTile(
         title: Text('From', style: labelTextStyle),
-        subtitle: CopyableText(transaction.fromText, appState.setClipboardText, style: valueTextStyle),
+        subtitle: CopyableText(transaction.fromText, appState.setClipboardText,
+            style: valueTextStyle),
       ),
       ListTile(
         title: Text('To', style: labelTextStyle),
-        subtitle: CopyableText(transaction.toText, appState.setClipboardText, style: valueTextStyle),
+        subtitle: CopyableText(transaction.toText, appState.setClipboardText,
+            style: valueTextStyle),
       ),
       ListTile(
         title: Text('Id', style: labelTextStyle),
-        subtitle:
-            CopyableText(transaction.id().toJson(), appState.setClipboardText, style: valueTextStyle),
+        subtitle: CopyableText(
+            transaction.id().toJson(), appState.setClipboardText,
+            style: valueTextStyle),
       ),
       ListTile(
         title: Text('Memo', style: labelTextStyle),
-        subtitle: CopyableText(transaction.memo ?? '', appState.setClipboardText, style: valueTextStyle),
+        subtitle: CopyableText(
+            transaction.memo ?? '', appState.setClipboardText,
+            style: valueTextStyle),
       ),
       ListTile(
         title: Text('Amount', style: labelTextStyle),
@@ -195,9 +201,9 @@ class TransactionListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final linkStyle = TextStyle(
-      color: theme.accentColor,
+      color: appState.theme.linkColor,
       decoration: TextDecoration.underline,
     );
     final labelStyle = TextStyle(

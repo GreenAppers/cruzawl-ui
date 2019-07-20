@@ -210,7 +210,7 @@ class _HideableWidgetState extends State<HideableWidget> {
 
   @override
   Widget build(BuildContext c) {
-    final ThemeData theme = Theme.of(context);
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -230,7 +230,7 @@ class _HideableWidgetState extends State<HideableWidget> {
                       TextSpan(
                         text: 'Hide',
                         style: TextStyle(
-                          color: theme.accentColor,
+                          color: appState.theme.linkColor,
                           decoration: TextDecoration.underline,
                         ),
                         recognizer: TapGestureRecognizer()
@@ -251,7 +251,7 @@ class _HideableWidgetState extends State<HideableWidget> {
                     TextSpan(
                       text: 'Show',
                       style: TextStyle(
-                        color: theme.accentColor,
+                        color: appState.theme.linkColor,
                         decoration: TextDecoration.underline,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -281,7 +281,7 @@ class CopyableText extends StatelessWidget {
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.content_copy),
-              color: Theme.of(context).accentColor,
+              color: ScopedModel.of<Cruzawl>(context).theme.linkColor,
               onPressed: () => setClipboardText(context, text),
             ),
             Flexible(
@@ -314,35 +314,51 @@ Widget buildListTile(Widget title, bool wideStyle, Widget widget) {
           child: ListTile(title: Center(child: title), subtitle: widget));
 }
 
-Map<String, ThemeData> themes = <String, ThemeData>{
-  'red': ThemeData(primarySwatch: Colors.red, accentColor: Colors.redAccent),
-  'pink': ThemeData(primarySwatch: Colors.pink, accentColor: Colors.pinkAccent),
-  'purple':
-      ThemeData(primarySwatch: Colors.purple, accentColor: Colors.purpleAccent),
-  'deepPurple': ThemeData(
-      primarySwatch: Colors.deepPurple, accentColor: Colors.deepPurpleAccent),
-  'indigo':
-      ThemeData(primarySwatch: Colors.indigo, accentColor: Colors.indigoAccent),
-  'blue': ThemeData(primarySwatch: Colors.blue, accentColor: Colors.blueAccent),
-  'lightBlue': ThemeData(
-      primarySwatch: Colors.lightBlue, accentColor: Colors.lightBlueAccent),
-  'cyan': ThemeData(primarySwatch: Colors.cyan, accentColor: Colors.cyanAccent),
-  'teal': ThemeData(primarySwatch: Colors.teal, accentColor: Colors.tealAccent),
-  'green':
-      ThemeData(primarySwatch: Colors.green, accentColor: Colors.greenAccent),
-  'lightGreen': ThemeData(
-      primarySwatch: Colors.lightGreen, accentColor: Colors.lightGreenAccent),
-  'lime': ThemeData(primarySwatch: Colors.lime, accentColor: Colors.limeAccent),
-  'yellow':
-      ThemeData(primarySwatch: Colors.yellow, accentColor: Colors.yellowAccent),
-  'amber':
-      ThemeData(primarySwatch: Colors.amber, accentColor: Colors.amberAccent),
-  'orange':
-      ThemeData(primarySwatch: Colors.orange, accentColor: Colors.orangeAccent),
-  'deepOrange': ThemeData(
-      primarySwatch: Colors.deepOrange, accentColor: Colors.orangeAccent),
-  'brown':
-      ThemeData(primarySwatch: Colors.brown, accentColor: Colors.brown[100]),
-  'blueGrey': ThemeData(
-      primarySwatch: Colors.blueGrey, accentColor: Colors.blueGrey[100]),
+class AppTheme {
+  ThemeData data;
+  Color linkColor;
+  AppTheme(this.data, {this.linkColor}) {
+    linkColor = linkColor ?? data.primaryColor;
+  }
+}
+
+Map<String, AppTheme> themes = <String, AppTheme>{
+  'red': AppTheme(
+      ThemeData(primarySwatch: Colors.red, accentColor: Colors.redAccent)),
+  'pink': AppTheme(
+      ThemeData(primarySwatch: Colors.pink, accentColor: Colors.pinkAccent)),
+  'purple': AppTheme(ThemeData(
+      primarySwatch: Colors.purple, accentColor: Colors.purpleAccent)),
+  'deepPurple': AppTheme(ThemeData(
+      primarySwatch: Colors.deepPurple, accentColor: Colors.deepPurpleAccent)),
+  'indigo': AppTheme(ThemeData(
+      primarySwatch: Colors.indigo, accentColor: Colors.indigoAccent)),
+  'blue': AppTheme(
+      ThemeData(primarySwatch: Colors.blue, accentColor: Colors.blueAccent)),
+  'lightBlue': AppTheme(ThemeData(
+      primarySwatch: Colors.lightBlue, accentColor: Colors.lightBlueAccent)),
+  'cyan': AppTheme(
+      ThemeData(primarySwatch: Colors.cyan, accentColor: Colors.cyanAccent)),
+  'teal': AppTheme(
+      ThemeData(primarySwatch: Colors.teal, accentColor: Colors.tealAccent)),
+  'green': AppTheme(
+      ThemeData(primarySwatch: Colors.green, accentColor: Colors.greenAccent)),
+  'lightGreen': AppTheme(ThemeData(
+      primarySwatch: Colors.lightGreen, accentColor: Colors.lightGreenAccent)),
+  'lime': AppTheme(
+      ThemeData(primarySwatch: Colors.lime, accentColor: Colors.limeAccent)),
+  'yellow': AppTheme(ThemeData(
+      primarySwatch: Colors.yellow, accentColor: Colors.yellowAccent)),
+  'amber': AppTheme(
+      ThemeData(primarySwatch: Colors.amber, accentColor: Colors.amberAccent)),
+  'orange': AppTheme(ThemeData(
+      primarySwatch: Colors.orange, accentColor: Colors.orangeAccent)),
+  'deepOrange': AppTheme(
+      ThemeData(
+          primarySwatch: Colors.deepOrange, accentColor: Colors.orangeAccent),
+      linkColor: Colors.orangeAccent),
+  'brown': AppTheme(
+      ThemeData(primarySwatch: Colors.brown, accentColor: Colors.brown[100])),
+  'blueGrey': AppTheme(ThemeData(
+      primarySwatch: Colors.blueGrey, accentColor: Colors.blueGrey[100])),
 };

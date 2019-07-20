@@ -94,9 +94,8 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
     final TextStyle linkStyle = TextStyle(
-      color: theme.accentColor,
+      color: appState.theme.linkColor,
       decoration: TextDecoration.underline,
     );
     final TextStyle labelTextStyle = TextStyle(
@@ -190,9 +189,9 @@ class _BlockWidgetState extends State<BlockWidget> {
     List<Widget> footer = <Widget>[
       RaisedGradientButton(
         labelText: 'Copy',
-        onPressed: () =>
-            appState.setClipboardText(context, jsonEncode(block)),
-      )];
+        onPressed: () => appState.setClipboardText(context, jsonEncode(block)),
+      )
+    ];
 
     return SimpleScaffold(
       Container(
@@ -200,7 +199,8 @@ class _BlockWidgetState extends State<BlockWidget> {
             ? null
             : BoxConstraints(maxWidth: widget.maxWidth),
         child: ListView.builder(
-          itemCount: header.length + footer.length +
+          itemCount: header.length +
+              footer.length +
               (block.transactions.length > 0 ? 1 : 0) +
               block.transactions.length,
           itemBuilder: (BuildContext context, int index) {

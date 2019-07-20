@@ -26,7 +26,6 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
     final Cruzawl appState =
         ScopedModel.of<Cruzawl>(context, rebuildOnChange: true);
     final PeerNetwork network = appState.currency.network;
-    final ThemeData theme = Theme.of(context);
 
     peers = appState.preferences.peers;
 
@@ -89,13 +88,13 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.remove),
-                color: theme.accentColor,
+                color: appState.theme.linkColor,
                 onPressed: removeSelectedPeer,
               ),
               Text('Peers'),
               IconButton(
                 icon: Icon(Icons.add),
-                color: theme.accentColor,
+                color: appState.theme.linkColor,
                 onPressed: () => Navigator.of(context).pushNamed('/addPeer'),
               ),
             ],
