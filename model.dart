@@ -46,6 +46,7 @@ class Cruzawl extends Model {
   FlutterErrorDetails fatal;
   PackageInfo packageInfo;
   bool isTrustFall;
+  String debugLog;
   Directory dataDir;
   WalletModel wallet;
   Currency currency;
@@ -56,6 +57,7 @@ class Cruzawl extends Model {
   Cruzawl(this.setClipboardText, this.databaseFactory, this.preferences,
       this.dataDir,
       {this.packageInfo, this.isTrustFall = false}) {
+    if (preferences.debugLog) debugLog = '';
     setTheme();
   }
 
@@ -80,7 +82,7 @@ class Cruzawl extends Model {
     Map<String, String> loadedWallets = preferences.wallets;
     loadedWallets.forEach((k, v) => addWallet(
         Wallet.fromFile(databaseFactory, getWalletFilename(k),
-            Seed(base64.decode(v)), preferences, debugPrint, openedWallet),
+            Seed(base64.decode(v)), preferences, print, openedWallet),
         store: false));
   }
 
@@ -89,7 +91,7 @@ class Cruzawl extends Model {
       if (fatal == null) {
         fatal = FlutterErrorDetails(
             exception: x.fatal.exception, stack: x.fatal.stack);
-        debugPrint(fatal.toString());
+        print(fatal.toString());
       }
     } else {
       if (wallet.wallet == x)
@@ -137,7 +139,7 @@ class Cruzawl extends Model {
 
   void updateWallets(Currency currency) {
     if (wallets.isEmpty) {
-      debugPrint('updated ${currency.network.tipHeight}');
+      print('updated ${currency.network.tipHeight}');
       notifyListeners();
     } else
       for (WalletModel m in wallets) {
@@ -174,7 +176,7 @@ class Cruzawl extends Model {
     Currency currency = Currency.fromJson(x.currency);
     if (currency == null) return null;
 
-    x.debugPrint = debugPrint;
+    x.debugPrint = print;
     currency.network.tipChanged = () => updateWallets(currency);
     currency.network.peerChanged = () => reloadWallets(currency);
     return currency.network.addPeerWithSpec(x, currency.genesisBlockId());
@@ -196,9 +198,9 @@ class Cruzawl extends Model {
 
   int runUnitTests() {
     int tests = 0;
-    debugPrint('running unit tests');
+    print('running unit tests');
     TestCallback testCallback = (n, f) {
-      debugPrint('testing $n');
+      print('testing $n');
       tests++;
       f();
     };
@@ -210,7 +212,15 @@ class Cruzawl extends Model {
     CruzTest(testCallback, testCallback, expectCallback).run();
     WalletTest(testCallback, testCallback, expectCallback).run();
     if (fatal != null) return -1;
-    debugPrint('unit tests succeeded');
+    print('unit tests succeeded');
     return tests;
+  }
+
+  void print(String text) {
+    if (debugLog != null) {
+      debugLog += text;
+      debugLog += '\n';
+    }
+    debugPrint(text);
   }
 }
