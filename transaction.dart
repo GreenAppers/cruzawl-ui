@@ -4,8 +4,8 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:flutter/material.dart'
-    if (dart.library.html) 'package:flutter_web/material.dart';
+import 'package:flutter_web/material.dart'
+    if (dart.library.io) 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 

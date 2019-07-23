@@ -5,8 +5,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart'
-    if (dart.library.html) 'package:flutter_web/material.dart';
+import 'package:flutter_web/material.dart'
+    if (dart.library.io) 'package:flutter/material.dart';
 
 import 'package:sembast/sembast.dart' as sembast;
 import 'package:scoped_model/scoped_model.dart';
