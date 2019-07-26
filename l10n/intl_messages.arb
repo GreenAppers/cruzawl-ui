@@ -1,0 +1,13 @@
+{
+  "@@last_modified": "2019-07-26T00:11:27.851445",
+  "title": "Cruzall",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockTitle": "Unlock Cruzall",
+  "@unlockTitle": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

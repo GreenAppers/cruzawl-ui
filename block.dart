@@ -129,13 +129,14 @@ class _BlockWidgetState extends State<BlockWidget> {
               : '${duration.inSeconds} seconds'),
         ),
       );
-      header.add(
-        ListTile(
-          title: Text('Delta Hash Power'),
-          trailing: Text(
-              widget.currency.formatHashRate(block.header.hashRate(prevBlock))),
-        ),
-      );
+      if (duration.inSeconds > 0)
+        header.add(
+          ListTile(
+            title: Text('Delta Hash Power'),
+            trailing: Text(
+                widget.currency.formatHashRate(block.header.hashRate(prevBlock))),
+          ),
+        );
     }
 
     header.add(
