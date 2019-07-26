@@ -151,7 +151,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               changedListener: (charts.SelectionModel model) {
                 for (charts.SeriesDatum datum in model.selectedDatum)
                   if (datum.datum.blocks > 0) {
-                    Navigator.of(context).pushNamed('/height/${datum.datum.block[0].height}');
+                    Navigator.of(context)
+                        .pushNamed('/height/${datum.datum.block[0].height}');
                     break;
                   }
               },
@@ -177,7 +178,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             Text(', height='),
             GestureDetector(
               child: Text('${widget.tip.height}', style: linkStyle),
-              onTap: () => Navigator.of(context).pushNamed('/height/${widget.tip.height}'),
+              onTap: () => Navigator.of(context)
+                  .pushNamed('/height/${widget.tip.height}'),
             ),
           ],
         ));

@@ -133,8 +133,8 @@ class _BlockWidgetState extends State<BlockWidget> {
         header.add(
           ListTile(
             title: Text('Delta Hash Power'),
-            trailing: Text(
-                widget.currency.formatHashRate(block.header.hashRate(prevBlock))),
+            trailing: Text(widget.currency
+                .formatHashRate(block.header.hashRate(prevBlock))),
           ),
         );
     }
