@@ -66,7 +66,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       DateTime next = now;
       for (int i = 0; i < len; i++) {
         next = next.subtract(bucketDuration);
-        data.add(TimeSeriesBlocks(next, 0));
+        data.add(TimeSeriesBlocks(next));
       }
     }
 
@@ -90,12 +90,13 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         BlockHeader header = message.header;
         if ((done = !blockTime(header).isAfter(end))) break;
 
-        totalBlocks++;
-        last = header;
         Duration offset = now.difference(blockTime(header));
         int bucket = divideDuration(offset, bucketDuration);
-        assert(bucket < data.length, 'failed $bucket < ${data.length}');
-        data[bucket].blocks++;
+        if (bucket >= 0 && bucket < data.length) {
+          data[bucket].block.add(header);
+          totalBlocks++;
+          last = header;
+        }
       }
     }
 
@@ -144,6 +145,18 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
           defaultRenderer: charts.BarRendererConfig<DateTime>(),
           defaultInteractions: false,
           behaviors: [charts.SelectNearest(), charts.DomainHighlighter()],
+          selectionModels: [
+            charts.SelectionModelConfig(
+              type: charts.SelectionModelType.info,
+              changedListener: (charts.SelectionModel model) {
+                for (charts.SeriesDatum datum in model.selectedDatum)
+                  if (datum.datum.blocks > 0) {
+                    Navigator.of(context).pushNamed('/height/${datum.datum.block[0].height}');
+                    break;
+                  }
+              },
+            ),
+          ],
         ),
         titleWidget: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -161,7 +174,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
                   ..addItem(text: 'hour', onSelected: setIntervalHourly))
                 .build(
                     child: Text('$duration', style: linkStyle), padding: null),
-            Text(', height=${widget.tip.height}'),
+            Text(', height='),
+            GestureDetector(
+              child: Text('${widget.tip.height}', style: linkStyle),
+              onTap: () => Navigator.of(context).pushNamed('/height/${widget.tip.height}'),
+            ),
           ],
         ));
   }
@@ -169,8 +186,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
 class TimeSeriesBlocks {
   DateTime time;
-  int blocks;
-  TimeSeriesBlocks(this.time, this.blocks);
+  List<BlockHeader> block = List<BlockHeader>();
+  TimeSeriesBlocks(this.time);
+
+  int get blocks => block.length;
 }
 
 charts.Color chartColor(Color color) =>
