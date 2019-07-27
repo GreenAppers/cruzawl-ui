@@ -18,7 +18,7 @@ class AppLocalizations {
 
     return initializeMessages(localeName).then((bool _) {
       Intl.defaultLocale = localeName;
-      return new AppLocalizations();
+      return AppLocalizations();
     });
   }
 
@@ -64,17 +64,43 @@ class AppLocalizations {
 
   String get title => Intl.message('Cruzall', name: 'title');
   String get unlockTitle => Intl.message('Unlock Cruzall', name: 'unlockTitle');
+
+  String get ok => Intl.message('Ok', name: 'ok');
+  String get name => Intl.message('Name', name: 'name');
+  String get time => Intl.message('Time', name: 'time');
+  String get height => Intl.message('Height', name: 'height');
+  String get accounts => Intl.message('Accounts', name: 'accounts');
+  String get addresses => Intl.message('Addresses', name: 'addresses');
+  String get balance => Intl.message('Balance', name: 'balance');
+  String get create => Intl.message('Create', name: 'create');
+  String get verify => Intl.message('Verify', name: 'verify');
+  String get verifying => Intl.message('Verifying...', name: 'verifying');
+  String get seedPhrase => Intl.message('Seed phrase', name: 'seedPhrase');
+  String get activeTransactions => Intl.message('Active transactions', name: 'activeTransactions');
+  String get maturingTransactions => Intl.message('Maturing transactions', name: 'maturingTransactions');
+  String get dangerZone => Intl.message('Danger Zone', name: 'dangerZone');
+  String get deleteWallet => Intl.message('Delete Wallet', name: 'deleteWallet');
+  String get deleteThisWallet => Intl.message('Delete this wallet', name: 'deleteThisWallet');
+  String get deleteWalletDescription => Intl.message('Once you delete a wallet, there is no going back. Please be certain.', name: 'deleteWalletDescription');
+  String get cantDeleteOnlyWallet => Intl.message("Can't delete the only wallet.", name: 'cantDeleteOnlyWallet');
+  String get copyPublicKeys => Intl.message('Copy Public Keys', name: 'copyPublicKeys');
+  String get copied => Intl.message('Copied.', name: 'copied');
+  String get unitTestFailure => Intl.message('Unit test failure', name: 'unitTestFailure');
+
   String get recentHistory =>
       Intl.message('Recent History', name: 'recentHistory');
-  String get currentBalance =>
+  String get currentBalanceIs =>
       Intl.message('Your current balance is:', name: 'currentBalance');
 
-  String balanceAtHeight(int height) =>
+  String balanceAtHeightIs(int height) =>
       Intl.message('Your balance at block height {@<a>}$height{@</a>} is:',
           name: 'balanceAtHeight', args: [height]);
-  String balanceMaturingByHeight(int height) =>
+  String balanceMaturingByHeightIs(int height) =>
       Intl.message('Your balance maturing by height $height is:',
           name: 'balanceMaturingByHeight', args: [height]);
+  String verifyWalletResults(int goodAddresses, int totalAddresses, int goodTests, int totalTests) =>
+      Intl.message('Verified $goodAddresses/$totalAddresses addresses and $goodTests/$totalTests tests succeeded',
+          name: 'verifyWalletResults', args: [goodAddresses, totalAddresses, goodTests, totalTests]);
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

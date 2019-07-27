@@ -14,6 +14,7 @@ import 'package:cruzawl/network.dart';
 
 import 'transaction.dart';
 import 'ui.dart';
+import 'localizations.dart';
 import 'model.dart';
 
 class BlockWidget extends StatefulWidget {
@@ -92,6 +93,7 @@ class _BlockWidgetState extends State<BlockWidget> {
               title: "Loading...");
     }
 
+    final AppLocalizations locale = AppLocalizations.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final TextStyle linkStyle = TextStyle(
@@ -108,11 +110,11 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     List<Widget> header = <Widget>[
       ListTile(
-        title: Text('Time'),
+        title: Text(locale.time),
         trailing: Text(widget.currency.formatTime(block.header.time)),
       ),
       ListTile(
-        title: Text('Height'),
+        title: Text(locale.height),
         trailing: Text(block.header.height.toString()),
       ),
     ];
