@@ -66,7 +66,20 @@ class Cruzawl extends Model {
     notifyListeners();
   }
 
-  void setTheme() => theme = themes[preferences.theme] ?? themes['teal'];
+  void setTheme() {
+    theme = themes[preferences.theme] ?? themes['teal'];
+    theme.titleStyle = TextStyle(
+      fontFamily: 'MartelSans',
+    );
+    theme.labelStyle = TextStyle(
+      fontFamily: 'MartelSans',
+      color: Colors.grey,
+    );
+    theme.linkStyle = TextStyle(
+      color: theme.linkColor,
+      decoration: TextDecoration.underline,
+    );
+  }
 
   bool unlockWallets(String password) {
     try {
@@ -94,8 +107,8 @@ class Cruzawl extends Model {
         print(fatal.toString());
       }
     } else {
-      if (wallet.wallet == x)
-        currency = x.currency; // Replace [LoadingCurrency]
+      /// Replaces [LoadingCurrency]
+      if (wallet.wallet == x) currency = x.currency;
       walletsLoading--;
     }
     notifyListeners();
@@ -223,4 +236,23 @@ class Cruzawl extends Model {
     }
     debugPrint(text);
   }
+
+  void navigateToWallet(BuildContext c) =>
+    Navigator.of(c).pushNamed('/wallet');
+  void navigateToAddWallet(BuildContext c) =>
+    Navigator.of(c).pushNamed('/addWallet');
+  void navigateToSettings(BuildContext c) =>
+    Navigator.of(c).pushNamed('/settings');
+  void navigateToNetwork(BuildContext c) =>
+    Navigator.of(c).pushNamed('/network');
+  void navigateToAddress(BuildContext c, Address address) =>
+    Navigator.of(c).pushNamed('/address/${address.publicKey.toJson()}');
+  void navigateToAddressText(BuildContext c, String text) =>
+    Navigator.of(c).pushNamed('/address/$text');
+  void navigateToBlockId(BuildContext c, String blockId) =>
+    Navigator.of(c).pushNamed('/block/$blockId');
+  void navigateToHeight(BuildContext c, int height) =>
+    Navigator.of(c).pushNamed('/height/$height');
+  void navigateToTransaction(BuildContext c, Transaction tx) =>
+    Navigator.of(c).pushNamed('/transaction/' + tx.id().toJson());
 }

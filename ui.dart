@@ -11,8 +11,9 @@ import 'package:flutter_web/services.dart'
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
+import 'localizations.dart';
 import 'model.dart';
+import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
 
 class SimpleScaffoldActions extends Model {
   final List<Widget> actions;
@@ -39,7 +40,7 @@ class SimpleScaffold extends StatelessWidget {
           leading:
               backButtonBuilder != null ? backButtonBuilder(context) : null,
           title: titleWidget ??
-              Text(title, style: TextStyle(fontFamily: 'MartelSans')),
+              Text(title, style: ScopedModel.of<Cruzawl>(context).theme.titleStyle),
           actions: actions == null ? null : actions.actions,
           backgroundColorStart: theme.primaryColor,
           backgroundColorEnd: theme.accentColor,
@@ -210,6 +211,7 @@ class _HideableWidgetState extends State<HideableWidget> {
 
   @override
   Widget build(BuildContext c) {
+    final AppLocalizations locale = AppLocalizations.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -219,16 +221,13 @@ class _HideableWidgetState extends State<HideableWidget> {
           child: RichText(
             text: TextSpan(
               text: widget.title,
-              style: TextStyle(
-                fontFamily: 'MartelSans',
-                color: Colors.grey,
-              ),
+              style: appState.theme.labelStyle,
               children: !show
                   ? null
                   : <TextSpan>[
                       TextSpan(text: ' ['),
                       TextSpan(
-                        text: 'Hide',
+                        text: locale.hide,
                         style: TextStyle(
                           color: appState.theme.linkColor,
                           decoration: TextDecoration.underline,
@@ -249,7 +248,7 @@ class _HideableWidgetState extends State<HideableWidget> {
                   style: TextStyle(color: Colors.grey),
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Show',
+                      text: locale.show,
                       style: TextStyle(
                         color: appState.theme.linkColor,
                         decoration: TextDecoration.underline,
@@ -317,6 +316,7 @@ Widget buildListTile(Widget title, bool wideStyle, Widget widget) {
 class AppTheme {
   ThemeData data;
   Color linkColor;
+  TextStyle titleStyle, labelStyle, linkStyle;
   AppTheme(this.data, {this.linkColor}) {
     linkColor = linkColor ?? data.primaryColor;
   }

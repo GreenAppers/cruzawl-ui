@@ -12,9 +12,10 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
+import 'localizations.dart';
+import 'model.dart';
 import 'transaction.dart';
 import 'ui.dart';
-import 'model.dart';
 
 class ExternalAddressWidget extends StatefulWidget {
   final Currency currency;
@@ -106,22 +107,17 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations locale = AppLocalizations.of(context);
     if (transactions == null) {
       load();
       return SimpleScaffold(Center(child: CircularProgressIndicator()),
-          title: "Loading...");
+          title: locale.loading);
     }
 
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
-    final TextStyle linkStyle = TextStyle(
-      color: appState.theme.linkColor,
-      decoration: TextDecoration.underline,
-    );
-    final TextStyle labelTextStyle = TextStyle(
-      fontFamily: 'MartelSans',
-      color: Colors.grey,
-    );
+    final TextStyle linkStyle = appState.theme.linkStyle;
+    final TextStyle labelTextStyle = appState.theme.labelStyle;
     final bool wideStyle =
         screenSize.width > (widget.maxWidth ?? double.maxFinite);
     final bool fullyLoaded = iter.height == 0 && iter.index == 0;
@@ -138,7 +134,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       Center(
         child: Container(
           padding: const EdgeInsets.only(top: 16),
-          child: Text('Address', style: labelTextStyle),
+          child: Text(locale.address, style: labelTextStyle),
         ),
       ),
       Center(
@@ -148,19 +144,19 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
         ),
       ),
       ListTile(
-        title: Text('Balance', style: labelTextStyle),
+        title: Text(locale.balance, style: labelTextStyle),
         trailing: Text(widget.currency.format(balance)),
       ),
     ];
 
     if (maturing > 0)
       header.add(ListTile(
-        title: Text('Maturing', style: labelTextStyle),
+        title: Text(locale.maturing, style: labelTextStyle),
         trailing: Text(widget.currency.format(maturing)),
       ));
     if (fullyLoaded)
       header.add(ListTile(
-        title: Text('Earliest Seen', style: labelTextStyle),
+        title: Text(locale.earliestSeen, style: labelTextStyle),
         trailing: Text(earliestSeen.toString()),
       ));
 
@@ -177,7 +173,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
             if (index < header.length) return header[index];
             if (index == header.length)
               return Center(
-                  child: Text('Transactions (${transactions.length})',
+                  child: Text(locale.numTransactions(transactions.length),
                       style: labelTextStyle));
 
             int transactionIndex = index - header.length - 1;
@@ -190,12 +186,9 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
                     toWallet: widget.addressText == transaction.toText,
                     fromWallet: widget.addressText == transaction.fromText,
                     wideStyle: wideStyle),
-                onTap: (tx) => Navigator.of(context)
-                    .pushNamed('/transaction/' + tx.id().toJson()),
-                onFromTap: (tx) =>
-                    Navigator.of(context).pushNamed('/address/' + tx.fromText),
-                onToTap: (tx) =>
-                    Navigator.of(context).pushNamed('/address/' + tx.toText),
+                onTap: (tx) => appState.navigateToTransaction(context, tx),
+                onFromTap: (tx) => appState.navigateToAddressText(context, tx.fromText),
+                onToTap: (tx) => appState.navigateToAddressText(context, tx.toText),
               );
             }
 
@@ -206,7 +199,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
           },
         ),
       ),
-      title: widget.title ?? "Address ${widget.addressText}",
+      title: widget.title ?? locale.addressTitle(widget.addressText),
     );
   }
 }

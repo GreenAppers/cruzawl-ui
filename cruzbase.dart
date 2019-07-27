@@ -10,6 +10,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
+import 'localizations.dart';
 import 'model.dart';
 import 'ui.dart';
 
@@ -116,24 +117,24 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations locale = AppLocalizations.of(context);
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
 
     if (series == null) {
       load(theme.accentColor);
       return widget.loadingWidget ??
           SimpleScaffold(Center(child: CircularProgressIndicator()),
-              title: "Loading...");
+              title: locale.loading);
     }
 
     String hashRate = widget.currency
         .formatHashRate(last == null ? '0 H/s' : widget.tip.hashRate(last));
     String duration = widget.currency.formatDuration(totalDuration);
-    TextStyle titleStyle = TextStyle(
-        fontFamily: 'MartelSans',
+    TextStyle titleStyle = appState.theme.titleStyle.copyWith(
         fontSize: 20,
         color: theme.primaryTextTheme.title.color);
-    TextStyle linkStyle = TextStyle(
-        fontFamily: 'MartelSans',
+    TextStyle linkStyle = appState.theme.titleStyle.copyWith(
         fontSize: 20,
         color: theme.primaryTextTheme.title.color,
         decoration: TextDecoration.underline);
@@ -151,8 +152,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               changedListener: (charts.SelectionModel model) {
                 for (charts.SeriesDatum datum in model.selectedDatum)
                   if (datum.datum.blocks > 0) {
-                    Navigator.of(context)
-                        .pushNamed('/height/${datum.datum.block[0].height}');
+                    appState.navigateToHeight(context, datum.datum.block[0].height);
                     break;
                   }
               },
@@ -178,8 +178,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             Text(', height='),
             GestureDetector(
               child: Text('${widget.tip.height}', style: linkStyle),
-              onTap: () => Navigator.of(context)
-                  .pushNamed('/height/${widget.tip.height}'),
+              onTap: () => appState.navigateToHeight(context, widget.tip.height),
             ),
           ],
         ));

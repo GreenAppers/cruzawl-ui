@@ -9,6 +9,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
+import 'localizations.dart';
 import 'model.dart';
 import 'ui.dart';
 
@@ -25,13 +26,14 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
   Widget build(BuildContext context) {
     final Cruzawl appState =
         ScopedModel.of<Cruzawl>(context, rebuildOnChange: true);
+    final AppLocalizations locale = AppLocalizations.of(context);
     final PeerNetwork network = appState.currency.network;
 
     peers = appState.preferences.peers;
 
     List<Widget> ret = <Widget>[
       SwitchListTile(
-        title: Text('Network'),
+        title: Text(locale.network),
         value: appState.preferences.networkEnabled,
         onChanged: (bool value) {
           appState.preferences.networkEnabled = value;
@@ -91,7 +93,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
                 color: appState.theme.linkColor,
                 onPressed: removeSelectedPeer,
               ),
-              Text('Peers'),
+              Text(locale.peers),
               IconButton(
                 icon: Icon(Icons.add),
                 color: appState.theme.linkColor,
@@ -128,12 +130,13 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
   void removeSelectedPeer() {
     if (selectedPeerIndex == null) return;
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final AppLocalizations locale = AppLocalizations.of(context);
     PeerPreference peer = peers[selectedPeerIndex];
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
         content: TitledWidget(
-          title: 'Delete Peer',
+          title: locale.deletePeer,
           content: ListTile(
             leading: Icon(Icons.cast),
             title: Text(peer.name),
@@ -143,11 +146,11 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
         ),
         actions: <Widget>[
           FlatButton(
-            child: const Text('Cancel'),
+            child: Text(locale.cancel),
             onPressed: () => Navigator.of(context).pop(),
           ),
           FlatButton(
-            child: const Text('Delete'),
+            child: Text(locale.delete),
             onPressed: () {
               setState(() {
                 peers.removeAt(selectedPeerIndex);
@@ -177,6 +180,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
 
   @override
   Widget build(BuildContext c) {
+    final AppLocalizations locale = AppLocalizations.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Currency currency = appState.currency;
     final PeerNetwork network = currency.network;
@@ -191,11 +195,11 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
             keyboardType: TextInputType.emailAddress,
             initialValue: name,
             decoration: InputDecoration(
-              labelText: 'Name',
+              labelText: locale.name,
             ),
             validator: (value) {
               if (peers.indexWhere((v) => v.name == value) != -1)
-                return 'Name must be unique.';
+                return locale.nameMustBeUnique;
               return null;
             },
             onSaved: (val) => name = val,
@@ -205,13 +209,13 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
           subtitle: TextFormField(
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              labelText: 'URL',
+              labelText: locale.url,
             ),
             validator: (value) {
               try {
                 network.parseUri(value, '');
               } on Exception {
-                return 'Invalid URL.';
+                return locale.invalidUrl;
               }
               return null;
             },
@@ -220,14 +224,14 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
         ),
         ListTile(
           leading: Icon(certRequired ? Icons.lock_outline : Icons.lock_open),
-          title: Text('Require SSL certificate'),
+          title: Text(locale.requireSSLCert),
           trailing: Switch(
             value: certRequired,
             onChanged: (bool value) => setState(() => certRequired = value),
           ),
         ),
         RaisedGradientButton(
-          labelText: 'Create',
+          labelText: locale.create,
           padding: EdgeInsets.all(32),
           onPressed: () {
             if (!formKey.currentState.validate()) return;
@@ -235,7 +239,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
             formKey.currentState.reset();
             FocusScope.of(context).requestFocus(FocusNode());
             Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text('Creating...')));
+                .showSnackBar(SnackBar(content: Text(locale.creating)));
 
             String options =
                 PeerPreference.formatOptions(ignoreBadCert: !certRequired);

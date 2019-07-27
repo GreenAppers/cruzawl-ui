@@ -86,24 +86,18 @@ class _BlockWidgetState extends State<BlockWidget> {
       block = null;
     }
 
+    final AppLocalizations locale = AppLocalizations.of(context);
     if (block == null) {
       load();
       return widget.loadingWidget ??
           SimpleScaffold(Center(child: CircularProgressIndicator()),
-              title: "Loading...");
+              title: locale.loading);
     }
 
-    final AppLocalizations locale = AppLocalizations.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
-    final TextStyle linkStyle = TextStyle(
-      color: appState.theme.linkColor,
-      decoration: TextDecoration.underline,
-    );
-    final TextStyle labelTextStyle = TextStyle(
-      fontFamily: 'MartelSans',
-      color: Colors.grey,
-    );
+    final TextStyle linkStyle = appState.theme.linkStyle;
+    final TextStyle labelTextStyle = appState.theme.labelStyle;
     final bool wideStyle =
         screenSize.width > (widget.maxWidth ?? double.maxFinite);
     final String previousBlockId = block.header.previous.toJson();
@@ -124,7 +118,7 @@ class _BlockWidgetState extends State<BlockWidget> {
       int seconds = duration.inSeconds - duration.inMinutes * 60;
       header.add(
         ListTile(
-          title: Text('Delta Time'),
+          title: Text(locale.deltaTime),
           trailing: Text(duration.inMinutes > 0
               ? ('${duration.inMinutes} minutes' +
                   (seconds != 0 ? ' $seconds seconds' : ''))
@@ -134,7 +128,7 @@ class _BlockWidgetState extends State<BlockWidget> {
       if (duration.inSeconds > 0)
         header.add(
           ListTile(
-            title: Text('Delta Hash Power'),
+            title: Text(locale.deltaHashPower),
             trailing: Text(widget.currency
                 .formatHashRate(block.header.hashRate(prevBlock))),
           ),
@@ -143,37 +137,36 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     header.add(
       ListTile(
-        title: Text('Nonce'),
+        title: Text(locale.nonce),
         trailing: Text(block.header.nonce.toString()),
       ),
     );
 
     header.add(
       buildListTile(
-        Text('Id'),
+        Text(locale.id),
         wideStyle,
         GestureDetector(
           child: Text(blockId, style: wideStyle ? linkStyle : null),
-          onTap: () => Navigator.of(context).pushNamed('/block/' + blockId),
+          onTap: () => appState.navigateToBlockId(context, blockId),
         ),
       ),
     );
 
     header.add(
       buildListTile(
-        Text('Previous'),
+        Text(locale.previous),
         wideStyle,
         GestureDetector(
           child: Text(previousBlockId, style: wideStyle ? linkStyle : null),
-          onTap: () =>
-              Navigator.of(context).pushNamed('/block/' + previousBlockId),
+          onTap: () => appState.navigateToBlockId(context, previousBlockId),
         ),
       ),
     );
 
     header.add(
       buildListTile(
-        Text('Target'),
+        Text(locale.target),
         wideStyle,
         Text(block.header.target.toJson()),
       ),
@@ -181,17 +174,17 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     header.add(
       buildListTile(
-          Text('Chain Work'), wideStyle, Text(block.header.chainWork.toJson())),
+          Text(locale.chainWork), wideStyle, Text(block.header.chainWork.toJson())),
     );
 
     header.add(
-      buildListTile(Text('Hash List Root'), wideStyle,
+      buildListTile(Text(locale.hashListRoot), wideStyle,
           Text(block.header.hashListRoot.toJson())),
     );
 
     List<Widget> footer = <Widget>[
       RaisedGradientButton(
-        labelText: 'Copy',
+        labelText: locale.copy,
         onPressed: () => appState.setClipboardText(context, jsonEncode(block)),
       )
     ];
@@ -210,7 +203,7 @@ class _BlockWidgetState extends State<BlockWidget> {
             if (index < header.length) return header[index];
             if (index == header.length)
               return Center(
-                  child: Text('Transactions (${block.header.transactionCount})',
+                  child: Text(locale.numTransactions(block.header.transactionCount),
                       style: labelTextStyle));
             int transactionIndex = index - header.length - 1;
             if (transactionIndex < block.transactions.length) {
@@ -218,12 +211,9 @@ class _BlockWidgetState extends State<BlockWidget> {
                 widget.currency,
                 block.transactions[transactionIndex],
                 TransactionInfo(wideStyle: wideStyle),
-                onTap: (tx) => Navigator.of(context)
-                    .pushNamed('/transaction/' + tx.id().toJson()),
-                onFromTap: (tx) =>
-                    Navigator.of(context).pushNamed('/address/' + tx.fromText),
-                onToTap: (tx) =>
-                    Navigator.of(context).pushNamed('/address/' + tx.toText),
+                onTap: (tx) => appState.navigateToTransaction(context, tx),
+                onFromTap: (tx) => appState.navigateToAddressText(context, tx.fromText),
+                onToTap: (tx) => appState.navigateToAddressText(context, tx.toText),
               );
             } else {
               int footerIndex = transactionIndex - block.transactions.length;
@@ -233,7 +223,7 @@ class _BlockWidgetState extends State<BlockWidget> {
           },
         ),
       ),
-      title: widget.title ?? (isTip ? "Tip " : "Block ") + blockId,
+      title: widget.title ?? (isTip ? locale.tip : locale.block) + ' ' + blockId,
     );
   }
 }
