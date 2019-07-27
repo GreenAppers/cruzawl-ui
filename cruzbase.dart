@@ -131,9 +131,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     String hashRate = widget.currency
         .formatHashRate(last == null ? '0 H/s' : widget.tip.hashRate(last));
     String duration = widget.currency.formatDuration(totalDuration);
-    TextStyle titleStyle = appState.theme.titleStyle.copyWith(
-        fontSize: 20,
-        color: theme.primaryTextTheme.title.color);
+    TextStyle titleStyle = appState.theme.titleStyle
+        .copyWith(fontSize: 20, color: theme.primaryTextTheme.title.color);
     TextStyle linkStyle = appState.theme.titleStyle.copyWith(
         fontSize: 20,
         color: theme.primaryTextTheme.title.color,
@@ -152,7 +151,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               changedListener: (charts.SelectionModel model) {
                 for (charts.SeriesDatum datum in model.selectedDatum)
                   if (datum.datum.blocks > 0) {
-                    appState.navigateToHeight(context, datum.datum.block[0].height);
+                    appState.navigateToHeight(
+                        context, datum.datum.block[0].height);
                     break;
                   }
               },
@@ -178,7 +178,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             Text(', height='),
             GestureDetector(
               child: Text('${widget.tip.height}', style: linkStyle),
-              onTap: () => appState.navigateToHeight(context, widget.tip.height),
+              onTap: () =>
+                  appState.navigateToHeight(context, widget.tip.height),
             ),
           ],
         ));

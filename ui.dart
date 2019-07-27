@@ -40,7 +40,8 @@ class SimpleScaffold extends StatelessWidget {
           leading:
               backButtonBuilder != null ? backButtonBuilder(context) : null,
           title: titleWidget ??
-              Text(title, style: ScopedModel.of<Cruzawl>(context).theme.titleStyle),
+              Text(title,
+                  style: ScopedModel.of<Cruzawl>(context).theme.titleStyle),
           actions: actions == null ? null : actions.actions,
           backgroundColorStart: theme.primaryColor,
           backgroundColorEnd: theme.accentColor,

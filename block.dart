@@ -173,8 +173,8 @@ class _BlockWidgetState extends State<BlockWidget> {
     );
 
     header.add(
-      buildListTile(
-          Text(locale.chainWork), wideStyle, Text(block.header.chainWork.toJson())),
+      buildListTile(Text(locale.chainWork), wideStyle,
+          Text(block.header.chainWork.toJson())),
     );
 
     header.add(
@@ -203,7 +203,8 @@ class _BlockWidgetState extends State<BlockWidget> {
             if (index < header.length) return header[index];
             if (index == header.length)
               return Center(
-                  child: Text(locale.numTransactions(block.header.transactionCount),
+                  child: Text(
+                      locale.numTransactions(block.header.transactionCount),
                       style: labelTextStyle));
             int transactionIndex = index - header.length - 1;
             if (transactionIndex < block.transactions.length) {
@@ -212,8 +213,10 @@ class _BlockWidgetState extends State<BlockWidget> {
                 block.transactions[transactionIndex],
                 TransactionInfo(wideStyle: wideStyle),
                 onTap: (tx) => appState.navigateToTransaction(context, tx),
-                onFromTap: (tx) => appState.navigateToAddressText(context, tx.fromText),
-                onToTap: (tx) => appState.navigateToAddressText(context, tx.toText),
+                onFromTap: (tx) =>
+                    appState.navigateToAddressText(context, tx.fromText),
+                onToTap: (tx) =>
+                    appState.navigateToAddressText(context, tx.toText),
               );
             } else {
               int footerIndex = transactionIndex - block.transactions.length;
@@ -223,7 +226,8 @@ class _BlockWidgetState extends State<BlockWidget> {
           },
         ),
       ),
-      title: widget.title ?? (isTip ? locale.tip : locale.block) + ' ' + blockId,
+      title:
+          widget.title ?? (isTip ? locale.tip : locale.block) + ' ' + blockId,
     );
   }
 }

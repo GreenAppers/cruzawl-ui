@@ -237,22 +237,21 @@ class Cruzawl extends Model {
     debugPrint(text);
   }
 
-  void navigateToWallet(BuildContext c) =>
-    Navigator.of(c).pushNamed('/wallet');
+  void navigateToWallet(BuildContext c) => Navigator.of(c).pushNamed('/wallet');
   void navigateToAddWallet(BuildContext c) =>
-    Navigator.of(c).pushNamed('/addWallet');
+      Navigator.of(c).pushNamed('/addWallet');
   void navigateToSettings(BuildContext c) =>
-    Navigator.of(c).pushNamed('/settings');
+      Navigator.of(c).pushNamed('/settings');
   void navigateToNetwork(BuildContext c) =>
-    Navigator.of(c).pushNamed('/network');
+      Navigator.of(c).pushNamed('/network');
   void navigateToAddress(BuildContext c, Address address) =>
-    Navigator.of(c).pushNamed('/address/${address.publicKey.toJson()}');
+      Navigator.of(c).pushNamed('/address/${address.publicKey.toJson()}');
   void navigateToAddressText(BuildContext c, String text) =>
-    Navigator.of(c).pushNamed('/address/$text');
+      Navigator.of(c).pushNamed('/address/$text');
   void navigateToBlockId(BuildContext c, String blockId) =>
-    Navigator.of(c).pushNamed('/block/$blockId');
+      Navigator.of(c).pushNamed('/block/$blockId');
   void navigateToHeight(BuildContext c, int height) =>
-    Navigator.of(c).pushNamed('/height/$height');
+      Navigator.of(c).pushNamed('/height/$height');
   void navigateToTransaction(BuildContext c, Transaction tx) =>
-    Navigator.of(c).pushNamed('/transaction/' + tx.id().toJson());
+      Navigator.of(c).pushNamed('/transaction/' + tx.id().toJson());
 }

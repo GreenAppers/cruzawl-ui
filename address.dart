@@ -187,8 +187,10 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
                     fromWallet: widget.addressText == transaction.fromText,
                     wideStyle: wideStyle),
                 onTap: (tx) => appState.navigateToTransaction(context, tx),
-                onFromTap: (tx) => appState.navigateToAddressText(context, tx.fromText),
-                onToTap: (tx) => appState.navigateToAddressText(context, tx.toText),
+                onFromTap: (tx) =>
+                    appState.navigateToAddressText(context, tx.fromText),
+                onToTap: (tx) =>
+                    appState.navigateToAddressText(context, tx.toText),
               );
             }
 
