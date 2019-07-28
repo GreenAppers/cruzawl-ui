@@ -11,7 +11,7 @@ import 'package:flutter_web/services.dart'
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'localizations.dart';
+import 'localization.dart';
 import 'model.dart';
 import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
 
@@ -212,7 +212,7 @@ class _HideableWidgetState extends State<HideableWidget> {
 
   @override
   Widget build(BuildContext c) {
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,

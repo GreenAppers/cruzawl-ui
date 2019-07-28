@@ -10,7 +10,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
-import 'localizations.dart';
+import 'localization.dart';
 import 'model.dart';
 import 'ui.dart';
 
@@ -103,7 +103,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
     series = [
       charts.Series<TimeSeriesBlocks, DateTime>(
-        id: 'Blocks',
+        id: 'blocks',
         colorFn: (_, __) => chartColor(color),
         domainFn: (TimeSeriesBlocks blocks, _) => blocks.time,
         measureFn: (TimeSeriesBlocks blocks, _) => blocks.blocks,
@@ -117,7 +117,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
 
@@ -128,9 +128,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               title: locale.loading);
     }
 
-    String hashRate = widget.currency
-        .formatHashRate(last == null ? '0 H/s' : widget.tip.hashRate(last));
-    String duration = widget.currency.formatDuration(totalDuration);
+    String hashRate =
+        locale.formatHashRate(last == null ? 0 : widget.tip.hashRate(last));
+    String duration = locale.formatDuration(totalDuration);
     TextStyle titleStyle = appState.theme.titleStyle
         .copyWith(fontSize: 20, color: theme.primaryTextTheme.title.color);
     TextStyle linkStyle = appState.theme.titleStyle.copyWith(

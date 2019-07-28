@@ -11,7 +11,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 
-import 'localizations.dart';
+import 'localization.dart';
 import 'model.dart';
 import 'ui.dart';
 
@@ -78,7 +78,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     if (transaction == null) {
       load();
       return SimpleScaffold(Center(child: CircularProgressIndicator()),
@@ -93,7 +93,8 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     List<Widget> ret = <Widget>[
       ListTile(
         title: Text(locale.date, style: labelTextStyle),
-        subtitle: CopyableText(widget.currency.formatTime(transaction.time),
+        subtitle: CopyableText(
+            widget.currency.parseTime(transaction.time).toString(),
             appState.setClipboardText,
             style: valueTextStyle),
       ),
@@ -200,15 +201,8 @@ class TransactionListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final linkStyle = TextStyle(
-      color: appState.theme.linkColor,
-      decoration: TextDecoration.underline,
-    );
-    final labelStyle = TextStyle(
-      fontFamily: 'MartelSans',
-      color: Colors.grey,
-    );
     final bool amountLink = info.wideStyle && onTap != null;
 
     return Container(
@@ -217,36 +211,34 @@ class TransactionListTile extends StatelessWidget {
         title: GestureDetector(
           child: (info.wideStyle && onToTap != null)
               ? RichText(
-                  text: TextSpan(
-                    text: 'To:\u00A0',
-                    style: labelStyle,
-                    children: <TextSpan>[
-                      TextSpan(text: tx.toText, style: linkStyle),
-                    ],
+                  text: Localization.parseTextSpan(
+                    locale.toAddress('{@<a>}${tx.toText}{@</a>}'),
+                    tags: <String, TextSpan>{
+                      'a': TextSpan(style: appState.theme.linkStyle),
+                    },
                   ),
                 )
-              : Text('To:\u00A0' + tx.toText),
+              : Text(locale.toAddress(tx.toText)),
           onTap: onToTap == null ? null : () => onToTap(tx),
         ),
         subtitle: GestureDetector(
           child: (info.wideStyle && onFromTap != null)
               ? RichText(
-                  text: TextSpan(
-                    text: 'From:\u00A0',
-                    style: labelStyle,
-                    children: <TextSpan>[
-                      TextSpan(text: tx.fromText, style: linkStyle),
-                    ],
+                  text: Localization.parseTextSpan(
+                    locale.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
+                    tags: <String, TextSpan>{
+                      'a': TextSpan(style: appState.theme.linkStyle),
+                    },
                   ),
                 )
-              : Text('From:\u00A0' + tx.fromText),
+              : Text(locale.fromAddress(tx.fromText)),
           onTap: onFromTap == null ? null : () => onFromTap(tx),
         ),
         trailing: Text(
             info.amountPrefix +
                 currency.format(tx.amount + (info.fromWallet ? tx.fee : 0)),
             style: (amountLink && !info.fromWallet && !info.toWallet)
-                ? linkStyle
+                ? appState.theme.linkStyle
                 : TextStyle(color: info.color).apply(
                     decoration: amountLink ? TextDecoration.underline : null)),
         onTap: onTap == null ? null : () => onTap(tx),

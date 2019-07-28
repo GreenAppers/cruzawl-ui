@@ -12,7 +12,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
-import 'localizations.dart';
+import 'localization.dart';
 import 'model.dart';
 import 'transaction.dart';
 import 'ui.dart';
@@ -107,7 +107,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     if (transactions == null) {
       load();
       return SimpleScaffold(Center(child: CircularProgressIndicator()),

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-27T16:03:33.365680",
+  "@@last_modified": "2019-07-27T23:05:30.836678",
   "title": "Cruzall",
   "@title": {
     "type": "text",
@@ -7,6 +7,115 @@
   },
   "unlockTitle": "Unlock Cruzall",
   "@unlockTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeTitle": "Welcome to Cruzall",
+  "@welcomeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeDesc": "To begin, create a wallet:",
+  "@welcomeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentBalanceIs": "Your current balance is:",
+  "@currentBalanceIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentHistory": "Recent History",
+  "@recentHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balanceTitle": "{ticker} +{balance}",
+  "@balanceTitle": {
+    "type": "text",
+    "placeholders": {
+      "ticker": {},
+      "balance": {}
+    }
+  },
+  "balanceAtHeightIs": "Your balance at block height {@<a>}{height}{@</a>} is:",
+  "@balanceAtHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "balanceMaturingByHeightIs": "Your balance maturing by height {height} is:",
+  "@balanceMaturingByHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "insecureDeviceWarning": "Insecure Device Warning",
+  "@insecureDeviceWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insecureDeviceWarningDescription": "A rooted or jailbroken device has been detected.\n\nFurther use not recommended.",
+  "@insecureDeviceWarningDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creatingUsingAlgorithm": "Creating... ({algorithm})",
+  "@creatingUsingAlgorithm": {
+    "type": "text",
+    "placeholders": {
+      "algorithm": {}
+    }
+  },
+  "addWallet": "Add Wallet",
+  "@addWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWallet": "HD Wallet",
+  "@hdWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWalletAlgorithm": "PBKDF: 2048 iterations",
+  "@hdWalletAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "watchOnlyWallet": "Watch-Only Wallet",
+  "@watchOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generateNewAddress": "Generate new address",
+  "@generateNewAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWallet": "Delete Wallet",
+  "@deleteWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteThisWallet": "Delete this wallet",
+  "@deleteThisWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantDeleteOnlyWallet": "Can't delete the only wallet.",
+  "@cantDeleteOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWalletDescription": "Once you delete a wallet, there is no going back. Please be certain.",
+  "@deleteWalletDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "Ok",
+  "@ok": {
     "type": "text",
     "placeholders": {}
   },
@@ -20,13 +129,221 @@
     "type": "text",
     "placeholders": {}
   },
-  "date": "Date",
-  "@date": {
+  "copy": "Copy",
+  "@copy": {
     "type": "text",
     "placeholders": {}
   },
-  "ok": "Ok",
-  "@ok": {
+  "cancel": "Cancel",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Delete",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Create",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignore",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlock": "Unlock",
+  "@unlock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypt": "Encrypt",
+  "@encrypt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "Verify",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifying": "Verifying...",
+  "@verifying": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "Send",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sending": "Sending...",
+  "@sending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFailed": "Send failed",
+  "@sendFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creating": "Creating...",
+  "@creating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copied": "Copied.",
+  "@copied": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyPublicKeys": "Copy Public Keys",
+  "@copyPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentTransactionId": "Sent {transactionId}",
+  "@sentTransactionId": {
+    "type": "text",
+    "placeholders": {
+      "transactionId": {}
+    }
+  },
+  "account": "Account",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accounts": "Accounts",
+  "@accounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "externalAddress": "External Address",
+  "@externalAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "address": "Address",
+  "@address": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addresses": "Addresses",
+  "@addresses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "receive": "Receive",
+  "@receive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknown": "Unknown",
+  "@unknown": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Settings",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "network": "Network",
+  "@network": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPeer": "New Peer",
+  "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newWallet": "New Wallet",
+  "@newWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "peers": "Peers",
+  "@peers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deletePeer": "Delete Peer",
+  "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "block": "Block",
+  "@block": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocks": "Blocks",
+  "@blocks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Encryption",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transaction": "Transaction",
+  "@transaction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactions": "Transactions",
+  "@transactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dangerZone": "Danger Zone",
+  "@dangerZone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressTitle": "Address {address}",
+  "@addressTitle": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "networkType": "{type} Network",
+  "@networkType": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "numTransactions": "Transactions ({number})",
+  "@numTransactions": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "id": "Id",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tip": "Tip",
+  "@tip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "Date",
+  "@date": {
     "type": "text",
     "placeholders": {}
   },
@@ -50,53 +367,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "account": "Account",
-  "@account": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "accounts": "Accounts",
-  "@accounts": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "address": "Address",
-  "@address": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addresses": "Addresses",
-  "@addresses": {
-    "type": "text",
-    "placeholders": {}
-  },
   "balance": "Balance",
   "@balance": {
     "type": "text",
     "placeholders": {}
   },
-  "create": "Create",
-  "@create": {
+  "currency": "Currency",
+  "@currency": {
     "type": "text",
     "placeholders": {}
   },
-  "ignore": "Ignore",
-  "@ignore": {
+  "nonce": "Nonce",
+  "@nonce": {
     "type": "text",
     "placeholders": {}
   },
-  "verify": "Verify",
-  "@verify": {
+  "amount": "Amount",
+  "@amount": {
     "type": "text",
     "placeholders": {}
   },
-  "verifying": "Verifying...",
-  "@verifying": {
+  "fee": "Fee",
+  "@fee": {
     "type": "text",
     "placeholders": {}
   },
-  "unlock": "Unlock",
-  "@unlock": {
+  "payTo": "Pay to",
+  "@payTo": {
     "type": "text",
     "placeholders": {}
   },
@@ -110,198 +407,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "send": "Send",
-  "@send": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sending": "Sending...",
-  "@sending": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendFailed": "Send failed",
-  "@sendFailed": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "receive": "Receive",
-  "@receive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "settings": "Settings",
-  "@settings": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "network": "Network",
-  "@network": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "peers": "Peers",
-  "@peers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deletePeer": "Delete Peer",
-  "@deletePeer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "password": "Password",
-  "@password": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordCantBeEmpty": "Password can't be empty.",
-  "@passwordCantBeEmpty": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "confirmPassword": "Confirm Password",
-  "@confirmPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordsDontMatch": "Passwords don't match.",
-  "@passwordsDontMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "generateNewAddress": "Generate new address",
-  "@generateNewAddress": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownAddress": "Unknown address",
-  "@unknownAddress": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidAddress": "Invalid address",
-  "@invalidAddress": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hdWallet": "HD Wallet",
-  "@hdWallet": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "watchOnlyWallet": "Watch-Only Wallet",
-  "@watchOnlyWallet": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "payTo": "Pay to",
-  "@payTo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "currency": "Currency",
-  "@currency": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidCurrency": "Invalid currency",
-  "@invalidCurrency": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fee": "Fee",
-  "@fee": {
-    "type": "text",
-    "placeholders": {}
-  },
   "memo": "Memo",
   "@memo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "amount": "Amount",
-  "@amount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "maxMemoLength": "Maximum memo length is 100",
-  "@maxMemoLength": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "valueMustBePositive": "Value must be positive",
-  "@valueMustBePositive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "insufficientFunds": "Insufficient funds",
-  "@insufficientFunds": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "networkOffline": "Network offline",
-  "@networkOffline": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chainWork": "Chain Work",
-  "@chainWork": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hashListRoot": "Hash List Root",
-  "@hashListRoot": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deltaTime": "Delta Time",
-  "@deltaTime": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deltaHashPower": "Delta Hash Power",
-  "@deltaHashPower": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "requireSSLCert": "Require SSL certificate",
-  "@requireSSLCert": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "id": "Id",
-  "@id": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tip": "Tip",
-  "@tip": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "url": "URL",
-  "@url": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidUrl": "Invalid URL.",
-  "@invalidUrl": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "nonce": "Nonce",
-  "@nonce": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "block": "Block",
-  "@block": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "blocks": "Blocks",
-  "@blocks": {
     "type": "text",
     "placeholders": {}
   },
@@ -310,8 +417,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "previous": "Previous",
-  "@previous": {
+  "url": "URL",
+  "@url": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
     "type": "text",
     "placeholders": {}
   },
@@ -320,38 +432,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknown": "Unknown",
-  "@unknown": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "target": "Target",
-  "@target": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encrypt": "Encrypt",
-  "@encrypt": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encryption": "Encryption",
-  "@encryption": {
+  "previous": "Previous",
+  "@previous": {
     "type": "text",
     "placeholders": {}
   },
   "confirmations": "Confirmations",
   "@confirmations": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "transaction": "Transaction",
-  "@transaction": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "transactions": "Transactions",
-  "@transactions": {
     "type": "text",
     "placeholders": {}
   },
@@ -362,6 +449,11 @@
   },
   "latestSeen": "Latest seen",
   "@latestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "target": "Target",
+  "@target": {
     "type": "text",
     "placeholders": {}
   },
@@ -420,53 +512,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "dangerZone": "Danger Zone",
-  "@dangerZone": {
+  "chainWork": "Chain Work",
+  "@chainWork": {
     "type": "text",
     "placeholders": {}
   },
-  "addWallet": "Add Wallet",
-  "@addWallet": {
+  "hashListRoot": "Hash List Root",
+  "@hashListRoot": {
     "type": "text",
     "placeholders": {}
   },
-  "copy": "Copy",
-  "@copy": {
+  "deltaTime": "Delta Time",
+  "@deltaTime": {
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "Cancel",
-  "@cancel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "delete": "Delete",
-  "@delete": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteWallet": "Delete Wallet",
-  "@deleteWallet": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteThisWallet": "Delete this wallet",
-  "@deleteThisWallet": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteWalletDescription": "Once you delete a wallet, there is no going back. Please be certain.",
-  "@deleteWalletDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cantDeleteOnlyWallet": "Can't delete the only wallet.",
-  "@cantDeleteOnlyWallet": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyPublicKeys": "Copy Public Keys",
-  "@copyPublicKeys": {
+  "deltaHashPower": "Delta Hash Power",
+  "@deltaHashPower": {
     "type": "text",
     "placeholders": {}
   },
@@ -480,6 +542,85 @@
     "type": "text",
     "placeholders": {}
   },
+  "fromAddress": "From: {address}",
+  "@fromAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "toAddress": "To: {address}",
+  "@toAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "invalidUrl": "Invalid URL.",
+  "@invalidUrl": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidCurrency": "Invalid currency",
+  "@invalidCurrency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxMemoLength": "Maximum memo length is 100",
+  "@maxMemoLength": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameMustBeUnique": "Name must be unique.",
+  "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordCantBeEmpty": "Password can't be empty.",
+  "@passwordCantBeEmpty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDontMatch": "Passwords don't match.",
+  "@passwordsDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownAddress": "Unknown address",
+  "@unknownAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidAddress": "Invalid address",
+  "@invalidAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidMnemonic": "Invalid mnemonic",
+  "@invalidMnemonic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "valueMustBePositive": "Value must be positive",
+  "@valueMustBePositive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insufficientFunds": "Insufficient funds",
+  "@insufficientFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "networkOffline": "Network offline",
+  "@networkOffline": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noPublicKeys": "No public keys",
   "@noPublicKeys": {
     "type": "text",
@@ -490,28 +631,37 @@
     "type": "text",
     "placeholders": {}
   },
-  "copied": "Copied.",
-  "@copied": {
+  "minFee": "Minimum fee is {fee}",
+  "@minFee": {
+    "type": "text",
+    "placeholders": {
+      "fee": {}
+    }
+  },
+  "minAmount": "Minimum amount is {amount}",
+  "@minAmount": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "defaultWalletName": "My wallet",
+  "@defaultWalletName": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestFailure": "Unit test failure",
-  "@unitTestFailure": {
+  "debugLog": "Debug Log",
+  "@debugLog": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidMnemonic": "Invalid mnemonic",
-  "@invalidMnemonic": {
+  "requireSSLCert": "Require SSL certificate",
+  "@requireSSLCert": {
     "type": "text",
     "placeholders": {}
   },
-  "insecureDeviceWarning": "Insecure Device Warning",
-  "@insecureDeviceWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "insecureDeviceWarningDescription": "A rooted or jailbroken device has been detected.\n\nFurther use not recommended.",
-  "@insecureDeviceWarningDescription": {
+  "showWalletNameInTitle": "Show wallet name in title",
+  "@showWalletNameInTitle": {
     "type": "text",
     "placeholders": {}
   },
@@ -525,85 +675,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "showWalletNameInTitle": "Show wallet name in title",
-  "@showWalletNameInTitle": {
+  "unitTestFailure": "Unit test failure",
+  "@unitTestFailure": {
     "type": "text",
     "placeholders": {}
-  },
-  "nameMustBeUnique": "Name must be unique.",
-  "@nameMustBeUnique": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "defaultWalletName": "My wallet",
-  "@defaultWalletName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "debugLog": "Debug Log",
-  "@debugLog": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loading": "Loading...",
-  "@loading": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "creating": "Creating...",
-  "@creating": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hdWalletAlgorithm": "PBKDF: 2048 iterations",
-  "@hdWalletAlgorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "creatingUsingAlgorithm": "Creating... ({algorithm})",
-  "@creatingUsingAlgorithm": {
-    "type": "text",
-    "placeholders": {
-      "algorithm": {}
-    }
-  },
-  "numTransactions": "Transactions ({number})",
-  "@numTransactions": {
-    "type": "text",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "addressTitle": "Address {address}",
-  "@addressTitle": {
-    "type": "text",
-    "placeholders": {
-      "address": {}
-    }
-  },
-  "recentHistory": "Recent History",
-  "@recentHistory": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "currentBalanceIs": "Your current balance is:",
-  "@currentBalanceIs": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "balanceAtHeightIs": "Your balance at block height {@<a>}{height}{@</a>} is:",
-  "@balanceAtHeightIs": {
-    "type": "text",
-    "placeholders": {
-      "height": {}
-    }
-  },
-  "balanceMaturingByHeightIs": "Your balance maturing by height {height} is:",
-  "@balanceMaturingByHeightIs": {
-    "type": "text",
-    "placeholders": {
-      "height": {}
-    }
   },
   "verifyAddressFailed": "verify failed: {addressText}",
   "@verifyAddressFailed": {
@@ -620,27 +695,6 @@
       "totalAddresses": {},
       "goodTests": {},
       "totalTests": {}
-    }
-  },
-  "minFee": "Minimum fee is {fee}",
-  "@minFee": {
-    "type": "text",
-    "placeholders": {
-      "fee": {}
-    }
-  },
-  "minAmount": "Minimum amount is {amount}",
-  "@minAmount": {
-    "type": "text",
-    "placeholders": {
-      "amount": {}
-    }
-  },
-  "sentTransactionId": "Sent {transactionId}",
-  "@sentTransactionId": {
-    "type": "text",
-    "placeholders": {
-      "transactionId": {}
     }
   }
 }

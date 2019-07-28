@@ -26,19 +26,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m2(height) => "Your balance maturing by height ${height} is:";
 
-  static m3(algorithm) => "Creating... (${algorithm})";
+  static m3(ticker, balance) => "${ticker} +${balance}";
 
-  static m4(amount) => "Minimum amount is ${amount}";
+  static m4(algorithm) => "Creating... (${algorithm})";
 
-  static m5(fee) => "Minimum fee is ${fee}";
+  static m5(address) => "From: ${address}";
 
-  static m6(number) => "Transactions (${number})";
+  static m6(amount) => "Minimum amount is ${amount}";
 
-  static m7(transactionId) => "Sent ${transactionId}";
+  static m7(fee) => "Minimum fee is ${fee}";
 
-  static m8(addressText) => "verify failed: ${addressText}";
+  static m8(type) => "${type} Network";
 
-  static m9(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
+  static m9(number) => "Transactions (${number})";
+
+  static m10(transactionId) => "Sent ${transactionId}";
+
+  static m11(address) => "To: ${address}";
+
+  static m12(addressText) => "verify failed: ${addressText}";
+
+  static m13(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -53,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balance" : MessageLookupByLibrary.simpleMessage("Balance"),
     "balanceAtHeightIs" : m1,
     "balanceMaturingByHeightIs" : m2,
+    "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("Block"),
     "blocks" : MessageLookupByLibrary.simpleMessage("Blocks"),
     "cancel" : MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -67,7 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("Copy Public Keys"),
     "create" : MessageLookupByLibrary.simpleMessage("Create"),
     "creating" : MessageLookupByLibrary.simpleMessage("Creating..."),
-    "creatingUsingAlgorithm" : m3,
+    "creatingUsingAlgorithm" : m4,
     "currency" : MessageLookupByLibrary.simpleMessage("Currency"),
     "currentBalanceIs" : MessageLookupByLibrary.simpleMessage("Your current balance is:"),
     "dangerZone" : MessageLookupByLibrary.simpleMessage("Danger Zone"),
@@ -86,8 +95,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "encryption" : MessageLookupByLibrary.simpleMessage("Encryption"),
     "expired" : MessageLookupByLibrary.simpleMessage("Expired"),
     "expires" : MessageLookupByLibrary.simpleMessage("Expires"),
+    "externalAddress" : MessageLookupByLibrary.simpleMessage("External Address"),
     "fee" : MessageLookupByLibrary.simpleMessage("Fee"),
     "from" : MessageLookupByLibrary.simpleMessage("From"),
+    "fromAddress" : m5,
     "generateNewAddress" : MessageLookupByLibrary.simpleMessage("Generate new address"),
     "hashListRoot" : MessageLookupByLibrary.simpleMessage("Hash List Root"),
     "hdWallet" : MessageLookupByLibrary.simpleMessage("HD Wallet"),
@@ -111,16 +122,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Maturing transactions"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Maximum memo length is 100"),
     "memo" : MessageLookupByLibrary.simpleMessage("Memo"),
-    "minAmount" : m4,
-    "minFee" : m5,
+    "minAmount" : m6,
+    "minFee" : m7,
     "name" : MessageLookupByLibrary.simpleMessage("Name"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Name must be unique."),
     "network" : MessageLookupByLibrary.simpleMessage("Network"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Network offline"),
+    "networkType" : m8,
+    "newPeer" : MessageLookupByLibrary.simpleMessage("New Peer"),
+    "newWallet" : MessageLookupByLibrary.simpleMessage("New Wallet"),
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("No private keys"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("No public keys"),
     "nonce" : MessageLookupByLibrary.simpleMessage("Nonce"),
-    "numTransactions" : m6,
+    "numTransactions" : m9,
     "ok" : MessageLookupByLibrary.simpleMessage("Ok"),
     "password" : MessageLookupByLibrary.simpleMessage("Password"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Password can\'t be empty."),
@@ -138,7 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "send" : MessageLookupByLibrary.simpleMessage("Send"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Send failed"),
     "sending" : MessageLookupByLibrary.simpleMessage("Sending..."),
-    "sentTransactionId" : m7,
+    "sentTransactionId" : m10,
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "show" : MessageLookupByLibrary.simpleMessage("Show"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Show wallet name in title"),
@@ -149,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tip" : MessageLookupByLibrary.simpleMessage("Tip"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("To"),
+    "toAddress" : m11,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transaction"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transactions"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Unit test before creating wallets"),
@@ -160,11 +175,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Value must be positive"),
     "verify" : MessageLookupByLibrary.simpleMessage("Verify"),
-    "verifyAddressFailed" : m8,
+    "verifyAddressFailed" : m12,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Verify key pairs every load"),
-    "verifyWalletResults" : m9,
+    "verifyWalletResults" : m13,
     "verifying" : MessageLookupByLibrary.simpleMessage("Verifying..."),
     "version" : MessageLookupByLibrary.simpleMessage("Version"),
-    "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Watch-Only Wallet")
+    "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Watch-Only Wallet"),
+    "welcomeDesc" : MessageLookupByLibrary.simpleMessage("To begin, create a wallet:"),
+    "welcomeTitle" : MessageLookupByLibrary.simpleMessage("Welcome to Cruzall")
   };
 }

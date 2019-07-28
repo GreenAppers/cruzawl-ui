@@ -14,7 +14,7 @@ import 'package:cruzawl/network.dart';
 
 import 'transaction.dart';
 import 'ui.dart';
-import 'localizations.dart';
+import 'localization.dart';
 import 'model.dart';
 
 class BlockWidget extends StatefulWidget {
@@ -86,7 +86,7 @@ class _BlockWidgetState extends State<BlockWidget> {
       block = null;
     }
 
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     if (block == null) {
       load();
       return widget.loadingWidget ??
@@ -105,7 +105,7 @@ class _BlockWidgetState extends State<BlockWidget> {
     List<Widget> header = <Widget>[
       ListTile(
         title: Text(locale.time),
-        trailing: Text(widget.currency.formatTime(block.header.time)),
+        trailing: Text(widget.currency.parseTime(block.header.time).toString()),
       ),
       ListTile(
         title: Text(locale.height),
@@ -115,22 +115,18 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     if (prevBlock != null) {
       Duration duration = Duration(seconds: block.header.time - prevBlock.time);
-      int seconds = duration.inSeconds - duration.inMinutes * 60;
       header.add(
         ListTile(
           title: Text(locale.deltaTime),
-          trailing: Text(duration.inMinutes > 0
-              ? ('${duration.inMinutes} minutes' +
-                  (seconds != 0 ? ' $seconds seconds' : ''))
-              : '${duration.inSeconds} seconds'),
+          trailing: Text(locale.formatShortDuration(duration)),
         ),
       );
       if (duration.inSeconds > 0)
         header.add(
           ListTile(
             title: Text(locale.deltaHashPower),
-            trailing: Text(widget.currency
-                .formatHashRate(block.header.hashRate(prevBlock))),
+            trailing:
+                Text(locale.formatHashRate(block.header.hashRate(prevBlock))),
           ),
         );
     }

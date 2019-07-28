@@ -9,7 +9,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
-import 'localizations.dart';
+import 'localization.dart';
 import 'model.dart';
 import 'ui.dart';
 
@@ -26,7 +26,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
   Widget build(BuildContext context) {
     final Cruzawl appState =
         ScopedModel.of<Cruzawl>(context, rebuildOnChange: true);
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     final PeerNetwork network = appState.currency.network;
 
     peers = appState.preferences.peers;
@@ -130,7 +130,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
   void removeSelectedPeer() {
     if (selectedPeerIndex == null) return;
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     PeerPreference peer = peers[selectedPeerIndex];
     showDialog(
       context: context,
@@ -180,7 +180,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
 
   @override
   Widget build(BuildContext c) {
-    final AppLocalizations locale = AppLocalizations.of(context);
+    final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Currency currency = appState.currency;
     final PeerNetwork network = currency.network;
