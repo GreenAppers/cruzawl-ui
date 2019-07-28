@@ -163,13 +163,13 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         color: theme.primaryTextTheme.title.color,
         decoration: TextDecoration.underline);
     final String duration = locale.formatDuration(totalDuration);
-    final String hashRate =
-        locale.formatHashRate(last == null ? 0 : widget.tip.hashRate(last));
-    final List<Widget> ret = <Widget>[
-      Text('$hashRate, ', style: titleStyle),
+
+    List<Widget> hashRate = <Widget>[
+      Text(locale.formatHashRate(last == null ? 0 : widget.tip.hashRate(last)),
+          style: titleStyle),
     ];
 
-    ret.addAll(buildLocalizationMarkupWidgets(
+    List<Widget> totalBlocksInLast = buildLocalizationMarkupWidgets(
       locale.totalBlocksInLastDuration(totalBlocks, duration),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
@@ -178,20 +178,22 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
           onTap: () => Navigator.of(context).pushNamed('/tip'),
         ),
         'a2': LocalizationMarkup(
-          override: (PopupMenuBuilder()
-                ..addItem(
-                    text: locale.formatDuration(Duration(days: 1)),
-                    onSelected: setIntervalDaily)
-                ..addItem(
-                    text: locale.formatDuration(Duration(hours: 1)),
-                    onSelected: setIntervalHourly))
-              .build(child: Text('$duration', style: linkStyle), padding: null),
+          widget: <Widget>[
+            (PopupMenuBuilder()
+                  ..addItem(
+                      text: locale.formatDuration(Duration(days: 1)),
+                      onSelected: setIntervalDaily)
+                  ..addItem(
+                      text: locale.formatDuration(Duration(hours: 1)),
+                      onSelected: setIntervalHourly))
+                .build(
+                    child: Text('$duration', style: linkStyle), padding: null),
+          ],
         ),
       },
-    ));
+    );
 
-    ret.add(Text(', '));
-    ret.addAll(buildLocalizationMarkupWidgets( 
+    List<Widget> heightEquals = buildLocalizationMarkupWidgets(
       locale.heightEquals(widget.tip.height),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
@@ -200,13 +202,15 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
           onTap: () => appState.navigateToHeight(context, widget.tip.height),
         ),
       },
-    ));
+    );
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
-      children: ret,
+      children: locale.listOfThreeWidgets(
+          hashRate, totalBlocksInLast, heightEquals,
+          style: titleStyle),
     );
   }
 }

@@ -226,17 +226,16 @@ class _HideableWidgetState extends State<HideableWidget> {
               children: !show
                   ? null
                   : <TextSpan>[
-                      TextSpan(text: ' ['),
-                      TextSpan(
-                        text: locale.hide,
-                        style: TextStyle(
-                          color: appState.theme.linkColor,
-                          decoration: TextDecoration.underline,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => setState(() => show = false),
+                      TextSpan(text: ' '),
+                      buildLocalizationMarkupTextSpan(
+                        locale.menuOfOne(locale.hide),
+                        tags: <String, LocalizationMarkup>{
+                          'a': LocalizationMarkup(
+                            style: appState.theme.linkStyle,
+                            onTap: () => setState(() => show = false),
+                          ),
+                        },
                       ),
-                      TextSpan(text: ']'),
                     ],
             ),
           ),
@@ -244,23 +243,16 @@ class _HideableWidgetState extends State<HideableWidget> {
         (show
             ? widget.child
             : RichText(
-                text: TextSpan(
-                  text: '[',
-                  style: TextStyle(color: Colors.grey),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: locale.show,
-                      style: TextStyle(
-                        color: appState.theme.linkColor,
-                        decoration: TextDecoration.underline,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => setState(() => show = true),
-                    ),
-                    TextSpan(text: ']'),
-                  ],
-                ),
-              )),
+                text: buildLocalizationMarkupTextSpan(
+                locale.menuOfOne(locale.show),
+                style: appState.theme.labelStyle,
+                tags: <String, LocalizationMarkup>{
+                  'a': LocalizationMarkup(
+                    style: appState.theme.linkStyle,
+                    onTap: () => setState(() => show = true),
+                  ),
+                },
+              ))),
       ],
     );
   }

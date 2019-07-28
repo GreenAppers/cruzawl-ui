@@ -103,6 +103,31 @@ class Localization {
       Intl.message('Sent $transactionId',
           name: 'sentTransactionId', args: [transactionId]);
 
+  /// Format
+  String listOfTwo(String item1, String item2) =>
+      Intl.message('$item1, $item2', name: 'listOfTwo', args: [item1, item2]);
+  String listOfThree(String item1, String item2, String item3) =>
+      Intl.message('$item1, $item2, $item3',
+          name: 'listOfThree', args: [item1, item2, item3]);
+  String menuOfOne(String item) =>
+      Intl.message('[{@<a>}$item{@</a>}]', name: 'menuOfOne', args: [item]);
+  String menuOfTwo(String item1, String item2) =>
+      Intl.message('[{@<a1>}$item1{@</a1>}, {@<a2>}$item2{@</a2>}]',
+          name: 'menuOfTwo', args: [item1, item2]);
+
+  List<Widget> listOfThreeWidgets(
+          List<Widget> item1, List<Widget> item2, List<Widget> item3,
+          {TextStyle style}) =>
+      buildLocalizationMarkupWidgets(
+          listOfThree(
+              '{@<a1>}1{@</a1>}', '{@<a2>}2{@</a2>}', '{@<a3>}3{@</a3>}'),
+          style: style,
+          tags: <String, LocalizationMarkup>{
+            'a1': LocalizationMarkup(widget: item1),
+            'a2': LocalizationMarkup(widget: item2),
+            'a3': LocalizationMarkup(widget: item3),
+          });
+
   /// Titles
   String get account => Intl.message('Account', name: 'account');
   String get accounts => Intl.message('Accounts', name: 'accounts');
@@ -192,7 +217,8 @@ class Localization {
   String toAddress(String address) =>
       Intl.message('To:\u00A0$address', name: 'toAddress', args: [address]);
   String heightEquals(int height) =>
-      Intl.message('height={@<a>}$height{@</a>} ', name: 'heightEquals', args: [height]);
+      Intl.message('height={@<a>}$height{@</a>} ',
+          name: 'heightEquals', args: [height]);
 
   /// Meta-Fields
   String get invalidUrl => Intl.message('Invalid URL.', name: 'invalidUrl');
@@ -255,37 +281,80 @@ class Localization {
           name: 'verifyWalletResults',
           args: [goodAddresses, totalAddresses, goodTests, totalTests]);
 
+  /// Durations / rates
+  String secondsDuration(int seconds) => Intl.plural(seconds,
+      one: 'second',
+      other: '$seconds seconds',
+      name: 'secondsDuration',
+      args: [seconds]);
+  String minutesDuration(int minutes) => Intl.plural(minutes,
+      one: 'minute',
+      other: '$minutes minutes',
+      name: 'minutesDuration',
+      args: [minutes]);
+  String hoursDuration(int hours) => Intl.plural(hours,
+      one: 'hour', other: '$hours hours', name: 'hoursDuration', args: [hours]);
+  String daysDuration(int days) => Intl.plural(days,
+      one: 'day', other: '$days days', name: 'daysDuration', args: [days]);
+  String minutesAndSecondsDuration(int minutes, int seconds) => Intl.message(
+      '''${Intl.plural(minutes, zero: '', one: '$minutes minute ', other: '$minutes minutes ')}'''
+      '''${Intl.plural(seconds, zero: '', one: '$seconds second', other: '$seconds seconds')}''',
+      name: "minutesAndSecondsDuration",
+      args: [minutes, seconds]);
+
+  String hashPerSecond(String hashPerSecond) =>
+      Intl.message('$hashPerSecond H/s',
+          name: 'hashPerSecond', args: [hashPerSecond]);
+  String kiloHashPerSecond(String kiloHashPerSecond) =>
+      Intl.message('$kiloHashPerSecond KH/s',
+          name: 'kiloHashPerSecond', args: [kiloHashPerSecond]);
+  String megaHashPerSecond(String megaHashPerSecond) =>
+      Intl.message('$megaHashPerSecond MH/s',
+          name: 'megaHashPerSecond', args: [megaHashPerSecond]);
+  String gigaHashPerSecond(String gigaHashPerSecond) =>
+      Intl.message('$gigaHashPerSecond GH/s',
+          name: 'gigaHashPerSecond', args: [gigaHashPerSecond]);
+  String teraHashPerSecond(String teraHashPerSecond) =>
+      Intl.message('$teraHashPerSecond TH/s',
+          name: 'teraHashPerSecond', args: [teraHashPerSecond]);
+  String petaHashPerSecond(String petaHashPerSecond) =>
+      Intl.message('$petaHashPerSecond PH/s',
+          name: 'petaHashPerSecond', args: [petaHashPerSecond]);
+  String exaHashPerSecond(String exaHashPerSecond) =>
+      Intl.message('$exaHashPerSecond EH/s',
+          name: 'exaHashPerSecond', args: [exaHashPerSecond]);
+
   String formatHashRate(int hashesPerSec) {
+    if (hashesPerSec > 1000000000000000000)
+      return exaHashPerSecond(
+          (hashesPerSec / 1000000000000000000).toStringAsFixed(1));
+    if (hashesPerSec > 1000000000000000)
+      return petaHashPerSecond(
+          (hashesPerSec / 1000000000000000).toStringAsFixed(1));
+    if (hashesPerSec > 1000000000000)
+      return teraHashPerSecond(
+          (hashesPerSec / 1000000000000).toStringAsFixed(1));
     if (hashesPerSec > 1000000000)
-      return '${(hashesPerSec / 1000000000).toStringAsFixed(1)} GH/s';
+      return gigaHashPerSecond((hashesPerSec / 1000000000).toStringAsFixed(1));
     if (hashesPerSec > 1000000)
-      return '${(hashesPerSec ~/ 1000000).toStringAsFixed(1)} MH/s';
+      return megaHashPerSecond((hashesPerSec / 1000000).toStringAsFixed(1));
+    if (hashesPerSec > 1000)
+      return kiloHashPerSecond((hashesPerSec / 1000).toStringAsFixed(1));
     else
-      return '$hashesPerSec H/S';
+      return hashPerSecond(hashesPerSec.toString());
   }
 
   String formatDuration(Duration duration) {
-    if (duration.inDays >= 1)
-      return duration.inDays == 1 ? 'day' : '${duration.inDays} days';
-    if (duration.inHours >= 1)
-      return duration.inHours == 1 ? 'hour' : '${duration.inHours} hours';
-    if (duration.inMinutes >= 1)
-      return duration.inMinutes == 1
-          ? 'minute'
-          : '${duration.inMinutes} minutes';
-    if (duration.inSeconds >= 1)
-      return duration.inSeconds == 1
-          ? 'second'
-          : '${duration.inSeconds} seconds';
+    if (duration.inDays >= 1) return daysDuration(duration.inDays);
+    if (duration.inHours >= 1) return hoursDuration(duration.inHours);
+    if (duration.inMinutes >= 1) return minutesDuration(duration.inMinutes);
+    if (duration.inSeconds >= 1) return secondsDuration(duration.inSeconds);
     return duration.toString();
   }
 
   String formatShortDuration(Duration duration) {
     int seconds = duration.inSeconds - duration.inMinutes * 60;
-    return duration.inMinutes > 0
-        ? ('${duration.inMinutes} minutes' +
-            (seconds != 0 ? ' $seconds seconds' : ''))
-        : '${duration.inSeconds} seconds';
+    return minutesAndSecondsDuration(duration.inMinutes, seconds);
   }
 }
 
@@ -309,10 +378,10 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 }
 
 class LocalizationMarkup {
-  Widget override;
+  List<Widget> widget;
   TextStyle style;
   VoidCallback onTap;
-  LocalizationMarkup({this.override, this.style, this.onTap});
+  LocalizationMarkup({this.widget, this.style, this.onTap});
 }
 
 abstract class LocalizationMarkupVisitor {
@@ -348,16 +417,14 @@ class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
   List<Widget> ret = <Widget>[];
 
   void visit(String curText) {
-    Widget cur;
-    if (currentTag != null && currentTag.override != null)
-      cur = currentTag.override;
-    else {
+    if (currentTag != null && currentTag.widget != null) {
+      ret.addAll(currentTag.widget);
+    } else {
       Widget child = Text(curText, style: currentStyle);
-      cur = (currentTag != null && currentTag.onTap != null)
+      ret.add((currentTag != null && currentTag.onTap != null)
           ? GestureDetector(onTap: currentTag.onTap, child: child)
-          : child;
+          : child);
     }
-    ret.add(cur);
   }
 }
 
