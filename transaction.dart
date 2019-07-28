@@ -211,10 +211,10 @@ class TransactionListTile extends StatelessWidget {
         title: GestureDetector(
           child: (info.wideStyle && onToTap != null)
               ? RichText(
-                  text: Localization.parseTextSpan(
+                  text: buildLocalizationMarkupTextSpan(
                     locale.toAddress('{@<a>}${tx.toText}{@</a>}'),
-                    tags: <String, TextSpan>{
-                      'a': TextSpan(style: appState.theme.linkStyle),
+                    tags: <String, LocalizationMarkup>{
+                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
                     },
                   ),
                 )
@@ -224,10 +224,10 @@ class TransactionListTile extends StatelessWidget {
         subtitle: GestureDetector(
           child: (info.wideStyle && onFromTap != null)
               ? RichText(
-                  text: Localization.parseTextSpan(
+                  text: buildLocalizationMarkupTextSpan(
                     locale.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
-                    tags: <String, TextSpan>{
-                      'a': TextSpan(style: appState.theme.linkStyle),
+                    tags: <String, LocalizationMarkup>{
+                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
                     },
                   ),
                 )

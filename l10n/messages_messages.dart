@@ -32,21 +32,25 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m5(address) => "From: ${address}";
 
-  static m6(amount) => "Minimum amount is ${amount}";
+  static m6(height) => "height={@<a>}${height}{@</a>} ";
 
-  static m7(fee) => "Minimum fee is ${fee}";
+  static m7(amount) => "Minimum amount is ${amount}";
 
-  static m8(type) => "${type} Network";
+  static m8(fee) => "Minimum fee is ${fee}";
 
-  static m9(number) => "Transactions (${number})";
+  static m9(type) => "${type} Network";
 
-  static m10(transactionId) => "Sent ${transactionId}";
+  static m10(number) => "Transactions (${number})";
 
-  static m11(address) => "To: ${address}";
+  static m11(transactionId) => "Sent ${transactionId}";
 
-  static m12(addressText) => "verify failed: ${addressText}";
+  static m12(address) => "To: ${address}";
 
-  static m13(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
+  static m13(totalBlocks, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>} in last {@<a2>}${duration}{@</a2>}";
+
+  static m14(addressText) => "verify failed: ${addressText}";
+
+  static m15(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -104,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hdWallet" : MessageLookupByLibrary.simpleMessage("HD Wallet"),
     "hdWalletAlgorithm" : MessageLookupByLibrary.simpleMessage("PBKDF: 2048 iterations"),
     "height" : MessageLookupByLibrary.simpleMessage("Height"),
+    "heightEquals" : m6,
     "hide" : MessageLookupByLibrary.simpleMessage("Hide"),
     "id" : MessageLookupByLibrary.simpleMessage("Id"),
     "ignore" : MessageLookupByLibrary.simpleMessage("Ignore"),
@@ -122,19 +127,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Maturing transactions"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Maximum memo length is 100"),
     "memo" : MessageLookupByLibrary.simpleMessage("Memo"),
-    "minAmount" : m6,
-    "minFee" : m7,
+    "minAmount" : m7,
+    "minFee" : m8,
     "name" : MessageLookupByLibrary.simpleMessage("Name"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Name must be unique."),
     "network" : MessageLookupByLibrary.simpleMessage("Network"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Network offline"),
-    "networkType" : m8,
+    "networkType" : m9,
     "newPeer" : MessageLookupByLibrary.simpleMessage("New Peer"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("New Wallet"),
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("No private keys"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("No public keys"),
     "nonce" : MessageLookupByLibrary.simpleMessage("Nonce"),
-    "numTransactions" : m9,
+    "numTransactions" : m10,
     "ok" : MessageLookupByLibrary.simpleMessage("Ok"),
     "password" : MessageLookupByLibrary.simpleMessage("Password"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Password can\'t be empty."),
@@ -152,7 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "send" : MessageLookupByLibrary.simpleMessage("Send"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Send failed"),
     "sending" : MessageLookupByLibrary.simpleMessage("Sending..."),
-    "sentTransactionId" : m10,
+    "sentTransactionId" : m11,
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "show" : MessageLookupByLibrary.simpleMessage("Show"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Show wallet name in title"),
@@ -163,7 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "tip" : MessageLookupByLibrary.simpleMessage("Tip"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("To"),
-    "toAddress" : m11,
+    "toAddress" : m12,
+    "totalBlocksInLastDuration" : m13,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transaction"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transactions"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Unit test before creating wallets"),
@@ -175,9 +181,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Value must be positive"),
     "verify" : MessageLookupByLibrary.simpleMessage("Verify"),
-    "verifyAddressFailed" : m12,
+    "verifyAddressFailed" : m14,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Verify key pairs every load"),
-    "verifyWalletResults" : m13,
+    "verifyWalletResults" : m15,
     "verifying" : MessageLookupByLibrary.simpleMessage("Verifying..."),
     "version" : MessageLookupByLibrary.simpleMessage("Version"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Watch-Only Wallet"),

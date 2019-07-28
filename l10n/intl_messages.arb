@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-27T23:05:30.836678",
+  "@@last_modified": "2019-07-28T00:43:41.050546",
   "title": "Cruzall",
   "@title": {
     "type": "text",
@@ -332,6 +332,14 @@
       "number": {}
     }
   },
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>}blocks{@</a1>} in last {@<a2>}{duration}{@</a2>}",
+  "@totalBlocksInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "duration": {}
+    }
+  },
   "id": "Id",
   "@id": {
     "type": "text",
@@ -554,6 +562,13 @@
     "type": "text",
     "placeholders": {
       "address": {}
+    }
+  },
+  "heightEquals": "height={@<a>}{height}{@</a>} ",
+  "@heightEquals": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
     }
   },
   "invalidUrl": "Invalid URL.",

@@ -128,16 +128,6 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               title: locale.loading);
     }
 
-    String hashRate =
-        locale.formatHashRate(last == null ? 0 : widget.tip.hashRate(last));
-    String duration = locale.formatDuration(totalDuration);
-    TextStyle titleStyle = appState.theme.titleStyle
-        .copyWith(fontSize: 20, color: theme.primaryTextTheme.title.color);
-    TextStyle linkStyle = appState.theme.titleStyle.copyWith(
-        fontSize: 20,
-        color: theme.primaryTextTheme.title.color,
-        decoration: TextDecoration.underline);
-
     return SimpleScaffold(
         charts.TimeSeriesChart(
           series,
@@ -159,30 +149,65 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             ),
           ],
         ),
-        titleWidget: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-          textBaseline: TextBaseline.alphabetic,
-          children: <Widget>[
-            Text('$hashRate, $totalBlocks ', style: titleStyle),
-            GestureDetector(
-              child: Text('blocks', style: linkStyle),
-              onTap: () => Navigator.of(context).pushNamed('/tip'),
-            ),
-            Text(' in last ', style: titleStyle),
-            (PopupMenuBuilder()
-                  ..addItem(text: 'day', onSelected: setIntervalDaily)
-                  ..addItem(text: 'hour', onSelected: setIntervalHourly))
-                .build(
-                    child: Text('$duration', style: linkStyle), padding: null),
-            Text(', height='),
-            GestureDetector(
-              child: Text('${widget.tip.height}', style: linkStyle),
-              onTap: () =>
-                  appState.navigateToHeight(context, widget.tip.height),
-            ),
-          ],
-        ));
+        titleWidget: buildTitle(context));
+  }
+
+  Widget buildTitle(BuildContext context) {
+    final Localization locale = Localization.of(context);
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final ThemeData theme = Theme.of(context);
+    final TextStyle titleStyle = appState.theme.titleStyle
+        .copyWith(fontSize: 20, color: theme.primaryTextTheme.title.color);
+    final TextStyle linkStyle = appState.theme.titleStyle.copyWith(
+        fontSize: 20,
+        color: theme.primaryTextTheme.title.color,
+        decoration: TextDecoration.underline);
+    final String duration = locale.formatDuration(totalDuration);
+    final String hashRate =
+        locale.formatHashRate(last == null ? 0 : widget.tip.hashRate(last));
+    final List<Widget> ret = <Widget>[
+      Text('$hashRate, ', style: titleStyle),
+    ];
+
+    ret.addAll(buildLocalizationMarkupWidgets(
+      locale.totalBlocksInLastDuration(totalBlocks, duration),
+      style: titleStyle,
+      tags: <String, LocalizationMarkup>{
+        'a1': LocalizationMarkup(
+          style: linkStyle,
+          onTap: () => Navigator.of(context).pushNamed('/tip'),
+        ),
+        'a2': LocalizationMarkup(
+          override: (PopupMenuBuilder()
+                ..addItem(
+                    text: locale.formatDuration(Duration(days: 1)),
+                    onSelected: setIntervalDaily)
+                ..addItem(
+                    text: locale.formatDuration(Duration(hours: 1)),
+                    onSelected: setIntervalHourly))
+              .build(child: Text('$duration', style: linkStyle), padding: null),
+        ),
+      },
+    ));
+
+    ret.add(Text(', '));
+    ret.addAll(buildLocalizationMarkupWidgets( 
+      locale.heightEquals(widget.tip.height),
+      style: titleStyle,
+      tags: <String, LocalizationMarkup>{
+        'a1': LocalizationMarkup(
+          style: linkStyle,
+          onTap: () => appState.navigateToHeight(context, widget.tip.height),
+        ),
+      },
+    ));
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: ret,
+    );
   }
 }
 

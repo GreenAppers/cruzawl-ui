@@ -29,64 +29,6 @@ class Localization {
     return Localizations.of<Localization>(context, Localization);
   }
 
-  /// Parse unnested ARB guarded tags
-  static TextSpan parseTextSpan(String text,
-      {TextStyle style, Map<String, TextSpan> tags}) {
-    const String beginTag = '{@<', endTag = '>}';
-    if (tags == null || tags.length == 0)
-      return TextSpan(style: style, text: text);
-
-    int state = 0;
-    TextSpan ret;
-    TextStyle currentStyle = style;
-    GestureRecognizer currentRecognizer;
-    String lastOpenedTag;
-
-    for (int i = 0, next; i < text.length; i = next) {
-      bool insideTag = state % 2 == 1;
-      bool insideTagged = state == 2;
-      String search =
-          insideTagged ? (beginTag + '/') : (insideTag ? endTag : beginTag);
-
-      next = text.indexOf(search, i);
-      if (next < i) next = text.length;
-      String curText = text.substring(i, next);
-
-      if (curText.length > 0) {
-        if (insideTag) {
-          bool insideCloseTag = state == 3;
-          if (insideCloseTag) {
-            if (curText != lastOpenedTag)
-              throw FormatException(
-                  'Closed tag $curText mismatches $lastOpenedTag');
-            currentStyle = style;
-            currentRecognizer = null;
-          } else {
-            lastOpenedTag = curText;
-            TextSpan tag = tags[curText];
-            if (tag != null) {
-              currentStyle = tag.style;
-              currentRecognizer = tag.recognizer;
-            }
-          }
-        } else {
-          TextSpan cur = TextSpan(
-              text: curText,
-              children: <TextSpan>[],
-              style: currentStyle,
-              recognizer: currentRecognizer);
-          if (ret == null)
-            ret = cur;
-          else
-            ret.children.add(cur);
-        }
-      }
-      if (next < text.length) next += search.length;
-      state = (state + 1) % 4;
-    }
-    return ret;
-  }
-
   /// Title & balance
   String get title => Intl.message('Cruzall', name: 'title');
   String get unlockTitle => Intl.message('Unlock Cruzall', name: 'unlockTitle');
@@ -188,6 +130,11 @@ class Localization {
       Intl.message('$type Network', name: 'networkType', args: [type]);
   String numTransactions(int number) => Intl.message('Transactions ($number)',
       name: 'numTransactions', args: [number]);
+  String totalBlocksInLastDuration(int totalBlocks, String duration) =>
+      Intl.message(
+          '$totalBlocks {@<a1>}blocks{@</a1>} in last {@<a2>}$duration{@</a2>}',
+          name: 'totalBlocksInLastDuration',
+          args: [totalBlocks, duration]);
 
   /// Fields
   String get id => Intl.message('Id', name: 'id');
@@ -244,6 +191,8 @@ class Localization {
       Intl.message('From:\u00A0$address', name: 'fromAddress', args: [address]);
   String toAddress(String address) =>
       Intl.message('To:\u00A0$address', name: 'toAddress', args: [address]);
+  String heightEquals(int height) =>
+      Intl.message('height={@<a>}$height{@</a>} ', name: 'heightEquals', args: [height]);
 
   /// Meta-Fields
   String get invalidUrl => Intl.message('Invalid URL.', name: 'invalidUrl');
@@ -356,5 +305,118 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   @override
   bool shouldReload(LocalizationsDelegate<Localization> old) {
     return false;
+  }
+}
+
+class LocalizationMarkup {
+  Widget override;
+  TextStyle style;
+  VoidCallback onTap;
+  LocalizationMarkup({this.override, this.style, this.onTap});
+}
+
+abstract class LocalizationMarkupVisitor {
+  int state = 0;
+  String lastOpenedTag;
+  TextStyle currentStyle;
+  LocalizationMarkup currentTag;
+  void visit(String curText);
+}
+
+class TextSpanLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
+  TextSpan ret;
+
+  void visit(String curText) {
+    GestureRecognizer recognizer;
+    if (currentTag != null && currentTag.onTap != null)
+      recognizer = TapGestureRecognizer()..onTap = currentTag.onTap;
+
+    TextSpan cur = TextSpan(
+        text: curText,
+        children: <TextSpan>[],
+        style: currentStyle,
+        recognizer: recognizer);
+
+    if (ret == null)
+      ret = cur;
+    else
+      ret.children.add(cur);
+  }
+}
+
+class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
+  List<Widget> ret = <Widget>[];
+
+  void visit(String curText) {
+    Widget cur;
+    if (currentTag != null && currentTag.override != null)
+      cur = currentTag.override;
+    else {
+      Widget child = Text(curText, style: currentStyle);
+      cur = (currentTag != null && currentTag.onTap != null)
+          ? GestureDetector(onTap: currentTag.onTap, child: child)
+          : child;
+    }
+    ret.add(cur);
+  }
+}
+
+TextSpan buildLocalizationMarkupTextSpan(String text,
+    {TextStyle style, Map<String, LocalizationMarkup> tags}) {
+  if (tags == null || tags.length == 0)
+    return TextSpan(style: style, text: text);
+  TextSpanLocalizationMarkupVisitor visitor =
+      TextSpanLocalizationMarkupVisitor();
+  buildLocalizationMarkup(text, visitor, style: style, tags: tags);
+  return visitor.ret;
+}
+
+List<Widget> buildLocalizationMarkupWidgets(String text,
+    {TextStyle style, Map<String, LocalizationMarkup> tags}) {
+  if (tags == null || tags.length == 0)
+    return <Widget>[Text(text, style: style)];
+  WidgetsLocalizationMarkupVisitor visitor = WidgetsLocalizationMarkupVisitor();
+  buildLocalizationMarkup(text, visitor, style: style, tags: tags);
+  return visitor.ret;
+}
+
+/// Parse unnested ARB guarded tags
+void buildLocalizationMarkup(String text, LocalizationMarkupVisitor visitor,
+    {TextStyle style, Map<String, LocalizationMarkup> tags}) {
+  visitor.currentStyle = style;
+  const String beginTag = '{@<', endTag = '>}';
+  for (int i = 0, next; i < text.length; i = next) {
+    bool insideTag = visitor.state % 2 == 1;
+    bool insideTagged = visitor.state == 2;
+    String search =
+        insideTagged ? (beginTag + '/') : (insideTag ? endTag : beginTag);
+
+    next = text.indexOf(search, i);
+    if (next < i) next = text.length;
+    String curText = text.substring(i, next);
+
+    if (curText.length > 0) {
+      if (insideTag) {
+        bool insideCloseTag = visitor.state == 3;
+        if (insideCloseTag) {
+          if (curText != visitor.lastOpenedTag)
+            throw FormatException(
+                'Closed tag $curText mismatches ${visitor.lastOpenedTag}');
+          visitor.currentStyle = style;
+          visitor.currentTag = null;
+        } else {
+          visitor.lastOpenedTag = curText;
+          LocalizationMarkup tag = tags[curText];
+          if (tag != null) {
+            visitor.currentStyle = tag.style;
+            visitor.currentTag = tag;
+          }
+        }
+      } else {
+        visitor.visit(curText);
+      }
+    }
+    if (next < text.length) next += search.length;
+    visitor.state = (visitor.state + 1) % 4;
   }
 }
