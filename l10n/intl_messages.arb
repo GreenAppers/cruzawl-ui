@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-28T00:43:41.050546",
+  "@@last_modified": "2019-07-28T18:14:44.460996",
   "title": "Cruzall",
   "@title": {
     "type": "text",
@@ -114,6 +114,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "cruzTicker": "CRUZ",
+  "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
   "ok": "Ok",
   "@ok": {
     "type": "text",
@@ -214,6 +219,38 @@
     "type": "text",
     "placeholders": {
       "transactionId": {}
+    }
+  },
+  "listOfTwo": "{item1}, {item2}",
+  "@listOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "listOfThree": "{item1}, {item2}, {item3}",
+  "@listOfThree": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {}
+    }
+  },
+  "menuOfOne": "[{@<a>}{item}{@</a>}]",
+  "@menuOfOne": {
+    "type": "text",
+    "placeholders": {
+      "item": {}
+    }
+  },
+  "menuOfTwo": "[{@<a1>}{item1}{@</a1>}, {@<a2>}{item2}{@</a2>}]",
+  "@menuOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
     }
   },
   "account": "Account",
@@ -710,6 +747,91 @@
       "totalAddresses": {},
       "goodTests": {},
       "totalTests": {}
+    }
+  },
+  "secondsDuration": "{seconds,plural, =1{second}other{{seconds} seconds}}",
+  "@secondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "minutesDuration": "{minutes,plural, =1{minute}other{{minutes} minutes}}",
+  "@minutesDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "hoursDuration": "{hours,plural, =1{hour}other{{hours} hours}}",
+  "@hoursDuration": {
+    "type": "text",
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "daysDuration": "{days,plural, =1{day}other{{days} days}}",
+  "@daysDuration": {
+    "type": "text",
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "minutesAndSecondsDuration": "{minutes,plural, =0{}=1{{minutes} minute }other{{minutes} minutes }}{seconds,plural, =0{}=1{{seconds} second}other{{seconds} seconds}}",
+  "@minutesAndSecondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {},
+      "seconds": {}
+    }
+  },
+  "hashPerSecond": "{hashPerSecond} H/s",
+  "@hashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "hashPerSecond": {}
+    }
+  },
+  "kiloHashPerSecond": "{kiloHashPerSecond} KH/s",
+  "@kiloHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "kiloHashPerSecond": {}
+    }
+  },
+  "megaHashPerSecond": "{megaHashPerSecond} MH/s",
+  "@megaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "megaHashPerSecond": {}
+    }
+  },
+  "gigaHashPerSecond": "{gigaHashPerSecond} GH/s",
+  "@gigaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "gigaHashPerSecond": {}
+    }
+  },
+  "teraHashPerSecond": "{teraHashPerSecond} TH/s",
+  "@teraHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "teraHashPerSecond": {}
+    }
+  },
+  "petaHashPerSecond": "{petaHashPerSecond} PH/s",
+  "@petaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "petaHashPerSecond": {}
+    }
+  },
+  "exaHashPerSecond": "{exaHashPerSecond} EH/s",
+  "@exaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "exaHashPerSecond": {}
     }
   }
 }

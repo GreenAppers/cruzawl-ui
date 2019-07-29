@@ -255,3 +255,16 @@ class Cruzawl extends Model {
   void navigateToTransaction(BuildContext c, Transaction tx) =>
       Navigator.of(c).pushNamed('/transaction/' + tx.id().toJson());
 }
+
+class PagePath {
+  String page, arg;
+  PagePath(this.page, this.arg);
+}
+
+PagePath parsePagePath(String path) {
+  int start = 0 + (path.length > 0 && path[0] == '/' ? 1 : 0);
+  int slash = path.indexOf('/', start);
+  return slash < path.length
+      ? PagePath(path.substring(start, slash), path.substring(slash + 1))
+      : PagePath(path.substring(start), '');
+}

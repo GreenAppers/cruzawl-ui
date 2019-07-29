@@ -77,6 +77,16 @@ class Localization {
   String get deleteWalletDescription => Intl.message(
       'Once you delete a wallet, there is no going back. Please be certain.',
       name: 'deleteWalletDescription');
+  String get cruzTicker =>
+      Intl.message('CRUZ', name: 'cruzTicker');
+  String ticker(String currency) {
+    switch (currency) {
+      case 'CRUZ':
+       return cruzTicker;
+      default:
+       return '';
+    }
+  }
 
   /// Verbs & interactions
   String get ok => Intl.message('Ok', name: 'ok');
