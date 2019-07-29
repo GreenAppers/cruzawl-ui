@@ -18,7 +18,7 @@ import '../localization.dart';
 import '../model.dart';
 import '../transaction.dart';
 import '../ui.dart';
-import 'settings.dart';
+import 'wallet.dart';
 
 class AddressWidget extends StatefulWidget {
   final Wallet wallet;

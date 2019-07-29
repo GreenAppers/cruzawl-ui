@@ -237,6 +237,7 @@ class Cruzawl extends Model {
     debugPrint(text);
   }
 
+  void navigateToTip(BuildContext c) => Navigator.of(c).pushNamed('/tip');
   void navigateToWallet(BuildContext c) => Navigator.of(c).pushNamed('/wallet');
   void navigateToAddWallet(BuildContext c) =>
       Navigator.of(c).pushNamed('/addWallet');
@@ -264,7 +265,7 @@ class PagePath {
 PagePath parsePagePath(String path) {
   int start = 0 + (path.length > 0 && path[0] == '/' ? 1 : 0);
   int slash = path.indexOf('/', start);
-  return slash < path.length
+  return (slash >= start && slash < path.length)
       ? PagePath(path.substring(start, slash), path.substring(slash + 1))
       : PagePath(path.substring(start), '');
 }

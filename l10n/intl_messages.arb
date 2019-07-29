@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-29T10:20:01.637952",
+  "@@last_modified": "2019-07-29T12:48:41.397590",
   "title": "Cruzall",
   "@title": {
     "type": "text",
@@ -59,6 +59,16 @@
   },
   "insecureDeviceWarningDescription": "A rooted or jailbroken device has been detected.\n\nFurther use not recommended.",
   "@insecureDeviceWarningDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhraseWarning": "This seed allows anyone knowing it to spend all the funds from you wallet.  Write it down.  Keep it safe.",
+  "@seedPhraseWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backupKeysWarning": "Your keys must be backed up on external storage.",
+  "@backupKeysWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -345,6 +355,11 @@
   },
   "dangerZone": "Danger Zone",
   "@dangerZone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "Warning",
+  "@warning": {
     "type": "text",
     "placeholders": {}
   },

@@ -54,6 +54,12 @@ class Localization {
   String get insecureDeviceWarningDescription => Intl.message(
       'A rooted or jailbroken device has been detected.\n\nFurther use not recommended.',
       name: 'insecureDeviceWarningDescription');
+  String get seedPhraseWarning => Intl.message(
+      'This seed allows anyone knowing it to spend all the funds from you wallet.  Write it down.  Keep it safe.',
+      name: 'seedPhraseWarning');
+  String get backupKeysWarning =>
+      Intl.message('Your keys must be backed up on external storage.',
+          name: 'backupKeysWarning');
 
   /// Wallet
   String creatingUsingAlgorithm(String algorithm) =>
@@ -158,6 +164,7 @@ class Localization {
   String get transaction => Intl.message('Transaction', name: 'transaction');
   String get transactions => Intl.message('Transactions', name: 'transactions');
   String get dangerZone => Intl.message('Danger Zone', name: 'dangerZone');
+  String get warning => Intl.message('Warning', name: 'warning');
   String addressTitle(String address) =>
       Intl.message('Address $address', name: 'addressTitle', args: [address]);
   String networkType(String type) =>

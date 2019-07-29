@@ -11,6 +11,7 @@ import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
 import '../model.dart';
+import '../transaction.dart';
 import '../ui.dart';
 
 import 'balance.dart';
@@ -180,4 +181,11 @@ class _WalletWidgetState extends State<WalletWidget> {
             ),
           );
   }
+}
+
+class WalletTransactionInfo extends TransactionInfo {
+  WalletTransactionInfo(Wallet wallet, Transaction tx)
+      : super(
+            toWallet: wallet.addresses.containsKey(tx.toText),
+            fromWallet: wallet.addresses.containsKey(tx.fromText));
 }

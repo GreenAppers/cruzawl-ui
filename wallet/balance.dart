@@ -14,7 +14,7 @@ import 'package:cruzawl/wallet.dart';
 import '../localization.dart';
 import '../model.dart';
 import '../transaction.dart';
-import 'settings.dart';
+import 'wallet.dart';
 
 class WalletBalanceWidget extends StatelessWidget {
   @override
@@ -44,8 +44,7 @@ class WalletBalanceWidget extends StatelessWidget {
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
                       style: linkStyle,
-                      onTap: () => appState.navigateToHeight(
-                          context, currency.network.tipHeight),
+                      onTap: () => appState.navigateToTip(context),
                     ),
                   },
                 ),

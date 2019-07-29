@@ -94,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addressTitle" : m0,
     "addresses" : MessageLookupByLibrary.simpleMessage("Addresses"),
     "amount" : MessageLookupByLibrary.simpleMessage("Amount"),
+    "backupKeysWarning" : MessageLookupByLibrary.simpleMessage("Your keys must be backed up on external storage."),
     "balance" : MessageLookupByLibrary.simpleMessage("Balance"),
     "balanceAtHeightIs" : m1,
     "balanceMaturingByHeightIs" : m2,
@@ -202,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("Require SSL certificate"),
     "secondsDuration" : m25,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Seed phrase"),
+    "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("This seed allows anyone knowing it to spend all the funds from you wallet.  Write it down.  Keep it safe."),
     "send" : MessageLookupByLibrary.simpleMessage("Send"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Send failed"),
     "sending" : MessageLookupByLibrary.simpleMessage("Sending..."),
@@ -235,6 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m31,
     "verifying" : MessageLookupByLibrary.simpleMessage("Verifying..."),
     "version" : MessageLookupByLibrary.simpleMessage("Version"),
+    "warning" : MessageLookupByLibrary.simpleMessage("Warning"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Watch-Only Wallet"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("To begin, create a wallet:"),
     "welcomeTitle" : MessageLookupByLibrary.simpleMessage("Welcome to Cruzall")
