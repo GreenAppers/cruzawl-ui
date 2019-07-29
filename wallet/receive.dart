@@ -46,7 +46,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
           children: <Widget>[
             Container(
               padding: const EdgeInsets.only(top: 16),
-              child: Text(locale.address, style: appState.theme.linkStyle),
+              child: Text(locale.address, style: appState.theme.labelStyle),
             ),
             CopyableText(
               addressText,

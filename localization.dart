@@ -11,6 +11,8 @@ import 'package:flutter_web/gestures.dart'
 
 import 'package:intl/intl.dart';
 
+import 'package:cruzawl/currency.dart';
+
 import 'l10n/messages_all.dart';
 
 class Localization {
@@ -18,6 +20,7 @@ class Localization {
     final String name =
         locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
+    debugPrint('load Locale $localeName');
 
     return initializeMessages(localeName).then((bool _) {
       Intl.defaultLocale = localeName;
@@ -88,6 +91,21 @@ class Localization {
     switch (currency) {
       case 'CRUZ':
         return cruzTicker;
+      default:
+        return '';
+    }
+  }
+  String get addressStateReserve => Intl.message('reserve', name: 'addressStateReserve');
+  String get addressStateOpen => Intl.message('open', name: 'addressStateOpen');
+  String get addressStateUsed => Intl.message('used', name: 'addressStateUsed');
+  String addressState(AddressState state) {
+    switch (state) {
+      case AddressState.open:
+        return addressStateOpen;
+      case AddressState.used:
+        return addressStateUsed;
+      case AddressState.reserve:
+        return addressStateReserve;
       default:
         return '';
     }
@@ -312,11 +330,9 @@ class Localization {
       one: 'hour', other: '$hours hours', name: 'hoursDuration', args: [hours]);
   String daysDuration(int days) => Intl.plural(days,
       one: 'day', other: '$days days', name: 'daysDuration', args: [days]);
-  String minutesAndSecondsDuration(int minutes, int seconds) => Intl.message(
-      '''${Intl.plural(minutes, zero: '', one: '$minutes minute ', other: '$minutes minutes ')}'''
-      '''${Intl.plural(seconds, zero: '', one: '$seconds second', other: '$seconds seconds')}''',
-      name: "minutesAndSecondsDuration",
-      args: [minutes, seconds]);
+  String minutesAndSecondsDuration(String minutes, String seconds) =>
+      Intl.message('$minutes $seconds',
+          name: 'minutesAndSecondsDuration', args: [minutes, seconds]);
 
   String hashPerSecond(String hashPerSecond) =>
       Intl.message('$hashPerSecond H/s',
@@ -370,7 +386,11 @@ class Localization {
 
   String formatShortDuration(Duration duration) {
     int seconds = duration.inSeconds - duration.inMinutes * 60;
-    return minutesAndSecondsDuration(duration.inMinutes, seconds);
+    String mins =
+        duration.inMinutes != 0 ? minutesDuration(duration.inMinutes) : '';
+    String secs =
+        (seconds != 0 || mins.isEmpty) ? secondsDuration(seconds) : '';
+    return minutesAndSecondsDuration(mins, secs);
   }
 }
 

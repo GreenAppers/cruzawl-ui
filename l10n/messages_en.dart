@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a messages locale. All the
+// This is a library that provides messages for a en locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,7 +18,7 @@ final _keepAnalysisHappy = Intl.defaultLocale;
 typedef MessageIfAbsent(String message_str, List args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'messages';
+  get localeName => 'en';
 
   static m0(address) => "Address ${address}";
 
@@ -60,7 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m19(fee) => "Minimum fee is ${fee}";
 
-  static m20(minutes, seconds) => "${Intl.plural(minutes, zero: '', one: '${minutes} minute ', other: '${minutes} minutes ')}";
+  static m20(minutes, seconds) => "${minutes} ${seconds}";
 
   static m21(minutes) => "${Intl.plural(minutes, one: 'minute', other: '${minutes} minutes')}";
 
@@ -91,6 +91,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("Active transactions"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("Add Wallet"),
     "address" : MessageLookupByLibrary.simpleMessage("Address"),
+    "addressStateOpen" : MessageLookupByLibrary.simpleMessage("open"),
+    "addressStateReserve" : MessageLookupByLibrary.simpleMessage("reserve"),
+    "addressStateUsed" : MessageLookupByLibrary.simpleMessage("used"),
     "addressTitle" : m0,
     "addresses" : MessageLookupByLibrary.simpleMessage("Addresses"),
     "amount" : MessageLookupByLibrary.simpleMessage("Amount"),

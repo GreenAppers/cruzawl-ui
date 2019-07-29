@@ -118,7 +118,7 @@ class _AddressWidgetState extends State<AddressWidget> {
     header.add(
       ListTile(
         title: Text(locale.state, style: labelTextStyle),
-        trailing: Text(address.state.toString().split('.')[1]),
+        trailing: Text(locale.addressState(address.state)),
       ),
     );
     header.add(
