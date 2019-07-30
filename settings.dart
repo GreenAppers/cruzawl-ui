@@ -44,6 +44,27 @@ class _CruzallSettingsState extends State<CruzallSettings> {
             : appState.packageInfo.version),
       ),
       ListTile(
+        leading: Icon(Icons.people),
+        title: Text(locale.support),
+        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        onTap: () => Navigator.of(context).pushNamed('/support'),
+      ),
+      ListTile(
+        leading: Icon(Icons.language),
+        title: Text(locale.language),
+        trailing: DropdownButton<String>(
+          value: locale.localeLanguage,
+          onChanged: (String val) {
+            int index =
+                Localization.supportedLanguages.indexWhere((e) => e == val);
+            if (index >= 0 && index < Localization.supportedLocales.length)
+              appState.setState(() => appState.localeOverride =
+                  Localization.supportedLocales[index]);
+          },
+          items: buildDropdownMenuItem(Localization.supportedLanguages),
+        ),
+      ),
+      ListTile(
         leading: Icon(Icons.color_lens),
         title: Text(locale.theme),
         trailing: DropdownButton<String>(
@@ -209,6 +230,73 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
           },
         ),
       ]),
+    );
+  }
+}
+
+class CruzallSupport extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final Localization locale = Localization.of(context);
+    final String languageCode = Localizations.localeOf(context).languageCode;
+
+    final List<Widget> ret = <Widget>[
+      Container(
+        height: 200,
+        child: Image.asset('assets/icon.png'),
+      ),
+      ListTile(
+        leading: Icon(Icons.people),
+        title: Text('support@greenappers.com'),
+        trailing: Icon(Icons.send, color: appState.theme.linkColor),
+        onTap: () => appState.launchUrl(
+            context,
+            'mailto:support@greenappers.com?subject=' +
+                Uri.encodeFull('Cruzall ' + appState.packageInfo.version)),
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text(locale.homePage(locale.title)),
+        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        onTap: () => appState.launchUrl(
+            context, 'https://www.greenappers.com/cruzall/$languageCode/'),
+      ),
+      ListTile(
+        leading: Icon(Icons.security),
+        title: Text(locale.privacyPolicy),
+        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        onTap: () => appState.launchUrl(context,
+            'https://www.greenappers.com/cruzall/$languageCode/privacy_policy.html'),
+      ),
+      ListTile(
+        leading: Icon(Icons.wb_sunny),
+        title: Text('Green Appers'),
+        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        onTap: () =>
+            appState.launchUrl(context, 'https://www.greenappers.com/'),
+      ),
+      ListTile(
+        leading: Icon(Icons.whatshot),
+        title: Text('cruzbit'),
+        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        onTap: () => appState.launchUrl(context, 'https://cruzbit.github.io/'),
+      ),
+      ListTile(
+        leading: Icon(Icons.business_center),
+        title: Text(locale.license),
+        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        onTap: () => showLicensePage(
+            context: context,
+            applicationName: locale.title,
+            applicationVersion: appState.packageInfo.version,
+            applicationIcon: Image.asset('assets/icon.png')),
+      ),
+    ];
+
+    return ListView(
+      padding: EdgeInsets.only(top: 20),
+      children: ret,
     );
   }
 }

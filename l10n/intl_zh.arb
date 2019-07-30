@@ -1,4 +1,9 @@
 {
+  "localeLanguage": "中文",
+  "@localeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
   "title": "Cruzall",
   "@title": {
     "type": "text",
@@ -377,6 +382,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "support": "支持",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "执照",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "隐私政策",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homePage": "{product}主页",
+  "@homePage": {
+    "type": "text",
+    "placeholders": {
+      "product": {}
+    }
+  },
   "addressTitle": "地址{address}",
   "@addressTitle": {
     "type": "text",
@@ -428,6 +455,11 @@
   },
   "time": "时间",
   "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "电子邮件",
+  "@email": {
     "type": "text",
     "placeholders": {}
   },
@@ -503,6 +535,11 @@
   },
   "version": "版",
   "@version": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "语言",
+  "@language": {
     "type": "text",
     "placeholders": {}
   },

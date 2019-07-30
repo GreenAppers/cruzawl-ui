@@ -32,6 +32,9 @@ class Localization {
     return Localizations.of<Localization>(context, Localization);
   }
 
+  /// Value must be contained in [supportedLanguages]
+  String get localeLanguage => Intl.message('English', name: 'localeLanguage');
+
   /// Title & balance
   String get title => Intl.message('Cruzall', name: 'title');
   String get unlockTitle => Intl.message('Unlock Cruzall', name: 'unlockTitle');
@@ -95,7 +98,9 @@ class Localization {
         return '';
     }
   }
-  String get addressStateReserve => Intl.message('reserve', name: 'addressStateReserve');
+
+  String get addressStateReserve =>
+      Intl.message('reserve', name: 'addressStateReserve');
   String get addressStateOpen => Intl.message('open', name: 'addressStateOpen');
   String get addressStateUsed => Intl.message('used', name: 'addressStateUsed');
   String addressState(AddressState state) {
@@ -183,6 +188,12 @@ class Localization {
   String get transactions => Intl.message('Transactions', name: 'transactions');
   String get dangerZone => Intl.message('Danger Zone', name: 'dangerZone');
   String get warning => Intl.message('Warning', name: 'warning');
+  String get support => Intl.message('Support', name: 'support');
+  String get license => Intl.message('License', name: 'license');
+  String get privacyPolicy =>
+      Intl.message('Privacy Policy', name: 'privacyPolicy');
+  String homePage(String product) =>
+      Intl.message('$product Home Page', name: 'homePage', args: [product]);
   String addressTitle(String address) =>
       Intl.message('Address $address', name: 'addressTitle', args: [address]);
   String networkType(String type) =>
@@ -201,6 +212,7 @@ class Localization {
   String get date => Intl.message('Date', name: 'date');
   String get name => Intl.message('Name', name: 'name');
   String get time => Intl.message('Time', name: 'time');
+  String get email => Intl.message('Email', name: 'email');
   String get state => Intl.message('State', name: 'state');
   String get height => Intl.message('Height', name: 'height');
   String get balance => Intl.message('Balance', name: 'balance');
@@ -216,6 +228,7 @@ class Localization {
   String get url => Intl.message('URL', name: 'url');
   String get password => Intl.message('Password', name: 'password');
   String get version => Intl.message('Version', name: 'version');
+  String get language => Intl.message('Language', name: 'language');
   String get previous => Intl.message('Previous', name: 'previous');
   String get confirmations =>
       Intl.message('Confirmations', name: 'confirmations');
@@ -392,6 +405,17 @@ class Localization {
         (seconds != 0 || mins.isEmpty) ? secondsDuration(seconds) : '';
     return minutesAndSecondsDuration(mins, secs);
   }
+
+  static final supportedLocales = <Locale>[
+    const Locale('en'),
+    const Locale('zh'),
+  ];
+
+  /// Values ust have one-to-one correspondence with [supportedLocales]
+  static final supportedLanguages = <String>[
+    'English',
+    '中文',
+  ];
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {

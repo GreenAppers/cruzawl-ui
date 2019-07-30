@@ -42,47 +42,49 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m10(height) => "height={@<a>}${height}{@</a>} ";
 
-  static m11(hours) => "${Intl.plural(hours, one: 'hour', other: '${hours} hours')}";
+  static m11(product) => "${product} Home Page";
 
-  static m12(kiloHashPerSecond) => "${kiloHashPerSecond} KH/s";
+  static m12(hours) => "${Intl.plural(hours, one: 'hour', other: '${hours} hours')}";
 
-  static m13(item1, item2, item3) => "${item1}, ${item2}, ${item3}";
+  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH/s";
 
-  static m14(item1, item2) => "${item1}, ${item2}";
+  static m14(item1, item2, item3) => "${item1}, ${item2}, ${item3}";
 
-  static m15(megaHashPerSecond) => "${megaHashPerSecond} MH/s";
+  static m15(item1, item2) => "${item1}, ${item2}";
 
-  static m16(item) => "[{@<a>}${item}{@</a>}]";
+  static m16(megaHashPerSecond) => "${megaHashPerSecond} MH/s";
 
-  static m17(item1, item2) => "[{@<a1>}${item1}{@</a1>}, {@<a2>}${item2}{@</a2>}]";
+  static m17(item) => "[{@<a>}${item}{@</a>}]";
 
-  static m18(amount) => "Minimum amount is ${amount}";
+  static m18(item1, item2) => "[{@<a1>}${item1}{@</a1>}, {@<a2>}${item2}{@</a2>}]";
 
-  static m19(fee) => "Minimum fee is ${fee}";
+  static m19(amount) => "Minimum amount is ${amount}";
 
-  static m20(minutes, seconds) => "${minutes} ${seconds}";
+  static m20(fee) => "Minimum fee is ${fee}";
 
-  static m21(minutes) => "${Intl.plural(minutes, one: 'minute', other: '${minutes} minutes')}";
+  static m21(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m22(type) => "${type} Network";
+  static m22(minutes) => "${Intl.plural(minutes, one: 'minute', other: '${minutes} minutes')}";
 
-  static m23(number) => "Transactions (${number})";
+  static m23(type) => "${type} Network";
 
-  static m24(petaHashPerSecond) => "${petaHashPerSecond} PH/s";
+  static m24(number) => "Transactions (${number})";
 
-  static m25(seconds) => "${Intl.plural(seconds, one: 'second', other: '${seconds} seconds')}";
+  static m25(petaHashPerSecond) => "${petaHashPerSecond} PH/s";
 
-  static m26(transactionId) => "Sent ${transactionId}";
+  static m26(seconds) => "${Intl.plural(seconds, one: 'second', other: '${seconds} seconds')}";
 
-  static m27(teraHashPerSecond) => "${teraHashPerSecond} TH/s";
+  static m27(transactionId) => "Sent ${transactionId}";
 
-  static m28(address) => "To: ${address}";
+  static m28(teraHashPerSecond) => "${teraHashPerSecond} TH/s";
 
-  static m29(totalBlocks, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>} in last {@<a2>}${duration}{@</a2>}";
+  static m29(address) => "To: ${address}";
 
-  static m30(addressText) => "verify failed: ${addressText}";
+  static m30(totalBlocks, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>} in last {@<a2>}${duration}{@</a2>}";
 
-  static m31(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
+  static m31(addressText) => "verify failed: ${addressText}";
+
+  static m32(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -133,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deltaHashPower" : MessageLookupByLibrary.simpleMessage("Delta Hash Power"),
     "deltaTime" : MessageLookupByLibrary.simpleMessage("Delta Time"),
     "earliestSeen" : MessageLookupByLibrary.simpleMessage("Earliest Seen"),
+    "email" : MessageLookupByLibrary.simpleMessage("Email"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("Encrypt"),
     "encryption" : MessageLookupByLibrary.simpleMessage("Encryption"),
     "exaHashPerSecond" : m6,
@@ -151,7 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "height" : MessageLookupByLibrary.simpleMessage("Height"),
     "heightEquals" : m10,
     "hide" : MessageLookupByLibrary.simpleMessage("Hide"),
-    "hoursDuration" : m11,
+    "homePage" : m11,
+    "hoursDuration" : m12,
     "id" : MessageLookupByLibrary.simpleMessage("Id"),
     "ignore" : MessageLookupByLibrary.simpleMessage("Ignore"),
     "insecureDeviceWarning" : MessageLookupByLibrary.simpleMessage("Insecure Device Warning"),
@@ -161,69 +165,74 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidCurrency" : MessageLookupByLibrary.simpleMessage("Invalid currency"),
     "invalidMnemonic" : MessageLookupByLibrary.simpleMessage("Invalid mnemonic"),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Invalid URL."),
-    "kiloHashPerSecond" : m12,
+    "kiloHashPerSecond" : m13,
+    "language" : MessageLookupByLibrary.simpleMessage("Language"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("Latest seen"),
-    "listOfThree" : m13,
-    "listOfTwo" : m14,
+    "license" : MessageLookupByLibrary.simpleMessage("License"),
+    "listOfThree" : m14,
+    "listOfTwo" : m15,
     "loading" : MessageLookupByLibrary.simpleMessage("Loading..."),
+    "localeLanguage" : MessageLookupByLibrary.simpleMessage("English"),
     "matured" : MessageLookupByLibrary.simpleMessage("Matured"),
     "matures" : MessageLookupByLibrary.simpleMessage("Matures"),
     "maturing" : MessageLookupByLibrary.simpleMessage("Maturing"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Maturing transactions"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Maximum memo length is 100"),
-    "megaHashPerSecond" : m15,
+    "megaHashPerSecond" : m16,
     "memo" : MessageLookupByLibrary.simpleMessage("Memo"),
-    "menuOfOne" : m16,
-    "menuOfTwo" : m17,
-    "minAmount" : m18,
-    "minFee" : m19,
-    "minutesAndSecondsDuration" : m20,
-    "minutesDuration" : m21,
+    "menuOfOne" : m17,
+    "menuOfTwo" : m18,
+    "minAmount" : m19,
+    "minFee" : m20,
+    "minutesAndSecondsDuration" : m21,
+    "minutesDuration" : m22,
     "name" : MessageLookupByLibrary.simpleMessage("Name"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Name must be unique."),
     "network" : MessageLookupByLibrary.simpleMessage("Network"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Network offline"),
-    "networkType" : m22,
+    "networkType" : m23,
     "newPeer" : MessageLookupByLibrary.simpleMessage("New Peer"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("New Wallet"),
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("No private keys"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("No public keys"),
     "nonce" : MessageLookupByLibrary.simpleMessage("Nonce"),
-    "numTransactions" : m23,
+    "numTransactions" : m24,
     "ok" : MessageLookupByLibrary.simpleMessage("Ok"),
     "password" : MessageLookupByLibrary.simpleMessage("Password"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Password can\'t be empty."),
     "passwordsDontMatch" : MessageLookupByLibrary.simpleMessage("Passwords don\'t match."),
     "payTo" : MessageLookupByLibrary.simpleMessage("Pay to"),
     "peers" : MessageLookupByLibrary.simpleMessage("Peers"),
-    "petaHashPerSecond" : m24,
+    "petaHashPerSecond" : m25,
     "previous" : MessageLookupByLibrary.simpleMessage("Previous"),
+    "privacyPolicy" : MessageLookupByLibrary.simpleMessage("Privacy Policy"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("Private Key"),
     "privateKeyList" : MessageLookupByLibrary.simpleMessage("Private Key List"),
     "publicKeyList" : MessageLookupByLibrary.simpleMessage("Public Key List"),
     "receive" : MessageLookupByLibrary.simpleMessage("Receive"),
     "recentHistory" : MessageLookupByLibrary.simpleMessage("Recent History"),
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("Require SSL certificate"),
-    "secondsDuration" : m25,
+    "secondsDuration" : m26,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Seed phrase"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("This seed allows anyone knowing it to spend all the funds from you wallet.  Write it down.  Keep it safe."),
     "send" : MessageLookupByLibrary.simpleMessage("Send"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Send failed"),
     "sending" : MessageLookupByLibrary.simpleMessage("Sending..."),
-    "sentTransactionId" : m26,
+    "sentTransactionId" : m27,
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "show" : MessageLookupByLibrary.simpleMessage("Show"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Show wallet name in title"),
     "state" : MessageLookupByLibrary.simpleMessage("State"),
+    "support" : MessageLookupByLibrary.simpleMessage("Support"),
     "target" : MessageLookupByLibrary.simpleMessage("Target"),
-    "teraHashPerSecond" : m27,
+    "teraHashPerSecond" : m28,
     "theme" : MessageLookupByLibrary.simpleMessage("Theme"),
     "time" : MessageLookupByLibrary.simpleMessage("Time"),
     "tip" : MessageLookupByLibrary.simpleMessage("Tip"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("To"),
-    "toAddress" : m28,
-    "totalBlocksInLastDuration" : m29,
+    "toAddress" : m29,
+    "totalBlocksInLastDuration" : m30,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transaction"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transactions"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Unit test before creating wallets"),
@@ -235,9 +244,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Value must be positive"),
     "verify" : MessageLookupByLibrary.simpleMessage("Verify"),
-    "verifyAddressFailed" : m30,
+    "verifyAddressFailed" : m31,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Verify key pairs every load"),
-    "verifyWalletResults" : m31,
+    "verifyWalletResults" : m32,
     "verifying" : MessageLookupByLibrary.simpleMessage("Verifying..."),
     "version" : MessageLookupByLibrary.simpleMessage("Version"),
     "warning" : MessageLookupByLibrary.simpleMessage("Warning"),

@@ -1,5 +1,10 @@
 {
-  "@@last_modified": "2019-07-29T15:50:42.288539",
+  "@@last_modified": "2019-07-30T13:29:57.158033",
+  "localeLanguage": "English",
+  "@localeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
   "title": "Cruzall",
   "@title": {
     "type": "text",
@@ -378,6 +383,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "support": "Support",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "License",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homePage": "{product} Home Page",
+  "@homePage": {
+    "type": "text",
+    "placeholders": {
+      "product": {}
+    }
+  },
   "addressTitle": "Address {address}",
   "@addressTitle": {
     "type": "text",
@@ -429,6 +456,11 @@
   },
   "time": "Time",
   "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
     "type": "text",
     "placeholders": {}
   },
@@ -504,6 +536,11 @@
   },
   "version": "Version",
   "@version": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "Language",
+  "@language": {
     "type": "text",
     "placeholders": {}
   },

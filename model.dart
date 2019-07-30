@@ -16,6 +16,7 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
+import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 
 import 'ui.dart';
@@ -40,7 +41,8 @@ class WalletModel extends Model {
 
 class Cruzawl extends Model {
   AppTheme theme;
-  SetClipboardText setClipboardText;
+  Locale localeOverride;
+  SetClipboardText launchUrl, setClipboardText;
   sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
   FlutterErrorDetails fatal;
@@ -54,8 +56,8 @@ class Cruzawl extends Model {
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
 
-  Cruzawl(this.setClipboardText, this.databaseFactory, this.preferences,
-      this.dataDir,
+  Cruzawl(this.launchUrl, this.setClipboardText, this.databaseFactory,
+      this.preferences, this.dataDir,
       {this.packageInfo, this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
     setTheme();
