@@ -13,6 +13,9 @@ import 'model.dart';
 import 'ui.dart';
 
 class CruzallSettings extends StatefulWidget {
+  bool walletSettings;
+  CruzallSettings({this.walletSettings=false});
+
   @override
   _CruzallSettingsState createState() => _CruzallSettingsState();
 }
@@ -37,32 +40,21 @@ class _CruzallSettingsState extends State<CruzallSettings> {
       ),
       ListTile(
         leading: Container(
-            padding: EdgeInsets.all(10), child: Image.asset(appState.assetPath('icon.png'))),
+            padding: EdgeInsets.all(10),
+            child: Image.asset(appState.assetPath('icon.png'))),
         title: Text(locale.version),
         trailing: Text(appState.packageInfo == null
             ? locale.unknown
             : appState.packageInfo.version),
       ),
-      ListTile(
-        leading: Icon(Icons.people),
-        title: Text(locale.support),
-        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
-        onTap: () => Navigator.of(context).pushNamed('/support'),
-      ),
-      ListTile(
-        leading: Icon(Icons.language),
-        title: Text(locale.language),
-        trailing: DropdownButton<String>(
-          value: locale.localeLanguage,
-          onChanged: (String val) {
-            int index =
-                Localization.supportedLanguages.indexWhere((e) => e == val);
-            if (index >= 0 && index < Localization.supportedLocales.length)
-              appState.setState(() => appState.localeOverride =
-                  Localization.supportedLocales[index]);
-          },
-          items: buildDropdownMenuItem(Localization.supportedLanguages),
+      GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.people),
+          title: Text(locale.support),
+          trailing:
+              Text('>', style: TextStyle(color: appState.theme.linkColor)),
         ),
+        onTap: () => Navigator.of(context).pushNamed('/support'),
       ),
       ListTile(
         leading: Icon(Icons.color_lens),
@@ -76,7 +68,25 @@ class _CruzallSettingsState extends State<CruzallSettings> {
           items: buildDropdownMenuItem(themes.keys.toList()),
         ),
       ),
-      ListTile(
+    ];
+
+    if (widget.walletSettings) {
+      ret.add(ListTile(
+        leading: Icon(Icons.language),
+        title: Text(locale.language),
+        trailing: DropdownButton<String>(
+          value: locale.localeLanguage,
+          onChanged: (String val) {
+            int index =
+                Localization.supportedLanguages.indexWhere((e) => e == val);
+            if (index >= 0 && index < Localization.supportedLocales.length)
+              appState.setState(() => appState.localeOverride =
+                  Localization.supportedLocales[index]);
+          },
+          items: buildDropdownMenuItem(Localization.supportedLanguages),
+        ),
+      ));
+      ret.add(ListTile(
         leading: Icon(encryptionEnabled ? Icons.lock_outline : Icons.lock_open),
         title: Text(locale.encryption),
         trailing: Switch(
@@ -88,8 +98,8 @@ class _CruzallSettingsState extends State<CruzallSettings> {
             setState(() => appState.preferences.encryptWallets(password));
           },
         ),
-      ),
-      ListTile(
+      ));
+      ret.add(ListTile(
         leading: Icon(warningEnabled ? Icons.lock_outline : Icons.lock_open),
         title: Text(locale.insecureDeviceWarning),
         trailing: Switch(
@@ -97,8 +107,8 @@ class _CruzallSettingsState extends State<CruzallSettings> {
           onChanged: (bool value) => setState(
               () => appState.preferences.insecureDeviceWarning = value),
         ),
-      ),
-      ListTile(
+      ));
+      ret.add(ListTile(
         leading:
             Icon(verifyAddressEveryLoad ? Icons.lock_outline : Icons.lock_open),
         title: Text(locale.verifyKeyPairsEveryLoad),
@@ -107,8 +117,8 @@ class _CruzallSettingsState extends State<CruzallSettings> {
           onChanged: (bool value) => setState(
               () => appState.preferences.verifyAddressEveryLoad = value),
         ),
-      ),
-      ListTile(
+      ));
+      ret.add(ListTile(
         leading:
             Icon(unitTestBeforeCreating ? Icons.lock_outline : Icons.lock_open),
         title: Text(locale.unitTestBeforeCreatingWallets),
@@ -117,8 +127,8 @@ class _CruzallSettingsState extends State<CruzallSettings> {
           onChanged: (bool value) => setState(
               () => appState.preferences.unitTestBeforeCreating = value),
         ),
-      ),
-      ListTile(
+      ));
+      ret.add(ListTile(
         title: Text(locale.showWalletNameInTitle),
         trailing: Switch(
           value: appState.preferences.walletNameInTitle,
@@ -127,8 +137,8 @@ class _CruzallSettingsState extends State<CruzallSettings> {
             appState.setState(() {});
           },
         ),
-      ),
-      ListTile(
+      ));
+      ret.add(ListTile(
         title: Text(locale.debugLog),
         trailing: Switch(
           value: appState.preferences.debugLog,
@@ -137,8 +147,8 @@ class _CruzallSettingsState extends State<CruzallSettings> {
             appState.setState(() => appState.debugLog = value ? '' : null);
           },
         ),
-      ),
-    ];
+      ));
+    };
 
     if (appState.preferences.debugLog && appState.debugLog != null) {
       ret.add(
@@ -246,46 +256,63 @@ class CruzallSupport extends StatelessWidget {
         height: 200,
         child: Image.asset(appState.assetPath('icon.png')),
       ),
-      ListTile(
-        leading: Icon(Icons.people),
-        title: Text('support@greenappers.com'),
-        trailing: Icon(Icons.send, color: appState.theme.linkColor),
+      GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.people),
+          title: Text('support@greenappers.com'),
+          trailing: Icon(Icons.send, color: appState.theme.linkColor),
+        ),
         onTap: () => appState.launchUrl(
             context,
             'mailto:support@greenappers.com?subject=' +
                 Uri.encodeFull('Cruzall ' + appState.packageInfo.version)),
       ),
-      ListTile(
-        leading: Icon(Icons.home),
-        title: Text(locale.homePage(locale.title)),
-        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+      GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.home),
+          title: Text(locale.homePage(locale.title)),
+          trailing:
+              Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        ),
         onTap: () => appState.launchUrl(
             context, 'https://www.greenappers.com/cruzall/$languageCode/'),
       ),
-      ListTile(
-        leading: Icon(Icons.security),
-        title: Text(locale.privacyPolicy),
-        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+      GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.security),
+          title: Text(locale.privacyPolicy),
+          trailing:
+              Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        ),
         onTap: () => appState.launchUrl(context,
             'https://www.greenappers.com/cruzall/$languageCode/privacy_policy.html'),
       ),
-      ListTile(
-        leading: Icon(Icons.wb_sunny),
-        title: Text('Green Appers'),
-        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+      GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.wb_sunny),
+          title: Text('Green Appers'),
+          trailing:
+              Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        ),
         onTap: () =>
             appState.launchUrl(context, 'https://www.greenappers.com/'),
       ),
-      ListTile(
-        leading: Icon(Icons.whatshot),
-        title: Text('cruzbit'),
-        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+      GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.whatshot),
+          title: Text('cruzbit'),
+          trailing:
+              Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        ),
         onTap: () => appState.launchUrl(context, 'https://cruzbit.github.io/'),
       ),
-      ListTile(
-        leading: Icon(Icons.business_center),
-        title: Text(locale.license),
-        trailing: Text('>', style: TextStyle(color: appState.theme.linkColor)),
+      GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.business_center),
+          title: Text(locale.license),
+          trailing:
+              Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        ),
         onTap: () => showLicensePage(
             context: context,
             applicationName: locale.title,

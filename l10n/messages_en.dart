@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m21(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m22(minutes) => "${Intl.plural(minutes, one: 'minute', other: '${minutes} minutes')}";
+  static m22(minutes) => "${Intl.plural(minutes, one: '${minutes} minute', other: '${minutes} minutes')}";
 
   static m23(type) => "${type} Network";
 
@@ -72,7 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m25(petaHashPerSecond) => "${petaHashPerSecond} PH/s";
 
-  static m26(seconds) => "${Intl.plural(seconds, one: 'second', other: '${seconds} seconds')}";
+  static m26(seconds) => "${Intl.plural(seconds, one: '${seconds} second', other: '${seconds} seconds')}";
 
   static m27(transactionId) => "Sent ${transactionId}";
 

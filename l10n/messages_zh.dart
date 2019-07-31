@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m21(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m22(minutes) => "${Intl.plural(minutes, one: '分钟', other: '${minutes}分钟')}";
+  static m22(minutes) => "${Intl.plural(minutes, one: '${minutes}分钟', other: '${minutes}分钟')}";
 
   static m23(type) => "${type}网络";
 
@@ -72,7 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m25(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m26(seconds) => "${Intl.plural(seconds, one: '第二', other: '${seconds}秒')}";
+  static m26(seconds) => "${Intl.plural(seconds, one: '${seconds}秒', other: '${seconds}秒')}";
 
   static m27(transactionId) => "已发送${transactionId}";
 

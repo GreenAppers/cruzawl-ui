@@ -58,7 +58,8 @@ class Cruzawl extends Model {
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
 
-  Cruzawl(this.assetPath, this.launchUrl, this.setClipboardText, this.databaseFactory, this.preferences, this.dataDir,
+  Cruzawl(this.assetPath, this.launchUrl, this.setClipboardText,
+      this.databaseFactory, this.preferences, this.dataDir,
       {this.packageInfo, this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
     setTheme();
