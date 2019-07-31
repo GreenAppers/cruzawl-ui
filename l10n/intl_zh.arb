@@ -674,6 +674,11 @@
       "height": {}
     }
   },
+  "pending": "有待",
+  "@pending": {
+    "type": "text",
+    "placeholders": {}
+  },
   "invalidUrl": "无效的网址。",
   "@invalidUrl": {
     "type": "text",

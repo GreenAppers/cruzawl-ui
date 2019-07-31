@@ -14,7 +14,7 @@ import 'ui.dart';
 
 class CruzallSettings extends StatefulWidget {
   bool walletSettings;
-  CruzallSettings({this.walletSettings=false});
+  CruzallSettings({this.walletSettings = false});
 
   @override
   _CruzallSettingsState createState() => _CruzallSettingsState();
@@ -148,7 +148,7 @@ class _CruzallSettingsState extends State<CruzallSettings> {
           },
         ),
       ));
-    };
+    }
 
     if (appState.preferences.debugLog && appState.debugLog != null) {
       ret.add(

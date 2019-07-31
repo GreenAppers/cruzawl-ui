@@ -203,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDontMatch" : MessageLookupByLibrary.simpleMessage("Passwords don\'t match."),
     "payTo" : MessageLookupByLibrary.simpleMessage("Pay to"),
     "peers" : MessageLookupByLibrary.simpleMessage("Peers"),
+    "pending" : MessageLookupByLibrary.simpleMessage("Pending"),
     "petaHashPerSecond" : m25,
     "previous" : MessageLookupByLibrary.simpleMessage("Previous"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("Privacy Policy"),

@@ -134,23 +134,30 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                 ? TextStyle(color: Colors.red)
                 : valueTextStyle)),
       ),
-      ListTile(
+    ];
+
+    if (transaction.height != null)
+      ret.add(ListTile(
         title: Text(locale.height, style: labelTextStyle),
         trailing: Text(transaction.height.toString(), style: valueTextStyle),
         onTap: widget.onHeightTap != null
             ? () => widget.onHeightTap(transaction)
             : null,
-      ),
-      ListTile(
-        title: Text(locale.confirmations, style: labelTextStyle),
-        trailing: Text(max(0, tipHeight - transaction.height).toString(),
-            style: valueTextStyle),
-      ),
-      ListTile(
-        title: Text(locale.nonce, style: labelTextStyle),
-        trailing: Text(transaction.nonce.toString(), style: valueTextStyle),
-      ),
-    ];
+      ));
+
+    ret.add(ListTile(
+      title: Text(locale.confirmations, style: labelTextStyle),
+      trailing: Text(
+          transaction.height == null
+              ? locale.pending
+              : max(0, tipHeight - transaction.height).toString(),
+          style: valueTextStyle),
+    ));
+
+    ret.add(ListTile(
+      title: Text(locale.nonce, style: labelTextStyle),
+      trailing: Text(transaction.nonce.toString(), style: valueTextStyle),
+    ));
 
     if (transaction.matures != null) {
       int matures = transaction.matures;

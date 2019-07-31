@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-30T19:22:38.076071",
+  "@@last_modified": "2019-07-30T23:29:28.226187",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -674,6 +674,11 @@
     "placeholders": {
       "height": {}
     }
+  },
+  "pending": "Pending",
+  "@pending": {
+    "type": "text",
+    "placeholders": {}
   },
   "invalidUrl": "Invalid URL.",
   "@invalidUrl": {

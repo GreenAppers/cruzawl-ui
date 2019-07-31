@@ -268,6 +268,7 @@ class Localization {
           name: 'heightEquals', args: [height]);
 
   /// Meta-Fields
+  String get pending => Intl.message('Pending', name: 'pending');
   String get invalidUrl => Intl.message('Invalid URL.', name: 'invalidUrl');
   String get invalidCurrency =>
       Intl.message('Invalid currency', name: 'invalidCurrency');
