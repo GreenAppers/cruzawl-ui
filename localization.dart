@@ -330,12 +330,12 @@ class Localization {
 
   /// Durations / rates
   String secondsDuration(int seconds) => Intl.plural(seconds,
-      one: 'second',
+      one: '$seconds second',
       other: '$seconds seconds',
       name: 'secondsDuration',
       args: [seconds]);
   String minutesDuration(int minutes) => Intl.plural(minutes,
-      one: 'minute',
+      one: '$minutes minute',
       other: '$minutes minutes',
       name: 'minutesDuration',
       args: [minutes]);

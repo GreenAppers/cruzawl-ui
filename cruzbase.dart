@@ -197,7 +197,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       locale.heightEquals(widget.tip.height),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
-        'a1': LocalizationMarkup(
+        'a': LocalizationMarkup(
           style: linkStyle,
           onTap: () => appState.navigateToHeight(context, widget.tip.height),
         ),

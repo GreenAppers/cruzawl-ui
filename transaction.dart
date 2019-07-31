@@ -213,6 +213,7 @@ class TransactionListTile extends StatelessWidget {
               ? RichText(
                   text: buildLocalizationMarkupTextSpan(
                     locale.toAddress('{@<a>}${tx.toText}{@</a>}'),
+                    style: appState.theme.labelStyle,
                     tags: <String, LocalizationMarkup>{
                       'a': LocalizationMarkup(style: appState.theme.linkStyle),
                     },
@@ -226,6 +227,7 @@ class TransactionListTile extends StatelessWidget {
               ? RichText(
                   text: buildLocalizationMarkupTextSpan(
                     locale.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
+                    style: appState.theme.labelStyle,
                     tags: <String, LocalizationMarkup>{
                       'a': LocalizationMarkup(style: appState.theme.linkStyle),
                     },

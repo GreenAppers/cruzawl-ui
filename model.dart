@@ -16,11 +16,12 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
-import 'package:cruzawl/util.dart';
+import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/wallet.dart';
 
 import 'ui.dart';
 
+typedef StringFilter = String Function(String);
 typedef SetClipboardText = void Function(BuildContext, String);
 
 class PackageInfo {
@@ -42,6 +43,7 @@ class WalletModel extends Model {
 class Cruzawl extends Model {
   AppTheme theme;
   Locale localeOverride;
+  StringFilter assetPath;
   SetClipboardText launchUrl, setClipboardText;
   sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
@@ -56,8 +58,7 @@ class Cruzawl extends Model {
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
 
-  Cruzawl(this.launchUrl, this.setClipboardText, this.databaseFactory,
-      this.preferences, this.dataDir,
+  Cruzawl(this.assetPath, this.launchUrl, this.setClipboardText, this.databaseFactory, this.preferences, this.dataDir,
       {this.packageInfo, this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
     setTheme();

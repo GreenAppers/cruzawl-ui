@@ -815,14 +815,14 @@
       "totalTests": {}
     }
   },
-  "secondsDuration": "{seconds, plural, =1 {第二} other {{seconds}秒}}",
+  "secondsDuration": "{seconds, plural, =1 {{seconds}秒} other {{seconds}秒}}",
   "@secondsDuration": {
     "type": "text",
     "placeholders": {
       "seconds": {}
     }
   },
-  "minutesDuration": "{minutes, plural, =1 {分钟} other {{minutes}分钟}}",
+  "minutesDuration": "{minutes, plural, =1 {{minutes}分钟} other {{minutes}分钟}}",
   "@minutesDuration": {
     "type": "text",
     "placeholders": {

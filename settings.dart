@@ -33,11 +33,11 @@ class _CruzallSettingsState extends State<CruzallSettings> {
     final List<Widget> ret = <Widget>[
       Container(
         height: 200,
-        child: Image.asset('assets/cruzbit.png'),
+        child: Image.asset(appState.assetPath('cruzbit.png')),
       ),
       ListTile(
         leading: Container(
-            padding: EdgeInsets.all(10), child: Image.asset('assets/icon.png')),
+            padding: EdgeInsets.all(10), child: Image.asset(appState.assetPath('icon.png'))),
         title: Text(locale.version),
         trailing: Text(appState.packageInfo == null
             ? locale.unknown
@@ -244,7 +244,7 @@ class CruzallSupport extends StatelessWidget {
     final List<Widget> ret = <Widget>[
       Container(
         height: 200,
-        child: Image.asset('assets/icon.png'),
+        child: Image.asset(appState.assetPath('icon.png')),
       ),
       ListTile(
         leading: Icon(Icons.people),
@@ -290,7 +290,7 @@ class CruzallSupport extends StatelessWidget {
             context: context,
             applicationName: locale.title,
             applicationVersion: appState.packageInfo.version,
-            applicationIcon: Image.asset('assets/icon.png')),
+            applicationIcon: Image.asset(appState.assetPath('icon.png'))),
       ),
     ];
 
