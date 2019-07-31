@@ -241,6 +241,8 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
               if (!formKey.currentState.validate()) return;
               formKey.currentState.save();
               formKey.currentState.reset();
+              fromController.clear();
+              toController.clear();
               FocusScope.of(context).requestFocus(FocusNode());
               Scaffold.of(context)
                   .showSnackBar(SnackBar(content: Text(locale.sending)));
