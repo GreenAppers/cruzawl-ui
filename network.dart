@@ -8,6 +8,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
+import 'package:cruzawl/preferences.dart';
 
 import 'localization.dart';
 import 'model.dart';
