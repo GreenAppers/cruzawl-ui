@@ -1,6 +1,8 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+import 'dart:math';
+
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
@@ -35,7 +37,7 @@ class CruzbaseWidget extends StatefulWidget {
 
 class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   SortedListSet<TimeSeriesBlocks> data;
-  int dataStartHeight, dataEndHeight;
+  int dataStartHeight, dataEndHeight, dataMaxBucketBlocks;
   DateTime dataStart, dataEnd, windowStart, windowEnd;
   Duration windowDuration, animate = Duration(seconds: 5);
   CruzbaseBucketDuration bucketDuration;
@@ -71,23 +73,34 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     DateTime time = blockTime(header);
     if (time.isBefore(dataStart)) dataStart = time;
     if (time.isAfter(dataEnd)) updateDataEndTime(time);
-    TimeSeriesBlocks point = TimeSeriesBlocks(truncateTime(time, bucketDuration));
+    TimeSeriesBlocks point =
+        TimeSeriesBlocks(truncateTime(time, bucketDuration));
     TimeSeriesBlocks prevPoint = data.find(point);
-    if (prevPoint != null)
+    if (prevPoint != null) {
       prevPoint.block.add(header);
-    else {
+      dataMaxBucketBlocks = max(dataMaxBucketBlocks, prevPoint.blocks);
+    } else {
       point.block.add(header);
       data.add(point);
+      dataMaxBucketBlocks = max(dataMaxBucketBlocks, point.blocks);
     }
   }
 
   void updateDataEndTime(DateTime newDataEnd) {
     if (newDataEnd.isBefore(dataEnd)) return;
-    if (windowEnd.compareTo(dataEnd) >= 0) {
-      windowEnd = newDataEnd;
-      windowStart = windowEnd.subtract(windowDuration);
-    }
+    updateWindowEndTime(newDataEnd);
     dataEnd = newDataEnd;
+  }
+
+  void updateWindowEndTime([DateTime newDataEnd]) {
+    if (windowEnd.compareTo(dataEnd) >= 0) windowEnd = newDataEnd ?? dataEnd;
+    windowStart = windowEnd.subtract(windowDuration);
+  }
+
+  void updateWindowStartTime([DateTime newDataStart]) {
+    if (windowStart.compareTo(dataStart) <= 0)
+      windowStart = newDataStart ?? dataStart;
+    windowEnd = windowStart.add(windowDuration);
   }
 
   void load() async {
@@ -97,6 +110,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     DateTime queryBackTo;
 
     if (data == null) {
+      dataMaxBucketBlocks = 0;
       dataStart = dataEnd = DateTime.now();
       dataStartHeight = dataEndHeight = peer.tip.height;
       data = SortedListSet<TimeSeriesBlocks>(
@@ -172,7 +186,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         lowerBound(data.data, end, compare: TimeSeriesBlocks.compareTime);
     SortedListSet<TimeSeriesBlocks> window = SortedListSet<TimeSeriesBlocks>(
         TimeSeriesBlocks.compareTime, data.data.sublist(startIndex, endIndex));
-    int totalBlocks = window.data.fold(0, (p, c) => p + c.blocks);
+    Point<num> visitor = window.data.fold(Point<num>(0, 0),
+        (p, c) => Point<num>(p.x + c.blocks, max(p.y, c.block.first.height)));
+    int totalBlocks = visitor.x, maxHeight = visitor.y;
+    Duration barDuration = getBucketDuration(bucketDuration);
     BlockHeader first = window.last.block.last;
     BlockHeader last = window.first.block.first;
     window.add(start, overwrite: false);
@@ -190,13 +207,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
                 data: window.data,
               )
             ],
-            animate: true,
+            animate: false,
             defaultRenderer: charts.BarRendererConfig<DateTime>(),
             defaultInteractions: false,
             behaviors: [
-              charts.SlidingViewport(),
               charts.SelectNearest(),
-              charts.DomainHighlighter()
             ],
             selectionModels: [
               charts.SelectionModelConfig(
@@ -211,16 +226,24 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
                 },
               ),
             ],
-            domainAxis: charts.DateTimeAxisSpec(
+            primaryMeasureAxis: charts.NumericAxisSpec(
+                viewport: charts.NumericExtents(0, dataMaxBucketBlocks)),
+            /*domainAxis: charts.EndPointsTimeAxisSpec(
                 viewport:
-                    charts.DateTimeExtents(start: windowStart, end: windowEnd)),
+                    charts.DateTimeExtents(start: windowStart, end: windowEnd)),*/
           ),
           onHorizontalDragUpdate: (update) {
-            //debugPrint('horizontal drag update');
+            double dx = -update.delta.dx, factor = .05;
+            windowEnd = dx >= 0
+                ? windowEnd.add(barDuration * dx.abs() * factor)
+                : windowEnd.subtract(barDuration * dx.abs() * factor);
+            setState(() {
+              updateWindowEndTime();
+              updateWindowStartTime();
+            });
           },
         ),
-        titleWidget:
-            buildTitle(context, totalBlocks, first, last, last.height));
+        titleWidget: buildTitle(context, totalBlocks, first, last, maxHeight));
   }
 
   Widget buildTitle(BuildContext context, int totalBlocks, BlockHeader first,
@@ -301,16 +324,19 @@ class TimeSeriesBlocks {
 charts.Color chartColor(Color color) =>
     charts.Color(r: color.red, g: color.green, b: color.blue, a: color.alpha);
 
-int divideDuration(Duration q, Duration d) =>
-    (q.inMicroseconds / d.inMicroseconds).ceil();
-
 DateTime blockTime(BlockHeader header) =>
     DateTime.fromMillisecondsSinceEpoch(header.time * 1000);
 
 DateTime truncateTime(DateTime time, CruzbaseBucketDuration duration) =>
-    DateTime(
-        time.year,
-        time.month,
-        time.day,
-        time.hour,
+    DateTime(time.year, time.month, time.day, time.hour,
         duration == CruzbaseBucketDuration.minute ? time.minute : 0);
+
+Duration getBucketDuration(CruzbaseBucketDuration duration) {
+  switch (duration) {
+    case CruzbaseBucketDuration.hour:
+      return Duration(hours: 1);
+    case CruzbaseBucketDuration.minute:
+    default:
+      return Duration(minutes: 1);
+  }
+}

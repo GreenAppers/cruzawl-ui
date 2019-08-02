@@ -115,13 +115,13 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     if (prevBlock != null) {
       Duration duration = Duration(seconds: block.header.time - prevBlock.time);
-      header.add(
-        ListTile(
-          title: Text(locale.deltaTime),
-          trailing: Text(locale.formatShortDuration(duration)),
-        ),
-      );
-      if (duration.inSeconds > 0)
+      if (duration.inSeconds > 0) {
+        header.add(
+          ListTile(
+            title: Text(locale.deltaTime),
+            trailing: Text(locale.formatShortDuration(duration)),
+          ),
+        );
         header.add(
           ListTile(
             title: Text(locale.deltaHashPower),
@@ -129,6 +129,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                 Text(locale.formatHashRate(block.header.hashRate(prevBlock))),
           ),
         );
+      }
     }
 
     header.add(
