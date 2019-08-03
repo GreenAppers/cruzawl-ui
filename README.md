@@ -3,3 +3,11 @@
 
 # Architecture
 <img src="https://raw.githubusercontent.com/GreenAppers/cruzawl/master/diagram.svg?sanitize=true" />
+
+## License
+
+cruzawl-ui is released under the terms of the MIT license. See [LICENSE](https://github.com/GreenAppers/cruzawl-ui/blob/master/LICENSE) for more information or see https://opensource.org/licenses/MIT.
+
+## Discussion
+
+* **[Discord server](https://discord.gg/MRrEHYw)** for general chat as well as updates, including development status.

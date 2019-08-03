@@ -214,7 +214,8 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
             ),
             validator: (value) {
               try {
-                network.parseUri(value, '');
+                network.createPeerWithSpec(
+                    PeerPreference('', value, currency.ticker, ''), '');
               } on Exception {
                 return locale.invalidUrl;
               }

@@ -196,7 +196,8 @@ class Cruzawl extends Model {
     x.debugPrint = print;
     currency.network.tipChanged = () => updateWallets(currency);
     currency.network.peerChanged = () => reloadWallets(currency);
-    return currency.network.addPeerWithSpec(x, currency.genesisBlockId());
+    return currency.network.addPeer(
+        currency.network.createPeerWithSpec(x, currency.genesisBlockId()));
   }
 
   bool runQuickTestVector() {

@@ -119,18 +119,24 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       windowStart ??= queryBackTo;
       windowEnd ??= dataEnd;
     } else {
+      Duration bufferDuration = const Duration(hours: 4);
       updateDataEndTime(DateTime.now());
       int tipHeight = peer.tip.height;
       if (tipHeight > dataEndHeight) {
         await fetch(peer, tipHeight, tipHeight - dataEndHeight);
         dataEndHeight = tipHeight;
-        loading = false;
-        setState(() {});
-        return;
+        if (dataStart.compareTo(windowStart.subtract(bufferDuration)) < 0) {
+          loading = false;
+          setState(() {});
+          return;
+        }
       } else {
-        loading = false;
-        return;
+        if (dataStart.compareTo(windowStart.subtract(bufferDuration)) < 0) {
+          loading = false;
+          return;
+        }
       }
+      queryBackTo = dataEnd.subtract(bufferDuration);
     }
 
     for (bool done = false; !done && dataStartHeight >= 0; /**/) {
