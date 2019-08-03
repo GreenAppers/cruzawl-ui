@@ -145,14 +145,15 @@ class _TransactionWidgetState extends State<TransactionWidget> {
             : null,
       ));
 
-    ret.add(ListTile(
-      title: Text(locale.confirmations, style: labelTextStyle),
-      trailing: Text(
-          transaction.height == null
-              ? locale.pending
-              : max(0, tipHeight - transaction.height).toString(),
-          style: valueTextStyle),
-    ));
+    if (transaction.height <= tipHeight)
+      ret.add(ListTile(
+        title: Text(locale.confirmations, style: labelTextStyle),
+        trailing: Text(
+            transaction.height == null
+                ? locale.pending
+                : (1 + tipHeight - transaction.height).toString(),
+            style: valueTextStyle),
+      ));
 
     ret.add(ListTile(
       title: Text(locale.nonce, style: labelTextStyle),

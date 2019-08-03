@@ -38,7 +38,7 @@ class CruzbaseWidget extends StatefulWidget {
 class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   SortedListSet<TimeSeriesBlocks> data;
   int dataStartHeight, dataEndHeight, dataMaxBucketBlocks;
-  DateTime dataStart, dataEnd, windowStart, windowEnd;
+  DateTime dataInit, dataStart, dataEnd, windowStart, windowEnd;
   Duration windowDuration, animate = Duration(seconds: 5);
   CruzbaseBucketDuration bucketDuration;
   bool loading = false;
@@ -108,10 +108,12 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     Peer peer = await widget.currency.network.getPeer();
     loading = true;
     DateTime queryBackTo;
+    bool initialLoad = data == null;
 
-    if (data == null) {
+    if (initialLoad) {
+      debugPrint('cruzbase initial load');
       dataMaxBucketBlocks = 0;
-      dataStart = dataEnd = DateTime.now();
+      dataInit = dataStart = dataEnd = DateTime.now();
       dataStartHeight = dataEndHeight = peer.tip.height;
       data = SortedListSet<TimeSeriesBlocks>(
           TimeSeriesBlocks.compareTime, List<TimeSeriesBlocks>());
@@ -136,6 +138,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
           return;
         }
       }
+      debugPrint('cruzbase load more');
       queryBackTo = dataEnd.subtract(bufferDuration);
     }
 
@@ -146,6 +149,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       dataStartHeight -= blocks.length;
     }
 
+    debugPrint('load ' +
+        (initialLoad ? 'initial' : 'more') +
+        ' complete - initial load $dataInit');
     loading = false;
     setState(() {});
   }
@@ -184,8 +190,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     if (refresh == null)
       refresh = Future.delayed(animate, () => setState(() => refresh = null));
 
-    TimeSeriesBlocks start = TimeSeriesBlocks(windowStart);
-    TimeSeriesBlocks end = TimeSeriesBlocks(windowEnd);
+    /// Truncating makes scrolling jerky but prevents, I think, a charts bug
+    TimeSeriesBlocks start =
+        TimeSeriesBlocks(truncateTime(windowStart, bucketDuration));
+    TimeSeriesBlocks end =
+        TimeSeriesBlocks(truncateTime(windowEnd, bucketDuration));
     int endIndex =
         lowerBound(data.data, start, compare: TimeSeriesBlocks.compareTime);
     int startIndex =
