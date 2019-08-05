@@ -11,14 +11,13 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
-import 'package:cruzawl/util.dart';
+import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
 import '../model.dart';
 import '../transaction.dart';
 import '../ui.dart';
-import 'wallet.dart';
 
 class AddressWidget extends StatefulWidget {
   final Wallet wallet;

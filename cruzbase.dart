@@ -275,7 +275,12 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     final String duration = locale.formatDuration(windowDuration);
 
     List<Widget> hashRate = <Widget>[
-      Text(locale.formatHashRate(last == null ? 0 : last.hashRate(first)),
+      Text(
+          locale.formatHashRate(last == null
+              ? 0
+              : ((first.blockWork() + last.deltaWork(first)) ~/
+                      BigInt.from(windowDuration.inSeconds))
+                  .toInt()),
           style: titleStyle),
     ];
 

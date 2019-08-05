@@ -19,6 +19,7 @@ import 'package:cruzawl/test.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/wallet.dart';
 
+import 'transaction.dart';
 import 'ui.dart';
 
 typedef StringFilter = String Function(String);
@@ -27,6 +28,13 @@ typedef SetClipboardText = void Function(BuildContext, String);
 class PackageInfo {
   final String appName, packageName, version, buildNumber;
   PackageInfo(this.appName, this.packageName, this.version, this.buildNumber);
+}
+
+class WalletTransactionInfo extends TransactionInfo {
+  WalletTransactionInfo(Wallet wallet, Transaction tx)
+      : super(
+            toWallet: wallet.addresses.containsKey(tx.toText),
+            fromWallet: wallet.addresses.containsKey(tx.fromText));
 }
 
 class WalletModel extends Model {
