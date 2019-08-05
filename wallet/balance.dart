@@ -44,7 +44,7 @@ class WalletBalanceWidget extends StatelessWidget {
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
                       style: linkStyle,
-                      onTap: () => appState.navigateToTip(context),
+                      onTap: () => appState.navigateToAddressText(context, 'cruzbase'),
                     ),
                   },
                 ),

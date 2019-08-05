@@ -188,7 +188,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               title: locale.loading);
 
     if (refresh == null)
-      refresh = Future.delayed(animate, () => setState(() => refresh = null));
+      refresh = Future.delayed(animate, () {
+        if (mounted) setState(() => refresh = null);
+      });
 
     /// Truncating makes scrolling jerky but prevents, I think, a charts bug
     TimeSeriesBlocks start =

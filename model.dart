@@ -209,6 +209,7 @@ class Cruzawl extends Model {
         currency.network.createPeerWithSpec(x, currency.genesisBlockId()));
   }
 
+  /// https://github.com/jspschool/tweetnacl-dart/issues/3
   bool runQuickTestVector() {
     Uint8List testVector =
         base64.decode('0JVc4TQg5shsqLNo6UDurejr4YUk8WUvYM+8lFAlAdI=');

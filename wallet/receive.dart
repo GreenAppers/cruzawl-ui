@@ -28,7 +28,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Wallet wallet =
         ScopedModel.of<WalletModel>(context, rebuildOnChange: true).wallet;
-    final Address address = wallet.getNextAddress();
+    final Address address = wallet.getNextReceiveAddress();
     final Size screenSize = MediaQuery.of(context).size;
     final String addressText = address.publicKey.toJson();
 
