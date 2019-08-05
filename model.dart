@@ -173,6 +173,7 @@ class Cruzawl extends Model {
   }
 
   void reloadWallets(Currency currency) async {
+    print('Cruzawl reloadWallets');
     if (wallets.isEmpty) {
       if (currency.network.hasPeer)
         (await currency.network.getPeer())
@@ -185,7 +186,7 @@ class Cruzawl extends Model {
   }
 
   void reconnectPeers(Currency currency) {
-    currency.network.reset();
+    currency.network.shutdown();
     connectPeers(currency);
   }
 
