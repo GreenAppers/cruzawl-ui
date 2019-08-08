@@ -80,7 +80,7 @@ class CruzallRoutes {
           settings: settings,
           builder: (context) => ScopedModelDescendant<WalletModel>(
             builder: (context, child, model) => BlockWidget(wallet.currency,
-                blockHeight: int.parse(page.arg),
+                blockHeight: int.tryParse(page.arg) ?? 0,
                 maxWidth: maxWidth,
                 loadingWidget: loadingWidget),
           ),

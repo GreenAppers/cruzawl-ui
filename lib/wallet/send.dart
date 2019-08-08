@@ -249,7 +249,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
               Scaffold.of(context)
                   .showSnackBar(SnackBar(content: Text(locale.sending)));
               Address fromAddress = wallet.addresses[fromInput];
-              Transaction transaction = await wallet.newTransaction(
+              Transaction transaction = await wallet.createTransaction(
                   currency.signedTransaction(
                       fromAddress,
                       currency.fromPublicAddressJson(toInput),

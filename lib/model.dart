@@ -205,8 +205,8 @@ class Cruzawl extends Model {
     x.debugPrint = print;
     currency.network.tipChanged = () => updateWallets(currency);
     currency.network.peerChanged = () => reloadWallets(currency);
-    return currency.network.addPeer(
-        currency.network.createPeerWithSpec(x, currency.genesisBlockId()));
+    return currency.network.addPeer(currency.network
+        .createPeerWithSpec(x, currency.genesisBlock().id().toJson()));
   }
 
   /// https://github.com/jspschool/tweetnacl-dart/issues/3
@@ -237,8 +237,8 @@ class Cruzawl extends Model {
         setState(() => fatal = FlutterErrorDetails(
             exception: FormatException('unit test failure')));
     };
-    CruzTest(testCallback, testCallback, expectCallback).run();
-    WalletTest(testCallback, testCallback, expectCallback).run();
+    CruzTester(testCallback, testCallback, expectCallback).run();
+    WalletTester(testCallback, testCallback, expectCallback).run();
     if (fatal != null) return -1;
     print('unit tests succeeded');
     return tests;

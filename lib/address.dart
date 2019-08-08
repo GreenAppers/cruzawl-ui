@@ -56,16 +56,8 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
     }
 
     do {
-      if (iter != null) {
-        if (iter.index == 0)
-          iter.height--;
-        else
-          iter.index--;
-      }
-      TransactionIteratorResults results = await peer.getTransactions(address,
-          startHeight: iter == null ? null : iter.height,
-          startIndex: iter == null ? null : iter.index,
-          endHeight: iter == null ? null : 0);
+      TransactionIteratorResults results =
+          await peer.getTransactions(address, iter);
       if (results == null) break;
 
       for (Transaction transaction in results.transactions) {
@@ -85,12 +77,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       else
         transactions.addAll(results.transactions);
 
-      if (iter != null &&
-          (results.height > iter.height ||
-              (results.height == iter.height && results.index > iter.index)))
-        iter = TransactionIterator(0, 0);
-      else
-        iter = TransactionIterator(results.height, results.index);
+      iter = TransactionIterator(results.height, results.index);
 
       // Load most recent 100 blocks worth of transactions
     } while (iter.height > max(0, tipHeight - 100));

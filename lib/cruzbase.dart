@@ -197,6 +197,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         TimeSeriesBlocks(truncateTime(windowStart, bucketDuration));
     TimeSeriesBlocks end =
         TimeSeriesBlocks(truncateTime(windowEnd, bucketDuration));
+
     int endIndex =
         lowerBound(data.data, start, compare: TimeSeriesBlocks.compareTime);
     int startIndex =
@@ -250,7 +251,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
                     charts.DateTimeExtents(start: windowStart, end: windowEnd)),*/
           ),
           onHorizontalDragUpdate: (update) {
-            double dx = -update.delta.dx, factor = .05;
+            double dx = -update.delta.dx, factor = .1;
             windowEnd = dx >= 0
                 ? windowEnd.add(barDuration * dx.abs() * factor)
                 : windowEnd.subtract(barDuration * dx.abs() * factor);

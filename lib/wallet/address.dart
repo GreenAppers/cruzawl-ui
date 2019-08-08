@@ -55,8 +55,7 @@ class _AddressWidgetState extends State<AddressWidget> {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final TextStyle labelTextStyle = appState.theme.labelStyle;
-    final bool fullyLoaded =
-        address.loadedHeight == 0 && address.loadedIndex == 0;
+    final bool fullyLoaded = address.loadIterator.done;
 
     final List<Widget> top = <Widget>[
       Center(
@@ -176,8 +175,7 @@ class _AddressWidgetState extends State<AddressWidget> {
           onTap: (tx) => appState.navigateToTransaction(context, tx));
     }
 
-    assert(
-        !(widget.address.loadedHeight == 0 && widget.address.loadedIndex == 0));
+    assert(!widget.address.loadIterator.done);
 
     if (widget.wallet.currency.network.hasPeer)
       widget.wallet.currency.network.getPeer().then((Peer peer) {
