@@ -548,6 +548,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "next": "下一个",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
   "confirmations": "确认",
   "@confirmations": {
     "type": "text",

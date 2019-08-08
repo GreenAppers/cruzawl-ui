@@ -37,7 +37,7 @@ class BlockWidget extends StatefulWidget {
 
 class _BlockWidgetState extends State<BlockWidget> {
   bool isTip, loading = false;
-  String blockId;
+  String blockId, nextBlockId;
   int blockHeight;
   Block block;
   BlockHeader prevBlock;
@@ -62,6 +62,11 @@ class _BlockWidgetState extends State<BlockWidget> {
         BlockHeaderMessage prevMessage =
             await peer.getBlockHeader(id: message.block.header.previous);
         if (prevMessage != null) prevBlock = prevMessage.header;
+      }
+      if (!isTip) {
+        BlockHeaderMessage nextMessage =
+            await peer.getBlockHeader(height: message.block.header.height + 1);
+        if (nextMessage != null && nextMessage.id != null) nextBlockId = nextMessage.id.toJson();
       }
       block = message.block;
     }
@@ -107,9 +112,13 @@ class _BlockWidgetState extends State<BlockWidget> {
         title: Text(locale.time),
         trailing: Text(widget.currency.parseTime(block.header.time).toString()),
       ),
-      ListTile(
-        title: Text(locale.height),
-        trailing: Text(block.header.height.toString()),
+      buildListTile(
+        Text(locale.height),
+        wideStyle,
+        GestureDetector(
+          child: Text(block.header.height.toString(), style: wideStyle ? linkStyle : null),
+          onTap: () => appState.navigateToHeight(context, block.header.height),
+        ),
       ),
     ];
 
@@ -160,6 +169,18 @@ class _BlockWidgetState extends State<BlockWidget> {
         ),
       ),
     );
+    
+    if (nextBlockId != null)
+      header.add(
+        buildListTile(
+          Text(locale.next),
+          wideStyle,
+          GestureDetector(
+            child: Text(nextBlockId, style: wideStyle ? linkStyle : null),
+            onTap: () => appState.navigateToBlockId(context, nextBlockId),
+          ),
+        ),
+      );
 
     header.add(
       buildListTile(

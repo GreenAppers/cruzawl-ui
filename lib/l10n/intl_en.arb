@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-30T23:29:28.226187",
+  "@@last_modified": "2019-08-08T11:26:05.912422",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -546,6 +546,11 @@
   },
   "previous": "Previous",
   "@previous": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Next",
+  "@next": {
     "type": "text",
     "placeholders": {}
   },

@@ -193,6 +193,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "networkType" : m23,
     "newPeer" : MessageLookupByLibrary.simpleMessage("新同行"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("新款钱包"),
+    "next" : MessageLookupByLibrary.simpleMessage("下一个"),
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("没有私钥"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("没有公钥"),
     "nonce" : MessageLookupByLibrary.simpleMessage("杜撰"),

@@ -1,0 +1,31 @@
+name: cruzawl_ui
+description: Flutter submodule for CRUZ cryptocurrency.
+
+version: 1.0.0+0
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  barcode_scan: ^1.0.0
+  charts_flutter: ^0.6.0
+  cruzawl:
+    path: ../../cruzawl
+  json_annotation: ^2.4.0
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  gradient_app_bar: ^0.0.1
+  qr_flutter:
+    git:
+      url: git://github.com/lukef/qr.flutter.git
+  sembast: ^1.17.0
+  scoped_model: ^1.0.1
+  tweetnacl:
+    git:
+      url: https://github.com/jspschool/tweetnacl-dart
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

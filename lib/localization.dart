@@ -16,7 +16,10 @@ import 'package:cruzawl/currency.dart';
 import 'l10n/messages_all.dart';
 
 class Localization {
-  static Future<Localization> load(Locale locale) {
+  String titleOverride;
+  Localization({this.titleOverride});
+
+  static Future<Localization> load(Locale locale, {String titleOverride}) {
     final String name =
         locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
@@ -24,7 +27,7 @@ class Localization {
 
     return initializeMessages(localeName).then((bool _) {
       Intl.defaultLocale = localeName;
-      return Localization();
+      return Localization(titleOverride: titleOverride);
     });
   }
 
@@ -36,7 +39,7 @@ class Localization {
   String get localeLanguage => Intl.message('English', name: 'localeLanguage');
 
   /// Title & balance
-  String get title => Intl.message('Cruzall', name: 'title');
+  String get title => titleOverride ?? Intl.message('Cruzall', name: 'title');
   String get unlockTitle => Intl.message('Unlock Cruzall', name: 'unlockTitle');
   String get welcomeTitle =>
       Intl.message('Welcome to Cruzall', name: 'welcomeTitle');
@@ -230,6 +233,7 @@ class Localization {
   String get version => Intl.message('Version', name: 'version');
   String get language => Intl.message('Language', name: 'language');
   String get previous => Intl.message('Previous', name: 'previous');
+  String get next => Intl.message('Next', name: 'next');
   String get confirmations =>
       Intl.message('Confirmations', name: 'confirmations');
   String get earliestSeen =>
@@ -420,7 +424,8 @@ class Localization {
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {
-  const LocalizationDelegate();
+  String title;
+  LocalizationDelegate({this.title});
 
   @override
   bool isSupported(Locale locale) {
@@ -429,7 +434,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   Future<Localization> load(Locale locale) {
-    return Localization.load(locale);
+    return Localization.load(locale, titleOverride: title);
   }
 
   @override
