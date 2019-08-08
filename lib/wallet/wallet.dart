@@ -5,20 +5,17 @@ import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
 import '../model.dart';
-import '../transaction.dart';
 import '../ui.dart';
 
 import 'balance.dart';
 import 'receive.dart';
 import 'send.dart';
-import 'settings.dart';
 
 class WalletWidget extends StatefulWidget {
   final Wallet wallet;

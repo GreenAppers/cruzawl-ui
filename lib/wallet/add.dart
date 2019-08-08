@@ -6,18 +6,14 @@ import 'package:flutter_web/services.dart'
     if (dart.library.io) 'package:flutter/services.dart';
 
 import 'package:bip39/bip39.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
-import 'package:cruzawl/test.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
-import 'address.dart';
-import 'wallet.dart';
 
 class AddWalletWidget extends StatefulWidget {
   final Cruzawl appState;

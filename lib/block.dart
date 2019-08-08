@@ -112,10 +112,9 @@ class _BlockWidgetState extends State<BlockWidget> {
         title: Text(locale.time),
         trailing: Text(widget.currency.parseTime(block.header.time).toString()),
       ),
-      buildListTile(
-        Text(locale.height),
-        wideStyle,
-        GestureDetector(
+      ListTile(
+        title: Text(locale.height),
+        trailing: GestureDetector(
           child: Text(block.header.height.toString(), style: wideStyle ? linkStyle : null),
           onTap: () => appState.navigateToHeight(context, block.header.height),
         ),

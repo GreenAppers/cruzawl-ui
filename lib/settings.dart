@@ -6,14 +6,12 @@ import 'package:flutter_web/material.dart'
 
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:cruzawl/preferences.dart';
-
 import 'localization.dart';
 import 'model.dart';
 import 'ui.dart';
 
 class CruzallSettings extends StatefulWidget {
-  bool walletSettings;
+  final bool walletSettings;
   CruzallSettings({this.walletSettings = false});
 
   @override
