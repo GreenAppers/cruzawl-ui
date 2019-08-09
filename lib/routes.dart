@@ -33,7 +33,7 @@ class CruzallRoutes {
       this.includeWalletRoutes = false});
 
   Route onGenerateRoute(RouteSettings settings) {
-    final PagePath page = parsePagePath(settings.name);
+    final PagePath page = PagePath.parse(settings.name);
     final Wallet wallet = appState.wallet.wallet;
 
     switch (page.page) {

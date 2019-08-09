@@ -181,6 +181,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
     bool loading = data == null || data.isEmpty;
     load();
+    appState.exchangeRates.checkForUpdate();
 
     if (loading)
       return widget.loadingWidget ??

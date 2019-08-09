@@ -13,6 +13,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:tweetnacl/tweetnacl.dart' as tweetnacl;
 
 import 'package:cruzawl/currency.dart';
+import 'package:cruzawl/exchange.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
@@ -59,8 +60,9 @@ class Cruzawl extends Model {
   bool isTrustFall;
   String debugLog;
   Directory dataDir;
-  WalletModel wallet;
   Currency currency;
+  ExchangeRates exchangeRates;
+  WalletModel wallet;
   List<WalletModel> wallets = <WalletModel>[];
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
@@ -69,6 +71,8 @@ class Cruzawl extends Model {
       this.databaseFactory, this.preferences, this.dataDir,
       {this.packageInfo, this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
+    exchangeRates = ExchangeRates(debugPrint: print);
+    exchangeRates.checkForUpdate();
     setTheme();
   }
 
@@ -274,12 +278,12 @@ class Cruzawl extends Model {
 class PagePath {
   String page, arg;
   PagePath(this.page, this.arg);
-}
 
-PagePath parsePagePath(String path) {
-  int start = 0 + (path.length > 0 && path[0] == '/' ? 1 : 0);
-  int slash = path.indexOf('/', start);
-  return (slash >= start && slash < path.length)
-      ? PagePath(path.substring(start, slash), path.substring(slash + 1))
-      : PagePath(path.substring(start), '');
+  factory PagePath.parse(String path) {
+    int start = 0 + (path.length > 0 && path[0] == '/' ? 1 : 0);
+    int slash = path.indexOf('/', start);
+    return (slash >= start && slash < path.length)
+        ? PagePath(path.substring(start, slash), path.substring(slash + 1))
+        : PagePath(path.substring(start), '');
+  }
 }
