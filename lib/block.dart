@@ -147,6 +147,16 @@ class _BlockWidgetState extends State<BlockWidget> {
       ),
     );
 
+    if (block.transactions[0].memo != null) {
+      header.add(
+        buildListTile(
+          Text(locale.memo),
+          wideStyle,
+          Text(block.transactions[0].memo),
+        ),
+      );
+    }
+
     header.add(
       buildListTile(
         Text(locale.id),

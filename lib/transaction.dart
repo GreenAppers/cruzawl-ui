@@ -113,12 +113,20 @@ class _TransactionWidgetState extends State<TransactionWidget> {
             transaction.id().toJson(), appState.setClipboardText,
             style: valueTextStyle),
       ),
-      ListTile(
-        title: Text(locale.memo, style: labelTextStyle),
-        subtitle: CopyableText(
-            transaction.memo ?? '', appState.setClipboardText,
-            style: valueTextStyle),
-      ),
+    ];
+
+    if (transaction.memo != null) {
+      ret.add(
+        ListTile(
+          title: Text(locale.memo, style: labelTextStyle),
+          subtitle: CopyableText(
+              transaction.memo, appState.setClipboardText,
+              style: valueTextStyle),
+        ),
+      );
+    }
+
+    ret.add(
       ListTile(
         title: Text(locale.amount, style: labelTextStyle),
         trailing: Text(widget.currency.format(transaction.amount),
@@ -126,6 +134,9 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                 ? TextStyle(color: widget.info.color)
                 : valueTextStyle)),
       ),
+    );
+
+    ret.add(
       ListTile(
         title: Text(locale.fee, style: labelTextStyle),
         trailing: Text(widget.currency.format(transaction.fee),
@@ -133,9 +144,9 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                 ? TextStyle(color: Colors.red)
                 : valueTextStyle)),
       ),
-    ];
+    );
 
-    if (transaction.height != null)
+    if (transaction.height != null) {
       ret.add(ListTile(
         title: Text(locale.height, style: labelTextStyle),
         trailing: Text(transaction.height.toString(), style: valueTextStyle),
@@ -144,15 +155,17 @@ class _TransactionWidgetState extends State<TransactionWidget> {
             : null,
       ));
 
-    if (transaction.height <= tipHeight)
-      ret.add(ListTile(
-        title: Text(locale.confirmations, style: labelTextStyle),
-        trailing: Text(
-            transaction.height == null
-                ? locale.pending
-                : (1 + tipHeight - transaction.height).toString(),
-            style: valueTextStyle),
-      ));
+      if (transaction.height <= tipHeight) {
+        ret.add(ListTile(
+          title: Text(locale.confirmations, style: labelTextStyle),
+          trailing: Text(
+              transaction.height == null
+                  ? locale.pending
+                  : (1 + tipHeight - transaction.height).toString(),
+              style: valueTextStyle),
+        ));
+      }
+    }
 
     ret.add(ListTile(
       title: Text(locale.nonce, style: labelTextStyle),
@@ -193,7 +206,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           children: ret,
         ),
       ),
-      title: locale.transaction,
+      title: locale.transaction + ' ' + (widget.transactionIdText ?? ''),
     );
   }
 }
