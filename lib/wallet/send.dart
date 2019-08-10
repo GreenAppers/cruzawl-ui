@@ -6,7 +6,6 @@ import 'package:flutter_web/material.dart'
 import 'package:flutter_web/services.dart'
     if (dart.library.io) 'package:flutter/services.dart';
 
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
@@ -121,13 +120,21 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       controller: toController,
                       textAlign: TextAlign.right,
                       keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.camera_alt),
-                          onPressed: scan,
-                        ),
-                        hintText: '',
-                      ),
+                      decoration: appState.barcodeScan == null
+                          ? null
+                          : InputDecoration(
+                              suffixIcon: IconButton(
+                                  icon: Icon(Icons.camera_alt),
+                                  onPressed: () async {
+                                    String barcode =
+                                        await appState.barcodeScan();
+                                    if (barcode != null) {
+                                      setState(
+                                          () => toController.text = barcode);
+                                    }
+                                  }),
+                              hintText: '',
+                            ),
                       validator: (value) {
                         if (currency.fromPublicAddressJson(value) == null)
                           return locale.invalidAddress;
@@ -283,26 +290,6 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
     var addr = await Navigator.of(context).pushNamed('/sendFrom');
     if (addr != null) fromController.text = addr;
     fromController.selection = TextSelection(baseOffset: 0, extentOffset: 0);
-  }
-
-  Future scan() async {
-    try {
-      String barcode = await BarcodeScanner.scan();
-      debugPrint('scan: $barcode');
-      setState(() => toController.text = barcode);
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
-        debugPrint(
-            'scan failed: The user did not grant the camera permission.');
-      } else {
-        debugPrint('scan failed: $e');
-      }
-    } on FormatException {
-      debugPrint(
-          'scan aborted: User returned using the "back"-button before scanning anything.');
-    } catch (e) {
-      debugPrint('scan failed with unknown error: $e');
-    }
   }
 }
 

@@ -171,12 +171,11 @@ class Localization {
             'a2': LocalizationMarkup(widget: item2),
             'a3': LocalizationMarkup(widget: item3),
           });
-  List<Widget> listOfFourWidgets(
-          List<Widget> item1, List<Widget> item2, List<Widget> item3, List<Widget> item4,
-          {TextStyle style}) =>
+  List<Widget> listOfFourWidgets(List<Widget> item1, List<Widget> item2,
+          List<Widget> item3, List<Widget> item4, {TextStyle style}) =>
       buildLocalizationMarkupWidgets(
-          listOfFour(
-              '{@<a1>}1{@</a1>}', '{@<a2>}2{@</a2>}', '{@<a3>}3{@</a3>}', '{@<a4>}4{@</a4>}'),
+          listOfFour('{@<a1>}1{@</a1>}', '{@<a2>}2{@</a2>}', '{@<a3>}3{@</a3>}',
+              '{@<a4>}4{@</a4>}'),
           style: style,
           tags: <String, LocalizationMarkup>{
             'a1': LocalizationMarkup(widget: item1),
@@ -283,12 +282,10 @@ class Localization {
       Intl.message('From:\u00A0$address', name: 'fromAddress', args: [address]);
   String toAddress(String address) =>
       Intl.message('To:\u00A0$address', name: 'toAddress', args: [address]);
-  String heightEquals(int height) =>
-      Intl.message('height={@<a>}$height{@</a>}',
-          name: 'heightEquals', args: [height]);
-  String marketCap(String cap) =>
-      Intl.message('Market cap {@<a>}$cap{@</a>}',
-          name: 'marketCap', args: [cap]);
+  String heightEquals(int height) => Intl.message('height={@<a>}$height{@</a>}',
+      name: 'heightEquals', args: [height]);
+  String marketCap(String cap) => Intl.message('Market cap {@<a>}$cap{@</a>}',
+      name: 'marketCap', args: [cap]);
 
   /// Meta-Fields
   String get pending => Intl.message('Pending', name: 'pending');
@@ -354,20 +351,15 @@ class Localization {
 
   /// Durations / rates
   String quantity(String value) =>
-      Intl.message('$value',
-          name: 'quantity', args: [value]);
+      Intl.message('$value', name: 'quantity', args: [value]);
   String kiloQuantity(String kiloValue) =>
-      Intl.message('${kiloValue}K',
-          name: 'kiloQuantity', args: [kiloValue]);
+      Intl.message('${kiloValue}K', name: 'kiloQuantity', args: [kiloValue]);
   String megaQuantity(String megaValue) =>
-      Intl.message('${megaValue}M',
-          name: 'megaQuantity', args: [megaValue]);
+      Intl.message('${megaValue}M', name: 'megaQuantity', args: [megaValue]);
   String gigaQuantity(String gigaValue) =>
-      Intl.message('${gigaValue}B',
-          name: 'gigaQuantity', args: [gigaValue]);
+      Intl.message('${gigaValue}B', name: 'gigaQuantity', args: [gigaValue]);
   String teraQuantity(String teraValue) =>
-      Intl.message('${teraValue}T',
-          name: 'teraQuantity', args: [teraValue]);
+      Intl.message('${teraValue}T', name: 'teraQuantity', args: [teraValue]);
 
   String secondsDuration(int seconds) => Intl.plural(seconds,
       one: '$seconds second',

@@ -23,6 +23,7 @@ import 'transaction.dart';
 import 'ui.dart';
 
 typedef StringFilter = String Function(String);
+typedef StringFutureFunction = Future<String> Function();
 typedef SetClipboardText = void Function(BuildContext, String);
 
 class PackageInfo {
@@ -53,6 +54,7 @@ class Cruzawl extends Model {
   Locale localeOverride;
   StringFilter assetPath;
   SetClipboardText launchUrl, setClipboardText;
+  StringFutureFunction barcodeScan;
   sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
   FlutterErrorDetails fatal;
@@ -69,7 +71,7 @@ class Cruzawl extends Model {
 
   Cruzawl(this.assetPath, this.launchUrl, this.setClipboardText,
       this.databaseFactory, this.preferences, this.dataDir,
-      {this.packageInfo, this.isTrustFall = false}) {
+      {this.packageInfo, this.barcodeScan, this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
     exchangeRates = ExchangeRates(debugPrint: print);
     exchangeRates.checkForUpdate();
