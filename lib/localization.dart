@@ -150,6 +150,9 @@ class Localization {
   String listOfThree(String item1, String item2, String item3) =>
       Intl.message('$item1, $item2, $item3',
           name: 'listOfThree', args: [item1, item2, item3]);
+  String listOfFour(String item1, String item2, String item3, String item4) =>
+      Intl.message('$item1, $item2, $item3, $item4',
+          name: 'listOfFour', args: [item1, item2, item3, item4]);
   String menuOfOne(String item) =>
       Intl.message('[{@<a>}$item{@</a>}]', name: 'menuOfOne', args: [item]);
   String menuOfTwo(String item1, String item2) =>
@@ -167,6 +170,19 @@ class Localization {
             'a1': LocalizationMarkup(widget: item1),
             'a2': LocalizationMarkup(widget: item2),
             'a3': LocalizationMarkup(widget: item3),
+          });
+  List<Widget> listOfFourWidgets(
+          List<Widget> item1, List<Widget> item2, List<Widget> item3, List<Widget> item4,
+          {TextStyle style}) =>
+      buildLocalizationMarkupWidgets(
+          listOfFour(
+              '{@<a1>}1{@</a1>}', '{@<a2>}2{@</a2>}', '{@<a3>}3{@</a3>}', '{@<a4>}4{@</a4>}'),
+          style: style,
+          tags: <String, LocalizationMarkup>{
+            'a1': LocalizationMarkup(widget: item1),
+            'a2': LocalizationMarkup(widget: item2),
+            'a3': LocalizationMarkup(widget: item3),
+            'a4': LocalizationMarkup(widget: item4),
           });
 
   /// Titles
@@ -268,8 +284,11 @@ class Localization {
   String toAddress(String address) =>
       Intl.message('To:\u00A0$address', name: 'toAddress', args: [address]);
   String heightEquals(int height) =>
-      Intl.message('height={@<a>}$height{@</a>} ',
+      Intl.message('height={@<a>}$height{@</a>}',
           name: 'heightEquals', args: [height]);
+  String marketCap(String cap) =>
+      Intl.message('Market cap {@<a>}$cap{@</a>}',
+          name: 'marketCap', args: [cap]);
 
   /// Meta-Fields
   String get pending => Intl.message('Pending', name: 'pending');
@@ -334,6 +353,22 @@ class Localization {
           args: [goodAddresses, totalAddresses, goodTests, totalTests]);
 
   /// Durations / rates
+  String quantity(String value) =>
+      Intl.message('$value',
+          name: 'quantity', args: [value]);
+  String kiloQuantity(String kiloValue) =>
+      Intl.message('${kiloValue}K',
+          name: 'kiloQuantity', args: [kiloValue]);
+  String megaQuantity(String megaValue) =>
+      Intl.message('${megaValue}M',
+          name: 'megaQuantity', args: [megaValue]);
+  String gigaQuantity(String gigaValue) =>
+      Intl.message('${gigaValue}B',
+          name: 'gigaQuantity', args: [gigaValue]);
+  String teraQuantity(String teraValue) =>
+      Intl.message('${teraValue}T',
+          name: 'teraQuantity', args: [teraValue]);
+
   String secondsDuration(int seconds) => Intl.plural(seconds,
       one: '$seconds second',
       other: '$seconds seconds',
@@ -374,24 +409,46 @@ class Localization {
       Intl.message('$exaHashPerSecond EH/s',
           name: 'exaHashPerSecond', args: [exaHashPerSecond]);
 
-  String formatHashRate(int hashesPerSec) {
-    if (hashesPerSec > 1000000000000000000)
-      return exaHashPerSecond(
-          (hashesPerSec / 1000000000000000000).toStringAsFixed(1));
-    if (hashesPerSec > 1000000000000000)
-      return petaHashPerSecond(
-          (hashesPerSec / 1000000000000000).toStringAsFixed(1));
-    if (hashesPerSec > 1000000000000)
-      return teraHashPerSecond(
-          (hashesPerSec / 1000000000000).toStringAsFixed(1));
-    if (hashesPerSec > 1000000000)
-      return gigaHashPerSecond((hashesPerSec / 1000000000).toStringAsFixed(1));
-    if (hashesPerSec > 1000000)
-      return megaHashPerSecond((hashesPerSec / 1000000).toStringAsFixed(1));
-    if (hashesPerSec > 1000)
-      return kiloHashPerSecond((hashesPerSec / 1000).toStringAsFixed(1));
-    else
-      return hashPerSecond(hashesPerSec.toString());
+  String formatQuantity(int value) {
+    if (value > 1000000000000) {
+      double v = value / 1000000000000;
+      return teraQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000000000) {
+      double v = value / 1000000000;
+      return gigaQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000000) {
+      double v = value / 1000000;
+      return megaQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000) {
+      double v = value / 1000;
+      return kiloQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else {
+      return quantity(value.toString());
+    }
+  }
+
+  String formatHashRate(int value) {
+    if (value > 1000000000000000000) {
+      double v = value / 1000000000000000000;
+      return exaHashPerSecond(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000000000000000) {
+      double v = value / 1000000000000000;
+      return petaHashPerSecond(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000000000000) {
+      double v = value / 1000000000000;
+      return teraHashPerSecond(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000000000) {
+      double v = value / 1000000000;
+      return gigaHashPerSecond(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000000) {
+      double v = value / 1000000;
+      return megaHashPerSecond(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else if (value > 1000) {
+      double v = value / 1000;
+      return kiloHashPerSecond(v.toStringAsFixed(v < 10 ? 1 : 0));
+    } else {
+      return hashPerSecond(value.toString());
+    }
   }
 
   String formatDuration(Duration duration) {

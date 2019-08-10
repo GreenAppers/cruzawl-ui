@@ -38,53 +38,67 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m8(gigaHashPerSecond) => "${gigaHashPerSecond} GH / s";
 
-  static m9(hashPerSecond) => "${hashPerSecond} H / s";
+  static m9(gigaValue) => "${gigaValue}B";
 
-  static m10(height) => "身高= {@<a>} ${height} {@</a>} ";
+  static m10(hashPerSecond) => "${hashPerSecond} H / s";
 
-  static m11(product) => "${product}主页";
+  static m11(height) => "身高= {@<a>} ${height} {@</a>}";
 
-  static m12(hours) => "${Intl.plural(hours, one: '小时', other: '${hours}小时')}";
+  static m12(product) => "${product}主页";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(hours) => "${Intl.plural(hours, one: '小时', other: '${hours}小时')}";
 
-  static m14(item1, item2, item3) => "${item1} ， ${item2} ， ${item3}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2) => "${item1} ， ${item2}";
+  static m15(kiloValue) => "${kiloValue}K";
 
-  static m16(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m16(item1, item2, item3, item4) => "${item1} ， ${item2} ， ${item3} ， ${item4}";
 
-  static m17(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m17(item1, item2, item3) => "${item1} ， ${item2} ， ${item3}";
 
-  static m18(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} ， {@<a2>} ${item2} {@</a2>} ]";
+  static m18(item1, item2) => "${item1} ， ${item2}";
 
-  static m19(amount) => "最低金额为${amount}";
+  static m19(cap) => "市值{@<a>}${cap}{@</a>}";
 
-  static m20(fee) => "最低费用为${fee}";
+  static m20(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m21(minutes, seconds) => "${minutes} ${seconds}";
+  static m21(megaValue) => "${megaValue}M";
 
-  static m22(minutes) => "${Intl.plural(minutes, one: '${minutes}分钟', other: '${minutes}分钟')}";
+  static m22(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m23(type) => "${type}网络";
+  static m23(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} ， {@<a2>} ${item2} {@</a2>} ]";
 
-  static m24(number) => "交易（ ${number} ）";
+  static m24(amount) => "最低金额为${amount}";
 
-  static m25(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m25(fee) => "最低费用为${fee}";
 
-  static m26(seconds) => "${Intl.plural(seconds, one: '${seconds}秒', other: '${seconds}秒')}";
+  static m26(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m27(transactionId) => "已发送${transactionId}";
+  static m27(minutes) => "${Intl.plural(minutes, one: '${minutes}分钟', other: '${minutes}分钟')}";
 
-  static m28(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m28(type) => "${type}网络";
 
-  static m29(address) => "要： ${address}";
+  static m29(number) => "交易（ ${number} ）";
 
-  static m30(totalBlocks, duration) => "${totalBlocks} {@<a1>}阻止{@</a1>} {@<a2>} ${duration} {@</a2>}";
+  static m30(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m31(addressText) => "验证失败： ${addressText}";
+  static m31(value) => "${value}";
 
-  static m32(goodAddresses, totalAddresses, goodTests, totalTests) => "已验证的${goodAddresses} / ${totalAddresses}地址和${goodTests} / ${totalTests}测试成功";
+  static m32(seconds) => "${Intl.plural(seconds, one: '${seconds}秒', other: '${seconds}秒')}";
+
+  static m33(transactionId) => "已发送${transactionId}";
+
+  static m34(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+
+  static m35(teraValue) => "${teraValue}T";
+
+  static m36(address) => "要： ${address}";
+
+  static m37(totalBlocks, duration) => "${totalBlocks} {@<a1>}阻止{@</a1>} {@<a2>} ${duration} {@</a2>}";
+
+  static m38(addressText) => "验证失败： ${addressText}";
+
+  static m39(goodAddresses, totalAddresses, goodTests, totalTests) => "已验证的${goodAddresses} / ${totalAddresses}地址和${goodTests} / ${totalTests}测试成功";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -147,15 +161,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "fromAddress" : m7,
     "generateNewAddress" : MessageLookupByLibrary.simpleMessage("生成新地址"),
     "gigaHashPerSecond" : m8,
+    "gigaQuantity" : m9,
     "hashListRoot" : MessageLookupByLibrary.simpleMessage("哈希列表根"),
-    "hashPerSecond" : m9,
+    "hashPerSecond" : m10,
     "hdWallet" : MessageLookupByLibrary.simpleMessage("高清钱包"),
     "hdWalletAlgorithm" : MessageLookupByLibrary.simpleMessage("PBKDF：2048次迭代"),
     "height" : MessageLookupByLibrary.simpleMessage("高度"),
-    "heightEquals" : m10,
+    "heightEquals" : m11,
     "hide" : MessageLookupByLibrary.simpleMessage("隐藏"),
-    "homePage" : m11,
-    "hoursDuration" : m12,
+    "homePage" : m12,
+    "hoursDuration" : m13,
     "id" : MessageLookupByLibrary.simpleMessage("识别码"),
     "ignore" : MessageLookupByLibrary.simpleMessage("忽视"),
     "insecureDeviceWarning" : MessageLookupByLibrary.simpleMessage("不安全的设备警告"),
@@ -165,39 +180,43 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidCurrency" : MessageLookupByLibrary.simpleMessage("货币无效"),
     "invalidMnemonic" : MessageLookupByLibrary.simpleMessage("无效的助记符"),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("无效的网址。"),
-    "kiloHashPerSecond" : m13,
+    "kiloHashPerSecond" : m14,
+    "kiloQuantity" : m15,
     "language" : MessageLookupByLibrary.simpleMessage("语言"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("最新见过"),
     "license" : MessageLookupByLibrary.simpleMessage("执照"),
-    "listOfThree" : m14,
-    "listOfTwo" : m15,
+    "listOfFour" : m16,
+    "listOfThree" : m17,
+    "listOfTwo" : m18,
     "loading" : MessageLookupByLibrary.simpleMessage("载入中..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("中文"),
+    "marketCap" : m19,
     "matured" : MessageLookupByLibrary.simpleMessage("成熟"),
     "matures" : MessageLookupByLibrary.simpleMessage("成熟"),
     "maturing" : MessageLookupByLibrary.simpleMessage("成熟"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("成熟的交易"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("最大备忘录长度为100"),
-    "megaHashPerSecond" : m16,
+    "megaHashPerSecond" : m20,
+    "megaQuantity" : m21,
     "memo" : MessageLookupByLibrary.simpleMessage("备忘录"),
-    "menuOfOne" : m17,
-    "menuOfTwo" : m18,
-    "minAmount" : m19,
-    "minFee" : m20,
-    "minutesAndSecondsDuration" : m21,
-    "minutesDuration" : m22,
+    "menuOfOne" : m22,
+    "menuOfTwo" : m23,
+    "minAmount" : m24,
+    "minFee" : m25,
+    "minutesAndSecondsDuration" : m26,
+    "minutesDuration" : m27,
     "name" : MessageLookupByLibrary.simpleMessage("名称"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("名称必须是唯一的。"),
     "network" : MessageLookupByLibrary.simpleMessage("网络"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("网络离线"),
-    "networkType" : m23,
+    "networkType" : m28,
     "newPeer" : MessageLookupByLibrary.simpleMessage("新同行"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("新款钱包"),
     "next" : MessageLookupByLibrary.simpleMessage("下一个"),
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("没有私钥"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("没有公钥"),
     "nonce" : MessageLookupByLibrary.simpleMessage("杜撰"),
-    "numTransactions" : m24,
+    "numTransactions" : m29,
     "ok" : MessageLookupByLibrary.simpleMessage("好"),
     "password" : MessageLookupByLibrary.simpleMessage("密码"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("密码不能为空。"),
@@ -205,36 +224,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("支付给"),
     "peers" : MessageLookupByLibrary.simpleMessage("同行"),
     "pending" : MessageLookupByLibrary.simpleMessage("有待"),
-    "petaHashPerSecond" : m25,
+    "petaHashPerSecond" : m30,
     "previous" : MessageLookupByLibrary.simpleMessage("以前"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("隐私政策"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("私钥"),
     "privateKeyList" : MessageLookupByLibrary.simpleMessage("私钥列表"),
     "publicKeyList" : MessageLookupByLibrary.simpleMessage("公钥列表"),
+    "quantity" : m31,
     "receive" : MessageLookupByLibrary.simpleMessage("接收"),
     "recentHistory" : MessageLookupByLibrary.simpleMessage("近期历史"),
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("需要SSL证书"),
-    "secondsDuration" : m26,
+    "secondsDuration" : m32,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("种子短语"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("这个种子允许任何知道它的人花掉你钱包里的所有资金。写下来。保持安全。"),
     "send" : MessageLookupByLibrary.simpleMessage("发送"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("发送失败"),
     "sending" : MessageLookupByLibrary.simpleMessage("发送中..."),
-    "sentTransactionId" : m27,
+    "sentTransactionId" : m33,
     "settings" : MessageLookupByLibrary.simpleMessage("设置"),
     "show" : MessageLookupByLibrary.simpleMessage("节目"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("在标题中显示钱包名称"),
     "state" : MessageLookupByLibrary.simpleMessage("州"),
     "support" : MessageLookupByLibrary.simpleMessage("支持"),
     "target" : MessageLookupByLibrary.simpleMessage("目标"),
-    "teraHashPerSecond" : m28,
+    "teraHashPerSecond" : m34,
+    "teraQuantity" : m35,
     "theme" : MessageLookupByLibrary.simpleMessage("主题"),
     "time" : MessageLookupByLibrary.simpleMessage("时间"),
     "tip" : MessageLookupByLibrary.simpleMessage("小费"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("至"),
-    "toAddress" : m29,
-    "totalBlocksInLastDuration" : m30,
+    "toAddress" : m36,
+    "totalBlocksInLastDuration" : m37,
     "transaction" : MessageLookupByLibrary.simpleMessage("交易"),
     "transactions" : MessageLookupByLibrary.simpleMessage("交易"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("创建钱包之前的单元测试"),
@@ -246,9 +267,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("网址"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("价值必须是积极的"),
     "verify" : MessageLookupByLibrary.simpleMessage("校验"),
-    "verifyAddressFailed" : m31,
+    "verifyAddressFailed" : m38,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("验证每次加载的密钥对"),
-    "verifyWalletResults" : m32,
+    "verifyWalletResults" : m39,
     "verifying" : MessageLookupByLibrary.simpleMessage("验证中..."),
     "version" : MessageLookupByLibrary.simpleMessage("版"),
     "warning" : MessageLookupByLibrary.simpleMessage("警告"),

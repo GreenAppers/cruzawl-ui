@@ -193,7 +193,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         if (mounted) setState(() => refresh = null);
       });
 
-    /// Truncating makes scrolling jerky but prevents, I think, a charts bug
+    /// truncateTime() makes scrolling jerky but prevents, I think, a charts bug
     TimeSeriesBlocks start =
         TimeSeriesBlocks(truncateTime(windowStart, bucketDuration));
     TimeSeriesBlocks end =
@@ -262,11 +262,12 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             });
           },
         ),
-        titleWidget: buildTitle(context, totalBlocks, first, last, maxHeight));
+        titleWidget: buildTitle(context, totalBlocks, first, last, maxHeight,
+            dataEndHeight, appState.exchangeRates.rateViaBTC('CRUZ', 'USD')));
   }
 
   Widget buildTitle(BuildContext context, int totalBlocks, BlockHeader first,
-      BlockHeader last, int tipHeight) {
+      BlockHeader last, int maxHeight, int tipHeight, num price) {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
@@ -313,23 +314,39 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     );
 
     List<Widget> heightEquals = buildLocalizationMarkupWidgets(
-      locale.heightEquals(tipHeight),
+      locale.heightEquals(maxHeight),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
         'a': LocalizationMarkup(
           style: linkStyle,
-          onTap: () => appState.navigateToHeight(context, tipHeight),
+          onTap: () => appState.navigateToHeight(context, maxHeight),
         ),
       },
     );
+
+    int cap = (widget.currency.supply(tipHeight) * price).round();
+    List<Widget> marketCap = cap > 0
+        ? buildLocalizationMarkupWidgets(
+            locale.marketCap('\$' + locale.formatQuantity(cap)),
+            style: titleStyle,
+            tags: <String, LocalizationMarkup>{
+              'a': LocalizationMarkup(
+                style: titleStyle,
+              ),
+            },
+          )
+        : null;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
-      children: locale.listOfThreeWidgets(
-          hashRate, totalBlocksInLast, heightEquals,
-          style: titleStyle),
+      children: marketCap != null
+          ? locale.listOfFourWidgets(
+              hashRate, totalBlocksInLast, heightEquals, marketCap,
+              style: titleStyle)
+          : locale.listOfThreeWidgets(hashRate, totalBlocksInLast, heightEquals,
+              style: titleStyle),
     );
   }
 }

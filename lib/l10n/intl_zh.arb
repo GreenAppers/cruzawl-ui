@@ -267,6 +267,16 @@
       "item3": {}
     }
   },
+  "listOfFour": "{item1} ， {item2} ， {item3} ， {item4}",
+  "@listOfFour": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {},
+      "item4": {}
+    }
+  },
   "menuOfOne": "[ {@<a>} {item} {@</a>} ]",
   "@menuOfOne": {
     "type": "text",
@@ -672,11 +682,18 @@
       "address": {}
     }
   },
-  "heightEquals": "身高= {@<a>} {height} {@</a>} ",
+  "heightEquals": "身高= {@<a>} {height} {@</a>}",
   "@heightEquals": {
     "type": "text",
     "placeholders": {
       "height": {}
+    }
+  },
+  "marketCap": "市值{@<a>}{cap}{@</a>}",
+  "@marketCap": {
+    "type": "text",
+    "placeholders": {
+      "cap": {}
     }
   },
   "pending": "有待",
@@ -823,6 +840,41 @@
       "totalAddresses": {},
       "goodTests": {},
       "totalTests": {}
+    }
+  },
+  "quantity": "{value}",
+  "@quantity": {
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "kiloQuantity": "{kiloValue}K",
+  "@kiloQuantity": {
+    "type": "text",
+    "placeholders": {
+      "kiloValue": {}
+    }
+  },
+  "megaQuantity": "{megaValue}M",
+  "@megaQuantity": {
+    "type": "text",
+    "placeholders": {
+      "megaValue": {}
+    }
+  },
+  "gigaQuantity": "{gigaValue}B",
+  "@gigaQuantity": {
+    "type": "text",
+    "placeholders": {
+      "gigaValue": {}
+    }
+  },
+  "teraQuantity": "{teraValue}T",
+  "@teraQuantity": {
+    "type": "text",
+    "placeholders": {
+      "teraValue": {}
     }
   },
   "secondsDuration": "{seconds, plural, =1 {{seconds}秒} other {{seconds}秒}}",

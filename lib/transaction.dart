@@ -119,8 +119,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       ret.add(
         ListTile(
           title: Text(locale.memo, style: labelTextStyle),
-          subtitle: CopyableText(
-              transaction.memo, appState.setClipboardText,
+          subtitle: CopyableText(transaction.memo, appState.setClipboardText,
               style: valueTextStyle),
         ),
       );

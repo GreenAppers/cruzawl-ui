@@ -66,7 +66,8 @@ class _BlockWidgetState extends State<BlockWidget> {
       if (!isTip) {
         BlockHeaderMessage nextMessage =
             await peer.getBlockHeader(height: message.block.header.height + 1);
-        if (nextMessage != null && nextMessage.id != null) nextBlockId = nextMessage.id.toJson();
+        if (nextMessage != null && nextMessage.id != null)
+          nextBlockId = nextMessage.id.toJson();
       }
       block = message.block;
     }
@@ -115,7 +116,8 @@ class _BlockWidgetState extends State<BlockWidget> {
       ListTile(
         title: Text(locale.height),
         trailing: GestureDetector(
-          child: Text(block.header.height.toString(), style: wideStyle ? linkStyle : null),
+          child: Text(block.header.height.toString(),
+              style: wideStyle ? linkStyle : null),
           onTap: () => appState.navigateToHeight(context, block.header.height),
         ),
       ),
@@ -178,7 +180,7 @@ class _BlockWidgetState extends State<BlockWidget> {
         ),
       ),
     );
-    
+
     if (nextBlockId != null)
       header.add(
         buildListTile(
