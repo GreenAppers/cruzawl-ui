@@ -159,6 +159,15 @@ class Localization {
       Intl.message('[{@<a1>}$item1{@</a1>}, {@<a2>}$item2{@</a2>}]',
           name: 'menuOfTwo', args: [item1, item2]);
 
+  List<Widget> listOfTwoWidgets(List<Widget> item1, List<Widget> item2,
+          {TextStyle style}) =>
+      buildLocalizationMarkupWidgets(
+          listOfTwo('{@<a1>}1{@</a1>}', '{@<a2>}2{@</a2>}'),
+          style: style,
+          tags: <String, LocalizationMarkup>{
+            'a1': LocalizationMarkup(widget: item1),
+            'a2': LocalizationMarkup(widget: item2),
+          });
   List<Widget> listOfThreeWidgets(
           List<Widget> item1, List<Widget> item2, List<Widget> item3,
           {TextStyle style}) =>
@@ -192,6 +201,7 @@ class Localization {
   String get address => Intl.message('Address', name: 'address');
   String get addresses => Intl.message('Addresses', name: 'addresses');
   String get receive => Intl.message('Receive', name: 'receive');
+  String get search => Intl.message('Search', name: 'search');
   String get unknown => Intl.message('Unknown', name: 'unknown');
   String get settings => Intl.message('Settings', name: 'settings');
   String get network => Intl.message('Network', name: 'network');

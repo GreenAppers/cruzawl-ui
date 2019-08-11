@@ -235,6 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "receive" : MessageLookupByLibrary.simpleMessage("Receive"),
     "recentHistory" : MessageLookupByLibrary.simpleMessage("Recent History"),
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("Require SSL certificate"),
+    "search" : MessageLookupByLibrary.simpleMessage("Search"),
     "secondsDuration" : m32,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Seed phrase"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("This seed allows anyone knowing it to spend all the funds from you wallet.  Write it down.  Keep it safe."),

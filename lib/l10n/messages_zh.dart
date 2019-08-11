@@ -235,6 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "receive" : MessageLookupByLibrary.simpleMessage("接收"),
     "recentHistory" : MessageLookupByLibrary.simpleMessage("近期历史"),
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("需要SSL证书"),
+    "search" : MessageLookupByLibrary.simpleMessage("搜索"),
     "secondsDuration" : m32,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("种子短语"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("这个种子允许任何知道它的人花掉你钱包里的所有资金。写下来。保持安全。"),

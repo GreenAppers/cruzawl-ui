@@ -93,8 +93,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       ListTile(
         title: Text(locale.date, style: labelTextStyle),
         subtitle: CopyableText(
-            widget.currency.parseTime(transaction.time).toString(),
-            appState.setClipboardText,
+            transaction.dateTime.toString(), appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(

@@ -49,8 +49,9 @@ class CruzallRoutes {
             builder: (context) {
               if (page.arg == 'cruzbase')
                 return ScopedModelDescendant<WalletModel>(
-                    builder: (context, child, model) =>
-                        CruzbaseWidget(wallet.currency));
+                    builder: (context, child, model) => CruzbaseWidget(
+                        wallet.currency,
+                        wideStyle: useWideStyle(context, maxWidth)));
 
               Address address = wallet.addresses[page.arg];
               return address != null

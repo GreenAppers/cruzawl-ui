@@ -13,6 +13,9 @@ import 'localization.dart';
 import 'model.dart';
 import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
 
+bool useWideStyle(BuildContext context, double maxWidth) =>
+    MediaQuery.of(context).size.width > (maxWidth ?? double.maxFinite);
+
 class SimpleScaffoldActions extends Model {
   final List<Widget> actions;
   SimpleScaffoldActions(this.actions);
@@ -20,8 +23,12 @@ class SimpleScaffoldActions extends Model {
 
 class SimpleScaffold extends StatelessWidget {
   final String title;
-  final Widget body, secondColumn, titleWidget;
-  SimpleScaffold(this.body, {this.title, this.titleWidget, this.secondColumn});
+  final Widget body, secondColumn, titleWidget, bottomNavigationBar;
+  SimpleScaffold(this.body,
+      {this.title,
+      this.titleWidget,
+      this.secondColumn,
+      this.bottomNavigationBar});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +56,8 @@ class SimpleScaffold extends StatelessWidget {
                 Flexible(child: body),
                 Flexible(child: secondColumn)
               ])
-            : body);
+            : body,
+        bottomNavigationBar: bottomNavigationBar);
   }
 }
 

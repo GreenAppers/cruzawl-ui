@@ -111,7 +111,7 @@ class _BlockWidgetState extends State<BlockWidget> {
     List<Widget> header = <Widget>[
       ListTile(
         title: Text(locale.time),
-        trailing: Text(widget.currency.parseTime(block.header.time).toString()),
+        trailing: Text(block.header.dateTime.toString()),
       ),
       ListTile(
         title: Text(locale.height),
@@ -124,7 +124,7 @@ class _BlockWidgetState extends State<BlockWidget> {
     ];
 
     if (prevBlock != null) {
-      Duration duration = Duration(seconds: block.header.time - prevBlock.time);
+      Duration duration = block.header.deltaTime(prevBlock);
       if (duration.inSeconds > 0) {
         header.add(
           ListTile(

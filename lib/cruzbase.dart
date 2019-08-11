@@ -25,8 +25,10 @@ class CruzbaseWidget extends StatefulWidget {
   final Widget loadingWidget;
   final Duration windowDuration;
   final CruzbaseBucketDuration bucketDuration;
+  final bool wideStyle;
   CruzbaseWidget(this.currency,
       {this.loadingWidget,
+      this.wideStyle,
       this.windowDuration = const Duration(hours: 1),
       this.bucketDuration = CruzbaseBucketDuration.minute});
 
@@ -70,7 +72,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   }
 
   void addBlockToData(BlockHeader header) {
-    DateTime time = blockTime(header);
+    DateTime time = header.dateTime;
     if (time.isBefore(dataStart)) dataStart = time;
     if (time.isAfter(dataEnd)) updateDataEndTime(time);
     TimeSeriesBlocks point =
@@ -145,7 +147,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     for (bool done = false; !done && dataStartHeight >= 0; /**/) {
       List<BlockHeader> blocks = await fetch(peer, dataStartHeight, 50);
       if (blocks == null || blocks.isEmpty) return;
-      done = !blockTime(blocks.last).isAfter(queryBackTo);
+      done = !blocks.last.dateTime.isAfter(queryBackTo);
       dataStartHeight -= blocks.length;
     }
 
@@ -156,6 +158,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     setState(() {});
   }
 
+  /// Retrieve [fetchBlock] blocks from [peer], starting with [height].
   Future<List<BlockHeader>> fetch(Peer peer, int height, int fetchBlock) async {
     int count = 0;
     List<Future<BlockHeaderMessage>> blocks =
@@ -192,6 +195,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       refresh = Future.delayed(animate, () {
         if (mounted) setState(() => refresh = null);
       });
+
+    num price = appState.exchangeRates.rateViaBTC('CRUZ', 'USD');
 
     /// truncateTime() makes scrolling jerky but prevents, I think, a charts bug
     TimeSeriesBlocks start =
@@ -262,8 +267,44 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             });
           },
         ),
-        titleWidget: buildTitle(context, totalBlocks, first, last, maxHeight,
-            dataEndHeight, appState.exchangeRates.rateViaBTC('CRUZ', 'USD')));
+        titleWidget: buildTitle(
+            context, totalBlocks, first, last, maxHeight, dataEndHeight, price),
+        bottomNavigationBar:
+            buildBottomBar(context, maxHeight, dataEndHeight, price));
+  }
+
+  Widget buildBottomBar(
+      BuildContext context, int maxHeight, int tipHeight, num price) {
+    final Localization locale = Localization.of(context);
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final ThemeData theme = Theme.of(context);
+    final TextStyle titleStyle = appState.theme.titleStyle
+        .copyWith(fontSize: 20, color: theme.primaryTextTheme.title.color);
+    final TextStyle linkStyle = appState.theme.titleStyle.copyWith(
+        fontSize: 20,
+        color: theme.primaryTextTheme.title.color,
+        decoration: TextDecoration.underline);
+
+    List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
+        titleStyle: titleStyle,
+        linkStyle: linkStyle,
+        onTap: () => appState.navigateToHeight(context, maxHeight));
+    List<Widget> marketCap =
+        buildMarketCap(tipHeight, price, locale, titleStyle: titleStyle);
+
+    return Container(
+      height: 100,
+      color: Color.alphaBlend(theme.colorScheme.onSurface.withOpacity(0.80),
+          theme.colorScheme.surface),
+      child: Center(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children:
+            locale.listOfTwoWidgets(marketCap, heightEquals, style: titleStyle),
+      )),
+    );
   }
 
   Widget buildTitle(BuildContext context, int totalBlocks, BlockHeader first,
@@ -277,9 +318,38 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         fontSize: 20,
         color: theme.primaryTextTheme.title.color,
         decoration: TextDecoration.underline);
-    final String duration = locale.formatDuration(windowDuration);
 
-    List<Widget> hashRate = <Widget>[
+    List<Widget> hashRate =
+        buildHashRate(first, last, locale, titleStyle: titleStyle);
+    List<Widget> totalBlocksInLast = buildTotalBlocksInLast(totalBlocks, locale,
+        titleStyle: titleStyle, linkStyle: linkStyle);
+    List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
+        titleStyle: titleStyle,
+        linkStyle: linkStyle,
+        onTap: () => appState.navigateToHeight(context, maxHeight));
+    List<Widget> marketCap =
+        buildMarketCap(tipHeight, price, locale, titleStyle: titleStyle);
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: widget.wideStyle
+          ? (marketCap != null
+              ? locale.listOfFourWidgets(
+                  hashRate, totalBlocksInLast, heightEquals, marketCap,
+                  style: titleStyle)
+              : locale.listOfThreeWidgets(
+                  hashRate, totalBlocksInLast, heightEquals, style: titleStyle))
+          : locale.listOfTwoWidgets(hashRate, totalBlocksInLast,
+              style: titleStyle),
+    );
+  }
+
+  List<Widget> buildHashRate(
+      BlockHeader first, BlockHeader last, Localization locale,
+      {TextStyle titleStyle}) {
+    return <Widget>[
       Text(
           locale.formatHashRate(last == null
               ? 0
@@ -288,8 +358,12 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
                   .toInt()),
           style: titleStyle),
     ];
+  }
 
-    List<Widget> totalBlocksInLast = buildLocalizationMarkupWidgets(
+  List<Widget> buildTotalBlocksInLast(int totalBlocks, Localization locale,
+      {TextStyle titleStyle, TextStyle linkStyle}) {
+    final String duration = locale.formatDuration(windowDuration);
+    return buildLocalizationMarkupWidgets(
       locale.totalBlocksInLastDuration(totalBlocks, duration),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
@@ -312,20 +386,25 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         ),
       },
     );
+  }
 
-    List<Widget> heightEquals = buildLocalizationMarkupWidgets(
-      locale.heightEquals(maxHeight),
-      style: titleStyle,
-      tags: <String, LocalizationMarkup>{
-        'a': LocalizationMarkup(
-          style: linkStyle,
-          onTap: () => appState.navigateToHeight(context, maxHeight),
-        ),
-      },
-    );
+  List<Widget> buildHeightEquals(int maxHeight, Localization locale,
+          {TextStyle titleStyle, TextStyle linkStyle, VoidCallback onTap}) =>
+      buildLocalizationMarkupWidgets(
+        locale.heightEquals(maxHeight),
+        style: titleStyle,
+        tags: <String, LocalizationMarkup>{
+          'a': LocalizationMarkup(
+            style: linkStyle,
+            onTap: onTap,
+          ),
+        },
+      );
 
+  List<Widget> buildMarketCap(int tipHeight, num price, Localization locale,
+      {TextStyle titleStyle}) {
     int cap = (widget.currency.supply(tipHeight) * price).round();
-    List<Widget> marketCap = cap > 0
+    return cap > 0
         ? buildLocalizationMarkupWidgets(
             locale.marketCap('\$' + locale.formatQuantity(cap)),
             style: titleStyle,
@@ -336,21 +415,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             },
           )
         : null;
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
-      children: marketCap != null
-          ? locale.listOfFourWidgets(
-              hashRate, totalBlocksInLast, heightEquals, marketCap,
-              style: titleStyle)
-          : locale.listOfThreeWidgets(hashRate, totalBlocksInLast, heightEquals,
-              style: titleStyle),
-    );
   }
 }
 
+/// Element
 class TimeSeriesBlocks {
   DateTime time;
   SortedListSet<BlockHeader> block = SortedListSet<BlockHeader>(
@@ -362,22 +430,22 @@ class TimeSeriesBlocks {
   static int compareTime(dynamic a, dynamic b) => b.time.compareTo(a.time);
 }
 
+/// Converts [ui.color] to [charts.Color].
 charts.Color chartColor(Color color) =>
     charts.Color(r: color.red, g: color.green, b: color.blue, a: color.alpha);
 
-DateTime blockTime(BlockHeader header) =>
-    DateTime.fromMillisecondsSinceEpoch(header.time * 1000);
-
+/// Rounds [time] down to nearest [duration].  e.g. 1:56 to 1:00.
 DateTime truncateTime(DateTime time, CruzbaseBucketDuration duration) =>
     DateTime(time.year, time.month, time.day, time.hour,
         duration == CruzbaseBucketDuration.minute ? time.minute : 0);
 
+/// Converts [CruzbaseBucketDuration] to [Duration].
 Duration getBucketDuration(CruzbaseBucketDuration duration) {
   switch (duration) {
     case CruzbaseBucketDuration.hour:
-      return Duration(hours: 1);
+      return const Duration(hours: 1);
     case CruzbaseBucketDuration.minute:
     default:
-      return Duration(minutes: 1);
+      return const Duration(minutes: 1);
   }
 }
