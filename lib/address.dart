@@ -146,6 +146,12 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
         trailing: Text(earliestSeen.toString()),
       ));
 
+    if (widget.addressText == 'RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI=') {
+      header.add(Center(
+          child: Text(locale.thanksForDonating,
+              style: TextStyle(color: Colors.green))));
+    }
+
     return SimpleScaffold(
       Container(
         constraints: widget.maxWidth == null

@@ -319,6 +319,9 @@ class Localization {
       Intl.message('No public keys', name: 'noPublicKeys');
   String get noPrivateKeys =>
       Intl.message('No private keys', name: 'noPrivateKeys');
+  String get thanksForDonating =>
+      Intl.message('Right on!  Thanks CRUZ community!',
+          name: 'thanksForDonating');
   String minFee(num fee) =>
       Intl.message('Minimum fee is $fee', name: 'minFee', args: [fee]);
   String minAmount(num amount) => Intl.message('Minimum amount is $amount',
@@ -466,7 +469,7 @@ class Localization {
     const Locale('zh'),
   ];
 
-  /// Values ust have one-to-one correspondence with [supportedLocales]
+  /// Values must have one-to-one correspondence with [supportedLocales]
   static final supportedLanguages = <String>[
     'English',
     '中文',

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-08-10T20:36:16.012126",
+  "@@last_modified": "2019-08-10T22:09:21.678631",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -779,6 +779,11 @@
   },
   "noPrivateKeys": "No private keys",
   "@noPrivateKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thanksForDonating": "Right on!  Thanks CRUZ community!",
+  "@thanksForDonating": {
     "type": "text",
     "placeholders": {}
   },

@@ -250,6 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "target" : MessageLookupByLibrary.simpleMessage("Target"),
     "teraHashPerSecond" : m34,
     "teraQuantity" : m35,
+    "thanksForDonating" : MessageLookupByLibrary.simpleMessage("Right on!  Thanks CRUZ community!"),
     "theme" : MessageLookupByLibrary.simpleMessage("Theme"),
     "time" : MessageLookupByLibrary.simpleMessage("Time"),
     "tip" : MessageLookupByLibrary.simpleMessage("Tip"),

@@ -781,6 +781,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "thanksForDonating": "对吧！ 谢谢CRUZ社区！",
+  "@thanksForDonating": {
+    "type": "text",
+    "placeholders": {}
+  },
   "minFee": "最低费用为{fee}",
   "@minFee": {
     "type": "text",

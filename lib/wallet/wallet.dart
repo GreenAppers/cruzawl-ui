@@ -17,6 +17,7 @@ import 'balance.dart';
 import 'receive.dart';
 import 'send.dart';
 
+/// Main wallet [TabBarView] with Receive, Balance, Send.
 class WalletWidget extends StatefulWidget {
   final Wallet wallet;
   final Cruzawl appState;
@@ -27,6 +28,7 @@ class WalletWidget extends StatefulWidget {
 }
 
 class _WalletWidgetState extends State<WalletWidget> {
+  /// Shows "Insecure Device Warning" if [Cruzawl.isTrustFall].
   @override
   void initState() {
     super.initState();
@@ -86,6 +88,13 @@ class _WalletWidgetState extends State<WalletWidget> {
                     text: locale.network,
                     onSelected: () =>
                         widget.appState.navigateToNetwork(context),
+                  )
+                  ..addItem(
+                    icon: Icon(Icons.redeem),
+                    text: locale.donations,
+                    onSelected: () => widget.appState.navigateToAddressText(
+                        context,
+                        'RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI='),
                   ))
                 .build(
               icon: Icon(Icons.more_vert),
@@ -123,7 +132,9 @@ class _WalletWidgetState extends State<WalletWidget> {
     );
   }
 
-  Widget buildWalletsMenu(BuildContext context) {
+  /// Builds "Wallets" drop down menu. e.g. for [AppBar.leading].
+  Widget buildWalletsMenu(BuildContext context,
+      [IconData menuIcon = Icons.menu]) {
     final ThemeData theme = Theme.of(context);
     final Localization locale = Localization.of(context);
     final PopupMenuBuilder walletsMenu = PopupMenuBuilder();
@@ -148,7 +159,7 @@ class _WalletWidgetState extends State<WalletWidget> {
     return !widget.appState.preferences.walletNameInTitle
         ? walletsMenu.build(
             child: Icon(
-            Icons.menu,
+            menuIcon,
             color: theme.primaryTextTheme.title.color,
           ))
         : OverflowBox(
@@ -161,7 +172,7 @@ class _WalletWidgetState extends State<WalletWidget> {
                   Container(
                     padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
                     child: Icon(
-                      Icons.menu,
+                      menuIcon,
                       color: theme.primaryTextTheme.title.color,
                     ),
                   ),
