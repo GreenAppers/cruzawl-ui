@@ -219,6 +219,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           if (hdWallet) {
             widget.appState.addWallet(Wallet.fromSeedPhrase(
                 widget.appState.databaseFactory,
+                widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
                 name,
                 Currency.fromJson(currency),
@@ -229,6 +230,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           } else if (watchOnlyWallet) {
             widget.appState.addWallet(Wallet.fromPublicKeyList(
                 widget.appState.databaseFactory,
+                widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
                 name,
                 Currency.fromJson(currency),
@@ -240,6 +242,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           } else {
             widget.appState.addWallet(Wallet.fromPrivateKeyList(
                 widget.appState.databaseFactory,
+                widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
                 name,
                 Currency.fromJson(currency),

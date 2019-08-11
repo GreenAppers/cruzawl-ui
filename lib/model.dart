@@ -2,7 +2,6 @@
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_web/material.dart'
@@ -17,6 +16,7 @@ import 'package:cruzawl/exchange.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
+import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 
 import 'transaction.dart';
@@ -60,8 +60,8 @@ class Cruzawl extends Model {
   FlutterErrorDetails fatal;
   PackageInfo packageInfo;
   bool isTrustFall, debugProtocol = false;
-  String debugLog;
-  Directory dataDir;
+  String dataDir, debugLog;
+  FileSystem fileSystem;
   Currency currency;
   ExchangeRates exchangeRates;
   WalletModel wallet;
@@ -70,7 +70,7 @@ class Cruzawl extends Model {
   static String walletSuffix = '.cruzall';
 
   Cruzawl(this.assetPath, this.launchUrl, this.setClipboardText,
-      this.databaseFactory, this.preferences, this.dataDir,
+      this.databaseFactory, this.preferences, this.dataDir, this.fileSystem,
       {this.packageInfo, this.barcodeScan, this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
     exchangeRates = ExchangeRates(debugPrint: print);
@@ -111,7 +111,7 @@ class Cruzawl extends Model {
   void openWallets() {
     Map<String, String> loadedWallets = preferences.wallets;
     loadedWallets.forEach((k, v) => addWallet(
-        Wallet.fromFile(databaseFactory, getWalletFilename(k),
+        Wallet.fromFile(databaseFactory, fileSystem, getWalletFilename(k),
             Seed(base64.decode(v)), preferences, print, openedWallet),
         store: false));
   }
@@ -137,7 +137,7 @@ class Cruzawl extends Model {
   }
 
   String getWalletFilename(String walletName) =>
-      dataDir.path + Platform.pathSeparator + walletName + walletSuffix;
+      dataDir + walletName + walletSuffix;
 
   Wallet addWallet(Wallet x, {bool store = true}) {
     walletsLoading++;
@@ -152,7 +152,7 @@ class Cruzawl extends Model {
     return x;
   }
 
-  void removeWallet({bool store = true}) {
+  void removeWallet({bool store = true}) async {
     assert(wallets.length > 1);
     String name = wallet.wallet.name;
     wallets.remove(wallet);
@@ -162,7 +162,7 @@ class Cruzawl extends Model {
       loadedWallets.remove(name);
       preferences.wallets = loadedWallets;
     }
-    File(getWalletFilename(name)).deleteSync();
+    await fileSystem.remove(getWalletFilename(name));
   }
 
   void changeActiveWallet(WalletModel x) => setState(() => setWallet(x));
