@@ -208,6 +208,7 @@ class Localization {
   String get warning => Intl.message('Warning', name: 'warning');
   String get support => Intl.message('Support', name: 'support');
   String get license => Intl.message('License', name: 'license');
+  String get donations => Intl.message('Donations', name: 'donations');
   String get privacyPolicy =>
       Intl.message('Privacy Policy', name: 'privacyPolicy');
   String homePage(String product) =>

@@ -140,7 +140,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
         title: Text(locale.maturing, style: labelTextStyle),
         trailing: Text(widget.currency.format(maturing)),
       ));
-    if (fullyLoaded)
+    if (fullyLoaded && earliestSeen != null)
       header.add(ListTile(
         title: Text(locale.earliestSeen, style: labelTextStyle),
         trailing: Text(earliestSeen.toString()),

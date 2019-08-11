@@ -148,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteWalletDescription" : MessageLookupByLibrary.simpleMessage("Once you delete a wallet, there is no going back. Please be certain."),
     "deltaHashPower" : MessageLookupByLibrary.simpleMessage("Delta Hash Power"),
     "deltaTime" : MessageLookupByLibrary.simpleMessage("Delta Time"),
+    "donations" : MessageLookupByLibrary.simpleMessage("Donations"),
     "earliestSeen" : MessageLookupByLibrary.simpleMessage("Earliest Seen"),
     "email" : MessageLookupByLibrary.simpleMessage("Email"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("Encrypt"),

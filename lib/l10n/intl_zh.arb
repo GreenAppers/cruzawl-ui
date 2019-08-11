@@ -402,6 +402,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "donations": "捐赠",
+  "@donations": {
+    "type": "text",
+    "placeholders": {}
+  },
   "privacyPolicy": "隐私政策",
   "@privacyPolicy": {
     "type": "text",

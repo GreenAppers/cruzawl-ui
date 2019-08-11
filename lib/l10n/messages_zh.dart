@@ -148,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteWalletDescription" : MessageLookupByLibrary.simpleMessage("删除钱包后，就不会再回头了。请确定。"),
     "deltaHashPower" : MessageLookupByLibrary.simpleMessage("哈希权力"),
     "deltaTime" : MessageLookupByLibrary.simpleMessage("达美时间"),
+    "donations" : MessageLookupByLibrary.simpleMessage("捐赠"),
     "earliestSeen" : MessageLookupByLibrary.simpleMessage("最早见过"),
     "email" : MessageLookupByLibrary.simpleMessage("电子邮件"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("加密"),
