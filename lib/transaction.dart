@@ -9,6 +9,7 @@ import 'package:flutter_web/material.dart'
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
+import 'package:cruzawl/network.dart';
 
 import 'localization.dart';
 import 'model.dart';
@@ -35,7 +36,7 @@ class TransactionInfo {
 
 class TransactionWidget extends StatefulWidget {
   final Currency currency;
-  final Transaction transaction;
+  final TransactionMessage transaction;
   final TransactionInfo info;
   final String transactionIdText;
   final TransactionCallback onHeightTap;
@@ -54,7 +55,7 @@ class TransactionWidget extends StatefulWidget {
 
 class _TransactionWidgetState extends State<TransactionWidget> {
   bool loading = false;
-  Transaction transaction;
+  TransactionMessage transaction;
   _TransactionWidgetState(this.transaction);
 
   void load() async {
@@ -84,6 +85,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           title: locale.loading);
     }
 
+    final Transaction txn = transaction.transaction;
     final TextStyle valueTextStyle = TextStyle(color: Colors.black);
     final int tipHeight = widget.currency.network.tipHeight ?? 0;
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
@@ -93,32 +95,31 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       ListTile(
         title: Text(locale.date, style: labelTextStyle),
         subtitle: CopyableText(
-            transaction.dateTime.toString(), appState.setClipboardText,
+            txn.dateTime.toString(), appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
         title: Text(locale.from, style: labelTextStyle),
-        subtitle: CopyableText(transaction.fromText, appState.setClipboardText,
+        subtitle: CopyableText(txn.fromText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
         title: Text(locale.to, style: labelTextStyle),
-        subtitle: CopyableText(transaction.toText, appState.setClipboardText,
+        subtitle: CopyableText(txn.toText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
         title: Text(locale.id, style: labelTextStyle),
-        subtitle: CopyableText(
-            transaction.id().toJson(), appState.setClipboardText,
+        subtitle: CopyableText(txn.id().toJson(), appState.setClipboardText,
             style: valueTextStyle),
       ),
     ];
 
-    if (transaction.memo != null) {
+    if (txn.memo != null) {
       ret.add(
         ListTile(
           title: Text(locale.memo, style: labelTextStyle),
-          subtitle: CopyableText(transaction.memo, appState.setClipboardText,
+          subtitle: CopyableText(txn.memo, appState.setClipboardText,
               style: valueTextStyle),
         ),
       );
@@ -127,7 +128,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     ret.add(
       ListTile(
         title: Text(locale.amount, style: labelTextStyle),
-        trailing: Text(widget.currency.format(transaction.amount),
+        trailing: Text(widget.currency.format(txn.amount),
             style: (widget.info.color != null
                 ? TextStyle(color: widget.info.color)
                 : valueTextStyle)),
@@ -137,29 +138,28 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     ret.add(
       ListTile(
         title: Text(locale.fee, style: labelTextStyle),
-        trailing: Text(widget.currency.format(transaction.fee),
+        trailing: Text(widget.currency.format(txn.fee),
             style: (widget.info.fromWallet
                 ? TextStyle(color: Colors.red)
                 : valueTextStyle)),
       ),
     );
 
-    if (transaction.height != null) {
+    if (txn.height != null) {
       ret.add(ListTile(
         title: Text(locale.height, style: labelTextStyle),
-        trailing: Text(transaction.height.toString(), style: valueTextStyle),
-        onTap: widget.onHeightTap != null
-            ? () => widget.onHeightTap(transaction)
-            : null,
+        trailing: Text(txn.height.toString(), style: valueTextStyle),
+        onTap:
+            widget.onHeightTap != null ? () => widget.onHeightTap(txn) : null,
       ));
 
-      if (transaction.height <= tipHeight) {
+      if (txn.height <= tipHeight) {
         ret.add(ListTile(
           title: Text(locale.confirmations, style: labelTextStyle),
           trailing: Text(
-              transaction.height == null
+              txn.height == null
                   ? locale.pending
-                  : (1 + tipHeight - transaction.height).toString(),
+                  : (1 + tipHeight - txn.height).toString(),
               style: valueTextStyle),
         ));
       }
@@ -167,11 +167,11 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     ret.add(ListTile(
       title: Text(locale.nonce, style: labelTextStyle),
-      trailing: Text(transaction.nonce.toString(), style: valueTextStyle),
+      trailing: Text(txn.nonce.toString(), style: valueTextStyle),
     ));
 
-    if (transaction.matures != null) {
-      int matures = transaction.matures;
+    if (txn.matures != null) {
+      int matures = txn.matures;
       ret.add(ListTile(
         title: Text(matures <= tipHeight ? locale.matured : locale.matures,
             style: labelTextStyle),
@@ -179,8 +179,8 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       ));
     }
 
-    if (transaction.expires != null) {
-      int expires = transaction.expires;
+    if (txn.expires != null) {
+      int expires = txn.expires;
       ret.add(ListTile(
         title: Text(expires <= tipHeight ? locale.expired : locale.expires,
             style: labelTextStyle),
@@ -190,8 +190,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     ret.add(RaisedGradientButton(
       labelText: locale.copy,
-      onPressed: () =>
-          appState.setClipboardText(context, jsonEncode(transaction)),
+      onPressed: () => appState.setClipboardText(context, jsonEncode(txn)),
     ));
 
     return SimpleScaffold(

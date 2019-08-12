@@ -59,7 +59,7 @@ class Cruzawl extends Model {
   CruzawlPreferences preferences;
   FlutterErrorDetails fatal;
   PackageInfo packageInfo;
-  bool isTrustFall, debugProtocol = false;
+  bool isTrustFall;
   String dataDir, debugLog;
   FileSystem fileSystem;
   Currency currency;
@@ -208,7 +208,8 @@ class Cruzawl extends Model {
     Currency currency = Currency.fromJson(x.currency);
     if (currency == null) return null;
 
-    if (debugProtocol) x.debugPrint = print;
+    x.debugPrint = print;
+    x.debugLevel = debugLevelInfo;
     currency.network.tipChanged = () => updateWallets(currency);
     currency.network.peerChanged = () => reloadWallets(currency);
     return currency.network.addPeer(currency.network

@@ -20,6 +20,7 @@ import 'ui.dart';
 
 enum CruzbaseBucketDuration { minute, hour }
 
+/// Chart of mined blocks, e.g. chart of [Transction.isCoinbase()].
 class CruzbaseWidget extends StatefulWidget {
   final Currency currency;
   final Widget loadingWidget;
@@ -37,6 +38,7 @@ class CruzbaseWidget extends StatefulWidget {
       _CruzbaseWidgetState(windowDuration, bucketDuration);
 }
 
+/// [fetch] some [data] then [build] dynamic [charts.TimeSeriesChart].
 class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   SortedListSet<TimeSeriesBlocks> data;
   int dataStartHeight, dataEndHeight, dataMaxBucketBlocks;
@@ -48,11 +50,13 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
   _CruzbaseWidgetState(this.windowDuration, this.bucketDuration);
 
+  /// Resets [data]. e.g. for changing [bucketDuration].
   void clear() {
     data = null;
     windowStart = windowEnd = null;
   }
 
+  /// Chart of one hour with minute long buckets.
   void setIntervalHourly() {
     if (!loading)
       setState(() {
@@ -62,6 +66,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       });
   }
 
+  /// Chart of one day with hour long buckets.
   void setIntervalDaily() {
     if (!loading)
       setState(() {
@@ -71,6 +76,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       });
   }
 
+  /// Add a new block to [data].
   void addBlockToData(BlockHeader header) {
     DateTime time = header.dateTime;
     if (time.isBefore(dataStart)) dataStart = time;
@@ -88,17 +94,20 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     }
   }
 
+  /// Update [dataEnd] time, moving [windowEnd] with it if coinciding.
   void updateDataEndTime(DateTime newDataEnd) {
     if (newDataEnd.isBefore(dataEnd)) return;
     updateWindowEndTime(newDataEnd);
     dataEnd = newDataEnd;
   }
 
+  /// Window to the right moves forward as [data] grows forwards.
   void updateWindowEndTime([DateTime newDataEnd]) {
     if (windowEnd.compareTo(dataEnd) >= 0) windowEnd = newDataEnd ?? dataEnd;
     windowStart = windowEnd.subtract(windowDuration);
   }
 
+  /// Window to the left moves backwards as [data] grows backwards.
   void updateWindowStartTime([DateTime newDataStart]) {
     if (windowStart.compareTo(dataStart) <= 0)
       windowStart = newDataStart ?? dataStart;
@@ -198,7 +207,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
     num price = appState.exchangeRates.rateViaBTC('CRUZ', 'USD');
 
-    /// truncateTime() makes scrolling jerky but prevents, I think, a charts bug
+    /// truncateTime() makes scrolling jerky but prevents, I think,
+    /// a charts bug where the bar widths wildly vary.
     TimeSeriesBlocks start =
         TimeSeriesBlocks(truncateTime(windowStart, bucketDuration));
     TimeSeriesBlocks end =
@@ -214,8 +224,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         (p, c) => Point<num>(p.x + c.blocks, max(p.y, c.block.first.height)));
     int totalBlocks = visitor.x, maxHeight = visitor.y;
     Duration barDuration = getBucketDuration(bucketDuration);
-    BlockHeader first = window.last.block.last;
-    BlockHeader last = window.first.block.first;
+    BlockHeader first = window.isEmpty ? null : window.last.block.last;
+    BlockHeader last = window.isEmpty ? null : window.first.block.first;
     window.add(start, overwrite: false);
     window.add(end, overwrite: false);
 

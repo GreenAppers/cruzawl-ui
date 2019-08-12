@@ -9,6 +9,10 @@ import 'package:flutter_web/material.dart'
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import 'package:cruzawl/currency.dart';
+import 'package:cruzawl/network.dart';
+import 'package:cruzawl/util.dart' hide VoidCallback;
+
 import 'localization.dart';
 import 'model.dart';
 import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
@@ -18,15 +22,25 @@ bool useWideStyle(BuildContext context, double maxWidth) =>
 
 class SimpleScaffoldActions extends Model {
   List<Widget> actions;
-  bool searchBar, showSearchBar = false;
+  String searchError;
+  bool searchBar, showSearchBar = false, searching = false;
   SimpleScaffoldActions(this.actions, {this.searchBar = false});
+
+  void toggleSearchBar() => setState(() => showSearchBar = !showSearchBar);
+
+  void setSearching(bool v) => setState(() => searching = v);
 
   void setState(VoidCallback stateChangeCb) {
     stateChangeCb();
     notifyListeners();
   }
 
-  void toggleSearchBar() => setState(() => showSearchBar = !showSearchBar);
+  String getSearchError(Localization locale) {
+    if (searching) return locale.loading;
+    String ret = searchError;
+    searchError = null;
+    return ret;
+  }
 }
 
 class SimpleScaffold extends StatefulWidget {
@@ -44,7 +58,13 @@ class SimpleScaffold extends StatefulWidget {
 }
 
 class _SimpleScaffoldState extends State<SimpleScaffold> {
+  final formKey = GlobalKey<FormState>();
   final TextEditingController searchController = TextEditingController();
+  int queryHeight;
+  BlockId queryBlock;
+  PublicAddress queryAddress;
+  TransactionId queryTransaction;
+  bool foundBlock, foundTransaction;
 
   @override
   void dispose() {
@@ -65,16 +85,20 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
           ScopedModel.of<SimpleScaffoldActions>(context, rebuildOnChange: true);
       if (model.searchBar) {
         actions = <Widget>[
-          IconButton(
-            icon: Icon(model.showSearchBar ? Icons.close : Icons.search),
-            color: theme.primaryTextTheme.title.color,
-            onPressed: () => model.toggleSearchBar(),
-          ),
+          model.searching
+              ? CircularProgressIndicator()
+              : IconButton(
+                  icon: Icon(model.showSearchBar ? Icons.close : Icons.search),
+                  color: theme.primaryTextTheme.title.color,
+                  onPressed: () => toggleSearchBar(model),
+                  padding: EdgeInsets.all(0),
+                ),
         ];
         actions.addAll(model.actions);
       } else {
         actions = model.actions;
       }
+      if (model.searchError != null) formKey.currentState.validate();
     } catch (error) {}
 
     TextStyle titleStyle = appState.theme.titleStyle;
@@ -89,17 +113,26 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
                     accentColor: titleStyle.color,
                     hintColor: titleStyle.color,
                   ),
-                  child: TextField(
-                      decoration: InputDecoration(
-                          prefixIcon:
-                              Icon(Icons.search, color: titleStyle.color),
-                          hintText: locale.search,
-                          hintStyle: titleStyle,
-                          border: UnderlineInputBorder(
-                              borderSide: BorderSide(color: titleStyle.color))),
-                      style: titleStyle,
-                      cursorColor: Colors.white,
-                      autofocus: true))
+                  child: Form(
+                      key: formKey,
+                      child: TextFormField(
+                          controller: searchController,
+                          decoration: InputDecoration(
+                              prefixIcon: IconButton(
+                                  icon: Icon(Icons.search,
+                                      color: titleStyle.color),
+                                  onPressed: () async =>
+                                      await searchSubmit(context, model)),
+                              hintText: locale.search,
+                              hintStyle: titleStyle),
+                          style: titleStyle,
+                          cursorColor: Colors.white,
+                          autofocus: true,
+                          validator: (q) =>
+                              model.getSearchError(locale) ??
+                              validateQuery(q, appState, locale),
+                          onFieldSubmitted: (q) async =>
+                              await searchSubmit(context, model))))
               : (widget.titleWidget ??
                   Text(widget.title ?? locale.title, style: titleStyle)),
           actions: actions,
@@ -113,6 +146,88 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
               ])
             : widget.body,
         bottomNavigationBar: widget.bottomNavigationBar);
+  }
+
+  void toggleSearchBar(SimpleScaffoldActions model) {
+    if (model.showSearchBar) model.setState(() => searchClear(model));
+    else model.toggleSearchBar();
+  }
+
+  void searchClear(SimpleScaffoldActions model) {
+    formKey.currentState.reset();
+    searchController.clear();
+    model.searching = false;
+    model.showSearchBar = false;
+    queryBlock = null;
+    queryHeight = null;
+    queryAddress = null;
+    queryTransaction = null;
+  }
+
+  Future<void> searchSubmit(
+      BuildContext context, SimpleScaffoldActions model) async {
+    if (!formKey.currentState.validate()) return;
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final Localization locale = Localization.of(context);
+
+    if (queryAddress != null) {
+      appState.navigateToAddressText(context, queryAddress.toJson());
+      searchClear(model);
+      return;
+    } else if (queryHeight != null) {
+      appState.navigateToHeight(context, queryHeight);
+      searchClear(model);
+      return;
+    }
+
+    assert(queryBlock != null || queryTransaction != null);
+    model.setSearching(true);
+
+    Peer peer = await appState.currency.network.getPeer();
+    if (peer == null) return;
+    Future<BlockHeaderMessage> getBlock;
+    Future<TransactionMessage> getTxn;
+    if (queryBlock != null) getBlock = peer.getBlockHeader(id: queryBlock);
+    if (queryTransaction != null) {
+      getTxn = peer.getTransaction(queryTransaction);
+    }
+    BlockHeaderMessage block = getBlock != null ? await getBlock : null;
+    TransactionMessage transaction = getTxn != null ? await getTxn : null;
+
+    if (block != null && block.header != null) {
+      appState.navigateToBlockId(context, queryBlock.toJson());
+      searchClear(model);
+      return;
+    }
+
+    if (transaction != null && transaction.transaction != null) {
+      appState.navigateToTransaction(context, transaction.transaction);
+      searchClear(model);
+      return;
+    }
+
+    model.searchError = locale.unknownQuery;
+    model.setSearching(false);
+  }
+
+  String validateQuery(String query, Cruzawl appState, Localization locale) {
+    query.trim();
+    Currency currency = appState.currency;
+    if (!currency.network.hasPeer) return locale.networkOffline;
+    if ((queryAddress = currency.fromPublicAddressJson(query)) != null)
+      return null;
+    if (currency.fromPrivateKeyJson(query) != null) return locale.privateKey;
+    if ((queryHeight = int.tryParse(query)) != null) {
+      if (queryHeight < currency.network.tipHeight && queryHeight >= 0) {
+        return null;
+      } else {
+        queryHeight = null;
+      }
+    }
+    queryBlock = currency.fromBlockIdJson(query, true);
+    queryTransaction = currency.fromTransactionIdJson(query, true);
+    if (queryBlock != null || queryTransaction != null) return null;
+    return locale.unknownQuery;
   }
 }
 

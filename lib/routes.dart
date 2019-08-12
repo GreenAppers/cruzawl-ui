@@ -7,6 +7,8 @@ import 'package:flutter_web/material.dart'
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
+import 'package:cruzawl/util.dart' hide VoidCallback;
+import 'package:cruzawl/network.dart';
 import 'package:cruzawl/wallet.dart';
 
 import 'address.dart';
@@ -26,11 +28,17 @@ class CruzallRoutes {
   final Widget loadingWidget;
   final Route defaultRoute;
   final bool includeWalletRoutes;
+  final SimpleScaffoldActions searchBar;
+
   CruzallRoutes(this.appState,
       {this.maxWidth,
       this.loadingWidget,
       this.defaultRoute,
-      this.includeWalletRoutes = false});
+      this.includeWalletRoutes = false,
+      bool cruzbaseSearchBar = false})
+      : searchBar = cruzbaseSearchBar
+            ? SimpleScaffoldActions(<Widget>[], searchBar: true)
+            : null;
 
   Route onGenerateRoute(RouteSettings settings) {
     final PagePath page = PagePath.parse(settings.name);
@@ -47,11 +55,16 @@ class CruzallRoutes {
         return MaterialPageRoute(
             settings: settings,
             builder: (context) {
-              if (page.arg == 'cruzbase')
-                return ScopedModelDescendant<WalletModel>(
+              if (page.arg == 'cruzbase') {
+                Widget ret = ScopedModelDescendant<WalletModel>(
                     builder: (context, child, model) => CruzbaseWidget(
                         wallet.currency,
                         wideStyle: useWideStyle(context, maxWidth)));
+                return searchBar != null
+                    ? ScopedModel<SimpleScaffoldActions>(
+                        model: searchBar, child: ret)
+                    : ret;
+              }
 
               Address address = wallet.addresses[page.arg];
               return address != null
@@ -134,7 +147,7 @@ class CruzallRoutes {
                     wallet.currency, WalletTransactionInfo(wallet, transaction),
                     maxWidth: maxWidth,
                     loadingWidget: loadingWidget,
-                    transaction: transaction)
+                    transaction: TransactionMessage(null, transaction))
                 : TransactionWidget(wallet.currency, TransactionInfo(),
                     maxWidth: maxWidth,
                     loadingWidget: loadingWidget,

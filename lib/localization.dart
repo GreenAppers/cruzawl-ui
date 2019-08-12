@@ -329,6 +329,8 @@ class Localization {
       Intl.message('No public keys', name: 'noPublicKeys');
   String get noPrivateKeys =>
       Intl.message('No private keys', name: 'noPrivateKeys');
+  String get unknownQuery =>
+      Intl.message('Unknown query', name: 'unknownQuery');
   String get thanksForDonating =>
       Intl.message('Right on!  Thanks CRUZ community!',
           name: 'thanksForDonating');
