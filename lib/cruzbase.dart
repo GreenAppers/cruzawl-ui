@@ -12,7 +12,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
-import 'package:cruzawl/util.dart';
+import 'package:cruzawl/util.dart' hide VoidCallback;
 
 import 'localization.dart';
 import 'model.dart';
@@ -28,7 +28,7 @@ class CruzbaseWidget extends StatefulWidget {
   final bool wideStyle;
   CruzbaseWidget(this.currency,
       {this.loadingWidget,
-      this.wideStyle,
+      this.wideStyle = false,
       this.windowDuration = const Duration(hours: 1),
       this.bucketDuration = CruzbaseBucketDuration.minute});
 
@@ -269,8 +269,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         ),
         titleWidget: buildTitle(
             context, totalBlocks, first, last, maxHeight, dataEndHeight, price),
-        bottomNavigationBar:
-            buildBottomBar(context, maxHeight, dataEndHeight, price));
+        bottomNavigationBar: widget.wideStyle
+            ? null
+            : buildBottomBar(context, maxHeight, dataEndHeight, price));
   }
 
   Widget buildBottomBar(
@@ -278,12 +279,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
-    final TextStyle titleStyle = appState.theme.titleStyle
-        .copyWith(fontSize: 20, color: theme.primaryTextTheme.title.color);
-    final TextStyle linkStyle = appState.theme.titleStyle.copyWith(
-        fontSize: 20,
-        color: theme.primaryTextTheme.title.color,
-        decoration: TextDecoration.underline);
+    final TextStyle titleStyle = appState.theme.titleStyle;
+    final TextStyle linkStyle = appState.theme.titleStyle
+        .copyWith(decoration: TextDecoration.underline);
 
     List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
         titleStyle: titleStyle,
@@ -301,8 +299,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
-        children:
-            locale.listOfTwoWidgets(marketCap, heightEquals, style: titleStyle),
+        children: marketCap == null
+            ? heightEquals
+            : locale.listOfTwoWidgets(marketCap, heightEquals,
+                style: titleStyle),
       )),
     );
   }
@@ -312,12 +312,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
-    final TextStyle titleStyle = appState.theme.titleStyle
-        .copyWith(fontSize: 20, color: theme.primaryTextTheme.title.color);
-    final TextStyle linkStyle = appState.theme.titleStyle.copyWith(
-        fontSize: 20,
-        color: theme.primaryTextTheme.title.color,
-        decoration: TextDecoration.underline);
+    final TextStyle titleStyle = appState.theme.titleStyle;
+    final TextStyle linkStyle = appState.theme.titleStyle
+        .copyWith(decoration: TextDecoration.underline);
 
     List<Widget> hashRate =
         buildHashRate(first, last, locale, titleStyle: titleStyle);

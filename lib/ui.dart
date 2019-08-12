@@ -17,13 +17,22 @@ bool useWideStyle(BuildContext context, double maxWidth) =>
     MediaQuery.of(context).size.width > (maxWidth ?? double.maxFinite);
 
 class SimpleScaffoldActions extends Model {
-  final List<Widget> actions;
-  SimpleScaffoldActions(this.actions);
+  List<Widget> actions;
+  bool searchBar, showSearchBar = false;
+  SimpleScaffoldActions(this.actions, {this.searchBar = false});
+
+  void setState(VoidCallback stateChangeCb) {
+    stateChangeCb();
+    notifyListeners();
+  }
+
+  void toggleSearchBar() => setState(() => showSearchBar = !showSearchBar);
 }
 
-class SimpleScaffold extends StatelessWidget {
+class SimpleScaffold extends StatefulWidget {
   final String title;
   final Widget body, secondColumn, titleWidget, bottomNavigationBar;
+
   SimpleScaffold(this.body,
       {this.title,
       this.titleWidget,
@@ -31,33 +40,79 @@ class SimpleScaffold extends StatelessWidget {
       this.bottomNavigationBar});
 
   @override
-  Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    SimpleScaffoldActions actions;
-    try {
-      actions = ScopedModel.of<SimpleScaffoldActions>(context);
-    } catch (error) {
-      actions = null;
-    }
+  _SimpleScaffoldState createState() => _SimpleScaffoldState();
+}
 
+class _SimpleScaffoldState extends State<SimpleScaffold> {
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final Localization locale = Localization.of(context);
+    final ThemeData theme = Theme.of(context);
+    SimpleScaffoldActions model;
+    List<Widget> actions;
+
+    try {
+      model =
+          ScopedModel.of<SimpleScaffoldActions>(context, rebuildOnChange: true);
+      if (model.searchBar) {
+        actions = <Widget>[
+          IconButton(
+            icon: Icon(model.showSearchBar ? Icons.close : Icons.search),
+            color: theme.primaryTextTheme.title.color,
+            onPressed: () => model.toggleSearchBar(),
+          ),
+        ];
+        actions.addAll(model.actions);
+      } else {
+        actions = model.actions;
+      }
+    } catch (error) {}
+
+    TextStyle titleStyle = appState.theme.titleStyle;
     return Scaffold(
         appBar: GradientAppBar(
           leading:
               backButtonBuilder != null ? backButtonBuilder(context) : null,
-          title: titleWidget ??
-              Text(title ?? Localization.of(context).title,
-                  style: ScopedModel.of<Cruzawl>(context).theme.titleStyle),
-          actions: actions == null ? null : actions.actions,
+          title: (model != null && model.showSearchBar)
+              ? Theme(
+                  data: ThemeData(
+                    primaryColor: titleStyle.color,
+                    accentColor: titleStyle.color,
+                    hintColor: titleStyle.color,
+                  ),
+                  child: TextField(
+                      decoration: InputDecoration(
+                          prefixIcon:
+                              Icon(Icons.search, color: titleStyle.color),
+                          hintText: locale.search,
+                          hintStyle: titleStyle,
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(color: titleStyle.color))),
+                      style: titleStyle,
+                      cursorColor: Colors.white,
+                      autofocus: true))
+              : (widget.titleWidget ??
+                  Text(widget.title ?? locale.title, style: titleStyle)),
+          actions: actions,
           backgroundColorStart: theme.primaryColor,
           backgroundColorEnd: theme.accentColor,
         ),
-        body: secondColumn != null
+        body: widget.secondColumn != null
             ? Row(children: <Widget>[
-                Flexible(child: body),
-                Flexible(child: secondColumn)
+                Flexible(child: widget.body),
+                Flexible(child: widget.secondColumn)
               ])
-            : body,
-        bottomNavigationBar: bottomNavigationBar);
+            : widget.body,
+        bottomNavigationBar: widget.bottomNavigationBar);
   }
 }
 
@@ -315,6 +370,7 @@ Widget buildListTile(Widget title, bool wideStyle, Widget widget) {
 class AppTheme {
   ThemeData data;
   Color linkColor;
+  String titleFont;
   TextStyle titleStyle, labelStyle, linkStyle;
   AppTheme(this.data, {this.linkColor}) {
     linkColor = linkColor ?? data.primaryColor;

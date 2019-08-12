@@ -45,7 +45,8 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
   Widget build(BuildContext context) {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final TextStyle labelTextStyle = appState.theme.titleStyle;
+    final TextStyle labelTextStyle =
+        TextStyle(fontFamily: appState.theme.titleFont);
     final Wallet wallet =
         ScopedModel.of<WalletModel>(context, rebuildOnChange: true).wallet;
     final Currency currency = wallet.currency;

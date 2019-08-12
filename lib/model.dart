@@ -85,11 +85,12 @@ class Cruzawl extends Model {
 
   void setTheme() {
     theme = themes[preferences.theme] ?? themes['teal'];
-    theme.titleStyle = TextStyle(
-      fontFamily: 'MartelSans',
+    theme.titleFont = 'MartelSans';
+    theme.titleStyle = theme.data.primaryTextTheme.title.copyWith(
+      fontFamily: theme.titleFont,
     );
     theme.labelStyle = TextStyle(
-      fontFamily: 'MartelSans',
+      fontFamily: theme.titleFont,
       color: Colors.grey,
     );
     theme.linkStyle = TextStyle(
