@@ -26,3 +26,43 @@ WidgetBuilder backButtonBuilder = (BuildContext context) => GestureDetector(
       Navigator.of(context).pushNamed('/');
       window.history.replaceState({}, '', '/#/');
     });
+
+class EnterTextFormField extends StatelessWidget {
+  TextEditingController controller;
+  InputDecoration decoration;
+  TextStyle style;
+  Color cursorColor;
+  bool autofocus, autocorrect;
+  FormFieldValidator<String> validator;
+  ValueChanged<String> onFieldSubmitted;
+  EnterTextFormField(
+      {this.controller,
+      this.decoration,
+      this.style,
+      this.cursorColor,
+      this.autofocus = false,
+      this.autocorrect = true,
+      this.validator,
+      this.onFieldSubmitted});
+
+  @override
+  Widget build(BuildContext context) => RawKeyboardListener(
+      focusNode: FocusNode(),
+      onKey: onFieldSubmitted == null
+          ? null
+          : (event) {
+              if (event.runtimeType == RawKeyDownEvent &&
+                  (event.logicalKey.keyId == 54)) {
+                onFieldSubmitted(controller.text);
+              }
+            },
+      child: TextFormField(
+          controller: controller,
+          decoration: decoration,
+          style: style,
+          cursorColor: cursorColor,
+          autofocus: autofocus,
+          autocorrect: autocorrect,
+          validator: validator,
+          onFieldSubmitted: onFieldSubmitted));
+}

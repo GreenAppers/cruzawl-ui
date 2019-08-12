@@ -115,7 +115,7 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
                   ),
                   child: Form(
                       key: formKey,
-                      child: TextFormField(
+                      child: EnterTextFormField(
                           controller: searchController,
                           decoration: InputDecoration(
                               prefixIcon: IconButton(
