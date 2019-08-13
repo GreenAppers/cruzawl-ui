@@ -313,7 +313,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
         children: marketCap == null
-            ? heightEquals
+            ? locale.listOfTwoWidgets(
+                totalBlocksInLast, heightEquals,
+                style: titleStyle)
             : locale.listOfThreeWidgets(
                 totalBlocksInLast, heightEquals, marketCap,
                 style: titleStyle),
