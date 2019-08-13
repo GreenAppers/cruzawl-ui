@@ -13,6 +13,7 @@ import 'package:cruzawl/wallet.dart';
 
 import 'address.dart';
 import 'block.dart';
+import 'console.dart';
 import 'cruzbase.dart';
 import 'localization.dart';
 import 'model.dart';
@@ -86,6 +87,14 @@ class CruzallRoutes {
                 blockId: page.arg,
                 maxWidth: maxWidth,
                 loadingWidget: loadingWidget),
+          ),
+        );
+
+      case 'console':
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => ScopedModelDescendant<WalletModel>(
+            builder: (context, child, model) => CruzawlConsole(wallet.currency),
           ),
         );
 

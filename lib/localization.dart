@@ -202,6 +202,8 @@ class Localization {
   String get addresses => Intl.message('Addresses', name: 'addresses');
   String get receive => Intl.message('Receive', name: 'receive');
   String get search => Intl.message('Search', name: 'search');
+  String get result => Intl.message('Result', name: 'result');
+  String get console => Intl.message('Console', name: 'console');
   String get unknown => Intl.message('Unknown', name: 'unknown');
   String get settings => Intl.message('Settings', name: 'settings');
   String get network => Intl.message('Network', name: 'network');
@@ -301,6 +303,7 @@ class Localization {
   /// Meta-Fields
   String get pending => Intl.message('Pending', name: 'pending');
   String get invalidUrl => Intl.message('Invalid URL.', name: 'invalidUrl');
+  String get invalidJson => Intl.message('Invalid JSON.', name: 'invalidJson');
   String get invalidCurrency =>
       Intl.message('Invalid currency', name: 'invalidCurrency');
   String get maxMemoLength =>

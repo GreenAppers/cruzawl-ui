@@ -149,8 +149,10 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
   }
 
   void toggleSearchBar(SimpleScaffoldActions model) {
-    if (model.showSearchBar) model.setState(() => searchClear(model));
-    else model.toggleSearchBar();
+    if (model.showSearchBar)
+      model.setState(() => searchClear(model));
+    else
+      model.toggleSearchBar();
   }
 
   void searchClear(SimpleScaffoldActions model) {

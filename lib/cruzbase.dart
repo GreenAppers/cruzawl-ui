@@ -281,11 +281,12 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             context, totalBlocks, first, last, maxHeight, dataEndHeight, price),
         bottomNavigationBar: widget.wideStyle
             ? null
-            : buildBottomBar(context, maxHeight, dataEndHeight, price));
+            : buildBottomBar(
+                context, totalBlocks, maxHeight, dataEndHeight, price));
   }
 
-  Widget buildBottomBar(
-      BuildContext context, int maxHeight, int tipHeight, num price) {
+  Widget buildBottomBar(BuildContext context, int totalBlocks, int maxHeight,
+      int tipHeight, num price) {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
@@ -293,6 +294,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     final TextStyle linkStyle = appState.theme.titleStyle
         .copyWith(decoration: TextDecoration.underline);
 
+    List<Widget> totalBlocksInLast = buildTotalBlocksInLast(totalBlocks, locale,
+        titleStyle: titleStyle, linkStyle: linkStyle);
     List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
         titleStyle: titleStyle,
         linkStyle: linkStyle,
@@ -311,7 +314,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         textBaseline: TextBaseline.alphabetic,
         children: marketCap == null
             ? heightEquals
-            : locale.listOfTwoWidgets(marketCap, heightEquals,
+            : locale.listOfThreeWidgets(
+                totalBlocksInLast, heightEquals, marketCap,
                 style: titleStyle),
       )),
     );
@@ -347,9 +351,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
                   hashRate, totalBlocksInLast, heightEquals, marketCap,
                   style: titleStyle)
               : locale.listOfThreeWidgets(
-                  hashRate, totalBlocksInLast, heightEquals, style: titleStyle))
-          : locale.listOfTwoWidgets(hashRate, totalBlocksInLast,
-              style: titleStyle),
+                  hashRate, totalBlocksInLast, heightEquals,
+                  style: titleStyle))
+          : hashRate,
     );
   }
 

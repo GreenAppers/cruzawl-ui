@@ -261,6 +261,8 @@ class Cruzawl extends Model {
 
   void navigateToTip(BuildContext c) => Navigator.of(c).pushNamed('/tip');
   void navigateToWallet(BuildContext c) => Navigator.of(c).pushNamed('/wallet');
+  void navigateToConsole(BuildContext c) =>
+      Navigator.of(c).pushNamed('/console');
   void navigateToAddWallet(BuildContext c) =>
       Navigator.of(c).pushNamed('/addWallet');
   void navigateToSettings(BuildContext c) =>
