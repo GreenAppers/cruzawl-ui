@@ -327,6 +327,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "result": "结果",
+  "@result": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "console": "安慰",
+  "@console": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unknown": "未知",
   "@unknown": {
     "type": "text",
@@ -716,6 +726,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "invalidJson": "无效的JSON",
+  "@invalidJson": {
+    "type": "text",
+    "placeholders": {}
+  },
   "invalidCurrency": "货币无效",
   "@invalidCurrency": {
     "type": "text",
@@ -783,6 +798,11 @@
   },
   "noPrivateKeys": "没有私钥",
   "@noPrivateKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownQuery": "未知查询",
+  "@unknownQuery": {
     "type": "text",
     "placeholders": {}
   },

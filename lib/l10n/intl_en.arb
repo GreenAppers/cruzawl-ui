@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-08-11T16:08:01.613333",
+  "@@last_modified": "2019-08-13T00:02:24.841615",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -325,6 +325,16 @@
   },
   "search": "Search",
   "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "result": "Result",
+  "@result": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "console": "Console",
+  "@console": {
     "type": "text",
     "placeholders": {}
   },
@@ -717,6 +727,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "invalidJson": "Invalid JSON.",
+  "@invalidJson": {
+    "type": "text",
+    "placeholders": {}
+  },
   "invalidCurrency": "Invalid currency",
   "@invalidCurrency": {
     "type": "text",
@@ -784,6 +799,11 @@
   },
   "noPrivateKeys": "No private keys",
   "@noPrivateKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownQuery": "Unknown query",
+  "@unknownQuery": {
     "type": "text",
     "placeholders": {}
   },
