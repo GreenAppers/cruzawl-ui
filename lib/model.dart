@@ -279,6 +279,8 @@ class Cruzawl extends Model {
       Navigator.of(c).pushNamed('/height/$height');
   void navigateToTransaction(BuildContext c, Transaction tx) =>
       Navigator.of(c).pushNamed('/transaction/' + tx.id().toJson());
+  void launchMarketUrl(BuildContext c) =>
+      launchUrl(c, 'https://qtrade.io/market/CRUZ_BTC');
 }
 
 class PagePath {

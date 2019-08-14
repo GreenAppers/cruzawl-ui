@@ -1,7 +1,7 @@
 # cruzawl-ui 
 <img width=128 src="https://www.greenappers.com/cruzall/en/assets/cruzbit.png" /> <img src="https://www.greenappers.com/cruzall/en/assets/icon.png"/><br/> [Flutter](https://flutter.dev/) library for [CRUZ](https://github.com/cruzbit/cruzbit) cryptocurrency wallet [cruzall](https://github.com/GreenAppers/cruzall) and block explorer [cruzweb](https://github.com/GreenAppers/cruzweb)
 
-# Architecture
+# Project Map
 <img src="https://www.greenappers.com/cruzawl/diagram.svg" />
 
 ## License

@@ -69,9 +69,11 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
             ),
             RichText(
               text: TextSpan(
-                style: const TextStyle(fontFamily: 'monospace'),
+                style: const TextStyle(
+                    fontFamily: 'monospace', color: Colors.black),
                 children: <TextSpan>[
-                  DartSyntaxHighlighter(widget.style).format(output),
+                  TextSpan(text: output),
+                  //DartSyntaxHighlighter(widget.style).format(output),
                 ],
               ),
             ),

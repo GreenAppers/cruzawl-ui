@@ -300,8 +300,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         titleStyle: titleStyle,
         linkStyle: linkStyle,
         onTap: () => appState.navigateToHeight(context, maxHeight));
-    List<Widget> marketCap =
-        buildMarketCap(tipHeight, price, locale, titleStyle: titleStyle);
+    List<Widget> marketCap = buildMarketCap(tipHeight, price, locale,
+        titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
 
     return Container(
       height: 100,
@@ -313,8 +313,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
         children: marketCap == null
-            ? locale.listOfTwoWidgets(
-                totalBlocksInLast, heightEquals,
+            ? locale.listOfTwoWidgets(totalBlocksInLast, heightEquals,
                 style: titleStyle)
             : locale.listOfThreeWidgets(
                 totalBlocksInLast, heightEquals, marketCap,
@@ -340,8 +339,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         titleStyle: titleStyle,
         linkStyle: linkStyle,
         onTap: () => appState.navigateToHeight(context, maxHeight));
-    List<Widget> marketCap =
-        buildMarketCap(tipHeight, price, locale, titleStyle: titleStyle);
+    List<Widget> marketCap = buildMarketCap(tipHeight, price, locale,
+        titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -415,7 +414,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       );
 
   List<Widget> buildMarketCap(int tipHeight, num price, Localization locale,
-      {TextStyle titleStyle}) {
+      {TextStyle titleStyle, VoidCallback onTap}) {
     int cap = (widget.currency.supply(tipHeight) * price).round();
     return cap > 0
         ? buildLocalizationMarkupWidgets(
@@ -424,6 +423,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             tags: <String, LocalizationMarkup>{
               'a': LocalizationMarkup(
                 style: titleStyle,
+                onTap: onTap,
               ),
             },
           )
