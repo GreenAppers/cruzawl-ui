@@ -106,7 +106,7 @@ class _AddressWidgetState extends State<AddressWidget> {
         trailing: Text(address.accountId.toString()),
       ),
     );
-    if (address.chainIndex != null)
+    if (address.chainIndex != null && widget.wallet.hdWallet)
       header.add(
         ListTile(
           title: Text(locale.chainIndex, style: labelTextStyle),

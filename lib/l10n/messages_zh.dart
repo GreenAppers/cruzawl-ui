@@ -182,6 +182,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidCurrency" : MessageLookupByLibrary.simpleMessage("货币无效"),
     "invalidJson" : MessageLookupByLibrary.simpleMessage("无效的JSON"),
     "invalidMnemonic" : MessageLookupByLibrary.simpleMessage("无效的助记符"),
+    "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("私钥无效"),
+    "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("公钥无效"),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("无效的网址。"),
     "kiloHashPerSecond" : m14,
     "kiloQuantity" : m15,

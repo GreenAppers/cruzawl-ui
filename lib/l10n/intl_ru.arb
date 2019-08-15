@@ -1,5 +1,5 @@
 {
-  "localeLanguage": "中文",
+  "localeLanguage": "английский",
   "@localeLanguage": {
     "type": "text",
     "placeholders": {}
@@ -9,27 +9,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "unlockTitle": "解锁Cruzall",
+  "unlockTitle": "Разблокировать крузалл",
   "@unlockTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeTitle": "欢迎来到Cruzall",
+  "welcomeTitle": "Добро пожаловать в Крузалл",
   "@welcomeTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeDesc": "首先，创建一个钱包：",
+  "welcomeDesc": "Для начала создайте кошелек:",
   "@welcomeDesc": {
     "type": "text",
     "placeholders": {}
   },
-  "currentBalanceIs": "您目前的余额是：",
+  "currentBalanceIs": "Ваш текущий баланс:",
   "@currentBalanceIs": {
     "type": "text",
     "placeholders": {}
   },
-  "recentHistory": "近期历史",
+  "recentHistory": "Недавняя история",
   "@recentHistory": {
     "type": "text",
     "placeholders": {}
@@ -42,88 +42,88 @@
       "balance": {}
     }
   },
-  "balanceAtHeightIs": "块高{@<a>} {height} {@</a>}余额为：",
+  "balanceAtHeightIs": "Ваш баланс на высоте блока {@<a>} {height} {@</a>} :",
   "@balanceAtHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "balanceMaturingByHeightIs": "您通过身高{height}成熟的平衡是：",
+  "balanceMaturingByHeightIs": "Ваш баланс созревания по высоте {height} является:",
   "@balanceMaturingByHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "insecureDeviceWarning": "不安全的设备警告",
+  "insecureDeviceWarning": "Предупреждение о небезопасном устройстве",
   "@insecureDeviceWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "insecureDeviceWarningDescription": "已检测到有根或越狱的设备。进一步使用不推荐。",
+  "insecureDeviceWarningDescription": "Обнаружено рутированное или взломанное устройство. Дальнейшее использование не рекомендуется.",
   "@insecureDeviceWarningDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhraseWarning": "这个种子允许任何知道它的人花掉你钱包里的所有资金。写下来。保持安全。",
+  "seedPhraseWarning": "Это семя позволяет любому, кто его знает, потратить все средства с вашего кошелька. Запиши это. Держать его в безопасности.",
   "@seedPhraseWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "backupKeysWarning": "您的密钥必须备份在外部存储上。",
+  "backupKeysWarning": "Ваши ключи должны быть сохранены на внешнем хранилище.",
   "@backupKeysWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "creatingUsingAlgorithm": "创建...（ {algorithm} ）",
+  "creatingUsingAlgorithm": "Создание ... ( {algorithm} )",
   "@creatingUsingAlgorithm": {
     "type": "text",
     "placeholders": {
       "algorithm": {}
     }
   },
-  "addWallet": "添加钱包",
+  "addWallet": "Добавить кошелек",
   "@addWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWallet": "高清钱包",
+  "hdWallet": "HD кошелек",
   "@hdWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWalletAlgorithm": "PBKDF：2048次迭代",
+  "hdWalletAlgorithm": "PBKDF: 2048 итераций",
   "@hdWalletAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "watchOnlyWallet": "仅限观看的钱包",
+  "watchOnlyWallet": "Часы только кошелек",
   "@watchOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "generateNewAddress": "生成新地址",
+  "generateNewAddress": "Создать новый адрес",
   "@generateNewAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWallet": "删除电子钱包",
+  "deleteWallet": "Удалить кошелек",
   "@deleteWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteThisWallet": "删除这个钱包",
+  "deleteThisWallet": "Удалить этот кошелек",
   "@deleteThisWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "cantDeleteOnlyWallet": "无法删除唯一的钱包。",
+  "cantDeleteOnlyWallet": "Не могу удалить единственный кошелек.",
   "@cantDeleteOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWalletDescription": "删除钱包后，就不会再回头了。请确定。",
+  "deleteWalletDescription": "Как только вы удалите кошелек, пути назад уже не будет. Пожалуйста, будьте уверены.",
   "@deleteWalletDescription": {
     "type": "text",
     "placeholders": {}
@@ -133,124 +133,124 @@
     "type": "text",
     "placeholders": {}
   },
-  "addressStateReserve": "保留",
+  "addressStateReserve": "резерв",
   "@addressStateReserve": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateOpen": "打开",
+  "addressStateOpen": "открыть",
   "@addressStateOpen": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateUsed": "用过的",
+  "addressStateUsed": "используемый",
   "@addressStateUsed": {
     "type": "text",
     "placeholders": {}
   },
-  "ok": "好",
+  "ok": "Хорошо",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "hide": "隐藏",
+  "hide": "Спрятать",
   "@hide": {
     "type": "text",
     "placeholders": {}
   },
-  "show": "节目",
+  "show": "Шоу",
   "@show": {
     "type": "text",
     "placeholders": {}
   },
-  "copy": "复制",
+  "copy": "копия",
   "@copy": {
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "取消",
+  "cancel": "отменить",
   "@cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "delete": "删除",
+  "delete": "удалять",
   "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "create": "创建",
+  "create": "Создайте",
   "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "ignore": "忽视",
+  "ignore": "игнорировать",
   "@ignore": {
     "type": "text",
     "placeholders": {}
   },
-  "unlock": "开锁",
+  "unlock": "отпереть",
   "@unlock": {
     "type": "text",
     "placeholders": {}
   },
-  "encrypt": "加密",
+  "encrypt": "шифровать",
   "@encrypt": {
     "type": "text",
     "placeholders": {}
   },
-  "verify": "校验",
+  "verify": "проверить",
   "@verify": {
     "type": "text",
     "placeholders": {}
   },
-  "verifying": "验证中...",
+  "verifying": "Проверка ...",
   "@verifying": {
     "type": "text",
     "placeholders": {}
   },
-  "send": "发送",
+  "send": "послать",
   "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "sending": "发送中...",
+  "sending": "Посылка ...",
   "@sending": {
     "type": "text",
     "placeholders": {}
   },
-  "sendFailed": "发送失败",
+  "sendFailed": "Не удалось отправить",
   "@sendFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "loading": "载入中...",
+  "loading": "Loading ...",
   "@loading": {
     "type": "text",
     "placeholders": {}
   },
-  "creating": "创建...",
+  "creating": "Создание ...",
   "@creating": {
     "type": "text",
     "placeholders": {}
   },
-  "copied": "复制。",
+  "copied": "Скопировано.",
   "@copied": {
     "type": "text",
     "placeholders": {}
   },
-  "copyPublicKeys": "复制公钥",
+  "copyPublicKeys": "Копировать открытые ключи",
   "@copyPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "sentTransactionId": "已发送{transactionId}",
+  "sentTransactionId": "Отправлено {transactionId}",
   "@sentTransactionId": {
     "type": "text",
     "placeholders": {
       "transactionId": {}
     }
   },
-  "listOfTwo": "{item1} ， {item2}",
+  "listOfTwo": "{item1} , {item2}",
   "@listOfTwo": {
     "type": "text",
     "placeholders": {
@@ -258,7 +258,7 @@
       "item2": {}
     }
   },
-  "listOfThree": "{item1} ， {item2} ， {item3}",
+  "listOfThree": "{item1} , {item2} , {item3}",
   "@listOfThree": {
     "type": "text",
     "placeholders": {
@@ -267,7 +267,7 @@
       "item3": {}
     }
   },
-  "listOfFour": "{item1} ， {item2} ， {item3} ， {item4}",
+  "listOfFour": "{item1} , {item2} , {item3} , {item4}",
   "@listOfFour": {
     "type": "text",
     "placeholders": {
@@ -284,7 +284,7 @@
       "item": {}
     }
   },
-  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} ， {@<a2>} {item2} {@</a2>} ]",
+  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} , {@<a2>} {item2} {@</a2>} ]",
   "@menuOfTwo": {
     "type": "text",
     "placeholders": {
@@ -292,170 +292,170 @@
       "item2": {}
     }
   },
-  "account": "帐户",
+  "account": "учетная запись",
   "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "accounts": "帐号",
+  "accounts": "Счета",
   "@accounts": {
     "type": "text",
     "placeholders": {}
   },
-  "externalAddress": "外部地址",
+  "externalAddress": "Внешний адрес",
   "@externalAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "address": "地址",
+  "address": "Адрес",
   "@address": {
     "type": "text",
     "placeholders": {}
   },
-  "addresses": "地址",
+  "addresses": "Адреса",
   "@addresses": {
     "type": "text",
     "placeholders": {}
   },
-  "receive": "接收",
+  "receive": "Получать",
   "@receive": {
     "type": "text",
     "placeholders": {}
   },
-  "search": "搜索",
+  "search": "Поиск",
   "@search": {
     "type": "text",
     "placeholders": {}
   },
-  "result": "结果",
+  "result": "Результат",
   "@result": {
     "type": "text",
     "placeholders": {}
   },
-  "console": "安慰",
+  "console": "Приставка",
   "@console": {
     "type": "text",
     "placeholders": {}
   },
-  "unknown": "未知",
+  "unknown": "неизвестный",
   "@unknown": {
     "type": "text",
     "placeholders": {}
   },
-  "settings": "设置",
+  "settings": "настройки",
   "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "network": "网络",
+  "network": "сеть",
   "@network": {
     "type": "text",
     "placeholders": {}
   },
-  "newPeer": "新同行",
+  "newPeer": "New Peer",
   "@newPeer": {
     "type": "text",
     "placeholders": {}
   },
-  "newWallet": "新款钱包",
+  "newWallet": "Новый кошелек",
   "@newWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "peers": "同行",
+  "peers": "Сверстники",
   "@peers": {
     "type": "text",
     "placeholders": {}
   },
-  "deletePeer": "删除对等",
+  "deletePeer": "Удалить Peer",
   "@deletePeer": {
     "type": "text",
     "placeholders": {}
   },
-  "block": "块",
+  "block": "блок",
   "@block": {
     "type": "text",
     "placeholders": {}
   },
-  "blocks": "块",
+  "blocks": "Блоки",
   "@blocks": {
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "加密",
+  "encryption": "шифрование",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "transaction": "交易",
+  "transaction": "Сделка",
   "@transaction": {
     "type": "text",
     "placeholders": {}
   },
-  "transactions": "交易",
+  "transactions": "операции",
   "@transactions": {
     "type": "text",
     "placeholders": {}
   },
-  "dangerZone": "危险区",
+  "dangerZone": "Опасная зона",
   "@dangerZone": {
     "type": "text",
     "placeholders": {}
   },
-  "warning": "警告",
+  "warning": "Предупреждение",
   "@warning": {
     "type": "text",
     "placeholders": {}
   },
-  "support": "支持",
+  "support": "Служба поддержки",
   "@support": {
     "type": "text",
     "placeholders": {}
   },
-  "license": "执照",
+  "license": "Лицензия",
   "@license": {
     "type": "text",
     "placeholders": {}
   },
-  "donations": "捐赠",
+  "donations": "Пожертвования",
   "@donations": {
     "type": "text",
     "placeholders": {}
   },
-  "privacyPolicy": "隐私政策",
+  "privacyPolicy": "политика конфиденциальности",
   "@privacyPolicy": {
     "type": "text",
     "placeholders": {}
   },
-  "homePage": "{product}主页",
+  "homePage": "{product} Домашняя страница",
   "@homePage": {
     "type": "text",
     "placeholders": {
       "product": {}
     }
   },
-  "addressTitle": "地址{address}",
+  "addressTitle": "Адрес {address}",
   "@addressTitle": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "networkType": "{type}网络",
+  "networkType": "{type} Сеть",
   "@networkType": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "numTransactions": "交易（ {number} ）",
+  "numTransactions": "Транзакции ( {number} )",
   "@numTransactions": {
     "type": "text",
     "placeholders": {
       "number": {}
     }
   },
-  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>}阻止{@</a1>} {@<a2>} {duration} {@</a2>}",
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} {duration} {@</a2>}",
   "@totalBlocksInLastDuration": {
     "type": "text",
     "placeholders": {
@@ -463,421 +463,421 @@
       "duration": {}
     }
   },
-  "id": "识别码",
+  "id": "Я бы",
   "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "tip": "小费",
+  "tip": "Совет",
   "@tip": {
     "type": "text",
     "placeholders": {}
   },
-  "date": "日期",
+  "date": "Дата",
   "@date": {
     "type": "text",
     "placeholders": {}
   },
-  "name": "名称",
+  "name": "название",
   "@name": {
     "type": "text",
     "placeholders": {}
   },
-  "time": "时间",
+  "time": "Время",
   "@time": {
     "type": "text",
     "placeholders": {}
   },
-  "email": "电子邮件",
+  "email": "Эл. адрес",
   "@email": {
     "type": "text",
     "placeholders": {}
   },
-  "state": "州",
+  "state": "государственный",
   "@state": {
     "type": "text",
     "placeholders": {}
   },
-  "height": "高度",
+  "height": "Рост",
   "@height": {
     "type": "text",
     "placeholders": {}
   },
-  "balance": "平衡",
+  "balance": "Остаток средств",
   "@balance": {
     "type": "text",
     "placeholders": {}
   },
-  "currency": "货币",
+  "currency": "валюта",
   "@currency": {
     "type": "text",
     "placeholders": {}
   },
-  "nonce": "杜撰",
+  "nonce": "данное время",
   "@nonce": {
     "type": "text",
     "placeholders": {}
   },
-  "amount": "量",
+  "amount": "Количество",
   "@amount": {
     "type": "text",
     "placeholders": {}
   },
-  "fee": "费用",
+  "fee": "плата",
   "@fee": {
     "type": "text",
     "placeholders": {}
   },
-  "payTo": "支付给",
+  "payTo": "Платить",
   "@payTo": {
     "type": "text",
     "placeholders": {}
   },
-  "to": "至",
+  "to": "к",
   "@to": {
     "type": "text",
     "placeholders": {}
   },
-  "from": "从",
+  "from": "От",
   "@from": {
     "type": "text",
     "placeholders": {}
   },
-  "memo": "备忘录",
+  "memo": "напоминание",
   "@memo": {
     "type": "text",
     "placeholders": {}
   },
-  "theme": "主题",
+  "theme": "тема",
   "@theme": {
     "type": "text",
     "placeholders": {}
   },
-  "url": "网址",
+  "url": "URL",
   "@url": {
     "type": "text",
     "placeholders": {}
   },
-  "password": "密码",
+  "password": "пароль",
   "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "version": "版",
+  "version": "Версия",
   "@version": {
     "type": "text",
     "placeholders": {}
   },
-  "language": "语言",
+  "language": "язык",
   "@language": {
     "type": "text",
     "placeholders": {}
   },
-  "previous": "以前",
+  "previous": "предыдущий",
   "@previous": {
     "type": "text",
     "placeholders": {}
   },
-  "next": "下一个",
+  "next": "следующий",
   "@next": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmations": "确认",
+  "confirmations": "Подтверждения",
   "@confirmations": {
     "type": "text",
     "placeholders": {}
   },
-  "earliestSeen": "最早见过",
+  "earliestSeen": "Самое раннее увиденное",
   "@earliestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "latestSeen": "最新见过",
+  "latestSeen": "Последнее увиденное",
   "@latestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "target": "目标",
+  "target": "цель",
   "@target": {
     "type": "text",
     "placeholders": {}
   },
-  "chainCode": "链码",
+  "chainCode": "Цепной код",
   "@chainCode": {
     "type": "text",
     "placeholders": {}
   },
-  "chainIndex": "连锁指数",
+  "chainIndex": "Индекс цепи",
   "@chainIndex": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhrase": "种子短语",
+  "seedPhrase": "Семенная фраза",
   "@seedPhrase": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKey": "私钥",
+  "privateKey": "Закрытый ключ",
   "@privateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "activeTransactions": "活跃的交易",
+  "activeTransactions": "Активные транзакции",
   "@activeTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "expired": "过期",
+  "expired": "Истекший",
   "@expired": {
     "type": "text",
     "placeholders": {}
   },
-  "expires": "过期",
+  "expires": "Истекает",
   "@expires": {
     "type": "text",
     "placeholders": {}
   },
-  "matured": "成熟",
+  "matured": "созревший",
   "@matured": {
     "type": "text",
     "placeholders": {}
   },
-  "matures": "成熟",
+  "matures": "Matures",
   "@matures": {
     "type": "text",
     "placeholders": {}
   },
-  "maturing": "成熟",
+  "maturing": "вызревание",
   "@maturing": {
     "type": "text",
     "placeholders": {}
   },
-  "maturingTransactions": "成熟的交易",
+  "maturingTransactions": "Сроки погашения",
   "@maturingTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "chainWork": "连锁工作",
+  "chainWork": "Цепная работа",
   "@chainWork": {
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "哈希列表根",
+  "hashListRoot": "Корень хэш-списка",
   "@hashListRoot": {
     "type": "text",
     "placeholders": {}
   },
-  "deltaTime": "达美时间",
+  "deltaTime": "Delta Time",
   "@deltaTime": {
     "type": "text",
     "placeholders": {}
   },
-  "deltaHashPower": "哈希权力",
+  "deltaHashPower": "Delta Hash Power",
   "@deltaHashPower": {
     "type": "text",
     "placeholders": {}
   },
-  "publicKeyList": "公钥列表",
+  "publicKeyList": "Список открытых ключей",
   "@publicKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKeyList": "私钥列表",
+  "privateKeyList": "Список закрытых ключей",
   "@privateKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "fromAddress": "来自： {address}",
+  "fromAddress": "От: {address}",
   "@fromAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "toAddress": "要： {address}",
+  "toAddress": "Кому: {address}",
   "@toAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "heightEquals": "身高= {@<a>} {height} {@</a>}",
+  "heightEquals": "высота = {@<a>} {height} {@</a>}",
   "@heightEquals": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "marketCap": "市值{@<a>}{cap}{@</a>}",
+  "marketCap": "Рыночная капитализация {@<a>} {cap} {@</a>}",
   "@marketCap": {
     "type": "text",
     "placeholders": {
       "cap": {}
     }
   },
-  "pending": "有待",
+  "pending": "в ожидании",
   "@pending": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidUrl": "无效的网址。",
+  "invalidUrl": "Неверная ссылка.",
   "@invalidUrl": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidJson": "无效的JSON",
+  "invalidJson": "Неверный JSON.",
   "@invalidJson": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPrivateKey": "私钥无效",
+  "invalidPrivateKey": "Неверный закрытый ключ.",
   "@invalidPrivateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPublicKey": "公钥无效",
+  "invalidPublicKey": "Неверный открытый ключ.",
   "@invalidPublicKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidCurrency": "货币无效",
+  "invalidCurrency": "Неверная валюта",
   "@invalidCurrency": {
     "type": "text",
     "placeholders": {}
   },
-  "maxMemoLength": "最大备忘录长度为100",
+  "maxMemoLength": "Максимальная длина заметки 100",
   "@maxMemoLength": {
     "type": "text",
     "placeholders": {}
   },
-  "nameMustBeUnique": "名称必须是唯一的。",
+  "nameMustBeUnique": "Имя должно быть уникальным.",
   "@nameMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordCantBeEmpty": "密码不能为空。",
+  "passwordCantBeEmpty": "Пароль не может быть пустым.",
   "@passwordCantBeEmpty": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordsDontMatch": "密码不匹配。",
+  "passwordsDontMatch": "Пароли не совпадают.",
   "@passwordsDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmPassword": "确认密码",
+  "confirmPassword": "Подтвердите Пароль",
   "@confirmPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownAddress": "地址不明",
+  "unknownAddress": "Неизвестный адрес",
   "@unknownAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidAddress": "无效地址",
+  "invalidAddress": "Неверный адрес",
   "@invalidAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidMnemonic": "无效的助记符",
+  "invalidMnemonic": "Неверная мнемоника",
   "@invalidMnemonic": {
     "type": "text",
     "placeholders": {}
   },
-  "valueMustBePositive": "价值必须是积极的",
+  "valueMustBePositive": "Значение должно быть положительным",
   "@valueMustBePositive": {
     "type": "text",
     "placeholders": {}
   },
-  "insufficientFunds": "不充足的资金",
+  "insufficientFunds": "Недостаточно средств",
   "@insufficientFunds": {
     "type": "text",
     "placeholders": {}
   },
-  "networkOffline": "网络离线",
+  "networkOffline": "Сеть оффлайн",
   "@networkOffline": {
     "type": "text",
     "placeholders": {}
   },
-  "noPublicKeys": "没有公钥",
+  "noPublicKeys": "Нет открытых ключей",
   "@noPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "noPrivateKeys": "没有私钥",
+  "noPrivateKeys": "Нет закрытых ключей",
   "@noPrivateKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownQuery": "未知查询",
+  "unknownQuery": "Неизвестный запрос",
   "@unknownQuery": {
     "type": "text",
     "placeholders": {}
   },
-  "thanksForDonating": "对吧！ 谢谢CRUZ社区！",
+  "thanksForDonating": "Право на! Спасибо CRUZ сообществу!",
   "@thanksForDonating": {
     "type": "text",
     "placeholders": {}
   },
-  "minFee": "最低费用为{fee}",
+  "minFee": "Минимальная плата {fee}",
   "@minFee": {
     "type": "text",
     "placeholders": {
       "fee": {}
     }
   },
-  "minAmount": "最低金额为{amount}",
+  "minAmount": "Минимальная сумма {amount}",
   "@minAmount": {
     "type": "text",
     "placeholders": {
       "amount": {}
     }
   },
-  "defaultWalletName": "我的钱包",
+  "defaultWalletName": "Мой бумажник",
   "@defaultWalletName": {
     "type": "text",
     "placeholders": {}
   },
-  "debugLog": "调试日志",
+  "debugLog": "Журнал отладки",
   "@debugLog": {
     "type": "text",
     "placeholders": {}
   },
-  "requireSSLCert": "需要SSL证书",
+  "requireSSLCert": "Требовать SSL сертификат",
   "@requireSSLCert": {
     "type": "text",
     "placeholders": {}
   },
-  "showWalletNameInTitle": "在标题中显示钱包名称",
+  "showWalletNameInTitle": "Показать название кошелька в заголовке",
   "@showWalletNameInTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyKeyPairsEveryLoad": "验证每次加载的密钥对",
+  "verifyKeyPairsEveryLoad": "Проверяйте пары ключей при каждой загрузке",
   "@verifyKeyPairsEveryLoad": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestBeforeCreatingWallets": "创建钱包之前的单元测试",
+  "unitTestBeforeCreatingWallets": "Юнит тест перед созданием кошельков",
   "@unitTestBeforeCreatingWallets": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestFailure": "单元测试失败",
+  "unitTestFailure": "Ошибка модульного теста",
   "@unitTestFailure": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyAddressFailed": "验证失败： {addressText}",
+  "verifyAddressFailed": "не удалось проверить: {addressText}",
   "@verifyAddressFailed": {
     "type": "text",
     "placeholders": {
       "addressText": {}
     }
   },
-  "verifyWalletResults": "已验证的{goodAddresses} / {totalAddresses}地址和{goodTests} / {totalTests}测试成功",
+  "verifyWalletResults": "Проверенные {goodAddresses} / {totalAddresses} и {goodTests} / {totalTests} успешно",
   "@verifyWalletResults": {
     "type": "text",
     "placeholders": {
@@ -894,56 +894,56 @@
       "value": {}
     }
   },
-  "kiloQuantity": "{kiloValue}K",
+  "kiloQuantity": "{kiloValue} K",
   "@kiloQuantity": {
     "type": "text",
     "placeholders": {
       "kiloValue": {}
     }
   },
-  "megaQuantity": "{megaValue}M",
+  "megaQuantity": "{megaValue} M",
   "@megaQuantity": {
     "type": "text",
     "placeholders": {
       "megaValue": {}
     }
   },
-  "gigaQuantity": "{gigaValue}B",
+  "gigaQuantity": "{gigaValue} B",
   "@gigaQuantity": {
     "type": "text",
     "placeholders": {
       "gigaValue": {}
     }
   },
-  "teraQuantity": "{teraValue}T",
+  "teraQuantity": "{teraValue} T",
   "@teraQuantity": {
     "type": "text",
     "placeholders": {
       "teraValue": {}
     }
   },
-  "secondsDuration": "{seconds, plural, =1 {{seconds}秒} other {{seconds}秒}}",
+  "secondsDuration": "{seconds, plural, =1 {{seconds} секунд} other {{seconds} секунд}}",
   "@secondsDuration": {
     "type": "text",
     "placeholders": {
       "seconds": {}
     }
   },
-  "minutesDuration": "{minutes, plural, =1 {{minutes}分钟} other {{minutes}分钟}}",
+  "minutesDuration": "{minutes, plural, =1 {{minutes} минуты} other {{minutes} минуты}}",
   "@minutesDuration": {
     "type": "text",
     "placeholders": {
       "minutes": {}
     }
   },
-  "hoursDuration": "{hours, plural, =1 {小时} other {{hours}小时}}",
+  "hoursDuration": "{hours, plural, =1 {час} other {{hours} часов}}",
   "@hoursDuration": {
     "type": "text",
     "placeholders": {
       "hours": {}
     }
   },
-  "daysDuration": "{days, plural, =1 {天} other {{days}天}}",
+  "daysDuration": "{days, plural, =1 {день} other {{days} дней}}",
   "@daysDuration": {
     "type": "text",
     "placeholders": {

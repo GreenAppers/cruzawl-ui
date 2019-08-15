@@ -182,6 +182,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidCurrency" : MessageLookupByLibrary.simpleMessage("Invalid currency"),
     "invalidJson" : MessageLookupByLibrary.simpleMessage("Invalid JSON."),
     "invalidMnemonic" : MessageLookupByLibrary.simpleMessage("Invalid mnemonic"),
+    "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("Invalid private key."),
+    "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("Invalid public key."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Invalid URL."),
     "kiloHashPerSecond" : m14,
     "kiloQuantity" : m15,

@@ -304,6 +304,8 @@ class Localization {
   String get pending => Intl.message('Pending', name: 'pending');
   String get invalidUrl => Intl.message('Invalid URL.', name: 'invalidUrl');
   String get invalidJson => Intl.message('Invalid JSON.', name: 'invalidJson');
+  String get invalidPrivateKey => Intl.message('Invalid private key.', name: 'invalidPrivateKey');
+  String get invalidPublicKey => Intl.message('Invalid public key.', name: 'invalidPublicKey');
   String get invalidCurrency =>
       Intl.message('Invalid currency', name: 'invalidCurrency');
   String get maxMemoLength =>
@@ -481,12 +483,14 @@ class Localization {
 
   static final supportedLocales = <Locale>[
     const Locale('en'),
+    const Locale('ru'),
     const Locale('zh'),
   ];
 
   /// Values must have one-to-one correspondence with [supportedLocales]
   static final supportedLanguages = <String>[
     'English',
+    'Русский',
     '中文',
   ];
 }

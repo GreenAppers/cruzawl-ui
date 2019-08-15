@@ -138,12 +138,17 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   if (cur == null) return locale.invalidCurrency;
                   try {
                     List<PublicAddress> keys = value
-                        .split('\\s+')
+                        .trim()
+                        .split(RegExp(r'\s+'))
                         .map((key) => cur.fromPublicAddressJson(key))
                         .toList();
                     if (keys.length <= 0) return locale.noPublicKeys;
+                    for (PublicAddress key in keys) {
+                      if (key == null) return locale.invalidPublicKey;
+                    }
                   } catch (error) {
-                    return '$error';
+                    debugPrint('${locale.invalidPublicKey}: $error');
+                    return locale.invalidPublicKey;
                   }
                 },
                 onSaved: (value) {
@@ -151,7 +156,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   publicKeyList = cur == null
                       ? null
                       : value
-                          .split('\\s+')
+                          .trim()
+                          .split(RegExp(r'\s+'))
                           .map((key) => cur.fromPublicAddressJson(key))
                           .toList();
                 })),
@@ -175,15 +181,20 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   if (cur == null) return locale.invalidCurrency;
                   try {
                     List<PrivateKey> keys = value
-                        .split('\\s+')
+                        .trim()
+                        .split(RegExp(r'\s+'))
                         .map((key) => cur.fromPrivateKeyJson(key))
                         .toList();
                     if (keys.length <= 0) return locale.noPrivateKeys;
-                    for (PrivateKey key in keys)
-                      if (!cur.fromPrivateKey(key).verify())
+                    for (PrivateKey key in keys) {
+                      if (key == null) return locale.invalidPrivateKey;
+                      if (!cur.fromPrivateKey(key).verify()) {
                         return locale.verifyAddressFailed(key.toJson());
+                      }
+                    }
                   } catch (error) {
-                    return '$error';
+                    debugPrint('${locale.invalidPrivateKey}: $error');
+                    return locale.invalidPrivateKey;
                   }
                 },
                 onSaved: (value) {
@@ -191,7 +202,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   keyList = cur == null
                       ? null
                       : value
-                          .split('\\s+')
+                          .trim()
+                          .split(RegExp(r'\s+'))
                           .map((key) => cur.fromPrivateKeyJson(key))
                           .toList();
                 })),
