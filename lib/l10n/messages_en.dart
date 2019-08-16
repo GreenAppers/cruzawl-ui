@@ -96,9 +96,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m37(totalBlocks, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>} in last {@<a2>}${duration}{@</a2>}";
 
-  static m38(addressText) => "verify failed: ${addressText}";
+  static m38(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>}, ${totalTransactions} transactions in last {@<a2>}${duration}{@</a2>}";
 
-  static m39(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
+  static m39(addressText) => "verify failed: ${addressText}";
+
+  static m40(goodAddresses, totalAddresses, goodTests, totalTests) => "Verified ${goodAddresses}/${totalAddresses} addresses and ${goodTests}/${totalTests} tests succeeded";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -264,6 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "to" : MessageLookupByLibrary.simpleMessage("To"),
     "toAddress" : m36,
     "totalBlocksInLastDuration" : m37,
+    "totalBlocksTransactionsInLastDuration" : m38,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transaction"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transactions"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Unit test before creating wallets"),
@@ -276,9 +279,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Value must be positive"),
     "verify" : MessageLookupByLibrary.simpleMessage("Verify"),
-    "verifyAddressFailed" : m38,
+    "verifyAddressFailed" : m39,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Verify key pairs every load"),
-    "verifyWalletResults" : m39,
+    "verifyWalletResults" : m40,
     "verifying" : MessageLookupByLibrary.simpleMessage("Verifying..."),
     "version" : MessageLookupByLibrary.simpleMessage("Version"),
     "warning" : MessageLookupByLibrary.simpleMessage("Warning"),

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-08-15T15:36:45.054966",
+  "@@last_modified": "2019-08-16T16:22:50.562497",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -461,6 +461,15 @@
     "type": "text",
     "placeholders": {
       "totalBlocks": {},
+      "duration": {}
+    }
+  },
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}blocks{@</a1>}, {totalTransactions} transactions in last {@<a2>}{duration}{@</a2>}",
+  "@totalBlocksTransactionsInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "totalTransactions": {},
       "duration": {}
     }
   },

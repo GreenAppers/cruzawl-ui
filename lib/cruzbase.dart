@@ -9,6 +9,7 @@ import 'package:flutter_web/material.dart'
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:collection/collection.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:tuple/tuple.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
@@ -86,9 +87,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     TimeSeriesBlocks prevPoint = data.find(point);
     if (prevPoint != null) {
       prevPoint.block.add(header);
+      prevPoint.transactions += header.transactionCount;
       dataMaxBucketBlocks = max(dataMaxBucketBlocks, prevPoint.blocks);
     } else {
       point.block.add(header);
+      point.transactions += header.transactionCount;
       data.add(point);
       dataMaxBucketBlocks = max(dataMaxBucketBlocks, point.blocks);
     }
@@ -220,9 +223,13 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         lowerBound(data.data, end, compare: TimeSeriesBlocks.compareTime);
     SortedListSet<TimeSeriesBlocks> window = SortedListSet<TimeSeriesBlocks>(
         TimeSeriesBlocks.compareTime, data.data.sublist(startIndex, endIndex));
-    Point<num> visitor = window.data.fold(Point<num>(0, 0),
-        (p, c) => Point<num>(p.x + c.blocks, max(p.y, c.block.first.height)));
-    int totalBlocks = visitor.x, maxHeight = visitor.y;
+    Tuple3<int, int, int> visitor = window.data.fold(
+        Tuple3<int, int, int>(0, 0, 0),
+        (p, c) => Tuple3<int, int, int>(p.item1 + c.blocks,
+            p.item2 + c.transactions, max(p.item3, c.block.first.height)));
+    int totalBlocks = visitor.item1,
+        totalTransactions = visitor.item2,
+        maxHeight = visitor.item3;
     Duration barDuration = getBucketDuration(bucketDuration);
     BlockHeader first = window.isEmpty ? null : window.last.block.last;
     BlockHeader last = window.isEmpty ? null : window.first.block.first;
@@ -277,16 +284,16 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
             });
           },
         ),
-        titleWidget: buildTitle(
-            context, totalBlocks, first, last, maxHeight, dataEndHeight, price),
+        titleWidget: buildTitle(context, totalBlocks, totalTransactions, first,
+            last, maxHeight, dataEndHeight, price),
         bottomNavigationBar: widget.wideStyle
             ? null
-            : buildBottomBar(
-                context, totalBlocks, maxHeight, dataEndHeight, price));
+            : buildBottomBar(context, totalBlocks, totalTransactions, maxHeight,
+                dataEndHeight, price));
   }
 
-  Widget buildBottomBar(BuildContext context, int totalBlocks, int maxHeight,
-      int tipHeight, num price) {
+  Widget buildBottomBar(BuildContext context, int totalBlocks,
+      int totalTransactions, int maxHeight, int tipHeight, num price) {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
@@ -294,7 +301,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     final TextStyle linkStyle = appState.theme.titleStyle
         .copyWith(decoration: TextDecoration.underline);
 
-    List<Widget> totalBlocksInLast = buildTotalBlocksInLast(totalBlocks, locale,
+    List<Widget> totalBlocksInLast = buildTotalBlocksInLast(
+        totalBlocks, totalTransactions, locale,
         titleStyle: titleStyle, linkStyle: linkStyle);
     List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
         titleStyle: titleStyle,
@@ -308,22 +316,36 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       color: Color.alphaBlend(theme.colorScheme.onSurface.withOpacity(0.80),
           theme.colorScheme.surface),
       child: Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
-        children: marketCap == null
-            ? locale.listOfTwoWidgets(totalBlocksInLast, heightEquals,
-                style: titleStyle)
-            : locale.listOfThreeWidgets(
-                totalBlocksInLast, heightEquals, marketCap,
-                style: titleStyle),
+          child: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: totalBlocksInLast),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: marketCap == null
+                  ? heightEquals
+                  : locale.listOfTwoWidgets(heightEquals, marketCap,
+                      style: titleStyle)),
+        ],
       )),
     );
   }
 
-  Widget buildTitle(BuildContext context, int totalBlocks, BlockHeader first,
-      BlockHeader last, int maxHeight, int tipHeight, num price) {
+  Widget buildTitle(
+      BuildContext context,
+      int totalBlocks,
+      int totalTransactions,
+      BlockHeader first,
+      BlockHeader last,
+      int maxHeight,
+      int tipHeight,
+      num price) {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
@@ -333,7 +355,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
     List<Widget> hashRate =
         buildHashRate(first, last, locale, titleStyle: titleStyle);
-    List<Widget> totalBlocksInLast = buildTotalBlocksInLast(totalBlocks, locale,
+    List<Widget> totalBlocksInLast = buildTotalBlocksInLast(
+        totalBlocks, totalTransactions, locale,
         titleStyle: titleStyle, linkStyle: linkStyle);
     List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
         titleStyle: titleStyle,
@@ -372,11 +395,13 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     ];
   }
 
-  List<Widget> buildTotalBlocksInLast(int totalBlocks, Localization locale,
+  List<Widget> buildTotalBlocksInLast(
+      int totalBlocks, int totalTransactions, Localization locale,
       {TextStyle titleStyle, TextStyle linkStyle}) {
     final String duration = locale.formatDuration(windowDuration);
     return buildLocalizationMarkupWidgets(
-      locale.totalBlocksInLastDuration(totalBlocks, duration),
+      locale.totalBlocksTransactionsInLastDuration(
+          totalBlocks, totalTransactions, duration),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
         'a1': LocalizationMarkup(
@@ -434,6 +459,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 /// Element
 class TimeSeriesBlocks {
   DateTime time;
+  int transactions = 0;
   SortedListSet<BlockHeader> block = SortedListSet<BlockHeader>(
       BlockHeader.compareHeight, List<BlockHeader>());
   TimeSeriesBlocks(this.time);

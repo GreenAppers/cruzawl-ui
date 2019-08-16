@@ -96,9 +96,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m37(totalBlocks, duration) => "${totalBlocks} {@<a1>}阻止{@</a1>} {@<a2>} ${duration} {@</a2>}";
 
-  static m38(addressText) => "验证失败： ${addressText}";
+  static m38(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}阻止{@</a1>}, ${totalTransactions}上次 {@<a2>}${duration}{@</a2>}的交易";
 
-  static m39(goodAddresses, totalAddresses, goodTests, totalTests) => "已验证的${goodAddresses} / ${totalAddresses}地址和${goodTests} / ${totalTests}测试成功";
+  static m39(addressText) => "验证失败： ${addressText}";
+
+  static m40(goodAddresses, totalAddresses, goodTests, totalTests) => "已验证的${goodAddresses} / ${totalAddresses}地址和${goodTests} / ${totalTests}测试成功";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -264,6 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "to" : MessageLookupByLibrary.simpleMessage("至"),
     "toAddress" : m36,
     "totalBlocksInLastDuration" : m37,
+    "totalBlocksTransactionsInLastDuration" : m38,
     "transaction" : MessageLookupByLibrary.simpleMessage("交易"),
     "transactions" : MessageLookupByLibrary.simpleMessage("交易"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("创建钱包之前的单元测试"),
@@ -276,9 +279,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("网址"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("价值必须是积极的"),
     "verify" : MessageLookupByLibrary.simpleMessage("校验"),
-    "verifyAddressFailed" : m38,
+    "verifyAddressFailed" : m39,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("验证每次加载的密钥对"),
-    "verifyWalletResults" : m39,
+    "verifyWalletResults" : m40,
     "verifying" : MessageLookupByLibrary.simpleMessage("验证中..."),
     "version" : MessageLookupByLibrary.simpleMessage("版"),
     "warning" : MessageLookupByLibrary.simpleMessage("警告"),

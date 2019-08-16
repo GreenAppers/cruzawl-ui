@@ -463,6 +463,15 @@
       "duration": {}
     }
   },
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}阻止{@</a1>}, {totalTransactions}上次 {@<a2>}{duration}{@</a2>}的交易",
+  "@totalBlocksTransactionsInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "totalTransactions": {},
+      "duration": {}
+    }
+  },
   "id": "识别码",
   "@id": {
     "type": "text",

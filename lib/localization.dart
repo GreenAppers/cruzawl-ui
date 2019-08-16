@@ -236,6 +236,12 @@ class Localization {
           '$totalBlocks {@<a1>}blocks{@</a1>} in last {@<a2>}$duration{@</a2>}',
           name: 'totalBlocksInLastDuration',
           args: [totalBlocks, duration]);
+  String totalBlocksTransactionsInLastDuration(
+          int totalBlocks, int totalTransactions, String duration) =>
+      Intl.message(
+          '$totalBlocks {@<a1>}blocks{@</a1>}, $totalTransactions transactions in last {@<a2>}$duration{@</a2>}',
+          name: 'totalBlocksTransactionsInLastDuration',
+          args: [totalBlocks, totalTransactions, duration]);
 
   /// Fields
   String get id => Intl.message('Id', name: 'id');
@@ -304,8 +310,10 @@ class Localization {
   String get pending => Intl.message('Pending', name: 'pending');
   String get invalidUrl => Intl.message('Invalid URL.', name: 'invalidUrl');
   String get invalidJson => Intl.message('Invalid JSON.', name: 'invalidJson');
-  String get invalidPrivateKey => Intl.message('Invalid private key.', name: 'invalidPrivateKey');
-  String get invalidPublicKey => Intl.message('Invalid public key.', name: 'invalidPublicKey');
+  String get invalidPrivateKey =>
+      Intl.message('Invalid private key.', name: 'invalidPrivateKey');
+  String get invalidPublicKey =>
+      Intl.message('Invalid public key.', name: 'invalidPublicKey');
   String get invalidCurrency =>
       Intl.message('Invalid currency', name: 'invalidCurrency');
   String get maxMemoLength =>
@@ -501,7 +509,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'zh'].contains(locale.languageCode);
+    return ['en', 'zh', 'ru'].contains(locale.languageCode);
   }
 
   @override

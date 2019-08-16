@@ -463,6 +463,15 @@
       "duration": {}
     }
   },
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}блоков{@</a1>}, {totalTransactions} транзакции в последних {@<a2>}{duration}{@</a2>}",
+  "@totalBlocksTransactionsInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "totalTransactions": {},
+      "duration": {}
+    }
+  },
   "id": "Я бы",
   "@id": {
     "type": "text",
