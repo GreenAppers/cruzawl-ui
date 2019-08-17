@@ -8,6 +8,7 @@ import 'package:flutter_web/material.dart'
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:collection/collection.dart';
+import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tuple/tuple.dart';
 
@@ -196,6 +197,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
     bool loading = data == null || data.isEmpty;
     load();
+    appState.setLocalCurrency();
     appState.exchangeRates.checkForUpdate();
 
     if (loading)
@@ -208,7 +210,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         if (mounted) setState(() => refresh = null);
       });
 
-    num price = appState.exchangeRates.rateViaBTC('CRUZ', 'USD');
+    num price = appState.exchangeRates
+        .rateViaBTC('CRUZ', appState.preferences.localCurrency);
 
     /// truncateTime() makes scrolling jerky but prevents, I think,
     /// a charts bug where the bar widths wildly vary.
@@ -308,7 +311,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         titleStyle: titleStyle,
         linkStyle: linkStyle,
         onTap: () => appState.navigateToHeight(context, maxHeight));
-    List<Widget> marketCap = buildMarketCap(tipHeight, price, locale,
+    List<Widget> marketCap = buildMarketCap(
+        tipHeight, price, appState.preferences.localCurrency, locale,
         titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
 
     return Container(
@@ -362,7 +366,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         titleStyle: titleStyle,
         linkStyle: linkStyle,
         onTap: () => appState.navigateToHeight(context, maxHeight));
-    List<Widget> marketCap = buildMarketCap(tipHeight, price, locale,
+    List<Widget> marketCap = buildMarketCap(
+        tipHeight, price, appState.preferences.localCurrency, locale,
         titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
 
     return Row(
@@ -438,12 +443,14 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         },
       );
 
-  List<Widget> buildMarketCap(int tipHeight, num price, Localization locale,
+  List<Widget> buildMarketCap(
+      int tipHeight, num price, String currency, Localization locale,
       {TextStyle titleStyle, VoidCallback onTap}) {
     int cap = (widget.currency.supply(tipHeight) * price).round();
     return cap > 0
         ? buildLocalizationMarkupWidgets(
-            locale.marketCap('\$' + locale.formatQuantity(cap)),
+            locale.marketCap(
+                NumberFormat.compactSimpleCurrency(name: currency).format(cap)),
             style: titleStyle,
             tags: <String, LocalizationMarkup>{
               'a': LocalizationMarkup(

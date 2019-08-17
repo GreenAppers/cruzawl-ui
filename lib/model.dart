@@ -73,7 +73,7 @@ class Cruzawl extends Model {
       this.databaseFactory, this.preferences, this.dataDir, this.fileSystem,
       {this.packageInfo, this.barcodeScan, this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
-    exchangeRates = ExchangeRates(debugPrint: print);
+    exchangeRates = ExchangeRates(preferences, debugPrint: print);
     exchangeRates.checkForUpdate();
     setTheme();
   }
@@ -82,6 +82,9 @@ class Cruzawl extends Model {
     stateChangeCb();
     notifyListeners();
   }
+
+  void setLocalCurrency() =>
+    defaultUpdateBtcToCurrency(exchangeRates);
 
   void setTheme() {
     theme = themes[preferences.theme] ?? themes['teal'];

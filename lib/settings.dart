@@ -6,6 +6,8 @@ import 'package:flutter_web/material.dart'
 
 import 'package:scoped_model/scoped_model.dart';
 
+import 'package:cruzawl/exchange.dart';
+
 import 'localization.dart';
 import 'model.dart';
 import 'ui.dart';
@@ -64,6 +66,18 @@ class _CruzallSettingsState extends State<CruzallSettings> {
             appState.setState(() => appState.setTheme());
           },
           items: buildDropdownMenuItem(themes.keys.toList()),
+        ),
+      ),
+      ListTile(
+        leading: Icon(Icons.attach_money),
+        title: Text(locale.currency),
+        trailing: DropdownButton<String>(
+          value: appState.preferences.localCurrency,
+          onChanged: (String val) {
+            appState.preferences.localCurrency = val;
+            appState.setState(() => appState.setLocalCurrency());
+          },
+          items: buildDropdownMenuItem(coinbaseCurrencies),
         ),
       ),
     ];
