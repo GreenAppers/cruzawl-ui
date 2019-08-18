@@ -25,7 +25,6 @@ class WalletBalanceWidget extends StatelessWidget {
     final int numTransactions = wallet.transactions.data.length;
     final bool hasPeer =
         currency.network != null ? currency.network.hasPeer : false;
-    final TextStyle linkStyle = TextStyle(color: appState.theme.linkColor);
 
     final List<Widget> ret = <Widget>[
       Container(
@@ -40,7 +39,7 @@ class WalletBalanceWidget extends StatelessWidget {
                   style: appState.theme.labelStyle,
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
-                      style: linkStyle,
+                      style: appState.theme.linkStyle,
                       onTap: () =>
                           appState.navigateToAddressText(context, 'cruzbase'),
                     ),

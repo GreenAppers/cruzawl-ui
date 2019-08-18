@@ -896,41 +896,6 @@
       "totalTests": {}
     }
   },
-  "quantity": "{value}",
-  "@quantity": {
-    "type": "text",
-    "placeholders": {
-      "value": {}
-    }
-  },
-  "kiloQuantity": "{kiloValue}K",
-  "@kiloQuantity": {
-    "type": "text",
-    "placeholders": {
-      "kiloValue": {}
-    }
-  },
-  "megaQuantity": "{megaValue}M",
-  "@megaQuantity": {
-    "type": "text",
-    "placeholders": {
-      "megaValue": {}
-    }
-  },
-  "gigaQuantity": "{gigaValue}B",
-  "@gigaQuantity": {
-    "type": "text",
-    "placeholders": {
-      "gigaValue": {}
-    }
-  },
-  "teraQuantity": "{teraValue}T",
-  "@teraQuantity": {
-    "type": "text",
-    "placeholders": {
-      "teraValue": {}
-    }
-  },
   "secondsDuration": "{seconds, plural, =1 {{seconds}秒} other {{seconds}秒}}",
   "@secondsDuration": {
     "type": "text",

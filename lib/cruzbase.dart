@@ -118,7 +118,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     windowEnd = windowStart.add(windowDuration);
   }
 
-  void load() async {
+  void load(Cruzawl appState) async {
     if (loading || !widget.currency.network.hasPeer) return;
     Peer peer = await widget.currency.network.getPeer();
     loading = true;
@@ -127,6 +127,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
     if (initialLoad) {
       debugPrint('cruzbase initial load');
+      appState.setLocalCurrency();
       dataMaxBucketBlocks = 0;
       dataInit = dataStart = dataEnd = DateTime.now();
       dataStartHeight = dataEndHeight = peer.tip.height;
@@ -196,8 +197,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     final ThemeData theme = Theme.of(context);
 
     bool loading = data == null || data.isEmpty;
-    load();
-    appState.setLocalCurrency();
+    load(appState);
     appState.exchangeRates.checkForUpdate();
 
     if (loading)

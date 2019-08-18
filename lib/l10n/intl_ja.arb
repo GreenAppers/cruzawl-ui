@@ -1,35 +1,35 @@
 {
-  "localeLanguage": "Русский",
+  "localeLanguage": "日本語",
   "@localeLanguage": {
     "type": "text",
     "placeholders": {}
   },
-  "title": "Cruzall",
+  "title": "クルザール",
   "@title": {
     "type": "text",
     "placeholders": {}
   },
-  "unlockTitle": "Разблокировать крузалл",
+  "unlockTitle": "Cruzallのロックを解除",
   "@unlockTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeTitle": "Добро пожаловать в Крузалл",
+  "welcomeTitle": "クルザールへようこそ",
   "@welcomeTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeDesc": "Для начала создайте кошелек:",
+  "welcomeDesc": "開始するには、ウォレットを作成します。",
   "@welcomeDesc": {
     "type": "text",
     "placeholders": {}
   },
-  "currentBalanceIs": "Ваш текущий баланс:",
+  "currentBalanceIs": "現在の残高は次のとおりです。",
   "@currentBalanceIs": {
     "type": "text",
     "placeholders": {}
   },
-  "recentHistory": "Недавняя история",
+  "recentHistory": "近年の歴史",
   "@recentHistory": {
     "type": "text",
     "placeholders": {}
@@ -42,215 +42,215 @@
       "balance": {}
     }
   },
-  "balanceAtHeightIs": "Ваш баланс на высоте блока {@<a>} {height} {@</a>} :",
+  "balanceAtHeightIs": "ブロックの高さ{@<a>} {height} {@</a>}での残高は次のとおりです。",
   "@balanceAtHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "balanceMaturingByHeightIs": "Ваш баланс созревания по высоте {height} является:",
+  "balanceMaturingByHeightIs": "高さ{height}成熟するバランスは次のとおりです。",
   "@balanceMaturingByHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "insecureDeviceWarning": "Предупреждение о небезопасном устройстве",
+  "insecureDeviceWarning": "安全でないデバイスの警告",
   "@insecureDeviceWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "insecureDeviceWarningDescription": "Обнаружено рутированное или взломанное устройство. Дальнейшее использование не рекомендуется.",
+  "insecureDeviceWarningDescription": "根ざしたデバイスまたはジェイルブレイクされたデバイスが検出されました。それ以上の使用は推奨されません。",
   "@insecureDeviceWarningDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhraseWarning": "Это семя позволяет любому, кто его знает, потратить все средства с вашего кошелька. Запиши это. Держать его в безопасности.",
+  "seedPhraseWarning": "このシードにより、それを知っている誰でもあなたの財布からのすべての資金を使うことができます。それを書き留め。安全保持。",
   "@seedPhraseWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "backupKeysWarning": "Ваши ключи должны быть сохранены на внешнем хранилище.",
+  "backupKeysWarning": "キーは外部ストレージにバックアップする必要があります。",
   "@backupKeysWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "creatingUsingAlgorithm": "Создание ... ( {algorithm} )",
+  "creatingUsingAlgorithm": "作成しています...（ {algorithm} ）",
   "@creatingUsingAlgorithm": {
     "type": "text",
     "placeholders": {
       "algorithm": {}
     }
   },
-  "addWallet": "Добавить кошелек",
+  "addWallet": "ウォレットを追加",
   "@addWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWallet": "HD кошелек",
+  "hdWallet": "HDウォレット",
   "@hdWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWalletAlgorithm": "PBKDF: 2048 итераций",
+  "hdWalletAlgorithm": "PBKDF：2048反復",
   "@hdWalletAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "watchOnlyWallet": "Часы только кошелек",
+  "watchOnlyWallet": "時計専用ウォレット",
   "@watchOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "generateNewAddress": "Создать новый адрес",
+  "generateNewAddress": "新しい住所を生成",
   "@generateNewAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWallet": "Удалить кошелек",
+  "deleteWallet": "ウォレットを削除",
   "@deleteWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteThisWallet": "Удалить этот кошелек",
+  "deleteThisWallet": "このウォレットを削除",
   "@deleteThisWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "cantDeleteOnlyWallet": "Не могу удалить единственный кошелек.",
+  "cantDeleteOnlyWallet": "唯一のウォレットを削除することはできません。",
   "@cantDeleteOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWalletDescription": "Как только вы удалите кошелек, пути назад уже не будет. Пожалуйста, будьте уверены.",
+  "deleteWalletDescription": "ウォレットを削除すると、元に戻すことはできません。確実にしてください。",
   "@deleteWalletDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "cruzTicker": "CRUZ",
+  "cruzTicker": "クルス",
   "@cruzTicker": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateReserve": "резерв",
+  "addressStateReserve": "予備",
   "@addressStateReserve": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateOpen": "открыть",
+  "addressStateOpen": "開いた",
   "@addressStateOpen": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateUsed": "используемый",
+  "addressStateUsed": "中古",
   "@addressStateUsed": {
     "type": "text",
     "placeholders": {}
   },
-  "ok": "Хорошо",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "hide": "Спрятать",
+  "hide": "隠す",
   "@hide": {
     "type": "text",
     "placeholders": {}
   },
-  "show": "Шоу",
+  "show": "ショー",
   "@show": {
     "type": "text",
     "placeholders": {}
   },
-  "copy": "копия",
+  "copy": "コピー",
   "@copy": {
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "отменить",
+  "cancel": "キャンセル",
   "@cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "delete": "удалять",
+  "delete": "削除する",
   "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "create": "Создайте",
+  "create": "作成する",
   "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "ignore": "игнорировать",
+  "ignore": "無視する",
   "@ignore": {
     "type": "text",
     "placeholders": {}
   },
-  "unlock": "отпереть",
+  "unlock": "ロック解除",
   "@unlock": {
     "type": "text",
     "placeholders": {}
   },
-  "encrypt": "шифровать",
+  "encrypt": "暗号化",
   "@encrypt": {
     "type": "text",
     "placeholders": {}
   },
-  "verify": "проверить",
+  "verify": "確認する",
   "@verify": {
     "type": "text",
     "placeholders": {}
   },
-  "verifying": "Проверка ...",
+  "verifying": "確認しています...",
   "@verifying": {
     "type": "text",
     "placeholders": {}
   },
-  "send": "послать",
+  "send": "送る",
   "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "sending": "Посылка ...",
+  "sending": "送信...",
   "@sending": {
     "type": "text",
     "placeholders": {}
   },
-  "sendFailed": "Не удалось отправить",
+  "sendFailed": "送信に失敗しました",
   "@sendFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "loading": "Loading ...",
+  "loading": "読み込み中...",
   "@loading": {
     "type": "text",
     "placeholders": {}
   },
-  "creating": "Создание ...",
+  "creating": "作成...",
   "@creating": {
     "type": "text",
     "placeholders": {}
   },
-  "copied": "Скопировано.",
+  "copied": "コピーしました。",
   "@copied": {
     "type": "text",
     "placeholders": {}
   },
-  "copyPublicKeys": "Копировать открытые ключи",
+  "copyPublicKeys": "公開鍵をコピーする",
   "@copyPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "sentTransactionId": "Отправлено {transactionId}",
+  "sentTransactionId": "{transactionId}送信しました",
   "@sentTransactionId": {
     "type": "text",
     "placeholders": {
       "transactionId": {}
     }
   },
-  "listOfTwo": "{item1} , {item2}",
+  "listOfTwo": "{item1} 、 {item2}",
   "@listOfTwo": {
     "type": "text",
     "placeholders": {
@@ -258,7 +258,7 @@
       "item2": {}
     }
   },
-  "listOfThree": "{item1} , {item2} , {item3}",
+  "listOfThree": "{item1} 、 {item2} 、 {item3}",
   "@listOfThree": {
     "type": "text",
     "placeholders": {
@@ -267,7 +267,7 @@
       "item3": {}
     }
   },
-  "listOfFour": "{item1} , {item2} , {item3} , {item4}",
+  "listOfFour": "{item1} 、 {item2} 、 {item3} 、 {item4}",
   "@listOfFour": {
     "type": "text",
     "placeholders": {
@@ -284,7 +284,7 @@
       "item": {}
     }
   },
-  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} , {@<a2>} {item2} {@</a2>} ]",
+  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} 、 {@<a2>} {item2} {@</a2>} ]",
   "@menuOfTwo": {
     "type": "text",
     "placeholders": {
@@ -292,170 +292,170 @@
       "item2": {}
     }
   },
-  "account": "учетная запись",
+  "account": "アカウント",
   "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "accounts": "Счета",
+  "accounts": "アカウント",
   "@accounts": {
     "type": "text",
     "placeholders": {}
   },
-  "externalAddress": "Внешний адрес",
+  "externalAddress": "外部住所",
   "@externalAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "address": "Адрес",
+  "address": "住所",
   "@address": {
     "type": "text",
     "placeholders": {}
   },
-  "addresses": "Адреса",
+  "addresses": "住所",
   "@addresses": {
     "type": "text",
     "placeholders": {}
   },
-  "receive": "Получать",
+  "receive": "受け取る",
   "@receive": {
     "type": "text",
     "placeholders": {}
   },
-  "search": "Поиск",
+  "search": "サーチ",
   "@search": {
     "type": "text",
     "placeholders": {}
   },
-  "result": "Результат",
+  "result": "結果",
   "@result": {
     "type": "text",
     "placeholders": {}
   },
-  "console": "Приставка",
+  "console": "コンソール",
   "@console": {
     "type": "text",
     "placeholders": {}
   },
-  "unknown": "неизвестный",
+  "unknown": "道の",
   "@unknown": {
     "type": "text",
     "placeholders": {}
   },
-  "settings": "настройки",
+  "settings": "設定",
   "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "network": "сеть",
+  "network": "ネットワーク",
   "@network": {
     "type": "text",
     "placeholders": {}
   },
-  "newPeer": "New Peer",
+  "newPeer": "ニューピア",
   "@newPeer": {
     "type": "text",
     "placeholders": {}
   },
-  "newWallet": "Новый кошелек",
+  "newWallet": "新しいウォレット",
   "@newWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "peers": "Сверстники",
+  "peers": "仲間",
   "@peers": {
     "type": "text",
     "placeholders": {}
   },
-  "deletePeer": "Удалить Peer",
+  "deletePeer": "ピアを削除",
   "@deletePeer": {
     "type": "text",
     "placeholders": {}
   },
-  "block": "блок",
+  "block": "ブロック",
   "@block": {
     "type": "text",
     "placeholders": {}
   },
-  "blocks": "Блоки",
+  "blocks": "ブロック",
   "@blocks": {
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "шифрование",
+  "encryption": "暗号化",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "transaction": "Сделка",
+  "transaction": "トランザクション",
   "@transaction": {
     "type": "text",
     "placeholders": {}
   },
-  "transactions": "операции",
+  "transactions": "取引",
   "@transactions": {
     "type": "text",
     "placeholders": {}
   },
-  "dangerZone": "Опасная зона",
+  "dangerZone": "危険区域",
   "@dangerZone": {
     "type": "text",
     "placeholders": {}
   },
-  "warning": "Предупреждение",
+  "warning": "警告",
   "@warning": {
     "type": "text",
     "placeholders": {}
   },
-  "support": "Служба поддержки",
+  "support": "サポート",
   "@support": {
     "type": "text",
     "placeholders": {}
   },
-  "license": "Лицензия",
+  "license": "ライセンス",
   "@license": {
     "type": "text",
     "placeholders": {}
   },
-  "donations": "Пожертвования",
+  "donations": "寄付",
   "@donations": {
     "type": "text",
     "placeholders": {}
   },
-  "privacyPolicy": "политика конфиденциальности",
+  "privacyPolicy": "個人情報保護方針",
   "@privacyPolicy": {
     "type": "text",
     "placeholders": {}
   },
-  "homePage": "{product} Домашняя страница",
+  "homePage": "{product}ホームページ",
   "@homePage": {
     "type": "text",
     "placeholders": {
       "product": {}
     }
   },
-  "addressTitle": "Адрес {address}",
+  "addressTitle": "アドレス{address}",
   "@addressTitle": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "networkType": "{type} Сеть",
+  "networkType": "{type}ネットワーク",
   "@networkType": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "numTransactions": "Транзакции ( {number} )",
+  "numTransactions": "トランザクション（ {number} ）",
   "@numTransactions": {
     "type": "text",
     "placeholders": {
       "number": {}
     }
   },
-  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} {duration} {@</a2>}",
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>}ブロック{@</a1>}最後の{@<a2>} {duration} {@</a2>}",
   "@totalBlocksInLastDuration": {
     "type": "text",
     "placeholders": {
@@ -463,7 +463,7 @@
       "duration": {}
     }
   },
-  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}блоков{@</a1>}, {totalTransactions} транзакции в последних {@<a2>}{duration}{@</a2>}",
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}は{@</a1>} {@<a1>}ブロックし、最後の{@<a2>} {duration} {totalTransactions}トランザクション{duration} {@</a2>}",
   "@totalBlocksTransactionsInLastDuration": {
     "type": "text",
     "placeholders": {
@@ -472,92 +472,92 @@
       "duration": {}
     }
   },
-  "id": "Я бы",
+  "id": "Id",
   "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "tip": "Совет",
+  "tip": "先端",
   "@tip": {
     "type": "text",
     "placeholders": {}
   },
-  "date": "Дата",
+  "date": "日付",
   "@date": {
     "type": "text",
     "placeholders": {}
   },
-  "name": "название",
+  "name": "名",
   "@name": {
     "type": "text",
     "placeholders": {}
   },
-  "time": "Время",
+  "time": "時間",
   "@time": {
     "type": "text",
     "placeholders": {}
   },
-  "email": "Эл. адрес",
+  "email": "Eメール",
   "@email": {
     "type": "text",
     "placeholders": {}
   },
-  "state": "государственный",
+  "state": "状態",
   "@state": {
     "type": "text",
     "placeholders": {}
   },
-  "height": "Рост",
+  "height": "高さ",
   "@height": {
     "type": "text",
     "placeholders": {}
   },
-  "balance": "Остаток средств",
+  "balance": "バランス",
   "@balance": {
     "type": "text",
     "placeholders": {}
   },
-  "currency": "валюта",
+  "currency": "通貨",
   "@currency": {
     "type": "text",
     "placeholders": {}
   },
-  "nonce": "данное время",
+  "nonce": "ノンス",
   "@nonce": {
     "type": "text",
     "placeholders": {}
   },
-  "amount": "Количество",
+  "amount": "量",
   "@amount": {
     "type": "text",
     "placeholders": {}
   },
-  "fee": "плата",
+  "fee": "費用",
   "@fee": {
     "type": "text",
     "placeholders": {}
   },
-  "payTo": "Платить",
+  "payTo": "に支払います",
   "@payTo": {
     "type": "text",
     "placeholders": {}
   },
-  "to": "к",
+  "to": "に",
   "@to": {
     "type": "text",
     "placeholders": {}
   },
-  "from": "От",
+  "from": "から",
   "@from": {
     "type": "text",
     "placeholders": {}
   },
-  "memo": "напоминание",
+  "memo": "メモ",
   "@memo": {
     "type": "text",
     "placeholders": {}
   },
-  "theme": "тема",
+  "theme": "テーマ",
   "@theme": {
     "type": "text",
     "placeholders": {}
@@ -567,326 +567,326 @@
     "type": "text",
     "placeholders": {}
   },
-  "password": "пароль",
+  "password": "パスワード",
   "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "version": "Версия",
+  "version": "バージョン",
   "@version": {
     "type": "text",
     "placeholders": {}
   },
-  "language": "язык",
+  "language": "言語",
   "@language": {
     "type": "text",
     "placeholders": {}
   },
-  "previous": "предыдущий",
+  "previous": "前",
   "@previous": {
     "type": "text",
     "placeholders": {}
   },
-  "next": "следующий",
+  "next": "次",
   "@next": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmations": "Подтверждения",
+  "confirmations": "確認",
   "@confirmations": {
     "type": "text",
     "placeholders": {}
   },
-  "earliestSeen": "Самое раннее увиденное",
+  "earliestSeen": "最古",
   "@earliestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "latestSeen": "Последнее увиденное",
+  "latestSeen": "最新の見た",
   "@latestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "target": "цель",
+  "target": "ターゲット",
   "@target": {
     "type": "text",
     "placeholders": {}
   },
-  "chainCode": "Цепной код",
+  "chainCode": "チェーンコード",
   "@chainCode": {
     "type": "text",
     "placeholders": {}
   },
-  "chainIndex": "Индекс цепи",
+  "chainIndex": "チェーンインデックス",
   "@chainIndex": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhrase": "Семенная фраза",
+  "seedPhrase": "シードフレーズ",
   "@seedPhrase": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKey": "Закрытый ключ",
+  "privateKey": "秘密鍵",
   "@privateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "activeTransactions": "Активные транзакции",
+  "activeTransactions": "アクティブなトランザクション",
   "@activeTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "expired": "Истекший",
+  "expired": "期限切れ",
   "@expired": {
     "type": "text",
     "placeholders": {}
   },
-  "expires": "Истекает",
+  "expires": "期限切れ",
   "@expires": {
     "type": "text",
     "placeholders": {}
   },
-  "matured": "созревший",
+  "matured": "成熟した",
   "@matured": {
     "type": "text",
     "placeholders": {}
   },
-  "matures": "Matures",
+  "matures": "成熟",
   "@matures": {
     "type": "text",
     "placeholders": {}
   },
-  "maturing": "вызревание",
+  "maturing": "熟成",
   "@maturing": {
     "type": "text",
     "placeholders": {}
   },
-  "maturingTransactions": "Сроки погашения",
+  "maturingTransactions": "トランザクションの成熟",
   "@maturingTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "chainWork": "Цепная работа",
+  "chainWork": "チェーンワーク",
   "@chainWork": {
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "Корень хэш-списка",
+  "hashListRoot": "ハッシュリストルート",
   "@hashListRoot": {
     "type": "text",
     "placeholders": {}
   },
-  "deltaTime": "Delta Time",
+  "deltaTime": "デルタ時間",
   "@deltaTime": {
     "type": "text",
     "placeholders": {}
   },
-  "deltaHashPower": "Delta Hash Power",
+  "deltaHashPower": "デルタハッシュパワー",
   "@deltaHashPower": {
     "type": "text",
     "placeholders": {}
   },
-  "publicKeyList": "Список открытых ключей",
+  "publicKeyList": "公開鍵リスト",
   "@publicKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKeyList": "Список закрытых ключей",
+  "privateKeyList": "秘密鍵リスト",
   "@privateKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "fromAddress": "От: {address}",
+  "fromAddress": "From： {address}",
   "@fromAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "toAddress": "Кому: {address}",
+  "toAddress": "宛先： {address}",
   "@toAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "heightEquals": "высота = {@<a>} {height} {@</a>}",
+  "heightEquals": "height = {@<a>} {height} {@</a>}",
   "@heightEquals": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "marketCap": "Рыночная капитализация {@<a>} {cap} {@</a>}",
+  "marketCap": "時価総額{@<a>} {cap} {@</a>}",
   "@marketCap": {
     "type": "text",
     "placeholders": {
       "cap": {}
     }
   },
-  "pending": "в ожидании",
+  "pending": "保留中",
   "@pending": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidUrl": "Неверная ссылка.",
+  "invalidUrl": "無効なURL。",
   "@invalidUrl": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidJson": "Неверный JSON.",
+  "invalidJson": "無効なJSON。",
   "@invalidJson": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPrivateKey": "Неверный закрытый ключ.",
+  "invalidPrivateKey": "秘密鍵が無効です。",
   "@invalidPrivateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPublicKey": "Неверный открытый ключ.",
+  "invalidPublicKey": "公開鍵が無効です。",
   "@invalidPublicKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidCurrency": "Неверная валюта",
+  "invalidCurrency": "通貨が無効です",
   "@invalidCurrency": {
     "type": "text",
     "placeholders": {}
   },
-  "maxMemoLength": "Максимальная длина заметки 100",
+  "maxMemoLength": "最大メモ長は100です",
   "@maxMemoLength": {
     "type": "text",
     "placeholders": {}
   },
-  "nameMustBeUnique": "Имя должно быть уникальным.",
+  "nameMustBeUnique": "名前は一意である必要があります。",
   "@nameMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordCantBeEmpty": "Пароль не может быть пустым.",
+  "passwordCantBeEmpty": "パスワードを空にすることはできません。",
   "@passwordCantBeEmpty": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordsDontMatch": "Пароли не совпадают.",
+  "passwordsDontMatch": "パスワードが一致しません。",
   "@passwordsDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmPassword": "Подтвердите Пароль",
+  "confirmPassword": "パスワードを認証する",
   "@confirmPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownAddress": "Неизвестный адрес",
+  "unknownAddress": "不明な住所",
   "@unknownAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidAddress": "Неверный адрес",
+  "invalidAddress": "無効なアドレス",
   "@invalidAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidMnemonic": "Неверная мнемоника",
+  "invalidMnemonic": "無効なニーモニック",
   "@invalidMnemonic": {
     "type": "text",
     "placeholders": {}
   },
-  "valueMustBePositive": "Значение должно быть положительным",
+  "valueMustBePositive": "値は正でなければなりません",
   "@valueMustBePositive": {
     "type": "text",
     "placeholders": {}
   },
-  "insufficientFunds": "Недостаточно средств",
+  "insufficientFunds": "残高不足",
   "@insufficientFunds": {
     "type": "text",
     "placeholders": {}
   },
-  "networkOffline": "Сеть оффлайн",
+  "networkOffline": "ネットワークオフライン",
   "@networkOffline": {
     "type": "text",
     "placeholders": {}
   },
-  "noPublicKeys": "Нет открытых ключей",
+  "noPublicKeys": "公開鍵なし",
   "@noPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "noPrivateKeys": "Нет закрытых ключей",
+  "noPrivateKeys": "秘密鍵なし",
   "@noPrivateKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownQuery": "Неизвестный запрос",
+  "unknownQuery": "不明なクエリ",
   "@unknownQuery": {
     "type": "text",
     "placeholders": {}
   },
-  "thanksForDonating": "Право на! Спасибо CRUZ сообществу!",
+  "thanksForDonating": "右に！ CRUZコミュニティに感謝します！",
   "@thanksForDonating": {
     "type": "text",
     "placeholders": {}
   },
-  "minFee": "Минимальная плата {fee}",
+  "minFee": "最低料金は{fee}",
   "@minFee": {
     "type": "text",
     "placeholders": {
       "fee": {}
     }
   },
-  "minAmount": "Минимальная сумма {amount}",
+  "minAmount": "最小金額は{amount}",
   "@minAmount": {
     "type": "text",
     "placeholders": {
       "amount": {}
     }
   },
-  "defaultWalletName": "Мой бумажник",
+  "defaultWalletName": "私の財布",
   "@defaultWalletName": {
     "type": "text",
     "placeholders": {}
   },
-  "debugLog": "Журнал отладки",
+  "debugLog": "デバッグログ",
   "@debugLog": {
     "type": "text",
     "placeholders": {}
   },
-  "requireSSLCert": "Требовать SSL сертификат",
+  "requireSSLCert": "SSL証明書が必要",
   "@requireSSLCert": {
     "type": "text",
     "placeholders": {}
   },
-  "showWalletNameInTitle": "Показать название кошелька в заголовке",
+  "showWalletNameInTitle": "タイトルにウォレット名を表示",
   "@showWalletNameInTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyKeyPairsEveryLoad": "Проверяйте пары ключей при каждой загрузке",
+  "verifyKeyPairsEveryLoad": "ロードごとにキーペアを確認する",
   "@verifyKeyPairsEveryLoad": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestBeforeCreatingWallets": "Юнит тест перед созданием кошельков",
+  "unitTestBeforeCreatingWallets": "ウォレットを作成する前の単体テスト",
   "@unitTestBeforeCreatingWallets": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestFailure": "Ошибка модульного теста",
+  "unitTestFailure": "単体テストの失敗",
   "@unitTestFailure": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyAddressFailed": "не удалось проверить: {addressText}",
+  "verifyAddressFailed": "検証に失敗しました： {addressText}",
   "@verifyAddressFailed": {
     "type": "text",
     "placeholders": {
       "addressText": {}
     }
   },
-  "verifyWalletResults": "Проверенные {goodAddresses} / {totalAddresses} и {goodTests} / {totalTests} успешно",
+  "verifyWalletResults": "検証済みの{goodAddresses} / {totalAddresses}アドレスと{goodTests} / {totalTests}テストが成功しました",
   "@verifyWalletResults": {
     "type": "text",
     "placeholders": {
@@ -896,28 +896,28 @@
       "totalTests": {}
     }
   },
-  "secondsDuration": "{seconds, plural, =1 {{seconds} секунд} other {{seconds} секунд}}",
+  "secondsDuration": "{seconds, plural, =1 {{seconds}秒} other {{seconds}秒}}",
   "@secondsDuration": {
     "type": "text",
     "placeholders": {
       "seconds": {}
     }
   },
-  "minutesDuration": "{minutes, plural, =1 {{minutes} минуты} other {{minutes} минуты}}",
+  "minutesDuration": "{minutes, plural, =1 {{minutes}分} other {{minutes}分}}",
   "@minutesDuration": {
     "type": "text",
     "placeholders": {
       "minutes": {}
     }
   },
-  "hoursDuration": "{hours, plural, =1 {час} other {{hours} часов}}",
+  "hoursDuration": "{hours, plural, =1 {時} other {{hours}時間}}",
   "@hoursDuration": {
     "type": "text",
     "placeholders": {
       "hours": {}
     }
   },
-  "daysDuration": "{days, plural, =1 {день} other {{days} дней}}",
+  "daysDuration": "{days, plural, =1 {日} other {{days}日}}",
   "@daysDuration": {
     "type": "text",
     "placeholders": {

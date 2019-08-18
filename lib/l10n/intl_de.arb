@@ -1,5 +1,5 @@
 {
-  "localeLanguage": "Русский",
+  "localeLanguage": "Deutsch",
   "@localeLanguage": {
     "type": "text",
     "placeholders": {}
@@ -9,27 +9,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "unlockTitle": "Разблокировать крузалл",
+  "unlockTitle": "Schalte Cruzall frei",
   "@unlockTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeTitle": "Добро пожаловать в Крузалл",
+  "welcomeTitle": "Willkommen in Cruzall",
   "@welcomeTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeDesc": "Для начала создайте кошелек:",
+  "welcomeDesc": "Erstellen Sie zunächst eine Brieftasche:",
   "@welcomeDesc": {
     "type": "text",
     "placeholders": {}
   },
-  "currentBalanceIs": "Ваш текущий баланс:",
+  "currentBalanceIs": "Ihr aktueller Kontostand beträgt:",
   "@currentBalanceIs": {
     "type": "text",
     "placeholders": {}
   },
-  "recentHistory": "Недавняя история",
+  "recentHistory": "Jüngste Geschichte",
   "@recentHistory": {
     "type": "text",
     "placeholders": {}
@@ -42,88 +42,88 @@
       "balance": {}
     }
   },
-  "balanceAtHeightIs": "Ваш баланс на высоте блока {@<a>} {height} {@</a>} :",
+  "balanceAtHeightIs": "Ihr Kontostand in Blockhöhe {@<a>} {height} {@</a>} beträgt:",
   "@balanceAtHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "balanceMaturingByHeightIs": "Ваш баланс созревания по высоте {height} является:",
+  "balanceMaturingByHeightIs": "Ihre Waage Reifung von Höhe {height} ist:",
   "@balanceMaturingByHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "insecureDeviceWarning": "Предупреждение о небезопасном устройстве",
+  "insecureDeviceWarning": "Unsichere Gerätewarnung",
   "@insecureDeviceWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "insecureDeviceWarningDescription": "Обнаружено рутированное или взломанное устройство. Дальнейшее использование не рекомендуется.",
+  "insecureDeviceWarningDescription": "Ein gerootetes Gerät oder ein Gerät mit Jailbreak wurde erkannt. Weitere Verwendung nicht empfohlen.",
   "@insecureDeviceWarningDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhraseWarning": "Это семя позволяет любому, кто его знает, потратить все средства с вашего кошелька. Запиши это. Держать его в безопасности.",
+  "seedPhraseWarning": "Mit dieser Saat kann jeder, der sie kennt, das gesamte Geld Ihrer Brieftasche ausgeben. Schreib es auf. Sicher aufbewahren.",
   "@seedPhraseWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "backupKeysWarning": "Ваши ключи должны быть сохранены на внешнем хранилище.",
+  "backupKeysWarning": "Ihre Schlüssel müssen auf einem externen Speicher gesichert werden.",
   "@backupKeysWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "creatingUsingAlgorithm": "Создание ... ( {algorithm} )",
+  "creatingUsingAlgorithm": "Erstellen ... ( {algorithm} )",
   "@creatingUsingAlgorithm": {
     "type": "text",
     "placeholders": {
       "algorithm": {}
     }
   },
-  "addWallet": "Добавить кошелек",
+  "addWallet": "Geldbörse hinzufügen",
   "@addWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWallet": "HD кошелек",
+  "hdWallet": "HD Brieftasche",
   "@hdWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWalletAlgorithm": "PBKDF: 2048 итераций",
+  "hdWalletAlgorithm": "PBKDF: 2048 Iterationen",
   "@hdWalletAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "watchOnlyWallet": "Часы только кошелек",
+  "watchOnlyWallet": "Brieftasche nur für Armbanduhren",
   "@watchOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "generateNewAddress": "Создать новый адрес",
+  "generateNewAddress": "Neue Adresse generieren",
   "@generateNewAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWallet": "Удалить кошелек",
+  "deleteWallet": "Brieftasche löschen",
   "@deleteWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteThisWallet": "Удалить этот кошелек",
+  "deleteThisWallet": "Löschen Sie diese Brieftasche",
   "@deleteThisWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "cantDeleteOnlyWallet": "Не могу удалить единственный кошелек.",
+  "cantDeleteOnlyWallet": "Die einzige Brieftasche kann nicht gelöscht werden.",
   "@cantDeleteOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWalletDescription": "Как только вы удалите кошелек, пути назад уже не будет. Пожалуйста, будьте уверены.",
+  "deleteWalletDescription": "Sobald Sie eine Brieftasche gelöscht haben, gibt es kein Zurück mehr. Bitte seien Sie sicher.",
   "@deleteWalletDescription": {
     "type": "text",
     "placeholders": {}
@@ -133,117 +133,117 @@
     "type": "text",
     "placeholders": {}
   },
-  "addressStateReserve": "резерв",
+  "addressStateReserve": "Reservieren",
   "@addressStateReserve": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateOpen": "открыть",
+  "addressStateOpen": "öffnen",
   "@addressStateOpen": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateUsed": "используемый",
+  "addressStateUsed": "gebraucht",
   "@addressStateUsed": {
     "type": "text",
     "placeholders": {}
   },
-  "ok": "Хорошо",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "hide": "Спрятать",
+  "hide": "verbergen",
   "@hide": {
     "type": "text",
     "placeholders": {}
   },
-  "show": "Шоу",
+  "show": "Show",
   "@show": {
     "type": "text",
     "placeholders": {}
   },
-  "copy": "копия",
+  "copy": "Kopieren",
   "@copy": {
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "отменить",
+  "cancel": "Stornieren",
   "@cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "delete": "удалять",
+  "delete": "Löschen",
   "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "create": "Создайте",
+  "create": "Erstellen",
   "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "ignore": "игнорировать",
+  "ignore": "Ignorieren",
   "@ignore": {
     "type": "text",
     "placeholders": {}
   },
-  "unlock": "отпереть",
+  "unlock": "Freischalten",
   "@unlock": {
     "type": "text",
     "placeholders": {}
   },
-  "encrypt": "шифровать",
+  "encrypt": "Verschlüsseln",
   "@encrypt": {
     "type": "text",
     "placeholders": {}
   },
-  "verify": "проверить",
+  "verify": "Überprüfen",
   "@verify": {
     "type": "text",
     "placeholders": {}
   },
-  "verifying": "Проверка ...",
+  "verifying": "Überprüfung läuft ...",
   "@verifying": {
     "type": "text",
     "placeholders": {}
   },
-  "send": "послать",
+  "send": "Senden",
   "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "sending": "Посылка ...",
+  "sending": "Senden ...",
   "@sending": {
     "type": "text",
     "placeholders": {}
   },
-  "sendFailed": "Не удалось отправить",
+  "sendFailed": "Senden fehlgeschlagen",
   "@sendFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "loading": "Loading ...",
+  "loading": "Wird geladen...",
   "@loading": {
     "type": "text",
     "placeholders": {}
   },
-  "creating": "Создание ...",
+  "creating": "Erstellen...",
   "@creating": {
     "type": "text",
     "placeholders": {}
   },
-  "copied": "Скопировано.",
+  "copied": "Kopiert.",
   "@copied": {
     "type": "text",
     "placeholders": {}
   },
-  "copyPublicKeys": "Копировать открытые ключи",
+  "copyPublicKeys": "Öffentliche Schlüssel kopieren",
   "@copyPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "sentTransactionId": "Отправлено {transactionId}",
+  "sentTransactionId": "Gesendet {transactionId}",
   "@sentTransactionId": {
     "type": "text",
     "placeholders": {
@@ -292,170 +292,170 @@
       "item2": {}
     }
   },
-  "account": "учетная запись",
+  "account": "Konto",
   "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "accounts": "Счета",
+  "accounts": "Konten",
   "@accounts": {
     "type": "text",
     "placeholders": {}
   },
-  "externalAddress": "Внешний адрес",
+  "externalAddress": "Externe Adresse",
   "@externalAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "address": "Адрес",
+  "address": "Adresse",
   "@address": {
     "type": "text",
     "placeholders": {}
   },
-  "addresses": "Адреса",
+  "addresses": "Adressen",
   "@addresses": {
     "type": "text",
     "placeholders": {}
   },
-  "receive": "Получать",
+  "receive": "Erhalten",
   "@receive": {
     "type": "text",
     "placeholders": {}
   },
-  "search": "Поиск",
+  "search": "Suche",
   "@search": {
     "type": "text",
     "placeholders": {}
   },
-  "result": "Результат",
+  "result": "Ergebnis",
   "@result": {
     "type": "text",
     "placeholders": {}
   },
-  "console": "Приставка",
+  "console": "Konsole",
   "@console": {
     "type": "text",
     "placeholders": {}
   },
-  "unknown": "неизвестный",
+  "unknown": "unbekannte",
   "@unknown": {
     "type": "text",
     "placeholders": {}
   },
-  "settings": "настройки",
+  "settings": "die Einstellungen",
   "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "network": "сеть",
+  "network": "Netzwerk",
   "@network": {
     "type": "text",
     "placeholders": {}
   },
-  "newPeer": "New Peer",
+  "newPeer": "Neuer Peer",
   "@newPeer": {
     "type": "text",
     "placeholders": {}
   },
-  "newWallet": "Новый кошелек",
+  "newWallet": "Neue Geldbörse",
   "@newWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "peers": "Сверстники",
+  "peers": "Gleichaltrigen",
   "@peers": {
     "type": "text",
     "placeholders": {}
   },
-  "deletePeer": "Удалить Peer",
+  "deletePeer": "Peer löschen",
   "@deletePeer": {
     "type": "text",
     "placeholders": {}
   },
-  "block": "блок",
+  "block": "Block",
   "@block": {
     "type": "text",
     "placeholders": {}
   },
-  "blocks": "Блоки",
+  "blocks": "Blöcke",
   "@blocks": {
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "шифрование",
+  "encryption": "Verschlüsselung",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "transaction": "Сделка",
+  "transaction": "Transaktion",
   "@transaction": {
     "type": "text",
     "placeholders": {}
   },
-  "transactions": "операции",
+  "transactions": "Transaktionen",
   "@transactions": {
     "type": "text",
     "placeholders": {}
   },
-  "dangerZone": "Опасная зона",
+  "dangerZone": "Gefahrenzone",
   "@dangerZone": {
     "type": "text",
     "placeholders": {}
   },
-  "warning": "Предупреждение",
+  "warning": "Warnung",
   "@warning": {
     "type": "text",
     "placeholders": {}
   },
-  "support": "Служба поддержки",
+  "support": "Unterstützung",
   "@support": {
     "type": "text",
     "placeholders": {}
   },
-  "license": "Лицензия",
+  "license": "Lizenz",
   "@license": {
     "type": "text",
     "placeholders": {}
   },
-  "donations": "Пожертвования",
+  "donations": "Spenden",
   "@donations": {
     "type": "text",
     "placeholders": {}
   },
-  "privacyPolicy": "политика конфиденциальности",
+  "privacyPolicy": "Datenschutz-Bestimmungen",
   "@privacyPolicy": {
     "type": "text",
     "placeholders": {}
   },
-  "homePage": "{product} Домашняя страница",
+  "homePage": "{product} Homepage",
   "@homePage": {
     "type": "text",
     "placeholders": {
       "product": {}
     }
   },
-  "addressTitle": "Адрес {address}",
+  "addressTitle": "Adresse {address}",
   "@addressTitle": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "networkType": "{type} Сеть",
+  "networkType": "{type} Netzwerk",
   "@networkType": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "numTransactions": "Транзакции ( {number} )",
+  "numTransactions": "Transaktionen ( {number} )",
   "@numTransactions": {
     "type": "text",
     "placeholders": {
       "number": {}
     }
   },
-  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} {duration} {@</a2>}",
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} blockiert {@</a1>} im letzten {@<a2>} {duration} {@</a2>}",
   "@totalBlocksInLastDuration": {
     "type": "text",
     "placeholders": {
@@ -463,7 +463,7 @@
       "duration": {}
     }
   },
-  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}блоков{@</a1>}, {totalTransactions} транзакции в последних {@<a2>}{duration}{@</a2>}",
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} blockiert {@</a1>} , {totalTransactions} Transaktionen in den letzten {@<a2>} {duration} {@</a2>}",
   "@totalBlocksTransactionsInLastDuration": {
     "type": "text",
     "placeholders": {
@@ -472,92 +472,92 @@
       "duration": {}
     }
   },
-  "id": "Я бы",
+  "id": "Ich würde",
   "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "tip": "Совет",
+  "tip": "Spitze",
   "@tip": {
     "type": "text",
     "placeholders": {}
   },
-  "date": "Дата",
+  "date": "Datum",
   "@date": {
     "type": "text",
     "placeholders": {}
   },
-  "name": "название",
+  "name": "Name",
   "@name": {
     "type": "text",
     "placeholders": {}
   },
-  "time": "Время",
+  "time": "Zeit",
   "@time": {
     "type": "text",
     "placeholders": {}
   },
-  "email": "Эл. адрес",
+  "email": "Email",
   "@email": {
     "type": "text",
     "placeholders": {}
   },
-  "state": "государственный",
+  "state": "Zustand",
   "@state": {
     "type": "text",
     "placeholders": {}
   },
-  "height": "Рост",
+  "height": "Höhe",
   "@height": {
     "type": "text",
     "placeholders": {}
   },
-  "balance": "Остаток средств",
+  "balance": "Balance",
   "@balance": {
     "type": "text",
     "placeholders": {}
   },
-  "currency": "валюта",
+  "currency": "Währung",
   "@currency": {
     "type": "text",
     "placeholders": {}
   },
-  "nonce": "данное время",
+  "nonce": "Nonce",
   "@nonce": {
     "type": "text",
     "placeholders": {}
   },
-  "amount": "Количество",
+  "amount": "Menge",
   "@amount": {
     "type": "text",
     "placeholders": {}
   },
-  "fee": "плата",
+  "fee": "Gebühr",
   "@fee": {
     "type": "text",
     "placeholders": {}
   },
-  "payTo": "Платить",
+  "payTo": "Zahlen an",
   "@payTo": {
     "type": "text",
     "placeholders": {}
   },
-  "to": "к",
+  "to": "Zu",
   "@to": {
     "type": "text",
     "placeholders": {}
   },
-  "from": "От",
+  "from": "Von",
   "@from": {
     "type": "text",
     "placeholders": {}
   },
-  "memo": "напоминание",
+  "memo": "Memo",
   "@memo": {
     "type": "text",
     "placeholders": {}
   },
-  "theme": "тема",
+  "theme": "Thema",
   "@theme": {
     "type": "text",
     "placeholders": {}
@@ -567,112 +567,112 @@
     "type": "text",
     "placeholders": {}
   },
-  "password": "пароль",
+  "password": "Passwort",
   "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "version": "Версия",
+  "version": "Ausführung",
   "@version": {
     "type": "text",
     "placeholders": {}
   },
-  "language": "язык",
+  "language": "Sprache",
   "@language": {
     "type": "text",
     "placeholders": {}
   },
-  "previous": "предыдущий",
+  "previous": "Bisherige",
   "@previous": {
     "type": "text",
     "placeholders": {}
   },
-  "next": "следующий",
+  "next": "Nächster",
   "@next": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmations": "Подтверждения",
+  "confirmations": "Bestätigungen",
   "@confirmations": {
     "type": "text",
     "placeholders": {}
   },
-  "earliestSeen": "Самое раннее увиденное",
+  "earliestSeen": "Am frühesten gesehen",
   "@earliestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "latestSeen": "Последнее увиденное",
+  "latestSeen": "Zuletzt gesehen",
   "@latestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "target": "цель",
+  "target": "Ziel",
   "@target": {
     "type": "text",
     "placeholders": {}
   },
-  "chainCode": "Цепной код",
+  "chainCode": "Chain Code",
   "@chainCode": {
     "type": "text",
     "placeholders": {}
   },
-  "chainIndex": "Индекс цепи",
+  "chainIndex": "Kettenindex",
   "@chainIndex": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhrase": "Семенная фраза",
+  "seedPhrase": "Samenphrase",
   "@seedPhrase": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKey": "Закрытый ключ",
+  "privateKey": "Privat Schlüssel",
   "@privateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "activeTransactions": "Активные транзакции",
+  "activeTransactions": "Aktive Transaktionen",
   "@activeTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "expired": "Истекший",
+  "expired": "Abgelaufen",
   "@expired": {
     "type": "text",
     "placeholders": {}
   },
-  "expires": "Истекает",
+  "expires": "Läuft ab",
   "@expires": {
     "type": "text",
     "placeholders": {}
   },
-  "matured": "созревший",
+  "matured": "Gereift",
   "@matured": {
     "type": "text",
     "placeholders": {}
   },
-  "matures": "Matures",
+  "matures": "Reift",
   "@matures": {
     "type": "text",
     "placeholders": {}
   },
-  "maturing": "вызревание",
+  "maturing": "Reifung",
   "@maturing": {
     "type": "text",
     "placeholders": {}
   },
-  "maturingTransactions": "Сроки погашения",
+  "maturingTransactions": "Fällige Transaktionen",
   "@maturingTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "chainWork": "Цепная работа",
+  "chainWork": "Kettenarbeit",
   "@chainWork": {
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "Корень хэш-списка",
+  "hashListRoot": "Hash List Root",
   "@hashListRoot": {
     "type": "text",
     "placeholders": {}
@@ -687,206 +687,206 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicKeyList": "Список открытых ключей",
+  "publicKeyList": "Öffentliche Schlüsselliste",
   "@publicKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKeyList": "Список закрытых ключей",
+  "privateKeyList": "Private Schlüsselliste",
   "@privateKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "fromAddress": "От: {address}",
+  "fromAddress": "Von: {address}",
   "@fromAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "toAddress": "Кому: {address}",
+  "toAddress": "An: {address}",
   "@toAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "heightEquals": "высота = {@<a>} {height} {@</a>}",
+  "heightEquals": "height = {@<a>} {height} {@</a>}",
   "@heightEquals": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "marketCap": "Рыночная капитализация {@<a>} {cap} {@</a>}",
+  "marketCap": "Marktkapitalisierung {@<a>} {cap} {@</a>}",
   "@marketCap": {
     "type": "text",
     "placeholders": {
       "cap": {}
     }
   },
-  "pending": "в ожидании",
+  "pending": "steht aus",
   "@pending": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidUrl": "Неверная ссылка.",
+  "invalidUrl": "Ungültige URL.",
   "@invalidUrl": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidJson": "Неверный JSON.",
+  "invalidJson": "Ungültiger JSON.",
   "@invalidJson": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPrivateKey": "Неверный закрытый ключ.",
+  "invalidPrivateKey": "Ungültiger privater Schlüssel.",
   "@invalidPrivateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPublicKey": "Неверный открытый ключ.",
+  "invalidPublicKey": "Ungültiger öffentlicher Schlüssel.",
   "@invalidPublicKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidCurrency": "Неверная валюта",
+  "invalidCurrency": "Ungültige Währung",
   "@invalidCurrency": {
     "type": "text",
     "placeholders": {}
   },
-  "maxMemoLength": "Максимальная длина заметки 100",
+  "maxMemoLength": "Die maximale Memolänge beträgt 100",
   "@maxMemoLength": {
     "type": "text",
     "placeholders": {}
   },
-  "nameMustBeUnique": "Имя должно быть уникальным.",
+  "nameMustBeUnique": "Der Name muss eindeutig sein.",
   "@nameMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordCantBeEmpty": "Пароль не может быть пустым.",
+  "passwordCantBeEmpty": "Das Passwort darf nicht leer sein.",
   "@passwordCantBeEmpty": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordsDontMatch": "Пароли не совпадают.",
+  "passwordsDontMatch": "Passwörter stimmen nicht überein.",
   "@passwordsDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmPassword": "Подтвердите Пароль",
+  "confirmPassword": "Passwort bestätigen",
   "@confirmPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownAddress": "Неизвестный адрес",
+  "unknownAddress": "Unbekannte Adresse",
   "@unknownAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidAddress": "Неверный адрес",
+  "invalidAddress": "Ungültige Adresse",
   "@invalidAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidMnemonic": "Неверная мнемоника",
+  "invalidMnemonic": "Ungültige Mnemonik",
   "@invalidMnemonic": {
     "type": "text",
     "placeholders": {}
   },
-  "valueMustBePositive": "Значение должно быть положительным",
+  "valueMustBePositive": "Wert muss positiv sein",
   "@valueMustBePositive": {
     "type": "text",
     "placeholders": {}
   },
-  "insufficientFunds": "Недостаточно средств",
+  "insufficientFunds": "Unzureichende Mittel",
   "@insufficientFunds": {
     "type": "text",
     "placeholders": {}
   },
-  "networkOffline": "Сеть оффлайн",
+  "networkOffline": "Netzwerk offline",
   "@networkOffline": {
     "type": "text",
     "placeholders": {}
   },
-  "noPublicKeys": "Нет открытых ключей",
+  "noPublicKeys": "Keine öffentlichen Schlüssel",
   "@noPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "noPrivateKeys": "Нет закрытых ключей",
+  "noPrivateKeys": "Keine privaten Schlüssel",
   "@noPrivateKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownQuery": "Неизвестный запрос",
+  "unknownQuery": "Unbekannte Abfrage",
   "@unknownQuery": {
     "type": "text",
     "placeholders": {}
   },
-  "thanksForDonating": "Право на! Спасибо CRUZ сообществу!",
+  "thanksForDonating": "Direkt am! Danke CRUZ Community!",
   "@thanksForDonating": {
     "type": "text",
     "placeholders": {}
   },
-  "minFee": "Минимальная плата {fee}",
+  "minFee": "Die Mindestgebühr beträgt {fee}",
   "@minFee": {
     "type": "text",
     "placeholders": {
       "fee": {}
     }
   },
-  "minAmount": "Минимальная сумма {amount}",
+  "minAmount": "Mindestbetrag ist {amount}",
   "@minAmount": {
     "type": "text",
     "placeholders": {
       "amount": {}
     }
   },
-  "defaultWalletName": "Мой бумажник",
+  "defaultWalletName": "Mein Geldbeutel",
   "@defaultWalletName": {
     "type": "text",
     "placeholders": {}
   },
-  "debugLog": "Журнал отладки",
+  "debugLog": "Austestungsprotokoll",
   "@debugLog": {
     "type": "text",
     "placeholders": {}
   },
-  "requireSSLCert": "Требовать SSL сертификат",
+  "requireSSLCert": "SSL-Zertifikat erforderlich",
   "@requireSSLCert": {
     "type": "text",
     "placeholders": {}
   },
-  "showWalletNameInTitle": "Показать название кошелька в заголовке",
+  "showWalletNameInTitle": "Zeigen Sie den Brieftaschennamen im Titel an",
   "@showWalletNameInTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyKeyPairsEveryLoad": "Проверяйте пары ключей при каждой загрузке",
+  "verifyKeyPairsEveryLoad": "Überprüfen Sie die Schlüsselpaare bei jedem Laden",
   "@verifyKeyPairsEveryLoad": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestBeforeCreatingWallets": "Юнит тест перед созданием кошельков",
+  "unitTestBeforeCreatingWallets": "Unit-Test vor der Erstellung von Brieftaschen",
   "@unitTestBeforeCreatingWallets": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestFailure": "Ошибка модульного теста",
+  "unitTestFailure": "Unit-Test fehlgeschlagen",
   "@unitTestFailure": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyAddressFailed": "не удалось проверить: {addressText}",
+  "verifyAddressFailed": "Überprüfung fehlgeschlagen: {addressText}",
   "@verifyAddressFailed": {
     "type": "text",
     "placeholders": {
       "addressText": {}
     }
   },
-  "verifyWalletResults": "Проверенные {goodAddresses} / {totalAddresses} и {goodTests} / {totalTests} успешно",
+  "verifyWalletResults": "Überprüfte {goodAddresses} / {totalAddresses} und {goodTests} / {totalTests} -Tests waren erfolgreich",
   "@verifyWalletResults": {
     "type": "text",
     "placeholders": {
@@ -896,28 +896,28 @@
       "totalTests": {}
     }
   },
-  "secondsDuration": "{seconds, plural, =1 {{seconds} секунд} other {{seconds} секунд}}",
+  "secondsDuration": "{seconds, plural, =1 {{seconds} second} other {{seconds} seconds}}",
   "@secondsDuration": {
     "type": "text",
     "placeholders": {
       "seconds": {}
     }
   },
-  "minutesDuration": "{minutes, plural, =1 {{minutes} минуты} other {{minutes} минуты}}",
+  "minutesDuration": "{minutes, plural, =1 {{minutes} Minute} other {{minutes} Minuten}}",
   "@minutesDuration": {
     "type": "text",
     "placeholders": {
       "minutes": {}
     }
   },
-  "hoursDuration": "{hours, plural, =1 {час} other {{hours} часов}}",
+  "hoursDuration": "{hours, plural, =1 {Stunde} other {{hours} Stunden}}",
   "@hoursDuration": {
     "type": "text",
     "placeholders": {
       "hours": {}
     }
   },
-  "daysDuration": "{days, plural, =1 {день} other {{days} дней}}",
+  "daysDuration": "{days, plural, =1 {Tag} other {{days} Tage}}",
   "@daysDuration": {
     "type": "text",
     "placeholders": {

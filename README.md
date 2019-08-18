@@ -1,4 +1,4 @@
-# cruzawl-ui 
+# cruzawl-ui [![Build Status](https://travis-ci.org/GreenAppers/cruzawl-ui.svg?branch=master)](https://travis-ci.org/GreenAppers/cruzawl-ui)
 <img width=128 src="https://www.greenappers.com/cruzall/en/assets/cruzbit.png" /> <img src="https://www.greenappers.com/cruzall/en/assets/icon.png"/><br/> [Flutter](https://flutter.dev/) package for [CRUZ](https://github.com/cruzbit/cruzbit) cryptocurrency wallet [cruzall](https://github.com/GreenAppers/cruzall) and block explorer [cruzweb](https://github.com/GreenAppers/cruzweb).
 
 # Project Map

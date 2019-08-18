@@ -10,8 +10,9 @@ dependencies:
   barcode_scan: ^1.0.0
   charts_flutter: ^0.6.0
   cruzawl:
-    path: ../../cruzawl
-  json_annotation: ^2.4.0
+    git:
+      url: git://github.com/GreenAppers/cruzawl.git
+  json_annotation: ^3.0.0
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -20,11 +21,9 @@ dependencies:
   qr_flutter:
     git:
       url: git://github.com/lukef/qr.flutter.git
-  sembast: ^1.17.0
+  sembast: ^2.0.1
   scoped_model: ^1.0.1
-  tweetnacl:
-    git:
-      url: https://github.com/jspschool/tweetnacl-dart
+  tweetnacl: ^0.3.2
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,5 @@
 {
-  "localeLanguage": "Русский",
+  "localeLanguage": "Bahasa Melayu",
   "@localeLanguage": {
     "type": "text",
     "placeholders": {}
@@ -9,27 +9,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "unlockTitle": "Разблокировать крузалл",
+  "unlockTitle": "Buka kunci Cruzall",
   "@unlockTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeTitle": "Добро пожаловать в Крузалл",
+  "welcomeTitle": "Selamat datang ke Cruzall",
   "@welcomeTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeDesc": "Для начала создайте кошелек:",
+  "welcomeDesc": "Untuk memulakan, buat dompet:",
   "@welcomeDesc": {
     "type": "text",
     "placeholders": {}
   },
-  "currentBalanceIs": "Ваш текущий баланс:",
+  "currentBalanceIs": "Baki semasa anda ialah:",
   "@currentBalanceIs": {
     "type": "text",
     "placeholders": {}
   },
-  "recentHistory": "Недавняя история",
+  "recentHistory": "Sejarah Terkini",
   "@recentHistory": {
     "type": "text",
     "placeholders": {}
@@ -42,88 +42,88 @@
       "balance": {}
     }
   },
-  "balanceAtHeightIs": "Ваш баланс на высоте блока {@<a>} {height} {@</a>} :",
+  "balanceAtHeightIs": "Baki anda pada ketinggian blok {@<a>} {height} {@</a>} ialah:",
   "@balanceAtHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "balanceMaturingByHeightIs": "Ваш баланс созревания по высоте {height} является:",
+  "balanceMaturingByHeightIs": "Baki anda yang matang dengan ketinggian {height} ialah:",
   "@balanceMaturingByHeightIs": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "insecureDeviceWarning": "Предупреждение о небезопасном устройстве",
+  "insecureDeviceWarning": "Amaran Peranti Tidak Sesuai",
   "@insecureDeviceWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "insecureDeviceWarningDescription": "Обнаружено рутированное или взломанное устройство. Дальнейшее использование не рекомендуется.",
+  "insecureDeviceWarningDescription": "Peranti berakar atau jailbroken telah dikesan. Penggunaan lanjut tidak disyorkan.",
   "@insecureDeviceWarningDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhraseWarning": "Это семя позволяет любому, кто его знает, потратить все средства с вашего кошелька. Запиши это. Держать его в безопасности.",
+  "seedPhraseWarning": "Benih ini membolehkan sesiapa yang mengetahui bahawa ia membelanjakan semua dana dari dompet anda. Tuliskannya. Pastikan ia selamat.",
   "@seedPhraseWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "backupKeysWarning": "Ваши ключи должны быть сохранены на внешнем хранилище.",
+  "backupKeysWarning": "Kekunci anda mesti disokong pada storan luaran.",
   "@backupKeysWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "creatingUsingAlgorithm": "Создание ... ( {algorithm} )",
+  "creatingUsingAlgorithm": "Mencipta ... ( {algorithm} )",
   "@creatingUsingAlgorithm": {
     "type": "text",
     "placeholders": {
       "algorithm": {}
     }
   },
-  "addWallet": "Добавить кошелек",
+  "addWallet": "Tambah Wallet",
   "@addWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWallet": "HD кошелек",
+  "hdWallet": "HD Wallet",
   "@hdWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "hdWalletAlgorithm": "PBKDF: 2048 итераций",
+  "hdWalletAlgorithm": "PBKDF: 2048 lelaran",
   "@hdWalletAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "watchOnlyWallet": "Часы только кошелек",
+  "watchOnlyWallet": "Wallet Hanya Tonton",
   "@watchOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "generateNewAddress": "Создать новый адрес",
+  "generateNewAddress": "Buat alamat baru",
   "@generateNewAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWallet": "Удалить кошелек",
+  "deleteWallet": "Padamkan Wallet",
   "@deleteWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteThisWallet": "Удалить этот кошелек",
+  "deleteThisWallet": "Padamkan dompet ini",
   "@deleteThisWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "cantDeleteOnlyWallet": "Не могу удалить единственный кошелек.",
+  "cantDeleteOnlyWallet": "Tidak dapat memadamkan dompet sahaja.",
   "@cantDeleteOnlyWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteWalletDescription": "Как только вы удалите кошелек, пути назад уже не будет. Пожалуйста, будьте уверены.",
+  "deleteWalletDescription": "Sebaik sahaja anda memadamkan dompet, tidak akan kembali. Sila pastikan.",
   "@deleteWalletDescription": {
     "type": "text",
     "placeholders": {}
@@ -133,117 +133,117 @@
     "type": "text",
     "placeholders": {}
   },
-  "addressStateReserve": "резерв",
+  "addressStateReserve": "rizab",
   "@addressStateReserve": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateOpen": "открыть",
+  "addressStateOpen": "buka",
   "@addressStateOpen": {
     "type": "text",
     "placeholders": {}
   },
-  "addressStateUsed": "используемый",
+  "addressStateUsed": "digunakan",
   "@addressStateUsed": {
     "type": "text",
     "placeholders": {}
   },
-  "ok": "Хорошо",
+  "ok": "Okey",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "hide": "Спрятать",
+  "hide": "Sembunyikan",
   "@hide": {
     "type": "text",
     "placeholders": {}
   },
-  "show": "Шоу",
+  "show": "Tunjukkan",
   "@show": {
     "type": "text",
     "placeholders": {}
   },
-  "copy": "копия",
+  "copy": "Salinan",
   "@copy": {
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "отменить",
+  "cancel": "Batalkan",
   "@cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "delete": "удалять",
+  "delete": "Padam",
   "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "create": "Создайте",
+  "create": "Buat",
   "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "ignore": "игнорировать",
+  "ignore": "Abai",
   "@ignore": {
     "type": "text",
     "placeholders": {}
   },
-  "unlock": "отпереть",
+  "unlock": "Buka kunci",
   "@unlock": {
     "type": "text",
     "placeholders": {}
   },
-  "encrypt": "шифровать",
+  "encrypt": "Menyulitkan",
   "@encrypt": {
     "type": "text",
     "placeholders": {}
   },
-  "verify": "проверить",
+  "verify": "Sahkan",
   "@verify": {
     "type": "text",
     "placeholders": {}
   },
-  "verifying": "Проверка ...",
+  "verifying": "Mengesahkan ...",
   "@verifying": {
     "type": "text",
     "placeholders": {}
   },
-  "send": "послать",
+  "send": "Hantar",
   "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "sending": "Посылка ...",
+  "sending": "Menghantar ...",
   "@sending": {
     "type": "text",
     "placeholders": {}
   },
-  "sendFailed": "Не удалось отправить",
+  "sendFailed": "Hantar gagal",
   "@sendFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "loading": "Loading ...",
+  "loading": "Memuatkan ...",
   "@loading": {
     "type": "text",
     "placeholders": {}
   },
-  "creating": "Создание ...",
+  "creating": "Mencipta ...",
   "@creating": {
     "type": "text",
     "placeholders": {}
   },
-  "copied": "Скопировано.",
+  "copied": "Disalin.",
   "@copied": {
     "type": "text",
     "placeholders": {}
   },
-  "copyPublicKeys": "Копировать открытые ключи",
+  "copyPublicKeys": "Salin Kunci Awam",
   "@copyPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "sentTransactionId": "Отправлено {transactionId}",
+  "sentTransactionId": "Dihantar {transactionId}",
   "@sentTransactionId": {
     "type": "text",
     "placeholders": {
@@ -292,170 +292,170 @@
       "item2": {}
     }
   },
-  "account": "учетная запись",
+  "account": "Akaun",
   "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "accounts": "Счета",
+  "accounts": "Akaun",
   "@accounts": {
     "type": "text",
     "placeholders": {}
   },
-  "externalAddress": "Внешний адрес",
+  "externalAddress": "Alamat Luaran",
   "@externalAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "address": "Адрес",
+  "address": "Alamat",
   "@address": {
     "type": "text",
     "placeholders": {}
   },
-  "addresses": "Адреса",
+  "addresses": "Alamat",
   "@addresses": {
     "type": "text",
     "placeholders": {}
   },
-  "receive": "Получать",
+  "receive": "Terima",
   "@receive": {
     "type": "text",
     "placeholders": {}
   },
-  "search": "Поиск",
+  "search": "Carian",
   "@search": {
     "type": "text",
     "placeholders": {}
   },
-  "result": "Результат",
+  "result": "Keputusan",
   "@result": {
     "type": "text",
     "placeholders": {}
   },
-  "console": "Приставка",
+  "console": "Konsol",
   "@console": {
     "type": "text",
     "placeholders": {}
   },
-  "unknown": "неизвестный",
+  "unknown": "Tidak diketahui",
   "@unknown": {
     "type": "text",
     "placeholders": {}
   },
-  "settings": "настройки",
+  "settings": "Tetapan",
   "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "network": "сеть",
+  "network": "Rangkaian",
   "@network": {
     "type": "text",
     "placeholders": {}
   },
-  "newPeer": "New Peer",
+  "newPeer": "Peer Baru",
   "@newPeer": {
     "type": "text",
     "placeholders": {}
   },
-  "newWallet": "Новый кошелек",
+  "newWallet": "Wallet Baru",
   "@newWallet": {
     "type": "text",
     "placeholders": {}
   },
-  "peers": "Сверстники",
+  "peers": "Rakan sebaya",
   "@peers": {
     "type": "text",
     "placeholders": {}
   },
-  "deletePeer": "Удалить Peer",
+  "deletePeer": "Padamkan Peer",
   "@deletePeer": {
     "type": "text",
     "placeholders": {}
   },
-  "block": "блок",
+  "block": "Blok",
   "@block": {
     "type": "text",
     "placeholders": {}
   },
-  "blocks": "Блоки",
+  "blocks": "Blok",
   "@blocks": {
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "шифрование",
+  "encryption": "Penyulitan",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "transaction": "Сделка",
+  "transaction": "Transaksi",
   "@transaction": {
     "type": "text",
     "placeholders": {}
   },
-  "transactions": "операции",
+  "transactions": "Urus niaga",
   "@transactions": {
     "type": "text",
     "placeholders": {}
   },
-  "dangerZone": "Опасная зона",
+  "dangerZone": "Zon Bahaya",
   "@dangerZone": {
     "type": "text",
     "placeholders": {}
   },
-  "warning": "Предупреждение",
+  "warning": "Amaran",
   "@warning": {
     "type": "text",
     "placeholders": {}
   },
-  "support": "Служба поддержки",
+  "support": "Sokongan",
   "@support": {
     "type": "text",
     "placeholders": {}
   },
-  "license": "Лицензия",
+  "license": "Lesen",
   "@license": {
     "type": "text",
     "placeholders": {}
   },
-  "donations": "Пожертвования",
+  "donations": "Sumbangan",
   "@donations": {
     "type": "text",
     "placeholders": {}
   },
-  "privacyPolicy": "политика конфиденциальности",
+  "privacyPolicy": "Dasar Privasi",
   "@privacyPolicy": {
     "type": "text",
     "placeholders": {}
   },
-  "homePage": "{product} Домашняя страница",
+  "homePage": "{product} Halaman Utama",
   "@homePage": {
     "type": "text",
     "placeholders": {
       "product": {}
     }
   },
-  "addressTitle": "Адрес {address}",
+  "addressTitle": "Alamat {address}",
   "@addressTitle": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "networkType": "{type} Сеть",
+  "networkType": "{type} Rangkaian",
   "@networkType": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "numTransactions": "Транзакции ( {number} )",
+  "numTransactions": "Transaksi ( {number} )",
   "@numTransactions": {
     "type": "text",
     "placeholders": {
       "number": {}
     }
   },
-  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} {duration} {@</a2>}",
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} blok {@</a1>} dalam {@<a2>} {duration} {@</a2>}",
   "@totalBlocksInLastDuration": {
     "type": "text",
     "placeholders": {
@@ -463,7 +463,7 @@
       "duration": {}
     }
   },
-  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}блоков{@</a1>}, {totalTransactions} транзакции в последних {@<a2>}{duration}{@</a2>}",
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} blok {@</a1>} , {totalTransactions} urus niaga pada {@<a2>} {duration} {@</a2>}",
   "@totalBlocksTransactionsInLastDuration": {
     "type": "text",
     "placeholders": {
@@ -472,92 +472,92 @@
       "duration": {}
     }
   },
-  "id": "Я бы",
+  "id": "ID",
   "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "tip": "Совет",
+  "tip": "Petua",
   "@tip": {
     "type": "text",
     "placeholders": {}
   },
-  "date": "Дата",
+  "date": "Tarikh",
   "@date": {
     "type": "text",
     "placeholders": {}
   },
-  "name": "название",
+  "name": "Nama",
   "@name": {
     "type": "text",
     "placeholders": {}
   },
-  "time": "Время",
+  "time": "Masa",
   "@time": {
     "type": "text",
     "placeholders": {}
   },
-  "email": "Эл. адрес",
+  "email": "E-mel",
   "@email": {
     "type": "text",
     "placeholders": {}
   },
-  "state": "государственный",
+  "state": "Negeri",
   "@state": {
     "type": "text",
     "placeholders": {}
   },
-  "height": "Рост",
+  "height": "Ketinggian",
   "@height": {
     "type": "text",
     "placeholders": {}
   },
-  "balance": "Остаток средств",
+  "balance": "Seimbang",
   "@balance": {
     "type": "text",
     "placeholders": {}
   },
-  "currency": "валюта",
+  "currency": "Mata wang",
   "@currency": {
     "type": "text",
     "placeholders": {}
   },
-  "nonce": "данное время",
+  "nonce": "Nonce",
   "@nonce": {
     "type": "text",
     "placeholders": {}
   },
-  "amount": "Количество",
+  "amount": "Jumlah",
   "@amount": {
     "type": "text",
     "placeholders": {}
   },
-  "fee": "плата",
+  "fee": "Bayaran",
   "@fee": {
     "type": "text",
     "placeholders": {}
   },
-  "payTo": "Платить",
+  "payTo": "Bayar kepada",
   "@payTo": {
     "type": "text",
     "placeholders": {}
   },
-  "to": "к",
+  "to": "Untuk",
   "@to": {
     "type": "text",
     "placeholders": {}
   },
-  "from": "От",
+  "from": "Dari",
   "@from": {
     "type": "text",
     "placeholders": {}
   },
-  "memo": "напоминание",
+  "memo": "Memo",
   "@memo": {
     "type": "text",
     "placeholders": {}
   },
-  "theme": "тема",
+  "theme": "Tema",
   "@theme": {
     "type": "text",
     "placeholders": {}
@@ -567,117 +567,117 @@
     "type": "text",
     "placeholders": {}
   },
-  "password": "пароль",
+  "password": "Kata laluan",
   "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "version": "Версия",
+  "version": "Versi",
   "@version": {
     "type": "text",
     "placeholders": {}
   },
-  "language": "язык",
+  "language": "Bahasa",
   "@language": {
     "type": "text",
     "placeholders": {}
   },
-  "previous": "предыдущий",
+  "previous": "Sebelum ini",
   "@previous": {
     "type": "text",
     "placeholders": {}
   },
-  "next": "следующий",
+  "next": "Seterusnya",
   "@next": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmations": "Подтверждения",
+  "confirmations": "Pengesahan",
   "@confirmations": {
     "type": "text",
     "placeholders": {}
   },
-  "earliestSeen": "Самое раннее увиденное",
+  "earliestSeen": "Terkini Dilihat",
   "@earliestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "latestSeen": "Последнее увиденное",
+  "latestSeen": "Terkini dilihat",
   "@latestSeen": {
     "type": "text",
     "placeholders": {}
   },
-  "target": "цель",
+  "target": "Sasaran",
   "@target": {
     "type": "text",
     "placeholders": {}
   },
-  "chainCode": "Цепной код",
+  "chainCode": "Kod Rantaian",
   "@chainCode": {
     "type": "text",
     "placeholders": {}
   },
-  "chainIndex": "Индекс цепи",
+  "chainIndex": "Indeks Rantaian",
   "@chainIndex": {
     "type": "text",
     "placeholders": {}
   },
-  "seedPhrase": "Семенная фраза",
+  "seedPhrase": "Frasa benih",
   "@seedPhrase": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKey": "Закрытый ключ",
+  "privateKey": "Kunci Persendirian",
   "@privateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "activeTransactions": "Активные транзакции",
+  "activeTransactions": "Urus niaga aktif",
   "@activeTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "expired": "Истекший",
+  "expired": "Tamat tempoh",
   "@expired": {
     "type": "text",
     "placeholders": {}
   },
-  "expires": "Истекает",
+  "expires": "Tamat tempoh",
   "@expires": {
     "type": "text",
     "placeholders": {}
   },
-  "matured": "созревший",
+  "matured": "Matang",
   "@matured": {
     "type": "text",
     "placeholders": {}
   },
-  "matures": "Matures",
+  "matures": "Matang",
   "@matures": {
     "type": "text",
     "placeholders": {}
   },
-  "maturing": "вызревание",
+  "maturing": "Matang",
   "@maturing": {
     "type": "text",
     "placeholders": {}
   },
-  "maturingTransactions": "Сроки погашения",
+  "maturingTransactions": "Urusniaga matang",
   "@maturingTransactions": {
     "type": "text",
     "placeholders": {}
   },
-  "chainWork": "Цепная работа",
+  "chainWork": "Rantaian Kerja",
   "@chainWork": {
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "Корень хэш-списка",
+  "hashListRoot": "Hash List Root",
   "@hashListRoot": {
     "type": "text",
     "placeholders": {}
   },
-  "deltaTime": "Delta Time",
+  "deltaTime": "Masa Delta",
   "@deltaTime": {
     "type": "text",
     "placeholders": {}
@@ -687,206 +687,206 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicKeyList": "Список открытых ключей",
+  "publicKeyList": "Senarai Utama Awam",
   "@publicKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "privateKeyList": "Список закрытых ключей",
+  "privateKeyList": "Senarai Kunci Persendirian",
   "@privateKeyList": {
     "type": "text",
     "placeholders": {}
   },
-  "fromAddress": "От: {address}",
+  "fromAddress": "Dari: {address}",
   "@fromAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "toAddress": "Кому: {address}",
+  "toAddress": "Kepada: {address}",
   "@toAddress": {
     "type": "text",
     "placeholders": {
       "address": {}
     }
   },
-  "heightEquals": "высота = {@<a>} {height} {@</a>}",
+  "heightEquals": "ketinggian = {@<a>} {height} {@</a>}",
   "@heightEquals": {
     "type": "text",
     "placeholders": {
       "height": {}
     }
   },
-  "marketCap": "Рыночная капитализация {@<a>} {cap} {@</a>}",
+  "marketCap": "Cap pasaran {@<a>} {cap} {@</a>}",
   "@marketCap": {
     "type": "text",
     "placeholders": {
       "cap": {}
     }
   },
-  "pending": "в ожидании",
+  "pending": "Yang belum selesai",
   "@pending": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidUrl": "Неверная ссылка.",
+  "invalidUrl": "URL tidak sah.",
   "@invalidUrl": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidJson": "Неверный JSON.",
+  "invalidJson": "JSON tidak sah.",
   "@invalidJson": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPrivateKey": "Неверный закрытый ключ.",
+  "invalidPrivateKey": "Kunci peribadi tidak sah.",
   "@invalidPrivateKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidPublicKey": "Неверный открытый ключ.",
+  "invalidPublicKey": "Kunci awam tidak sah.",
   "@invalidPublicKey": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidCurrency": "Неверная валюта",
+  "invalidCurrency": "Mata wang tidak sah",
   "@invalidCurrency": {
     "type": "text",
     "placeholders": {}
   },
-  "maxMemoLength": "Максимальная длина заметки 100",
+  "maxMemoLength": "Panjang memo maksimum ialah 100",
   "@maxMemoLength": {
     "type": "text",
     "placeholders": {}
   },
-  "nameMustBeUnique": "Имя должно быть уникальным.",
+  "nameMustBeUnique": "Nama mestilah unik.",
   "@nameMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordCantBeEmpty": "Пароль не может быть пустым.",
+  "passwordCantBeEmpty": "Kata laluan tidak boleh kosong.",
   "@passwordCantBeEmpty": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordsDontMatch": "Пароли не совпадают.",
+  "passwordsDontMatch": "Kata laluan tidak sepadan.",
   "@passwordsDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "confirmPassword": "Подтвердите Пароль",
+  "confirmPassword": "Sahkan Kata Laluan",
   "@confirmPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownAddress": "Неизвестный адрес",
+  "unknownAddress": "Alamat tidak diketahui",
   "@unknownAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidAddress": "Неверный адрес",
+  "invalidAddress": "Alamat tidak sah",
   "@invalidAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "invalidMnemonic": "Неверная мнемоника",
+  "invalidMnemonic": "Mnemonik tidak sah",
   "@invalidMnemonic": {
     "type": "text",
     "placeholders": {}
   },
-  "valueMustBePositive": "Значение должно быть положительным",
+  "valueMustBePositive": "Nilai mestilah positif",
   "@valueMustBePositive": {
     "type": "text",
     "placeholders": {}
   },
-  "insufficientFunds": "Недостаточно средств",
+  "insufficientFunds": "Kekurangan dana",
   "@insufficientFunds": {
     "type": "text",
     "placeholders": {}
   },
-  "networkOffline": "Сеть оффлайн",
+  "networkOffline": "Rangkaian di luar talian",
   "@networkOffline": {
     "type": "text",
     "placeholders": {}
   },
-  "noPublicKeys": "Нет открытых ключей",
+  "noPublicKeys": "Tiada kunci awam",
   "@noPublicKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "noPrivateKeys": "Нет закрытых ключей",
+  "noPrivateKeys": "Tiada kunci persendirian",
   "@noPrivateKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownQuery": "Неизвестный запрос",
+  "unknownQuery": "Pertanyaan tidak diketahui",
   "@unknownQuery": {
     "type": "text",
     "placeholders": {}
   },
-  "thanksForDonating": "Право на! Спасибо CRUZ сообществу!",
+  "thanksForDonating": "Betul! Terima kasih komuniti CRUZ!",
   "@thanksForDonating": {
     "type": "text",
     "placeholders": {}
   },
-  "minFee": "Минимальная плата {fee}",
+  "minFee": "Yuran minimum adalah {fee}",
   "@minFee": {
     "type": "text",
     "placeholders": {
       "fee": {}
     }
   },
-  "minAmount": "Минимальная сумма {amount}",
+  "minAmount": "Jumlah minimum adalah {amount}",
   "@minAmount": {
     "type": "text",
     "placeholders": {
       "amount": {}
     }
   },
-  "defaultWalletName": "Мой бумажник",
+  "defaultWalletName": "Dompet saya",
   "@defaultWalletName": {
     "type": "text",
     "placeholders": {}
   },
-  "debugLog": "Журнал отладки",
+  "debugLog": "Log Debug",
   "@debugLog": {
     "type": "text",
     "placeholders": {}
   },
-  "requireSSLCert": "Требовать SSL сертификат",
+  "requireSSLCert": "Memerlukan sijil SSL",
   "@requireSSLCert": {
     "type": "text",
     "placeholders": {}
   },
-  "showWalletNameInTitle": "Показать название кошелька в заголовке",
+  "showWalletNameInTitle": "Paparkan nama dompet dalam tajuk",
   "@showWalletNameInTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyKeyPairsEveryLoad": "Проверяйте пары ключей при каждой загрузке",
+  "verifyKeyPairsEveryLoad": "Sahkan pasangan kunci setiap beban",
   "@verifyKeyPairsEveryLoad": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestBeforeCreatingWallets": "Юнит тест перед созданием кошельков",
+  "unitTestBeforeCreatingWallets": "Ujian unit sebelum membuat dompet",
   "@unitTestBeforeCreatingWallets": {
     "type": "text",
     "placeholders": {}
   },
-  "unitTestFailure": "Ошибка модульного теста",
+  "unitTestFailure": "Kegagalan ujian unit",
   "@unitTestFailure": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyAddressFailed": "не удалось проверить: {addressText}",
+  "verifyAddressFailed": "pengesahan gagal: {addressText}",
   "@verifyAddressFailed": {
     "type": "text",
     "placeholders": {
       "addressText": {}
     }
   },
-  "verifyWalletResults": "Проверенные {goodAddresses} / {totalAddresses} и {goodTests} / {totalTests} успешно",
+  "verifyWalletResults": "Alamat disahkan {goodAddresses} / {totalAddresses} dan {goodTests} / {totalTests} berjaya",
   "@verifyWalletResults": {
     "type": "text",
     "placeholders": {
@@ -896,28 +896,28 @@
       "totalTests": {}
     }
   },
-  "secondsDuration": "{seconds, plural, =1 {{seconds} секунд} other {{seconds} секунд}}",
+  "secondsDuration": "{seconds, plural, =1 {{seconds} kedua} other {{seconds} saat}}",
   "@secondsDuration": {
     "type": "text",
     "placeholders": {
       "seconds": {}
     }
   },
-  "minutesDuration": "{minutes, plural, =1 {{minutes} минуты} other {{minutes} минуты}}",
+  "minutesDuration": "{minutes, plural, =1 {{minutes}} other {{minutes} minit}}",
   "@minutesDuration": {
     "type": "text",
     "placeholders": {
       "minutes": {}
     }
   },
-  "hoursDuration": "{hours, plural, =1 {час} other {{hours} часов}}",
+  "hoursDuration": "{hours, plural, =1 {jam} other {{hours}}}",
   "@hoursDuration": {
     "type": "text",
     "placeholders": {
       "hours": {}
     }
   },
-  "daysDuration": "{days, plural, =1 {день} other {{days} дней}}",
+  "daysDuration": "{days, plural, =1 {hari} other {{days}}}",
   "@daysDuration": {
     "type": "text",
     "placeholders": {

@@ -38,69 +38,59 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m8(gigaHashPerSecond) => "${gigaHashPerSecond} GH / s";
 
-  static m9(gigaValue) => "${gigaValue} B";
+  static m9(hashPerSecond) => "${hashPerSecond} H / s";
 
-  static m10(hashPerSecond) => "${hashPerSecond} H / s";
+  static m10(height) => "высота = {@<a>} ${height} {@</a>}";
 
-  static m11(height) => "высота = {@<a>} ${height} {@</a>}";
+  static m11(product) => "${product} Домашняя страница";
 
-  static m12(product) => "${product} Домашняя страница";
+  static m12(hours) => "${Intl.plural(hours, one: 'час', other: '${hours} часов')}";
 
-  static m13(hours) => "${Intl.plural(hours, one: 'час', other: '${hours} часов')}";
+  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m14(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
 
-  static m15(kiloValue) => "${kiloValue} K";
+  static m15(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
 
-  static m16(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
+  static m16(item1, item2) => "${item1} , ${item2}";
 
-  static m17(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
+  static m17(cap) => "Рыночная капитализация {@<a>} ${cap} {@</a>}";
 
-  static m18(item1, item2) => "${item1} , ${item2}";
+  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m19(cap) => "Рыночная капитализация {@<a>} ${cap} {@</a>}";
+  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m20(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
 
-  static m21(megaValue) => "${megaValue} M";
+  static m21(amount) => "Минимальная сумма ${amount}";
 
-  static m22(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m22(fee) => "Минимальная плата ${fee}";
 
-  static m23(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
+  static m23(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m24(amount) => "Минимальная сумма ${amount}";
+  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes} минуты', other: '${minutes} минуты')}";
 
-  static m25(fee) => "Минимальная плата ${fee}";
+  static m25(type) => "${type} Сеть";
 
-  static m26(minutes, seconds) => "${minutes} ${seconds}";
+  static m26(number) => "Транзакции ( ${number} )";
 
-  static m27(minutes) => "${Intl.plural(minutes, one: '${minutes} минуты', other: '${minutes} минуты')}";
+  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m28(type) => "${type} Сеть";
+  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds} секунд', other: '${seconds} секунд')}";
 
-  static m29(number) => "Транзакции ( ${number} )";
+  static m29(transactionId) => "Отправлено ${transactionId}";
 
-  static m30(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m31(value) => "${value}";
+  static m31(address) => "Кому: ${address}";
 
-  static m32(seconds) => "${Intl.plural(seconds, one: '${seconds} секунд', other: '${seconds} секунд')}";
+  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} ${duration} {@</a2>}";
 
-  static m33(transactionId) => "Отправлено ${transactionId}";
+  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}блоков{@</a1>}, ${totalTransactions} транзакции в последних {@<a2>}${duration}{@</a2>}";
 
-  static m34(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m34(addressText) => "не удалось проверить: ${addressText}";
 
-  static m35(teraValue) => "${teraValue} T";
-
-  static m36(address) => "Кому: ${address}";
-
-  static m37(totalBlocks, duration) => "${totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} ${duration} {@</a2>}";
-
-  static m38(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}блоков{@</a1>}, ${totalTransactions} транзакции в последних {@<a2>}${duration}{@</a2>}";
-
-  static m39(addressText) => "не удалось проверить: ${addressText}";
-
-  static m40(goodAddresses, totalAddresses, goodTests, totalTests) => "Проверенные ${goodAddresses} / ${totalAddresses} и ${goodTests} / ${totalTests} успешно";
+  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Проверенные ${goodAddresses} / ${totalAddresses} и ${goodTests} / ${totalTests} успешно";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -165,16 +155,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "fromAddress" : m7,
     "generateNewAddress" : MessageLookupByLibrary.simpleMessage("Создать новый адрес"),
     "gigaHashPerSecond" : m8,
-    "gigaQuantity" : m9,
     "hashListRoot" : MessageLookupByLibrary.simpleMessage("Корень хэш-списка"),
-    "hashPerSecond" : m10,
+    "hashPerSecond" : m9,
     "hdWallet" : MessageLookupByLibrary.simpleMessage("HD кошелек"),
     "hdWalletAlgorithm" : MessageLookupByLibrary.simpleMessage("PBKDF: 2048 итераций"),
     "height" : MessageLookupByLibrary.simpleMessage("Рост"),
-    "heightEquals" : m11,
+    "heightEquals" : m10,
     "hide" : MessageLookupByLibrary.simpleMessage("Спрятать"),
-    "homePage" : m12,
-    "hoursDuration" : m13,
+    "homePage" : m11,
+    "hoursDuration" : m12,
     "id" : MessageLookupByLibrary.simpleMessage("Я бы"),
     "ignore" : MessageLookupByLibrary.simpleMessage("игнорировать"),
     "insecureDeviceWarning" : MessageLookupByLibrary.simpleMessage("Предупреждение о небезопасном устройстве"),
@@ -187,43 +176,41 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("Неверный закрытый ключ."),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("Неверный открытый ключ."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Неверная ссылка."),
-    "kiloHashPerSecond" : m14,
-    "kiloQuantity" : m15,
+    "kiloHashPerSecond" : m13,
     "language" : MessageLookupByLibrary.simpleMessage("язык"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("Последнее увиденное"),
     "license" : MessageLookupByLibrary.simpleMessage("Лицензия"),
-    "listOfFour" : m16,
-    "listOfThree" : m17,
-    "listOfTwo" : m18,
+    "listOfFour" : m14,
+    "listOfThree" : m15,
+    "listOfTwo" : m16,
     "loading" : MessageLookupByLibrary.simpleMessage("Loading ..."),
-    "localeLanguage" : MessageLookupByLibrary.simpleMessage("английский"),
-    "marketCap" : m19,
+    "localeLanguage" : MessageLookupByLibrary.simpleMessage("Русский"),
+    "marketCap" : m17,
     "matured" : MessageLookupByLibrary.simpleMessage("созревший"),
     "matures" : MessageLookupByLibrary.simpleMessage("Matures"),
     "maturing" : MessageLookupByLibrary.simpleMessage("вызревание"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Сроки погашения"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Максимальная длина заметки 100"),
-    "megaHashPerSecond" : m20,
-    "megaQuantity" : m21,
+    "megaHashPerSecond" : m18,
     "memo" : MessageLookupByLibrary.simpleMessage("напоминание"),
-    "menuOfOne" : m22,
-    "menuOfTwo" : m23,
-    "minAmount" : m24,
-    "minFee" : m25,
-    "minutesAndSecondsDuration" : m26,
-    "minutesDuration" : m27,
+    "menuOfOne" : m19,
+    "menuOfTwo" : m20,
+    "minAmount" : m21,
+    "minFee" : m22,
+    "minutesAndSecondsDuration" : m23,
+    "minutesDuration" : m24,
     "name" : MessageLookupByLibrary.simpleMessage("название"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Имя должно быть уникальным."),
     "network" : MessageLookupByLibrary.simpleMessage("сеть"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Сеть оффлайн"),
-    "networkType" : m28,
+    "networkType" : m25,
     "newPeer" : MessageLookupByLibrary.simpleMessage("New Peer"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Новый кошелек"),
     "next" : MessageLookupByLibrary.simpleMessage("следующий"),
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("Нет закрытых ключей"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("Нет открытых ключей"),
     "nonce" : MessageLookupByLibrary.simpleMessage("данное время"),
-    "numTransactions" : m29,
+    "numTransactions" : m26,
     "ok" : MessageLookupByLibrary.simpleMessage("Хорошо"),
     "password" : MessageLookupByLibrary.simpleMessage("пароль"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Пароль не может быть пустым."),
@@ -231,42 +218,40 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("Платить"),
     "peers" : MessageLookupByLibrary.simpleMessage("Сверстники"),
     "pending" : MessageLookupByLibrary.simpleMessage("в ожидании"),
-    "petaHashPerSecond" : m30,
+    "petaHashPerSecond" : m27,
     "previous" : MessageLookupByLibrary.simpleMessage("предыдущий"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("политика конфиденциальности"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("Закрытый ключ"),
     "privateKeyList" : MessageLookupByLibrary.simpleMessage("Список закрытых ключей"),
     "publicKeyList" : MessageLookupByLibrary.simpleMessage("Список открытых ключей"),
-    "quantity" : m31,
     "receive" : MessageLookupByLibrary.simpleMessage("Получать"),
     "recentHistory" : MessageLookupByLibrary.simpleMessage("Недавняя история"),
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("Требовать SSL сертификат"),
     "result" : MessageLookupByLibrary.simpleMessage("Результат"),
     "search" : MessageLookupByLibrary.simpleMessage("Поиск"),
-    "secondsDuration" : m32,
+    "secondsDuration" : m28,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Семенная фраза"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("Это семя позволяет любому, кто его знает, потратить все средства с вашего кошелька. Запиши это. Держать его в безопасности."),
     "send" : MessageLookupByLibrary.simpleMessage("послать"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Не удалось отправить"),
     "sending" : MessageLookupByLibrary.simpleMessage("Посылка ..."),
-    "sentTransactionId" : m33,
+    "sentTransactionId" : m29,
     "settings" : MessageLookupByLibrary.simpleMessage("настройки"),
     "show" : MessageLookupByLibrary.simpleMessage("Шоу"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Показать название кошелька в заголовке"),
     "state" : MessageLookupByLibrary.simpleMessage("государственный"),
     "support" : MessageLookupByLibrary.simpleMessage("Служба поддержки"),
     "target" : MessageLookupByLibrary.simpleMessage("цель"),
-    "teraHashPerSecond" : m34,
-    "teraQuantity" : m35,
+    "teraHashPerSecond" : m30,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("Право на! Спасибо CRUZ сообществу!"),
     "theme" : MessageLookupByLibrary.simpleMessage("тема"),
     "time" : MessageLookupByLibrary.simpleMessage("Время"),
     "tip" : MessageLookupByLibrary.simpleMessage("Совет"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("к"),
-    "toAddress" : m36,
-    "totalBlocksInLastDuration" : m37,
-    "totalBlocksTransactionsInLastDuration" : m38,
+    "toAddress" : m31,
+    "totalBlocksInLastDuration" : m32,
+    "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("Сделка"),
     "transactions" : MessageLookupByLibrary.simpleMessage("операции"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Юнит тест перед созданием кошельков"),
@@ -279,9 +264,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Значение должно быть положительным"),
     "verify" : MessageLookupByLibrary.simpleMessage("проверить"),
-    "verifyAddressFailed" : m39,
+    "verifyAddressFailed" : m34,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Проверяйте пары ключей при каждой загрузке"),
-    "verifyWalletResults" : m40,
+    "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("Проверка ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Версия"),
     "warning" : MessageLookupByLibrary.simpleMessage("Предупреждение"),

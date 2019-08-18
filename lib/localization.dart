@@ -23,7 +23,6 @@ class Localization {
     final String name =
         locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
-    debugPrint('load Locale $localeName');
 
     return initializeMessages(localeName).then((bool _) {
       Intl.defaultLocale = localeName;
@@ -379,17 +378,6 @@ class Localization {
           args: [goodAddresses, totalAddresses, goodTests, totalTests]);
 
   /// Durations / rates
-  String quantity(String value) =>
-      Intl.message('$value', name: 'quantity', args: [value]);
-  String kiloQuantity(String kiloValue) =>
-      Intl.message('${kiloValue}K', name: 'kiloQuantity', args: [kiloValue]);
-  String megaQuantity(String megaValue) =>
-      Intl.message('${megaValue}M', name: 'megaQuantity', args: [megaValue]);
-  String gigaQuantity(String gigaValue) =>
-      Intl.message('${gigaValue}B', name: 'gigaQuantity', args: [gigaValue]);
-  String teraQuantity(String teraValue) =>
-      Intl.message('${teraValue}T', name: 'teraQuantity', args: [teraValue]);
-
   String secondsDuration(int seconds) => Intl.plural(seconds,
       one: '$seconds second',
       other: '$seconds seconds',
@@ -429,24 +417,6 @@ class Localization {
   String exaHashPerSecond(String exaHashPerSecond) =>
       Intl.message('$exaHashPerSecond EH/s',
           name: 'exaHashPerSecond', args: [exaHashPerSecond]);
-
-  String formatQuantity(int value) {
-    if (value > 1000000000000) {
-      double v = value / 1000000000000;
-      return teraQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
-    } else if (value > 1000000000) {
-      double v = value / 1000000000;
-      return gigaQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
-    } else if (value > 1000000) {
-      double v = value / 1000000;
-      return megaQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
-    } else if (value > 1000) {
-      double v = value / 1000;
-      return kiloQuantity(v.toStringAsFixed(v < 10 ? 1 : 0));
-    } else {
-      return quantity(value.toString());
-    }
-  }
 
   String formatHashRate(int value) {
     if (value > 1000000000000000000) {
@@ -490,14 +460,24 @@ class Localization {
   }
 
   static final supportedLocales = <Locale>[
+    const Locale('cs'),
+    const Locale('de'),
     const Locale('en'),
+    const Locale('id'),
+    const Locale('ja'),
+    const Locale('ms'),
     const Locale('ru'),
     const Locale('zh'),
   ];
 
   /// Values must have one-to-one correspondence with [supportedLocales]
   static final supportedLanguages = <String>[
+    'Čeština',
+    'Deutsch',
     'English',
+    'Bahasa Indonesia',
+    '日本語',
+    'Bahasa Melayu',
     'Русский',
     '中文',
   ];
@@ -508,19 +488,16 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   LocalizationDelegate({this.title});
 
   @override
-  bool isSupported(Locale locale) {
-    return ['en', 'zh', 'ru'].contains(locale.languageCode);
-  }
+  bool isSupported(Locale locale) => Localization.supportedLocales
+      .where((l) => l.languageCode == locale.languageCode)
+      .isNotEmpty;
 
   @override
-  Future<Localization> load(Locale locale) {
-    return Localization.load(locale, titleOverride: title);
-  }
+  Future<Localization> load(Locale locale) =>
+      Localization.load(locale, titleOverride: title);
 
   @override
-  bool shouldReload(LocalizationsDelegate<Localization> old) {
-    return false;
-  }
+  bool shouldReload(LocalizationsDelegate<Localization> old) => false;
 }
 
 class LocalizationMarkup {
