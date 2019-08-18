@@ -14,7 +14,7 @@ before_install:
   - echo ${HOME}
   - echo ${TRAVIS_BUILD_DIR}
   - sudo apt-get install lib32stdc++6
-  - git clone https://github.com/flutter/flutter.git -b stable --depth 1 ${HOME}/flutter
+  - git clone https://github.com/flutter/flutter.git -b stable ${HOME}/flutter
   - ${HOME}/flutter/bin/flutter doctor -v
   - ${HOME}/flutter/bin/flutter packages get
 
