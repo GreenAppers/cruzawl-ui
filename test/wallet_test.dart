@@ -32,13 +32,13 @@ void main() async {
   List<Locale> supportedLocales = <Locale>[ Locale('en') ];
 
   CruzawlPreferences preferences = CruzawlPreferences(
-      await databaseFactoryMemoryFs.openDatabase('settings.db'));
+      await databaseFactoryMemoryFs.openDatabase('settings.db'), () => 'USD');
   await preferences.load();
   preferences.networkEnabled = false;
   preferences.minimumReserveAddress = 3;
   SetClipboardText stringCallback = (BuildContext c, String x) {};
   Cruzawl appState = Cruzawl((String x) => x, stringCallback, stringCallback,
-      databaseFactoryMemoryFs, preferences, '/', NullFileSystem());
+      null, databaseFactoryMemoryFs, preferences, '/', NullFileSystem());
 
   testWidgets('AddWalletWidget', (WidgetTester tester) async {
     expect(appState.wallets.length, 0);
