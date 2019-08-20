@@ -168,6 +168,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "paste": "Tampal",
+  "@paste": {
+    "type": "text",
+    "placeholders": {}
+  },
   "cancel": "Batalkan",
   "@cancel": {
     "type": "text",

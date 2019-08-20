@@ -215,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password" : MessageLookupByLibrary.simpleMessage("パスワード"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("パスワードを空にすることはできません。"),
     "passwordsDontMatch" : MessageLookupByLibrary.simpleMessage("パスワードが一致しません。"),
+    "paste" : MessageLookupByLibrary.simpleMessage("ペースト"),
     "payTo" : MessageLookupByLibrary.simpleMessage("に支払います"),
     "peers" : MessageLookupByLibrary.simpleMessage("仲間"),
     "pending" : MessageLookupByLibrary.simpleMessage("保留中"),

@@ -215,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password" : MessageLookupByLibrary.simpleMessage("密码"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("密码不能为空。"),
     "passwordsDontMatch" : MessageLookupByLibrary.simpleMessage("密码不匹配。"),
+    "paste" : MessageLookupByLibrary.simpleMessage("糊"),
     "payTo" : MessageLookupByLibrary.simpleMessage("支付给"),
     "peers" : MessageLookupByLibrary.simpleMessage("同行"),
     "pending" : MessageLookupByLibrary.simpleMessage("有待"),

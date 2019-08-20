@@ -168,6 +168,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "paste": "糊",
+  "@paste": {
+    "type": "text",
+    "placeholders": {}
+  },
   "cancel": "取消",
   "@cancel": {
     "type": "text",

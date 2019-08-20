@@ -215,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password" : MessageLookupByLibrary.simpleMessage("Heslo"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Heslo nemůže být prázdné."),
     "passwordsDontMatch" : MessageLookupByLibrary.simpleMessage("Hesla se neshodují."),
+    "paste" : MessageLookupByLibrary.simpleMessage("Vložit"),
     "payTo" : MessageLookupByLibrary.simpleMessage("Zaplatit"),
     "peers" : MessageLookupByLibrary.simpleMessage("Vrstevníci"),
     "pending" : MessageLookupByLibrary.simpleMessage("čekající"),

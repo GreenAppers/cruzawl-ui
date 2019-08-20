@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-08-17T17:26:45.658190",
+  "@@last_modified": "2019-08-20T11:28:22.974763",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -166,6 +166,11 @@
   },
   "copy": "Copy",
   "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paste": "Paste",
+  "@paste": {
     "type": "text",
     "placeholders": {}
   },

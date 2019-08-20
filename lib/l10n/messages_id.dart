@@ -215,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password" : MessageLookupByLibrary.simpleMessage("Kata sandi"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Kata sandi tidak boleh kosong."),
     "passwordsDontMatch" : MessageLookupByLibrary.simpleMessage("Kata sandi tidak cocok."),
+    "paste" : MessageLookupByLibrary.simpleMessage("Pasta"),
     "payTo" : MessageLookupByLibrary.simpleMessage("Membayar"),
     "peers" : MessageLookupByLibrary.simpleMessage("Teman sebaya"),
     "pending" : MessageLookupByLibrary.simpleMessage("Tertunda"),

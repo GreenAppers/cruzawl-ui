@@ -215,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password" : MessageLookupByLibrary.simpleMessage("пароль"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Пароль не может быть пустым."),
     "passwordsDontMatch" : MessageLookupByLibrary.simpleMessage("Пароли не совпадают."),
+    "paste" : MessageLookupByLibrary.simpleMessage("Вставить"),
     "payTo" : MessageLookupByLibrary.simpleMessage("Платить"),
     "peers" : MessageLookupByLibrary.simpleMessage("Сверстники"),
     "pending" : MessageLookupByLibrary.simpleMessage("в ожидании"),
