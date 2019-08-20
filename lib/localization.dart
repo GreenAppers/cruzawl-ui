@@ -460,9 +460,9 @@ class Localization {
   }
 
   static final supportedLocales = <Locale>[
+    const Locale('en'),
     const Locale('cs'),
     const Locale('de'),
-    const Locale('en'),
     const Locale('id'),
     const Locale('ja'),
     const Locale('ms'),
@@ -472,9 +472,9 @@ class Localization {
 
   /// Values must have one-to-one correspondence with [supportedLocales]
   static final supportedLanguages = <String>[
+    'English',
     'Čeština',
     'Deutsch',
-    'English',
     'Bahasa Indonesia',
     '日本語',
     'Bahasa Melayu',
