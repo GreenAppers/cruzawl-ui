@@ -123,6 +123,7 @@ class Localization {
   String get hide => Intl.message('Hide', name: 'hide');
   String get show => Intl.message('Show', name: 'show');
   String get copy => Intl.message('Copy', name: 'copy');
+  String get paste => Intl.message('Paste', name: 'paste');
   String get cancel => Intl.message('Cancel', name: 'cancel');
   String get delete => Intl.message('Delete', name: 'delete');
   String get create => Intl.message('Create', name: 'create');

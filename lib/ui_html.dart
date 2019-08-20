@@ -66,3 +66,49 @@ class EnterTextFormField extends StatelessWidget {
           validator: validator,
           onFieldSubmitted: onFieldSubmitted));
 }
+
+class PastableTextFormField extends StatelessWidget {
+  final Key key;
+  final TextEditingController controller;
+  final String initialValue;
+  final FocusNode focusNode;
+  final InputDecoration decoration;
+  final TextInputType keyboardType;
+  final TextStyle style;
+  final TextAlign textAlign;
+  final bool autofocus, autocorrect;
+  final int maxLines;
+  final FormFieldSetter<String> onSaved;
+  final ValueChanged<String> onFieldSubmitted;
+  final FormFieldValidator<String> validator;
+  final Color cursorColor;
+
+  PastableTextFormField({
+    this.key,
+    this.controller,
+    this.initialValue,
+    FocusNode focusNode,
+    this.decoration,
+    this.keyboardType,
+    this.style,
+    this.textAlign = TextAlign.start,
+    this.autofocus = false,
+    this.autocorrect = true,
+    this.maxLines = 1,
+    this.onSaved,
+    this.onFieldSubmitted,
+    this.validator,
+    this.cursorColor,
+  }) : focusNode = focusNode ?? FocusNode();
+
+  @override
+  Widget build(BuildContext context) => TextFormField(
+      controller: controller,
+      decoration: decoration,
+      style: style,
+      cursorColor: cursorColor,
+      autofocus: autofocus,
+      autocorrect: autocorrect,
+      validator: validator,
+      onFieldSubmitted: onFieldSubmitted);
+}

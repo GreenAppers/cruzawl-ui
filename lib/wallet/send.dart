@@ -116,7 +116,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       padding: const EdgeInsets.all(32.0),
                       child: Text(locale.payTo, style: labelTextStyle),
                     ),
-                    TextFormField(
+                    PastableTextFormField(
                       maxLines: null,
                       controller: toController,
                       textAlign: TextAlign.right,
@@ -152,7 +152,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       padding: const EdgeInsets.all(32.0),
                       child: Text(locale.memo, style: labelTextStyle),
                     ),
-                    TextFormField(
+                    PastableTextFormField(
                       maxLines: null,
                       textAlign: TextAlign.right,
                       keyboardType: TextInputType.multiline,

@@ -54,7 +54,7 @@ class Cruzawl extends Model {
   Locale localeOverride;
   StringFilter assetPath;
   SetClipboardText launchUrl, setClipboardText;
-  StringFutureFunction barcodeScan;
+  StringFutureFunction getClipboardText, barcodeScan;
   sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
   FlutterErrorDetails fatal;
@@ -69,9 +69,18 @@ class Cruzawl extends Model {
   int walletsLoading = 0;
   static String walletSuffix = '.cruzall';
 
-  Cruzawl(this.assetPath, this.launchUrl, this.setClipboardText,
-      this.databaseFactory, this.preferences, this.dataDir, this.fileSystem,
-      {this.packageInfo, this.barcodeScan, this.isTrustFall = false}) {
+  Cruzawl(
+      this.assetPath,
+      this.launchUrl,
+      this.setClipboardText,
+      this.getClipboardText,
+      this.databaseFactory,
+      this.preferences,
+      this.dataDir,
+      this.fileSystem,
+      {this.packageInfo,
+      this.barcodeScan,
+      this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
     exchangeRates = ExchangeRates(preferences, debugPrint: print);
     exchangeRates.checkForUpdate();
@@ -83,8 +92,7 @@ class Cruzawl extends Model {
     notifyListeners();
   }
 
-  void setLocalCurrency() =>
-    defaultUpdateBtcToCurrency(exchangeRates);
+  void setLocalCurrency() => defaultUpdateBtcToCurrency(exchangeRates);
 
   void setTheme() {
     theme = themes[preferences.theme] ?? themes['teal'];

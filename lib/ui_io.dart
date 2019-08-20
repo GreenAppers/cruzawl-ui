@@ -5,16 +5,21 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:scoped_model/scoped_model.dart';
+
+import 'localization.dart';
+import 'model.dart';
+
 WidgetBuilder backButtonBuilder = null;
 
 class EnterTextFormField extends StatelessWidget {
-  TextEditingController controller;
-  InputDecoration decoration;
-  TextStyle style;
-  Color cursorColor;
-  bool autofocus, autocorrect;
-  FormFieldValidator<String> validator;
-  ValueChanged<String> onFieldSubmitted;
+  final TextEditingController controller;
+  final InputDecoration decoration;
+  final TextStyle style;
+  final Color cursorColor;
+  final bool autofocus, autocorrect;
+  final FormFieldValidator<String> validator;
+  final ValueChanged<String> onFieldSubmitted;
   EnterTextFormField(
       {this.controller,
       this.decoration,
@@ -35,4 +40,94 @@ class EnterTextFormField extends StatelessWidget {
       autocorrect: autocorrect,
       validator: validator,
       onFieldSubmitted: onFieldSubmitted);
+}
+
+class PastableTextFormField extends StatelessWidget {
+  final Key key;
+  final TextEditingController controller;
+  final String initialValue;
+  final FocusNode focusNode;
+  final InputDecoration decoration;
+  final TextInputType keyboardType;
+  final TextStyle style;
+  final TextAlign textAlign;
+  final bool autofocus, autocorrect;
+  final int maxLines;
+  final FormFieldSetter<String> onSaved;
+  final ValueChanged<String> onFieldSubmitted;
+  final FormFieldValidator<String> validator;
+  final Color cursorColor;
+
+  PastableTextFormField({
+    this.key,
+    this.controller,
+    this.initialValue,
+    FocusNode focusNode,
+    this.decoration,
+    this.keyboardType,
+    this.style,
+    this.textAlign = TextAlign.start,
+    this.autofocus = false,
+    this.autocorrect = true,
+    this.maxLines = 1,
+    this.onSaved,
+    this.onFieldSubmitted,
+    this.validator,
+    this.cursorColor,
+  }) : focusNode = focusNode ?? FocusNode();
+
+  @override
+  Widget build(BuildContext context) {
+    if (controller != null &&
+        !Platform.isMacOS &&
+        !Platform.isLinux &&
+        !Platform.isWindows) {
+      return TextFormField(
+          controller: controller,
+          decoration: decoration,
+          style: style,
+          cursorColor: cursorColor,
+          autofocus: autofocus,
+          autocorrect: autocorrect,
+          validator: validator,
+          onFieldSubmitted: onFieldSubmitted);
+    }
+
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final Localization locale = Localization.of(context);
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScope.of(context).requestFocus(focusNode);
+      },
+      onLongPress: () async {
+        String selected = await showMenu(
+          context: context,
+          position: RelativeRect.fromLTRB(0.0, 300.0, 300.0, 0.0),
+          items: [
+            PopupMenuItem(
+              value: '',
+              child: Text(locale.paste),
+            ),
+          ],
+        );
+        if (selected != null && controller != null) {
+          controller.text = await appState.getClipboardText();
+        }
+      },
+      child: IgnorePointer(
+        child: TextFormField(
+            focusNode: focusNode,
+            controller: controller,
+            decoration: decoration,
+            style: style,
+            cursorColor: cursorColor,
+            autofocus: autofocus,
+            autocorrect: autocorrect,
+            validator: validator,
+            onFieldSubmitted: onFieldSubmitted),
+      ),
+    );
+  }
 }

@@ -16,6 +16,7 @@ import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'localization.dart';
 import 'model.dart';
 import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
+export 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
 
 bool useWideStyle(BuildContext context, double maxWidth) =>
     MediaQuery.of(context).size.width > (maxWidth ?? double.maxFinite);
