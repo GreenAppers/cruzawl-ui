@@ -105,7 +105,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           subtitle: Text(locale.seedPhraseWarning,
               style: TextStyle(color: Colors.red))));
       ret.add(ListTile(
-        subtitle: TextFormField(
+        subtitle: PastableTextFormField(
           maxLines: 3,
           controller: seedPhraseController,
           keyboardType: TextInputType.multiline,
@@ -126,7 +126,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
     } else if (watchOnlyWallet) {
       ret.add(
         ListTile(
-            subtitle: TextFormField(
+            subtitle: PastableTextFormField(
                 maxLines: 10,
                 controller: keyListController,
                 keyboardType: TextInputType.multiline,
@@ -169,7 +169,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
               style: TextStyle(color: Colors.red))));
       ret.add(
         ListTile(
-            subtitle: TextFormField(
+            subtitle: PastableTextFormField(
                 maxLines: 10,
                 controller: keyListController,
                 keyboardType: TextInputType.multiline,

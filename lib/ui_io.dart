@@ -76,21 +76,30 @@ class PastableTextFormField extends StatelessWidget {
     this.cursorColor,
   }) : focusNode = focusNode ?? FocusNode();
 
+  Widget buildWrapped(BuildContext context) => TextFormField(
+      key: key,
+      controller: controller,
+      initialValue: initialValue,
+      focusNode: focusNode,
+      decoration: decoration,
+      keyboardType: keyboardType,
+      style: style,
+      textAlign: textAlign,
+      autofocus: autofocus,
+      autocorrect: autocorrect,
+      maxLines: maxLines,
+      onSaved: onSaved,
+      onFieldSubmitted: onFieldSubmitted,
+      cursorColor: cursorColor,
+      validator: validator);
+
   @override
   Widget build(BuildContext context) {
     if (controller != null &&
         !Platform.isMacOS &&
         !Platform.isLinux &&
         !Platform.isWindows) {
-      return TextFormField(
-          controller: controller,
-          decoration: decoration,
-          style: style,
-          cursorColor: cursorColor,
-          autofocus: autofocus,
-          autocorrect: autocorrect,
-          validator: validator,
-          onFieldSubmitted: onFieldSubmitted);
+      return buildWrapped(context);
     }
 
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
@@ -117,16 +126,7 @@ class PastableTextFormField extends StatelessWidget {
         }
       },
       child: IgnorePointer(
-        child: TextFormField(
-            focusNode: focusNode,
-            controller: controller,
-            decoration: decoration,
-            style: style,
-            cursorColor: cursorColor,
-            autofocus: autofocus,
-            autocorrect: autocorrect,
-            validator: validator,
-            onFieldSubmitted: onFieldSubmitted),
+        child: buildWrapped(context),
       ),
     );
   }

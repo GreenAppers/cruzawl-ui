@@ -27,9 +27,10 @@ class WalletSendWidget extends StatefulWidget {
 
 class _WalletSendWidgetState extends State<WalletSendWidget> {
   final formKey = GlobalKey<FormState>();
-  final amountKey = GlobalKey<FormFieldState>();
   final TextEditingController fromController = TextEditingController();
   final TextEditingController toController = TextEditingController();
+  final TextEditingController memoController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
   String fromInput, toInput, memoInput;
   num amountInput, feeInput;
   Wallet lastWallet;
@@ -38,6 +39,8 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
   void dispose() {
     fromController.dispose();
     toController.dispose();
+    memoController.dispose();
+    amountController.dispose();
     super.dispose();
   }
 
@@ -154,6 +157,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                     ),
                     PastableTextFormField(
                       maxLines: null,
+                      controller: memoController,
                       textAlign: TextAlign.right,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
@@ -174,8 +178,8 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       padding: const EdgeInsets.all(32.0),
                       child: Text(locale.amount, style: labelTextStyle),
                     ),
-                    TextFormField(
-                      key: amountKey,
+                    PastableTextFormField(
+                      controller: amountController,
                       textAlign: TextAlign.right,
                       keyboardType:
                           TextInputType.numberWithOptions(decimal: true),
@@ -224,7 +228,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                         num v = currency.parse(value);
                         if (!(v > 0)) return locale.valueMustBePositive;
                         num amount =
-                            currency.parse(amountKey.currentState.value);
+                            currency.parse(amountController.text);
                         Address fromAddress =
                             wallet.addresses[fromController.text];
                         if (fromAddress != null &&
@@ -253,6 +257,8 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
               formKey.currentState.reset();
               fromController.clear();
               toController.clear();
+              memoController.clear();
+              amountController.clear();
               FocusScope.of(context).requestFocus(FocusNode());
               Scaffold.of(context)
                   .showSnackBar(SnackBar(content: Text(locale.sending)));
