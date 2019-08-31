@@ -103,12 +103,19 @@ class PastableTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => TextFormField(
+      key: key,
       controller: controller,
+      initialValue: initialValue,
+      focusNode: focusNode,
       decoration: decoration,
+      keyboardType: keyboardType,
       style: style,
-      cursorColor: cursorColor,
+      textAlign: textAlign,
       autofocus: autofocus,
       autocorrect: autocorrect,
-      validator: validator,
-      onFieldSubmitted: onFieldSubmitted);
+      maxLines: maxLines,
+      onSaved: onSaved,
+      onFieldSubmitted: onFieldSubmitted,
+      cursorColor: cursorColor,
+      validator: validator);
 }

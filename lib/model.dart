@@ -61,6 +61,7 @@ class Cruzawl extends Model {
   PackageInfo packageInfo;
   bool isTrustFall;
   String dataDir, debugLog;
+  int debugLevel = debugLevelInfo;
   FileSystem fileSystem;
   Currency currency;
   ExchangeRates exchangeRates;
@@ -220,7 +221,7 @@ class Cruzawl extends Model {
     if (currency == null) return null;
 
     x.debugPrint = print;
-    x.debugLevel = debugLevelInfo;
+    x.debugLevel = debugLevel;
     currency.network.tipChanged = () => updateWallets(currency);
     currency.network.peerChanged = () => reloadWallets(currency);
     return currency.network.addPeer(currency.network
