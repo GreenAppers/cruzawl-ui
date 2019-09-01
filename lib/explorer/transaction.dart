@@ -11,28 +11,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
-import 'localization.dart';
-import 'model.dart';
-import 'ui.dart';
-
-class TransactionInfo {
-  Color color;
-  String amountPrefix = '';
-  final bool toWallet, fromWallet, wideStyle;
-
-  TransactionInfo(
-      {this.toWallet = false,
-      this.fromWallet = false,
-      this.wideStyle = false}) {
-    if (toWallet && !fromWallet) {
-      color = Colors.green;
-      amountPrefix = '+';
-    } else if (fromWallet && !toWallet) {
-      color = Colors.red;
-      amountPrefix = '-';
-    }
-  }
-}
+import '../localization.dart';
+import '../model.dart';
+import '../ui.dart';
 
 class TransactionWidget extends StatefulWidget {
   final Currency currency;
@@ -204,64 +185,6 @@ class _TransactionWidgetState extends State<TransactionWidget> {
         ),
       ),
       title: locale.transaction + ' ' + (widget.transactionIdText ?? ''),
-    );
-  }
-}
-
-class TransactionListTile extends StatelessWidget {
-  final Currency currency;
-  final Transaction tx;
-  final TransactionInfo info;
-  final TransactionCallback onTap, onFromTap, onToTap;
-  TransactionListTile(this.currency, this.tx, this.info,
-      {this.onTap, this.onFromTap, this.onToTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
-    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final bool amountLink = info.wideStyle && onTap != null;
-
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      child: ListTile(
-        title: GestureDetector(
-          child: (info.wideStyle && onToTap != null)
-              ? RichText(
-                  text: buildLocalizationMarkupTextSpan(
-                    locale.toAddress('{@<a>}${tx.toText}{@</a>}'),
-                    style: appState.theme.labelStyle,
-                    tags: <String, LocalizationMarkup>{
-                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
-                    },
-                  ),
-                )
-              : Text(locale.toAddress(tx.toText)),
-          onTap: onToTap == null ? null : () => onToTap(tx),
-        ),
-        subtitle: GestureDetector(
-          child: (info.wideStyle && onFromTap != null)
-              ? RichText(
-                  text: buildLocalizationMarkupTextSpan(
-                    locale.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
-                    style: appState.theme.labelStyle,
-                    tags: <String, LocalizationMarkup>{
-                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
-                    },
-                  ),
-                )
-              : Text(locale.fromAddress(tx.fromText)),
-          onTap: onFromTap == null ? null : () => onFromTap(tx),
-        ),
-        trailing: Text(
-            info.amountPrefix +
-                currency.format(tx.amount + (info.fromWallet ? tx.fee : 0)),
-            style: (amountLink && !info.fromWallet && !info.toWallet)
-                ? appState.theme.linkStyle
-                : TextStyle(color: info.color).apply(
-                    decoration: amountLink ? TextDecoration.underline : null)),
-        onTap: onTap == null ? null : () => onTap(tx),
-      ),
     );
   }
 }

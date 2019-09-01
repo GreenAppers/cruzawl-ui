@@ -19,7 +19,6 @@ import 'package:cruzawl/test.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/wallet.dart';
 
-import 'transaction.dart';
 import 'ui.dart';
 
 typedef StringFilter = String Function(String);
@@ -29,6 +28,25 @@ typedef SetClipboardText = void Function(BuildContext, String);
 class PackageInfo {
   final String appName, packageName, version, buildNumber;
   PackageInfo(this.appName, this.packageName, this.version, this.buildNumber);
+}
+
+class TransactionInfo {
+  Color color;
+  String amountPrefix = '';
+  final bool toWallet, fromWallet, wideStyle;
+
+  TransactionInfo(
+      {this.toWallet = false,
+      this.fromWallet = false,
+      this.wideStyle = false}) {
+    if (toWallet && !fromWallet) {
+      color = Colors.green;
+      amountPrefix = '+';
+    } else if (fromWallet && !toWallet) {
+      color = Colors.red;
+      amountPrefix = '-';
+    }
+  }
 }
 
 class WalletTransactionInfo extends TransactionInfo {

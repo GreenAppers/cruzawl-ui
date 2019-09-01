@@ -16,7 +16,6 @@ import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
 import '../model.dart';
-import '../transaction.dart';
 import '../ui.dart';
 
 class AddressWidget extends StatefulWidget {

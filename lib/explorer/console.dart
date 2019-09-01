@@ -13,9 +13,9 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
 
-import 'localization.dart';
-import 'model.dart';
-import 'ui.dart';
+import '../localization.dart';
+import '../model.dart';
+import '../ui.dart';
 
 class CruzawlConsole extends StatefulWidget {
   final Currency currency;

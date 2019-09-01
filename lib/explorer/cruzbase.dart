@@ -16,9 +16,9 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
 
-import 'localization.dart';
-import 'model.dart';
-import 'ui.dart';
+import '../localization.dart';
+import '../model.dart';
+import '../ui.dart';
 
 enum CruzbaseBucketDuration { minute, hour }
 

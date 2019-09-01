@@ -8,9 +8,9 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/exchange.dart';
 
-import 'localization.dart';
-import 'model.dart';
-import 'ui.dart';
+import '../localization.dart';
+import '../model.dart';
+import '../ui.dart';
 
 class CruzallSettings extends StatefulWidget {
   final bool walletSettings;

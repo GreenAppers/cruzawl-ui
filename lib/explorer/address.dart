@@ -12,10 +12,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
-import 'localization.dart';
-import 'model.dart';
-import 'transaction.dart';
-import 'ui.dart';
+import '../localization.dart';
+import '../model.dart';
+import '../ui.dart';
 
 class ExternalAddressWidget extends StatefulWidget {
   final Currency currency;

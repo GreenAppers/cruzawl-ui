@@ -12,10 +12,9 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
 
-import 'transaction.dart';
-import 'ui.dart';
-import 'localization.dart';
-import 'model.dart';
+import '../localization.dart';
+import '../model.dart';
+import '../ui.dart';
 
 class BlockWidget extends StatefulWidget {
   final Currency currency;

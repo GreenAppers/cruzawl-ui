@@ -22,10 +22,11 @@ import 'package:cruzawl/websocket.dart';
 
 import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
-import 'package:cruzawl_ui/transaction.dart';
 import 'package:cruzawl_ui/ui.dart';
 import 'package:cruzawl_ui/wallet/add.dart';
+import 'package:cruzawl_ui/wallet/address.dart';
 import 'package:cruzawl_ui/wallet/balance.dart';
+import 'package:cruzawl_ui/wallet/receive.dart';
 import 'package:cruzawl_ui/wallet/send.dart';
 import 'package:cruzawl_ui/wallet/settings.dart';
 
@@ -237,7 +238,8 @@ void main() async {
             cruz.format(moneyBalance - sendMoneyBalance - feeMoneyBalance)),
         findsOneWidget);
 
-    List<Element> transactions = find.byType(TransactionListTile).evaluate().toList();
+    List<Element> transactions =
+        find.byType(TransactionListTile).evaluate().toList();
     expect(transactions.length, 2);
     TransactionListTile transaction = transactions[0].widget;
     expect(transaction.tx.from.toJson(), moneyAddr);
@@ -250,5 +252,34 @@ void main() async {
     expect(transaction.tx.to.toJson(), moneyAddr);
     expect(transaction.tx.amount, moneyBalance);
     expect(transaction.tx.verify(), false);
+  });
+
+  testWidgets('WalletReceiveWidget', (WidgetTester tester) async {
+    Wallet wallet = appState.wallet.wallet;
+    await tester.pumpWidget(ScopedModel(
+        model: appState,
+        child: ScopedModel(
+            model: appState.wallet,
+            child: MaterialApp(
+                localizationsDelegates: localizationsDelegates,
+                supportedLocales: supportedLocales,
+                home: SimpleScaffold(WalletReceiveWidget(),
+                    title: wallet.name)))));
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('WalletAddressWidget', (WidgetTester tester) async {
+    Wallet wallet = appState.wallet.wallet;
+    await tester.pumpWidget(ScopedModel(
+        model: appState,
+        child: ScopedModel(
+            model: appState.wallet,
+            child: MaterialApp(
+                localizationsDelegates: localizationsDelegates,
+                supportedLocales: supportedLocales,
+                home: SimpleScaffold(
+                    AddressWidget(wallet, wallet.addresses[moneyAddr]),
+                    title: wallet.name)))));
+    await tester.pumpAndSettle();
   });
 }

@@ -31,17 +31,24 @@ before_install:
   - echo $TRAVIS_OS_NAME
   - echo ${HOME}
   - echo ${TRAVIS_BUILD_DIR}
+  - echo "repo_token: $COVERALLS_REPO_TOKEN" > .coveralls.yml
   - yes | sdkmanager "platforms;android-27"
   - yes | sdkmanager ndk-bundle
   - git clone https://github.com/flutter/flutter.git -b stable ${HOME}/flutter
   - ${HOME}/flutter/bin/flutter doctor -v
   - ${HOME}/flutter/bin/flutter packages get
+  - gem install coveralls-lcov
 
 script:
-  - ${HOME}/flutter/bin/flutter test
+  - ${HOME}/flutter/bin/flutter test --coverage
 
 after_success:
   - echo "success"
+  - coveralls-lcov coverage/lcov.info
 
 after_failure:
   - echo "failure"
+
+env:
+  global:
+    secure: USKWoU4ZVqAE96i0nIMuu7Tc7OV1WaR4AXPwtxCSvxZr7Pj/qWQGzigyvY7Bfzb1qV4sNwNiMzUMNAmHj+X/VPj85lxw5xKM3/O7Z6jxQJA8RwMPZzaqi84bWvtIyUy6fzhiTE3DNqiLBd5GiE3Rg7oOJEyDrRkbs1KYYjOPTHgPDXa9Zh6GgURtJNzObYMa/7t+Bq5h+/K9RiMe5K2Y+Omd+U4WNEZnQfZZv3clvDVBawoKVK+ZBXYMnMIDiakF7/s+8N1OXVmGAIDZBKh7nJl/ETf2eukLGTmKRuBXVyz9Cvj7oMGWnbCefULM2I2DsQlXaWhVQqm2dnT/e/5DN3KhNAjrH43uUogtIodr2KhkYdJC8ZnQMcNSMOoUd14DHZv3JDORFm3Pw39YgmYS7Hd6ASMT98Hf4Hihr1Y5GnrGlkSP4dWl9wO7p175M3OjeLmQ9WW9U88sfqN3Jgz9KCKQWy9rZoyMKBFmla9BN+9+pjpPkoddj/8Jepk+DczPwFJoOm8+TSuF5zjgoed73t5lQSz080L3aXEhtU19vYVrSgVT9oeuZZJjJAcF50z67SsIHkphRIDDtwfaFiFlVpinX8MbBtyUI4pH/lK8EAqUs2VyoCMgbkR+MfpYcQnHVCIJa5CcYvO9p3rEBhyXwG/bh+9Pok+dFS6MVtoMLR8=

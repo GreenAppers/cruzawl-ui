@@ -11,15 +11,15 @@ import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/wallet.dart';
 
-import 'address.dart';
-import 'block.dart';
-import 'console.dart';
-import 'cruzbase.dart';
+import 'explorer/address.dart';
+import 'explorer/block.dart';
+import 'explorer/console.dart';
+import 'explorer/cruzbase.dart';
+import 'explorer/network.dart';
+import 'explorer/settings.dart';
+import 'explorer/transaction.dart';
 import 'localization.dart';
 import 'model.dart';
-import 'network.dart';
-import 'settings.dart';
-import 'transaction.dart';
 import 'ui.dart';
 import 'wallet/address.dart';
 

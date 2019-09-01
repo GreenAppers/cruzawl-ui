@@ -538,3 +538,61 @@ Map<String, AppTheme> themes = <String, AppTheme>{
   'blueGrey': AppTheme(ThemeData(
       primarySwatch: Colors.blueGrey, accentColor: Colors.blueGrey[100])),
 };
+
+class TransactionListTile extends StatelessWidget {
+  final Currency currency;
+  final Transaction tx;
+  final TransactionInfo info;
+  final TransactionCallback onTap, onFromTap, onToTap;
+  TransactionListTile(this.currency, this.tx, this.info,
+      {this.onTap, this.onFromTap, this.onToTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final Localization locale = Localization.of(context);
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final bool amountLink = info.wideStyle && onTap != null;
+
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 16),
+      child: ListTile(
+        title: GestureDetector(
+          child: (info.wideStyle && onToTap != null)
+              ? RichText(
+                  text: buildLocalizationMarkupTextSpan(
+                    locale.toAddress('{@<a>}${tx.toText}{@</a>}'),
+                    style: appState.theme.labelStyle,
+                    tags: <String, LocalizationMarkup>{
+                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
+                    },
+                  ),
+                )
+              : Text(locale.toAddress(tx.toText)),
+          onTap: onToTap == null ? null : () => onToTap(tx),
+        ),
+        subtitle: GestureDetector(
+          child: (info.wideStyle && onFromTap != null)
+              ? RichText(
+                  text: buildLocalizationMarkupTextSpan(
+                    locale.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
+                    style: appState.theme.labelStyle,
+                    tags: <String, LocalizationMarkup>{
+                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
+                    },
+                  ),
+                )
+              : Text(locale.fromAddress(tx.fromText)),
+          onTap: onFromTap == null ? null : () => onFromTap(tx),
+        ),
+        trailing: Text(
+            info.amountPrefix +
+                currency.format(tx.amount + (info.fromWallet ? tx.fee : 0)),
+            style: (amountLink && !info.fromWallet && !info.toWallet)
+                ? appState.theme.linkStyle
+                : TextStyle(color: info.color).apply(
+                    decoration: amountLink ? TextDecoration.underline : null)),
+        onTap: onTap == null ? null : () => onTap(tx),
+      ),
+    );
+  }
+}
