@@ -238,13 +238,16 @@ class PopupMenuBuilder {
   List<PopupMenuItem<int>> item = <PopupMenuItem<int>>[];
   List<VoidCallback> onSelectedCallback = <VoidCallback>[];
 
-  PopupMenuBuilder addItem({Icon icon, String text, VoidCallback onSelected}) {
+  PopupMenuBuilder addItem({IconData icon, String text, VoidCallback onSelected}) {
     onSelectedCallback.add(onSelected);
     if (icon != null) {
       item.add(PopupMenuItem<int>(
           child: Row(
             children: <Widget>[
-              Container(padding: const EdgeInsets.all(8.0), child: icon),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(icon, color: Colors.grey),
+              ),
               Container(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(text),

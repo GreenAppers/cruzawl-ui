@@ -78,25 +78,25 @@ class _WalletWidgetState extends State<WalletWidget> {
           actions: <Widget>[
             (PopupMenuBuilder()
                   ..addItem(
-                    icon: Icon(Icons.settings),
+                    icon: Icons.settings,
                     text: locale.settings,
                     onSelected: () =>
                         widget.appState.navigateToSettings(context),
                   )
                   ..addItem(
-                    icon: Icon(Icons.vpn_lock),
+                    icon: Icons.vpn_lock,
                     text: locale.network,
                     onSelected: () =>
                         widget.appState.navigateToNetwork(context),
                   )
                   /*..addItem(
-                    icon: Icon(Icons.aspect_ratio),
+                    icon: Icons.aspect_ratio,
                     text: locale.console,
                     onSelected: () =>
                         widget.appState.navigateToConsole(context),
                   )*/
                   ..addItem(
-                    icon: Icon(Icons.redeem),
+                    icon: Icons.redeem,
                     text: locale.donations,
                     onSelected: () => widget.appState.navigateToAddressText(
                         context,
@@ -149,15 +149,14 @@ class _WalletWidgetState extends State<WalletWidget> {
       bool activeWallet = x.wallet.name == widget.wallet.name;
       walletsMenu.addItem(
         text: x.wallet.name,
-        icon: Icon(
-            activeWallet ? Icons.check_box : Icons.check_box_outline_blank),
+        icon: activeWallet ? Icons.check_box : Icons.check_box_outline_blank,
         onSelected: activeWallet
             ? () => widget.appState.navigateToWallet(context)
             : () => widget.appState.changeActiveWallet(x),
       );
     }
     walletsMenu.addItem(
-      icon: Icon(Icons.add),
+      icon: Icons.add,
       text: locale.addWallet,
       onSelected: () => widget.appState.navigateToAddWallet(context),
     );

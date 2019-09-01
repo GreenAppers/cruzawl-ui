@@ -12,6 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast/sembast_memory.dart';
 
+import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
@@ -21,8 +22,10 @@ import 'package:cruzawl/websocket.dart';
 
 import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/transaction.dart';
 import 'package:cruzawl_ui/ui.dart';
 import 'package:cruzawl_ui/wallet/add.dart';
+import 'package:cruzawl_ui/wallet/balance.dart';
 import 'package:cruzawl_ui/wallet/send.dart';
 import 'package:cruzawl_ui/wallet/settings.dart';
 
@@ -47,9 +50,15 @@ void main() async {
   CruzPeer peer = appState.addPeer(appState.preferences.peers[0]);
   peer.ws = socket;
   peer.connect();
+
+  num sendMoney = 3.29, feeMoney = 0.01;
+  int money = 13, moneyBalance = money * CRUZ.cruzbitsPerCruz;
+  int sendMoneyBalance = (sendMoney * CRUZ.cruzbitsPerCruz).toInt();
+  int feeMoneyBalance = (feeMoney * CRUZ.cruzbitsPerCruz).toInt();
+  int feeBalance = (feeMoney * CRUZ.cruzbitsPerCruz).toInt();
   String moneyAddr,
       moneySender = 'xRL0D9U+jav9NxOwz4LsXe8yZ8KSS7Hst4/P8ChciAI=';
-  int money = 13, moneyBalance = money * CRUZ.cruzbitsPerCruz;
+  String sendTo = '5lojzpXqrpAfrYSxF0s8vyRSQ0SlhiovzacD+tI1oK8=';
 
   testWidgets('AddWalletWidget', (WidgetTester tester) async {
     expect(appState.wallets.length, 0);
@@ -68,6 +77,9 @@ void main() async {
     expect(appState.wallets.length, 1);
     expect(appState.wallet.wallet.addresses.length,
         preferences.minimumReserveAddress);
+    for (var address in appState.wallet.wallet.addresses.values) {
+      address.state = AddressState.used;
+    }
   });
 
   test('CruzPeer connect', () {
@@ -124,9 +136,9 @@ void main() async {
       String addr = msg['body']['public_key'];
       expect(appState.wallet.wallet.addresses.containsKey(addr), true);
       socket.sent.removeFirst();
-      if (false && addr == moneyAddr) {
+      if (addr == moneyAddr) {
         socket.messageHandler(
-            '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":[{"block_id":"00000000000555de1d28a55fd2d5d2069c61fd46c4618cfea16c5adf6d902f4d","header":{"previous":"000000000001e0313c0536e700a8e6c02b2fc6bbddb755d749d6e00746d52b2b","hash_list_root":"3c1b3f728653444e8bca498bf5a6d76a259637e592f749ad881f1f1da0087db0","time":1564553276,"target":"000000000007a38c469f3be96898a11435ea27592c2bae351147392e9cd3408d","chain_work":"00000000000000000000000000000000000000000000000000faa7649c97e894","nonce":1989109050083893,"height":17067,"transaction_count":2},"transactions":[{"time":1564550817,"nonce":1130916028,"from":"xRL0D9U+jav9NxOwz4LsXe8yZ8KSS7Hst4/P8ChciAI=","to":"$addr","amount":$moneyBalance,"fee":1000000,"expires":17068,"series":17,"signature":"mcvGJ59Q9U9j5Tbjk/gIKYPFmz3lXNb3t8DwkznINJWI7uFPymmywBJjE18UzL2+MMicm0xbyKVJ3XEvQiQ5BQ=="}]}]}}');
+            '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":[{"block_id":"00000000000555de1d28a55fd2d5d2069c61fd46c4618cfea16c5adf6d902f4d","header":{"previous":"000000000001e0313c0536e700a8e6c02b2fc6bbddb755d749d6e00746d52b2b","hash_list_root":"3c1b3f728653444e8bca498bf5a6d76a259637e592f749ad881f1f1da0087db0","time":1564553276,"target":"000000000007a38c469f3be96898a11435ea27592c2bae351147392e9cd3408d","chain_work":"00000000000000000000000000000000000000000000000000faa7649c97e894","nonce":1989109050083893,"height":17067,"transaction_count":2},"transactions":[{"time":1564550817,"nonce":1130916028,"from":"$moneySender","to":"$addr","amount":$moneyBalance,"fee":1000000,"expires":17068,"series":17,"signature":"mcvGJ59Q9U9j5Tbjk/gIKYPFmz3lXNb3t8DwkznINJWI7uFPymmywBJjE18UzL2+MMicm0xbyKVJ3XEvQiQ5BQ=="}]}]}}');
       } else {
         socket.messageHandler(
             '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":null}}');
@@ -169,9 +181,6 @@ void main() async {
 
   testWidgets('WalletSendWidget', (WidgetTester tester) async {
     Wallet wallet = appState.wallet.wallet;
-    num sendMoney = 3.29;
-    int sendMoneyBalance = (sendMoney * CRUZ.cruzbitsPerCruz).toInt();
-    String sendTo = '5lojzpXqrpAfrYSxF0s8vyRSQ0SlhiovzacD+tI1oK8=';
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -183,14 +192,16 @@ void main() async {
                     title: wallet.name)))));
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextFormField).at(1), sendTo);
-    await tester.enterText(find.byType(TextFormField).at(3), sendMoney.toString());
+    await tester.enterText(
+        find.byType(TextFormField).at(3), sendMoney.toString());
     await tester.tap(find.widgetWithText(RaisedGradientButton, 'Send'));
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
     expect(socket.sent.length, 1);
     var msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'push_transaction');
-    CruzTransaction transaction = CruzTransaction.fromJson(msg['body']['transaction']);
+    CruzTransaction transaction =
+        CruzTransaction.fromJson(msg['body']['transaction']);
     expect(transaction.from.toJson(), moneyAddr);
     expect(transaction.to.toJson(), sendTo);
     expect(transaction.amount, sendMoneyBalance);
@@ -203,6 +214,41 @@ void main() async {
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
-    //expect(find.text('Sent $transactionId'), findsOneWidget);
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+    await tester.pump(Duration(seconds: 2));
+    expect(find.text('Sent $transactionId'), findsOneWidget);
+  });
+
+  testWidgets('WalletBalanceWidget', (WidgetTester tester) async {
+    Wallet wallet = appState.wallet.wallet;
+    await tester.pumpWidget(ScopedModel(
+        model: appState,
+        child: ScopedModel(
+            model: appState.wallet,
+            child: MaterialApp(
+                localizationsDelegates: localizationsDelegates,
+                supportedLocales: supportedLocales,
+                home: SimpleScaffold(WalletBalanceWidget(),
+                    title: wallet.name)))));
+    await tester.pumpAndSettle();
+    expect(
+        find.text(
+            cruz.format(moneyBalance - sendMoneyBalance - feeMoneyBalance)),
+        findsOneWidget);
+
+    List<Element> transactions = find.byType(TransactionListTile).evaluate().toList();
+    expect(transactions.length, 2);
+    TransactionListTile transaction = transactions[0].widget;
+    expect(transaction.tx.from.toJson(), moneyAddr);
+    expect(transaction.tx.to.toJson(), sendTo);
+    expect(transaction.tx.amount, sendMoneyBalance);
+    expect(transaction.tx.verify(), true);
+
+    transaction = transactions[1].widget;
+    expect(transaction.tx.from.toJson(), moneySender);
+    expect(transaction.tx.to.toJson(), moneyAddr);
+    expect(transaction.tx.amount, moneyBalance);
+    expect(transaction.tx.verify(), false);
   });
 }

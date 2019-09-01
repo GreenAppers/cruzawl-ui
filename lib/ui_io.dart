@@ -31,7 +31,7 @@ class EnterTextFormField extends StatelessWidget {
       this.onFieldSubmitted});
 
   @override
-  Widget build(BuildContext context) => TextFormField(
+  Widget build(BuildContext context) => PastableTextFormField(
       controller: controller,
       decoration: decoration,
       style: style,

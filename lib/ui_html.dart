@@ -56,7 +56,7 @@ class EnterTextFormField extends StatelessWidget {
                 onFieldSubmitted(controller.text);
               }
             },
-      child: TextFormField(
+      child: PastableTextFormField(
           controller: controller,
           decoration: decoration,
           style: style,
