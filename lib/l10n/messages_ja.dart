@@ -86,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>}ブロック{@</a1>}最後の{@<a2>} ${duration} {@</a2>}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}は{@</a1>} {@<a1>}ブロックし、最後の{@<a2>} ${duration} ${totalTransactions}トランザクション${duration} {@</a2>}";
+  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>}、最後の{@<a2>} ${duration} {@</a2>}の${totalTransactions}トランザクション";
 
   static m34(addressText) => "検証に失敗しました： ${addressText}";
 

@@ -467,7 +467,7 @@ class Localization {
     const Locale('es'),
     const Locale('id'),
     const Locale('ja'),
-    const Locale('kr'),
+    const Locale('ko'),
     const Locale('ms'),
     const Locale('ru'),
     const Locale('zh'),

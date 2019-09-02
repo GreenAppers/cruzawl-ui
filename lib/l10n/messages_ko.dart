@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a kr locale. All the
+// This is a library that provides messages for a ko locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,7 +18,7 @@ final _keepAnalysisHappy = Intl.defaultLocale;
 typedef MessageIfAbsent(String message_str, List args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'kr';
+  get localeName => 'ko';
 
   static m0(address) => "주소 ${address}";
 
@@ -86,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} 은 마지막 {@<a2>} ${duration} {@</a2>} 에서 {@</a1>} 을 차단합니다.";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} 은 {@<a2>} ${duration} {@</a2>} 에서 {@</a1>} , ${totalTransactions} 트랜잭션을 ${totalTransactions} 합니다.";
+  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} 차단 {@</a1>}, 마지막 {@<a2>} ${duration} {@</a2>}의 ${totalTransactions} 거래";
 
   static m34(addressText) => "확인 실패 : ${addressText}";
 

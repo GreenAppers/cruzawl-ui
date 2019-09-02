@@ -468,7 +468,7 @@
       "duration": {}
     }
   },
-  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}は{@</a1>} {@<a1>}ブロックし、最後の{@<a2>} {duration} {totalTransactions}トランザクション{duration} {@</a2>}",
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>}blocks{@</a1>}、最後の{@<a2>} {duration} {@</a2>}の{totalTransactions}トランザクション",
   "@totalBlocksTransactionsInLastDuration": {
     "type": "text",
     "placeholders": {

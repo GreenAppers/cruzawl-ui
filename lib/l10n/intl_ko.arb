@@ -468,7 +468,7 @@
       "duration": {}
     }
   },
-  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} 은 {@<a2>} {duration} {@</a2>} 에서 {@</a1>} , {totalTransactions} 트랜잭션을 {totalTransactions} 합니다.",
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} 차단 {@</a1>}, 마지막 {@<a2>} {duration} {@</a2>}의 {totalTransactions} 거래",
   "@totalBlocksTransactionsInLastDuration": {
     "type": "text",
     "placeholders": {
