@@ -238,7 +238,8 @@ class PopupMenuBuilder {
   List<PopupMenuItem<int>> item = <PopupMenuItem<int>>[];
   List<VoidCallback> onSelectedCallback = <VoidCallback>[];
 
-  PopupMenuBuilder addItem({IconData icon, String text, VoidCallback onSelected}) {
+  PopupMenuBuilder addItem(
+      {IconData icon, String text, VoidCallback onSelected}) {
     onSelectedCallback.add(onSelected);
     if (icon != null) {
       item.add(PopupMenuItem<int>(

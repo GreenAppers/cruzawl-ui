@@ -13,6 +13,7 @@ import 'package:tweetnacl/tweetnacl.dart' as tweetnacl;
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/exchange.dart';
+import 'package:cruzawl/http.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
@@ -80,6 +81,7 @@ class Cruzawl extends Model {
   bool isTrustFall;
   String dataDir, debugLog;
   int debugLevel = debugLevelInfo;
+  HttpClient httpClient;
   FileSystem fileSystem;
   Currency currency;
   ExchangeRates exchangeRates;
@@ -99,9 +101,10 @@ class Cruzawl extends Model {
       this.fileSystem,
       {this.packageInfo,
       this.barcodeScan,
+      this.httpClient,
       this.isTrustFall = false}) {
     if (preferences.debugLog) debugLog = '';
-    exchangeRates = ExchangeRates(preferences, debugPrint: print);
+    exchangeRates = ExchangeRates(httpClient, preferences, debugPrint: print);
     exchangeRates.checkForUpdate();
     setTheme();
   }

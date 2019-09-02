@@ -1,0 +1,989 @@
+{
+  "localeLanguage": "Español",
+  "@localeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "Cruzall",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockTitle": "Desbloqueo Cruzall",
+  "@unlockTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeTitle": "Bienvenido a Cruzall",
+  "@welcomeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeDesc": "Para comenzar, cree una billetera:",
+  "@welcomeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentBalanceIs": "Tu saldo actual es:",
+  "@currentBalanceIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentHistory": "Historia reciente",
+  "@recentHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balanceTitle": "{ticker} + {balance}",
+  "@balanceTitle": {
+    "type": "text",
+    "placeholders": {
+      "ticker": {},
+      "balance": {}
+    }
+  },
+  "balanceAtHeightIs": "Su saldo a la altura del bloque {@<a>} {height} {@</a>} es:",
+  "@balanceAtHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "balanceMaturingByHeightIs": "Su saldo que vence por altura {height} es:",
+  "@balanceMaturingByHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "insecureDeviceWarning": "Advertencia de dispositivo inseguro",
+  "@insecureDeviceWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insecureDeviceWarningDescription": "Se ha detectado un dispositivo rooteado o con jailbreak. Uso adicional no recomendado.",
+  "@insecureDeviceWarningDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhraseWarning": "Esta semilla permite que cualquiera que lo sepa gaste todos los fondos de su billetera. Escríbelo. Manténlo seguro.",
+  "@seedPhraseWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backupKeysWarning": "Sus claves deben estar respaldadas en almacenamiento externo.",
+  "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creatingUsingAlgorithm": "Creando ... ( {algorithm} )",
+  "@creatingUsingAlgorithm": {
+    "type": "text",
+    "placeholders": {
+      "algorithm": {}
+    }
+  },
+  "addWallet": "Agregar billetera",
+  "@addWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWallet": "Billetera HD",
+  "@hdWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWalletAlgorithm": "PBKDF: 2048 iteraciones",
+  "@hdWalletAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "watchOnlyWallet": "Cartera de solo reloj",
+  "@watchOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generateNewAddress": "Generar nueva dirección",
+  "@generateNewAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWallet": "Eliminar billetera",
+  "@deleteWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteThisWallet": "Eliminar esta billetera",
+  "@deleteThisWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantDeleteOnlyWallet": "No se puede eliminar la única billetera.",
+  "@cantDeleteOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWalletDescription": "Una vez que eliminas una billetera, no hay vuelta atrás. Por favor, esté seguro",
+  "@deleteWalletDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cruzTicker": "CRUZ",
+  "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateReserve": "reserva",
+  "@addressStateReserve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateOpen": "abierto",
+  "@addressStateOpen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateUsed": "usado",
+  "@addressStateUsed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "Okay",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hide": "Esconder",
+  "@hide": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "show": "mostrar",
+  "@show": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "Dupdo",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paste": "Pegar",
+  "@paste": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Borrar",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Crear",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorar",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlock": "desbloquear",
+  "@unlock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypt": "Encriptar",
+  "@encrypt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "Verificar",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifying": "Verificando ...",
+  "@verifying": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "Enviar",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sending": "Enviando...",
+  "@sending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFailed": "Envio fallido",
+  "@sendFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loading": "Cargando...",
+  "@loading": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creating": "Creando ...",
+  "@creating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copied": "Copiado",
+  "@copied": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyPublicKeys": "Copiar claves públicas",
+  "@copyPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentTransactionId": "Enviado {transactionId} ID de {transactionId}",
+  "@sentTransactionId": {
+    "type": "text",
+    "placeholders": {
+      "transactionId": {}
+    }
+  },
+  "listOfTwo": "{item1} , {item2}",
+  "@listOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "listOfThree": "{item1} , {item2} , {item3}",
+  "@listOfThree": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {}
+    }
+  },
+  "listOfFour": "{item1} , {item2} , {item3} , {item4}",
+  "@listOfFour": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {},
+      "item4": {}
+    }
+  },
+  "menuOfOne": "[ {@<a>} {item} {@</a>} ]",
+  "@menuOfOne": {
+    "type": "text",
+    "placeholders": {
+      "item": {}
+    }
+  },
+  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} , {@<a2>} {item2} {@</a2>} ]",
+  "@menuOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "account": "Cuenta",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accounts": "Cuentas",
+  "@accounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "externalAddress": "Dirección Externa",
+  "@externalAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "address": "Dirección",
+  "@address": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addresses": "Direcciones",
+  "@addresses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "receive": "Recibir",
+  "@receive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Buscar",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "result": "Resultado",
+  "@result": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "console": "Consola",
+  "@console": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknown": "Desconocido",
+  "@unknown": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Configuraciones",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "network": "Red",
+  "@network": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPeer": "Nuevo par",
+  "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newWallet": "Nueva billetera",
+  "@newWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "peers": "Pares",
+  "@peers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deletePeer": "Eliminar par",
+  "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "block": "Bloquear",
+  "@block": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocks": "Bloques",
+  "@blocks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Cifrado",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transaction": "Transacción",
+  "@transaction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactions": "Actas",
+  "@transactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dangerZone": "Zona peligrosa",
+  "@dangerZone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "Advertencia",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "Apoyo",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "Licencia",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donations": "Donaciones",
+  "@donations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "Política de privacidad",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homePage": "{product} Página de inicio",
+  "@homePage": {
+    "type": "text",
+    "placeholders": {
+      "product": {}
+    }
+  },
+  "addressTitle": "Dirección {address}",
+  "@addressTitle": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "networkType": "{type} Red",
+  "@networkType": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "numTransactions": "Transacciones ( {number} )",
+  "@numTransactions": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} bloquea {@</a1>} en los últimos {@<a2>} {duration} {@</a2>}",
+  "@totalBlocksInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "duration": {}
+    }
+  },
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} bloquea {@</a1>} , {totalTransactions} transacciones en las últimas {@<a2>} {duration} {@</a2>}",
+  "@totalBlocksTransactionsInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "totalTransactions": {},
+      "duration": {}
+    }
+  },
+  "id": "Carné de identidad",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tip": "Propina",
+  "@tip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "Fecha",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "Nombre",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "Hora",
+  "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "state": "Estado",
+  "@state": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "height": "Altura",
+  "@height": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balance": "Equilibrar",
+  "@balance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currency": "Moneda",
+  "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nonce": "Mientras tanto",
+  "@nonce": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "Cantidad",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fee": "Cuota",
+  "@fee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payTo": "Pagar a",
+  "@payTo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "to": "A",
+  "@to": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "from": "Desde",
+  "@from": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memo": "Memorándum",
+  "@memo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theme": "Tema",
+  "@theme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "url": "URL",
+  "@url": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Contraseña",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "version": "Versión",
+  "@version": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "Idioma",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "previous": "Anterior",
+  "@previous": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "próximo",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmations": "Confirmaciones",
+  "@confirmations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "earliestSeen": "Visto más temprano",
+  "@earliestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "latestSeen": "Último visto",
+  "@latestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "target": "Objetivo",
+  "@target": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainCode": "Código de cadena",
+  "@chainCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainIndex": "Índice de cadena",
+  "@chainIndex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhrase": "Frase de semillas",
+  "@seedPhrase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKey": "Llave privada",
+  "@privateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeTransactions": "Transacciones activas",
+  "@activeTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expired": "Muerto",
+  "@expired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expires": "Expira",
+  "@expires": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matured": "Madurado",
+  "@matured": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matures": "Madura",
+  "@matures": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturing": "Madurando",
+  "@maturing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturingTransactions": "Transacciones maduras",
+  "@maturingTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainWork": "Trabajo en cadena",
+  "@chainWork": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hashListRoot": "Hash List Root",
+  "@hashListRoot": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaTime": "Hora Delta",
+  "@deltaTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaHashPower": "Delta Hash Power",
+  "@deltaHashPower": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKeyList": "Lista de clave pública",
+  "@publicKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKeyList": "Lista de claves privadas",
+  "@privateKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromAddress": "De: {address}",
+  "@fromAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "toAddress": "Para: {address}",
+  "@toAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "heightEquals": "height = {@<a>} {height} {@</a>}",
+  "@heightEquals": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "marketCap": "Capitalización de mercado {@<a>} {cap} {@</a>}",
+  "@marketCap": {
+    "type": "text",
+    "placeholders": {
+      "cap": {}
+    }
+  },
+  "pending": "Pendiente",
+  "@pending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidUrl": "URL invalida.",
+  "@invalidUrl": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidJson": "JSON inválido.",
+  "@invalidJson": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPrivateKey": "Clave privada inválida.",
+  "@invalidPrivateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPublicKey": "Clave pública no válida",
+  "@invalidPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidCurrency": "Moneda inválida",
+  "@invalidCurrency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxMemoLength": "La longitud máxima de la nota es 100",
+  "@maxMemoLength": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameMustBeUnique": "El nombre debe ser único.",
+  "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordCantBeEmpty": "La contraseña no puede estar vacía.",
+  "@passwordCantBeEmpty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDontMatch": "Las contraseñas no coinciden.",
+  "@passwordsDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPassword": "Confirmar contraseña",
+  "@confirmPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownAddress": "Dirección desconocida",
+  "@unknownAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidAddress": "Dirección inválida",
+  "@invalidAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidMnemonic": "Mnemotécnico inválido",
+  "@invalidMnemonic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "valueMustBePositive": "El valor debe ser positivo.",
+  "@valueMustBePositive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insufficientFunds": "Fondos insuficientes",
+  "@insufficientFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "networkOffline": "Red fuera de línea",
+  "@networkOffline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicKeys": "Sin claves públicas",
+  "@noPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPrivateKeys": "Sin claves privadas",
+  "@noPrivateKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownQuery": "Consulta desconocida",
+  "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thanksForDonating": "¡Tocar el asunto exacto! Gracias comunidad CRUZ!",
+  "@thanksForDonating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minFee": "La tarifa mínima es {fee}",
+  "@minFee": {
+    "type": "text",
+    "placeholders": {
+      "fee": {}
+    }
+  },
+  "minAmount": "La cantidad mínima es {amount}",
+  "@minAmount": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "defaultWalletName": "Mi billetera",
+  "@defaultWalletName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "debugLog": "Registro de depuración",
+  "@debugLog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requireSSLCert": "Requerir certificado SSL",
+  "@requireSSLCert": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showWalletNameInTitle": "Mostrar el nombre de la billetera en el título",
+  "@showWalletNameInTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyKeyPairsEveryLoad": "Verifique los pares de claves en cada carga",
+  "@verifyKeyPairsEveryLoad": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestBeforeCreatingWallets": "Prueba unitaria antes de crear billeteras",
+  "@unitTestBeforeCreatingWallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestFailure": "Falla de prueba de unidad",
+  "@unitTestFailure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyAddressFailed": "verificación fallida: {addressText}",
+  "@verifyAddressFailed": {
+    "type": "text",
+    "placeholders": {
+      "addressText": {}
+    }
+  },
+  "verifyWalletResults": "Se verificaron las {goodAddresses} / {totalAddresses} y {goodTests} / {totalTests}",
+  "@verifyWalletResults": {
+    "type": "text",
+    "placeholders": {
+      "goodAddresses": {},
+      "totalAddresses": {},
+      "goodTests": {},
+      "totalTests": {}
+    }
+  },
+  "secondsDuration": "{seconds, plural, =1 {{seconds} segundo} other {{seconds} segundos}}",
+  "@secondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "minutesDuration": "{minutes, plural, =1 {{minutes} minuto} other {{minutes} minutos}}",
+  "@minutesDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "hoursDuration": "{hours, plural, =1 {hora} other {{hours} horas}}",
+  "@hoursDuration": {
+    "type": "text",
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "daysDuration": "{days, plural, =1 {día} other {{days} días}}",
+  "@daysDuration": {
+    "type": "text",
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "minutesAndSecondsDuration": "{minutes} {seconds}",
+  "@minutesAndSecondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {},
+      "seconds": {}
+    }
+  },
+  "hashPerSecond": "{hashPerSecond} H / s",
+  "@hashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "hashPerSecond": {}
+    }
+  },
+  "kiloHashPerSecond": "{kiloHashPerSecond} KH / s",
+  "@kiloHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "kiloHashPerSecond": {}
+    }
+  },
+  "megaHashPerSecond": "{megaHashPerSecond} MH / s",
+  "@megaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "megaHashPerSecond": {}
+    }
+  },
+  "gigaHashPerSecond": "{gigaHashPerSecond} GH / s",
+  "@gigaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "gigaHashPerSecond": {}
+    }
+  },
+  "teraHashPerSecond": "{teraHashPerSecond} TH / s",
+  "@teraHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "teraHashPerSecond": {}
+    }
+  },
+  "petaHashPerSecond": "{petaHashPerSecond} PH / s",
+  "@petaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "petaHashPerSecond": {}
+    }
+  },
+  "exaHashPerSecond": "{exaHashPerSecond} EH / s",
+  "@exaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "exaHashPerSecond": {}
+    }
+  }
+}

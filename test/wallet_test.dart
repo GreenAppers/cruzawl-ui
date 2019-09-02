@@ -14,6 +14,7 @@ import 'package:sembast/sembast_memory.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
+import 'package:cruzawl/http.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
 import 'package:cruzawl/util.dart';
@@ -44,8 +45,9 @@ void main() async {
   preferences.networkEnabled = false;
   preferences.minimumReserveAddress = 3;
   SetClipboardText stringCallback = (BuildContext c, String x) {};
+  TestHttpClient httpClient = TestHttpClient();
   Cruzawl appState = Cruzawl((String x) => x, stringCallback, stringCallback,
-      null, databaseFactoryMemoryFs, preferences, '/', NullFileSystem());
+      null, databaseFactoryMemoryFs, preferences, '/', NullFileSystem(), httpClient: httpClient);
   appState.debugLevel = debugLevelDebug;
   TestWebSocket socket = TestWebSocket();
   CruzPeer peer = appState.addPeer(appState.preferences.peers[0]);

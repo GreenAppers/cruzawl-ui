@@ -1,0 +1,989 @@
+{
+  "localeLanguage": "한국어",
+  "@localeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "Cruzall",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockTitle": "Cruzall 잠금 해제",
+  "@unlockTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeTitle": "Cruzall에 오신 것을 환영합니다",
+  "@welcomeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeDesc": "시작하려면 지갑을 만드십시오.",
+  "@welcomeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentBalanceIs": "현재 잔액은 다음과 같습니다.",
+  "@currentBalanceIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentHistory": "최근 역사",
+  "@recentHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balanceTitle": "{ticker} + {balance}",
+  "@balanceTitle": {
+    "type": "text",
+    "placeholders": {
+      "ticker": {},
+      "balance": {}
+    }
+  },
+  "balanceAtHeightIs": "블록 높이 {@<a>} {height} {@</a>} 에서의 잔액은 다음과 같습니다.",
+  "@balanceAtHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "balanceMaturingByHeightIs": "키 {height} 성숙도 :",
+  "@balanceMaturingByHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "insecureDeviceWarning": "안전하지 않은 장치 경고",
+  "@insecureDeviceWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insecureDeviceWarningDescription": "루팅되었거나 탈옥 된 기기가 감지되었습니다. 더 이상 사용하지 않는 것이 좋습니다.",
+  "@insecureDeviceWarningDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhraseWarning": "이 씨앗은 그것을 아는 사람이라면 누구나 당신의 지갑에서 모든 돈을 쓸 수있게합니다. 받아 적어. 안전을 유지해라.",
+  "@seedPhraseWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backupKeysWarning": "키는 외부 저장소에 백업해야합니다.",
+  "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creatingUsingAlgorithm": "작성 중 ... ( {algorithm} )",
+  "@creatingUsingAlgorithm": {
+    "type": "text",
+    "placeholders": {
+      "algorithm": {}
+    }
+  },
+  "addWallet": "월렛 추가",
+  "@addWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWallet": "HD 월렛",
+  "@hdWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWalletAlgorithm": "PBKDF : 2048 반복",
+  "@hdWalletAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "watchOnlyWallet": "시계 전용 지갑",
+  "@watchOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generateNewAddress": "새 주소 생성",
+  "@generateNewAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWallet": "월렛 삭제",
+  "@deleteWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteThisWallet": "이 지갑을 삭제",
+  "@deleteThisWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantDeleteOnlyWallet": "지갑 만 삭제할 수 없습니다.",
+  "@cantDeleteOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWalletDescription": "지갑을 삭제하면 되돌아 갈 필요가 없습니다. 확실하십시오.",
+  "@deleteWalletDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cruzTicker": "크루즈",
+  "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateReserve": "비축",
+  "@addressStateReserve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateOpen": "열다",
+  "@addressStateOpen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateUsed": "익숙한",
+  "@addressStateUsed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "승인",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hide": "숨는 장소",
+  "@hide": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "show": "보여 주다",
+  "@show": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "부",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paste": "풀",
+  "@paste": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "취소",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "지우다",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "몹시 떠들어 대다",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "무시",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlock": "터놓다",
+  "@unlock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypt": "암호화",
+  "@encrypt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "확인",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifying": "확인 중 ...",
+  "@verifying": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "보내다",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sending": "배상...",
+  "@sending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFailed": "전송 실패",
+  "@sendFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loading": "불러오는 중 ...",
+  "@loading": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creating": "만드는 중 ...",
+  "@creating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copied": "복사했습니다.",
+  "@copied": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyPublicKeys": "공개 키 복사",
+  "@copyPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentTransactionId": "보낸 {transactionId}",
+  "@sentTransactionId": {
+    "type": "text",
+    "placeholders": {
+      "transactionId": {}
+    }
+  },
+  "listOfTwo": "{item1} , {item2}",
+  "@listOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "listOfThree": "{item1} , {item2} , {item3}",
+  "@listOfThree": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {}
+    }
+  },
+  "listOfFour": "{item1} , {item2} , {item3} , {item4}",
+  "@listOfFour": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {},
+      "item4": {}
+    }
+  },
+  "menuOfOne": "[ {@<a>} {item} {@</a>} ]",
+  "@menuOfOne": {
+    "type": "text",
+    "placeholders": {
+      "item": {}
+    }
+  },
+  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} , {@<a2>} {item2} {@</a2>} ]",
+  "@menuOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "account": "계정",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accounts": "계정",
+  "@accounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "externalAddress": "외부 주소",
+  "@externalAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "address": "주소",
+  "@address": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addresses": "구애",
+  "@addresses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "receive": "받다",
+  "@receive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "수색",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "result": "결과",
+  "@result": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "console": "콘솔",
+  "@console": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknown": "알 수 없는",
+  "@unknown": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "설정",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "network": "회로망",
+  "@network": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPeer": "새로운 피어",
+  "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newWallet": "새 월렛",
+  "@newWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "peers": "동료",
+  "@peers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deletePeer": "동료 삭제",
+  "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "block": "블록",
+  "@block": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocks": "블록",
+  "@blocks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "암호화",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transaction": "트랜잭션",
+  "@transaction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactions": "업무",
+  "@transactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dangerZone": "위험 지대",
+  "@dangerZone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "경고",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "지원하다",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "특허",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donations": "기부금",
+  "@donations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "개인 정보 정책",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homePage": "{product} 홈 페이지",
+  "@homePage": {
+    "type": "text",
+    "placeholders": {
+      "product": {}
+    }
+  },
+  "addressTitle": "주소 {address}",
+  "@addressTitle": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "networkType": "{type} 네트워크",
+  "@networkType": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "numTransactions": "거래 ( {number} )",
+  "@numTransactions": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} 은 마지막 {@<a2>} {duration} {@</a2>} 에서 {@</a1>} 을 차단합니다.",
+  "@totalBlocksInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "duration": {}
+    }
+  },
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} 은 {@<a2>} {duration} {@</a2>} 에서 {@</a1>} , {totalTransactions} 트랜잭션을 {totalTransactions} 합니다.",
+  "@totalBlocksTransactionsInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "totalTransactions": {},
+      "duration": {}
+    }
+  },
+  "id": "신분증",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tip": "팁",
+  "@tip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "날짜",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "이름",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "시각",
+  "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "이메일",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "state": "상태",
+  "@state": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "height": "신장",
+  "@height": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balance": "균형",
+  "@balance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currency": "통화",
+  "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nonce": "목하",
+  "@nonce": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "양",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fee": "보수",
+  "@fee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payTo": "에 지불하다",
+  "@payTo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "to": "에",
+  "@to": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "from": "에서",
+  "@from": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memo": "메모",
+  "@memo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theme": "테마",
+  "@theme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "url": "URL",
+  "@url": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "암호",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "version": "번역",
+  "@version": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "언어",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "previous": "너무 이른",
+  "@previous": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "다음 것",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmations": "확인",
+  "@confirmations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "earliestSeen": "가장 일찍 본",
+  "@earliestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "latestSeen": "최근 본",
+  "@latestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "target": "목표",
+  "@target": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainCode": "체인 코드",
+  "@chainCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainIndex": "체인 인덱스",
+  "@chainIndex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhrase": "종자 문구",
+  "@seedPhrase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKey": "개인 키",
+  "@privateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeTransactions": "활성 거래",
+  "@activeTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expired": "만료",
+  "@expired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expires": "만료",
+  "@expires": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matured": "성숙",
+  "@matured": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matures": "성숙하다",
+  "@matures": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturing": "숙성",
+  "@maturing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturingTransactions": "거래 성숙",
+  "@maturingTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainWork": "체인 작업",
+  "@chainWork": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hashListRoot": "해시 목록 루트",
+  "@hashListRoot": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaTime": "델타 시간",
+  "@deltaTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaHashPower": "델타 해시 파워",
+  "@deltaHashPower": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKeyList": "공개 키 목록",
+  "@publicKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKeyList": "개인 키 목록",
+  "@privateKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromAddress": "보낸 사람 : {address}",
+  "@fromAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "toAddress": "받는 사람 : {address}",
+  "@toAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "heightEquals": "height = {@<a>} {height} {@</a>}",
+  "@heightEquals": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "marketCap": "시가 총액 {@<a>} {cap} {@</a>}",
+  "@marketCap": {
+    "type": "text",
+    "placeholders": {
+      "cap": {}
+    }
+  },
+  "pending": "대기 중",
+  "@pending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidUrl": "잘못된 URL.",
+  "@invalidUrl": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidJson": "잘못된 JSON입니다.",
+  "@invalidJson": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPrivateKey": "잘못된 개인 키.",
+  "@invalidPrivateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPublicKey": "잘못된 공개 키.",
+  "@invalidPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidCurrency": "잘못된 통화",
+  "@invalidCurrency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxMemoLength": "최대 메모 길이는 100입니다",
+  "@maxMemoLength": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameMustBeUnique": "이름은 고유해야합니다.",
+  "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordCantBeEmpty": "비밀번호는 비워 둘 수 없습니다.",
+  "@passwordCantBeEmpty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDontMatch": "비밀번호가 일치하지 않습니다.",
+  "@passwordsDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPassword": "비밀번호 확인",
+  "@confirmPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownAddress": "알 수없는 주소",
+  "@unknownAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidAddress": "잘못된 주소",
+  "@invalidAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidMnemonic": "잘못된 니모닉",
+  "@invalidMnemonic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "valueMustBePositive": "값은 양수 여야합니다",
+  "@valueMustBePositive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insufficientFunds": "자금 부족",
+  "@insufficientFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "networkOffline": "네트워크 오프라인",
+  "@networkOffline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicKeys": "공개 키가 없습니다",
+  "@noPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPrivateKeys": "개인 키가 없습니다",
+  "@noPrivateKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownQuery": "알 수없는 검색어",
+  "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thanksForDonating": "바로! 감사합니다 CRUZ 커뮤니티!",
+  "@thanksForDonating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minFee": "최소 수수료는 {fee}",
+  "@minFee": {
+    "type": "text",
+    "placeholders": {
+      "fee": {}
+    }
+  },
+  "minAmount": "최소 금액은 {amount}",
+  "@minAmount": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "defaultWalletName": "내 지갑",
+  "@defaultWalletName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "debugLog": "디버그 로그",
+  "@debugLog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requireSSLCert": "SSL 인증서 필요",
+  "@requireSSLCert": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showWalletNameInTitle": "지갑 이름 표시",
+  "@showWalletNameInTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyKeyPairsEveryLoad": "부하마다 키 페어 확인",
+  "@verifyKeyPairsEveryLoad": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestBeforeCreatingWallets": "지갑을 만들기 전에 단위 테스트",
+  "@unitTestBeforeCreatingWallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestFailure": "단위 테스트 실패",
+  "@unitTestFailure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyAddressFailed": "확인 실패 : {addressText}",
+  "@verifyAddressFailed": {
+    "type": "text",
+    "placeholders": {
+      "addressText": {}
+    }
+  },
+  "verifyWalletResults": "확인 된 {goodAddresses} / {totalAddresses} 주소 및 {goodTests} / {totalTests} 테스트 성공",
+  "@verifyWalletResults": {
+    "type": "text",
+    "placeholders": {
+      "goodAddresses": {},
+      "totalAddresses": {},
+      "goodTests": {},
+      "totalTests": {}
+    }
+  },
+  "secondsDuration": "{seconds, plural, =1 {{seconds} 초} other {{seconds} 초}}",
+  "@secondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "minutesDuration": "{minutes, plural, =1 {{minutes} 분} other {{minutes} 분}}",
+  "@minutesDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "hoursDuration": "{hours, plural, =1 {시간} other {{hours} 시간}}",
+  "@hoursDuration": {
+    "type": "text",
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "daysDuration": "{days, plural, =1 {일} other {{days} 일}}",
+  "@daysDuration": {
+    "type": "text",
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "minutesAndSecondsDuration": "{minutes} {seconds}",
+  "@minutesAndSecondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {},
+      "seconds": {}
+    }
+  },
+  "hashPerSecond": "{hashPerSecond} H / s",
+  "@hashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "hashPerSecond": {}
+    }
+  },
+  "kiloHashPerSecond": "{kiloHashPerSecond} KH / s",
+  "@kiloHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "kiloHashPerSecond": {}
+    }
+  },
+  "megaHashPerSecond": "{megaHashPerSecond} MH / s",
+  "@megaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "megaHashPerSecond": {}
+    }
+  },
+  "gigaHashPerSecond": "{gigaHashPerSecond} GH / s",
+  "@gigaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "gigaHashPerSecond": {}
+    }
+  },
+  "teraHashPerSecond": "{teraHashPerSecond} TH / s",
+  "@teraHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "teraHashPerSecond": {}
+    }
+  },
+  "petaHashPerSecond": "{petaHashPerSecond} PH / s",
+  "@petaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "petaHashPerSecond": {}
+    }
+  },
+  "exaHashPerSecond": "{exaHashPerSecond} EH / s",
+  "@exaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "exaHashPerSecond": {}
+    }
+  }
+}
