@@ -59,7 +59,7 @@ class CruzallRoutes {
               if (page.arg == 'cruzbase') {
                 Widget ret = ScopedModelDescendant<WalletModel>(
                     builder: (context, child, model) => CruzbaseWidget(
-                        wallet.currency,
+                        wallet.network,
                         wideStyle: useWideStyle(context, maxWidth)));
                 return searchBar != null
                     ? ScopedModel<SimpleScaffoldActions>(
@@ -73,7 +73,7 @@ class CruzallRoutes {
                       title: Localization.of(context).address)
                   : ScopedModelDescendant<WalletModel>(
                       builder: (context, child, model) => ExternalAddressWidget(
-                          wallet.currency, page.arg,
+                          wallet.network, page.arg,
                           title: Localization.of(context).externalAddress,
                           maxWidth: maxWidth,
                           loadingWidget: loadingWidget));
@@ -83,7 +83,7 @@ class CruzallRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ScopedModelDescendant<WalletModel>(
-            builder: (context, child, model) => BlockWidget(wallet.currency,
+            builder: (context, child, model) => BlockWidget(wallet.network,
                 blockId: page.arg,
                 maxWidth: maxWidth,
                 loadingWidget: loadingWidget),
@@ -94,7 +94,7 @@ class CruzallRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ScopedModelDescendant<WalletModel>(
-            builder: (context, child, model) => CruzawlConsole(wallet.currency),
+            builder: (context, child, model) => CruzawlConsole(wallet.network),
           ),
         );
 
@@ -102,7 +102,7 @@ class CruzallRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ScopedModelDescendant<WalletModel>(
-            builder: (context, child, model) => BlockWidget(wallet.currency,
+            builder: (context, child, model) => BlockWidget(wallet.network,
                 blockHeight: int.tryParse(page.arg) ?? 0,
                 maxWidth: maxWidth,
                 loadingWidget: loadingWidget),
@@ -140,7 +140,7 @@ class CruzallRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ScopedModelDescendant<WalletModel>(
-            builder: (context, child, model) => BlockWidget(wallet.currency,
+            builder: (context, child, model) => BlockWidget(wallet.network,
                 maxWidth: maxWidth, loadingWidget: loadingWidget),
           ),
         );
@@ -153,11 +153,11 @@ class CruzallRoutes {
             Transaction transaction = wallet.transactionIds[page.arg];
             return transaction != null
                 ? TransactionWidget(
-                    wallet.currency, WalletTransactionInfo(wallet, transaction),
+                    wallet.network, WalletTransactionInfo(wallet, transaction),
                     maxWidth: maxWidth,
                     loadingWidget: loadingWidget,
                     transaction: TransactionMessage(null, transaction))
-                : TransactionWidget(wallet.currency, TransactionInfo(),
+                : TransactionWidget(wallet.network, TransactionInfo(),
                     maxWidth: maxWidth,
                     loadingWidget: loadingWidget,
                     transactionIdText: page.arg,

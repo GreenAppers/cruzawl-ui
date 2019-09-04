@@ -24,7 +24,7 @@ class WalletBalanceWidget extends StatelessWidget {
     final Currency currency = wallet.currency;
     final int numTransactions = wallet.transactions.data.length;
     final bool hasPeer =
-        currency.network != null ? currency.network.hasPeer : false;
+        wallet.network != null ? wallet.network.hasPeer : false;
 
     final List<Widget> ret = <Widget>[
       Container(
@@ -35,7 +35,7 @@ class WalletBalanceWidget extends StatelessWidget {
                   text: locale.currentBalanceIs,
                   style: appState.theme.labelStyle)
               : buildLocalizationMarkupTextSpan(
-                  locale.balanceAtHeightIs(currency.network.tipHeight),
+                  locale.balanceAtHeightIs(wallet.network.tipHeight),
                   style: appState.theme.labelStyle,
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(

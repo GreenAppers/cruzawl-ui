@@ -198,10 +198,10 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                           if (v > fromAddress.balance)
                             return locale.insufficientFunds;
                         }
-                        if (currency.network.minAmount == null)
+                        if (wallet.network.minAmount == null)
                           return locale.networkOffline;
-                        if (v < currency.network.minAmount)
-                          return locale.minAmount(currency.network.minAmount);
+                        if (v < wallet.network.minAmount)
+                          return locale.minAmount(wallet.network.minAmount);
                         return null;
                       },
                       onSaved: (value) => amountInput = currency.parse(value),
@@ -234,12 +234,12 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                         if (fromAddress != null &&
                             (amount + v) > fromAddress.balance)
                           return locale.insufficientFunds;
-                        if (currency.network.tipHeight == null ||
-                            currency.network.tipHeight == 0 ||
-                            currency.network.minFee == null)
+                        if (wallet.network.tipHeight == null ||
+                            wallet.network.tipHeight == 0 ||
+                            wallet.network.minFee == null)
                           return locale.networkOffline;
-                        if (v < currency.network.minFee)
-                          return locale.minFee(currency.network.minFee);
+                        if (v < wallet.network.minFee)
+                          return locale.minFee(wallet.network.minFee);
                         return null;
                       },
                       onSaved: (value) => feeInput = currency.parse(value),
@@ -270,12 +270,12 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       amountInput,
                       feeInput,
                       memoInput,
-                      currency.network.tipHeight,
-                      expires: currency.network.tipHeight + 3));
+                      wallet.network.tipHeight,
+                      expires: wallet.network.tipHeight + 3));
 
               TransactionId transactionId;
               for (int i = 0; transactionId == null && i < 3; i++) {
-                Peer peer = await currency.network.getPeer();
+                Peer peer = await wallet.network.getPeer();
                 if (peer == null) continue;
                 transactionId = await peer.putTransaction(transaction);
               }

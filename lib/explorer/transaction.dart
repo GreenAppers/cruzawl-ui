@@ -16,14 +16,14 @@ import '../model.dart';
 import '../ui.dart';
 
 class TransactionWidget extends StatefulWidget {
-  final Currency currency;
+  final PeerNetwork network;
   final TransactionMessage transaction;
   final TransactionInfo info;
   final String transactionIdText;
   final TransactionCallback onHeightTap;
   final Widget loadingWidget;
   final double maxWidth;
-  TransactionWidget(this.currency, this.info,
+  TransactionWidget(this.network, this.info,
       {this.transaction,
       this.transactionIdText,
       this.onHeightTap,
@@ -40,12 +40,12 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   _TransactionWidgetState(this.transaction);
 
   void load() async {
-    if (loading || transaction != null || !widget.currency.network.hasPeer)
+    if (loading || transaction != null || !widget.network.hasPeer)
       return;
     loading = true;
-    transaction = await (await widget.currency.network.getPeer())
+    transaction = await (await widget.network.getPeer())
         .getTransaction(
-            widget.currency.fromTransactionIdJson(widget.transactionIdText));
+            widget.network.currency.fromTransactionIdJson(widget.transactionIdText));
 
     if (transaction == null) loading = false;
     setState(() {});
@@ -68,7 +68,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     final Transaction txn = transaction.transaction;
     final TextStyle valueTextStyle = TextStyle(color: Colors.black);
-    final int tipHeight = widget.currency.network.tipHeight ?? 0;
+    final int tipHeight = widget.network.tipHeight ?? 0;
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final TextStyle labelTextStyle = appState.theme.labelStyle;
 
@@ -109,7 +109,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     ret.add(
       ListTile(
         title: Text(locale.amount, style: labelTextStyle),
-        trailing: Text(widget.currency.format(txn.amount),
+        trailing: Text(widget.network.currency.format(txn.amount),
             style: (widget.info.color != null
                 ? TextStyle(color: widget.info.color)
                 : valueTextStyle)),
@@ -119,7 +119,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     ret.add(
       ListTile(
         title: Text(locale.fee, style: labelTextStyle),
-        trailing: Text(widget.currency.format(txn.fee),
+        trailing: Text(widget.network.currency.format(txn.fee),
             style: (widget.info.fromWallet
                 ? TextStyle(color: Colors.red)
                 : valueTextStyle)),

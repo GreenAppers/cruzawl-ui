@@ -24,12 +24,12 @@ enum CruzbaseBucketDuration { minute, hour }
 
 /// Chart of mined blocks, e.g. chart of [Transction.isCoinbase()].
 class CruzbaseWidget extends StatefulWidget {
-  final Currency currency;
+  final PeerNetwork network;
   final Widget loadingWidget;
   final Duration windowDuration;
   final CruzbaseBucketDuration bucketDuration;
   final bool wideStyle;
-  CruzbaseWidget(this.currency,
+  CruzbaseWidget(this.network,
       {this.loadingWidget,
       this.wideStyle = false,
       this.windowDuration = const Duration(hours: 1),
@@ -119,8 +119,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   }
 
   void load(Cruzawl appState) async {
-    if (loading || !widget.currency.network.hasPeer) return;
-    Peer peer = await widget.currency.network.getPeer();
+    if (loading || !widget.network.hasPeer) return;
+    Peer peer = await widget.network.getPeer();
     loading = true;
     DateTime queryBackTo;
     bool initialLoad = data == null;
@@ -446,7 +446,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   List<Widget> buildMarketCap(
       int tipHeight, num price, String currency, Localization locale,
       {TextStyle titleStyle, VoidCallback onTap}) {
-    int cap = (widget.currency.supply(tipHeight) * price).round();
+    int cap = (widget.network.currency.supply(tipHeight) * price).round();
     return cap > 0
         ? buildLocalizationMarkupWidgets(
             locale.marketCap(

@@ -17,12 +17,12 @@ import '../model.dart';
 import '../ui.dart';
 
 class BlockWidget extends StatefulWidget {
-  final Currency currency;
+  final PeerNetwork network;
   final String blockId, title;
   final int blockHeight;
   final Widget loadingWidget;
   final double maxWidth;
-  BlockWidget(this.currency,
+  BlockWidget(this.network,
       {this.blockId,
       this.blockHeight,
       this.loadingWidget,
@@ -43,8 +43,8 @@ class _BlockWidgetState extends State<BlockWidget> {
   _BlockWidgetState(this.isTip);
 
   void load() async {
-    if (loading || !widget.currency.network.hasPeer) return;
-    Peer peer = await widget.currency.network.getPeer();
+    if (loading || !widget.network.hasPeer) return;
+    Peer peer = await widget.network.getPeer();
     loading = true;
 
     BlockMessage message;
@@ -52,7 +52,7 @@ class _BlockWidgetState extends State<BlockWidget> {
       message = await peer.getBlock(height: blockHeight);
       if (message != null) blockId = message.id.toJson();
     } else {
-      blockId = widget.blockId ?? widget.currency.network.tipId.toJson();
+      blockId = widget.blockId ?? widget.network.tipId.toJson();
       message = await peer.getBlock(id: CruzBlockId.fromJson(blockId));
     }
 
@@ -85,8 +85,8 @@ class _BlockWidgetState extends State<BlockWidget> {
   Widget build(BuildContext context) {
     if (!loading &&
         isTip &&
-        widget.currency.network.tipId != null &&
-        blockId != widget.currency.network.tipId.toJson()) {
+        widget.network.tipId != null &&
+        blockId != widget.network.tipId.toJson()) {
       blockId = null;
       block = null;
     }
@@ -237,7 +237,7 @@ class _BlockWidgetState extends State<BlockWidget> {
             int transactionIndex = index - header.length - 1;
             if (transactionIndex < block.transactions.length) {
               return TransactionListTile(
-                widget.currency,
+                widget.network.currency,
                 block.transactions[transactionIndex],
                 TransactionInfo(wideStyle: wideStyle),
                 onTap: (tx) => appState.navigateToTransaction(context, tx),

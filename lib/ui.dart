@@ -186,7 +186,7 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
     assert(queryBlock != null || queryTransaction != null);
     model.setSearching(true);
 
-    Peer peer = await appState.currency.network.getPeer();
+    Peer peer = await appState.network.getPeer();
     if (peer == null) return;
     Future<BlockHeaderMessage> getBlock;
     Future<TransactionMessage> getTxn;
@@ -216,12 +216,13 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
   String validateQuery(String query, Cruzawl appState, Localization locale) {
     query.trim();
     Currency currency = appState.currency;
-    if (!currency.network.hasPeer) return locale.networkOffline;
+    PeerNetwork network = appState.network;
+    if (!network.hasPeer) return locale.networkOffline;
     if ((queryAddress = currency.fromPublicAddressJson(query)) != null)
       return null;
     if (currency.fromPrivateKeyJson(query) != null) return locale.privateKey;
     if ((queryHeight = int.tryParse(query)) != null) {
-      if (queryHeight < currency.network.tipHeight && queryHeight >= 0) {
+      if (queryHeight < network.tipHeight && queryHeight >= 0) {
         return null;
       } else {
         queryHeight = null;

@@ -8,6 +8,7 @@ import 'package:flutter_web/services.dart'
 import 'package:bip39/bip39.dart';
 
 import 'package:cruzawl/currency.dart';
+import 'package:cruzawl/network.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 
@@ -29,7 +30,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
   final TextEditingController keyListController = TextEditingController();
   final TextEditingController seedPhraseController =
       TextEditingController(text: generateMnemonic());
-  String name, seedPhrase = '', currency = 'CRUZ';
+  String name, seedPhrase = '', currencyName = 'CRUZ';
   bool hdWallet = true, watchOnlyWallet = false;
   List<PrivateKey> keyList;
   List<PublicAddress> publicKeyList;
@@ -50,7 +51,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
       ListTile(
         subtitle: TextFormField(
           enabled: false,
-          initialValue: currency,
+          initialValue: currencyName,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: locale.currency,
@@ -59,7 +60,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
             if (Currency.fromJson(value) == null) return locale.unknownAddress;
             return null;
           },
-          onSaved: (value) => currency = value,
+          onSaved: (value) => currencyName = value,
         ),
       ),
     );
@@ -134,7 +135,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   labelText: locale.publicKeyList,
                 ),
                 validator: (value) {
-                  Currency cur = Currency.fromJson(currency);
+                  Currency cur = Currency.fromJson(currencyName);
                   if (cur == null) return locale.invalidCurrency;
                   try {
                     List<PublicAddress> keys = value
@@ -152,7 +153,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   }
                 },
                 onSaved: (value) {
-                  Currency cur = Currency.fromJson(currency);
+                  Currency cur = Currency.fromJson(currencyName);
                   publicKeyList = cur == null
                       ? null
                       : value
@@ -177,7 +178,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   labelText: locale.privateKeyList,
                 ),
                 validator: (value) {
-                  Currency cur = Currency.fromJson(currency);
+                  Currency cur = Currency.fromJson(currencyName);
                   if (cur == null) return locale.invalidCurrency;
                   try {
                     List<PrivateKey> keys = value
@@ -198,7 +199,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   }
                 },
                 onSaved: (value) {
-                  Currency cur = Currency.fromJson(currency);
+                  Currency cur = Currency.fromJson(currencyName);
                   keyList = cur == null
                       ? null
                       : value
@@ -228,13 +229,17 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           if (widget.appState.preferences.unitTestBeforeCreating &&
               widget.appState.runUnitTests() < 0) return;
 
+          Currency currency = Currency.fromJson(currencyName);
+          PeerNetwork network =
+                widget.appState.networks.singleWhere((net) => net.currency == currency);
+
           if (hdWallet) {
             widget.appState.addWallet(Wallet.fromSeedPhrase(
                 widget.appState.databaseFactory,
                 widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
                 name,
-                Currency.fromJson(currency),
+                network,
                 seedPhrase,
                 widget.appState.preferences,
                 debugPrint,
@@ -245,7 +250,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                 widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
                 name,
-                Currency.fromJson(currency),
+                network,
                 Seed(randBytes(64)),
                 publicKeyList,
                 widget.appState.preferences,
@@ -257,7 +262,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                 widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
                 name,
-                Currency.fromJson(currency),
+                network,
                 Seed(randBytes(64)),
                 keyList,
                 widget.appState.preferences,

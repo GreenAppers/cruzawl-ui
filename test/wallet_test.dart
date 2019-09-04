@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast/sembast_memory.dart';
 
@@ -32,22 +33,33 @@ import 'package:cruzawl_ui/wallet/send.dart';
 import 'package:cruzawl_ui/wallet/settings.dart';
 
 void main() async {
+  for (Locale locale in Localization.supportedLocales) {
+    CruzawlPreferences preferences = CruzawlPreferences(
+        await databaseFactoryMemoryFs.openDatabase('settings_$locale.db'),
+        () => NumberFormat.currency().currencyName);
+    await preferences.load();
+    preferences.networkEnabled = false;
+    preferences.minimumReserveAddress = 3;
+    Localization localization = await Localization.load(locale);
+    group('Wallet tests $locale',
+        () => runWalletTests(preferences, locale, localization));
+  }
+}
+
+void runWalletTests(
+    CruzawlPreferences preferences, Locale testLocale, Localization locale) {
   List<LocalizationsDelegate> localizationsDelegates = <LocalizationsDelegate>[
     LocalizationDelegate(),
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate
   ];
-  List<Locale> supportedLocales = <Locale>[Locale('en')];
+  List<Locale> supportedLocales = <Locale>[testLocale];
 
-  CruzawlPreferences preferences = CruzawlPreferences(
-      await databaseFactoryMemoryFs.openDatabase('settings.db'), () => 'USD');
-  await preferences.load();
-  preferences.networkEnabled = false;
-  preferences.minimumReserveAddress = 3;
   SetClipboardText stringCallback = (BuildContext c, String x) {};
   TestHttpClient httpClient = TestHttpClient();
   Cruzawl appState = Cruzawl((String x) => x, stringCallback, stringCallback,
-      null, databaseFactoryMemoryFs, preferences, '/', NullFileSystem(), httpClient: httpClient);
+      null, databaseFactoryMemoryFs, preferences, '/', NullFileSystem(),
+      httpClient: httpClient);
   appState.debugLevel = debugLevelDebug;
   TestWebSocket socket = TestWebSocket();
   CruzPeer peer = appState.addPeer(appState.preferences.peers[0]);
@@ -72,7 +84,7 @@ void main() async {
             localizationsDelegates: localizationsDelegates,
             supportedLocales: supportedLocales,
             home: SimpleScaffold(AddWalletWidget(appState),
-                title: 'Add Wallet'))));
+                title: locale.addWallet))));
     await tester.pumpAndSettle();
     await tester.tap(find.byType(RaisedGradientButton));
     await tester.pump(Duration(seconds: 1));
@@ -99,7 +111,7 @@ void main() async {
     socket.messageHandler(
         '{"type":"transaction_relay_policy","body":{"min_fee":1000000,"min_amount":1000000}}');
 
-    expect(appState.currency.network.tipHeight, 25352);
+    expect(appState.network.tipHeight, 25352);
   });
 
   test('CruzPeer filter_add', () {
@@ -173,13 +185,12 @@ void main() async {
             home: SimpleScaffold(WalletSettingsWidget(wallet),
                 title: wallet.name))));
     await tester.pumpAndSettle();
-    await tester.drag(find.text('Addresses'), Offset(0.0, -400));
+    await tester.drag(find.text(locale.addresses), Offset(0.0, -600));
     await tester.pump();
-    await tester.tap(find.widgetWithText(RaisedGradientButton, 'Verify'));
+    await tester.tap(find.widgetWithText(RaisedGradientButton, locale.verify));
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
-    expect(find.text('Verified 3/3 addresses and 11/11 tests succeeded'),
-        findsOneWidget);
+    expect(find.text(locale.verifyWalletResults(3, 3, 11, 11)), findsOneWidget);
   });
 
   testWidgets('WalletSendWidget', (WidgetTester tester) async {
@@ -197,7 +208,7 @@ void main() async {
     await tester.enterText(find.byType(TextFormField).at(1), sendTo);
     await tester.enterText(
         find.byType(TextFormField).at(3), sendMoney.toString());
-    await tester.tap(find.widgetWithText(RaisedGradientButton, 'Send'));
+    await tester.tap(find.widgetWithText(RaisedGradientButton, locale.send));
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
     expect(socket.sent.length, 1);
@@ -220,7 +231,7 @@ void main() async {
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
-    expect(find.text('Sent $transactionId'), findsOneWidget);
+    expect(find.text(locale.sentTransactionId(transactionId)), findsOneWidget);
   });
 
   testWidgets('WalletBalanceWidget', (WidgetTester tester) async {

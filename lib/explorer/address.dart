@@ -17,11 +17,11 @@ import '../model.dart';
 import '../ui.dart';
 
 class ExternalAddressWidget extends StatefulWidget {
-  final Currency currency;
+  final PeerNetwork network;
   final String addressText, title;
   final Widget loadingWidget;
   final double maxWidth;
-  ExternalAddressWidget(this.currency, this.addressText,
+  ExternalAddressWidget(this.network, this.addressText,
       {this.loadingWidget, this.maxWidth, this.title});
 
   @override
@@ -37,13 +37,13 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
   _ExternalAddressWidgetState();
 
   void load() async {
-    if (loading || !widget.currency.network.hasPeer) return;
+    if (loading || !widget.network.hasPeer) return;
     loading = true;
 
-    int tipHeight = widget.currency.network.tip.height;
-    Peer peer = await widget.currency.network.getPeer();
+    int tipHeight = widget.network.tip.height;
+    Peer peer = await widget.network.getPeer();
     PublicAddress address =
-        widget.currency.fromPublicAddressJson(widget.addressText);
+        widget.network.currency.fromPublicAddressJson(widget.addressText);
 
     if (balance == null) {
       balance = await peer.getBalance(address);
@@ -130,14 +130,14 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       ),
       ListTile(
         title: Text(locale.balance, style: labelTextStyle),
-        trailing: Text(widget.currency.format(balance)),
+        trailing: Text(widget.network.currency.format(balance)),
       ),
     ];
 
     if (maturing > 0)
       header.add(ListTile(
         title: Text(locale.maturing, style: labelTextStyle),
-        trailing: Text(widget.currency.format(maturing)),
+        trailing: Text(widget.network.currency.format(maturing)),
       ));
     if (fullyLoaded && earliestSeen != null)
       header.add(ListTile(
@@ -171,7 +171,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
             if (transactionIndex < transactions.length) {
               Transaction transaction = transactions[transactionIndex];
               return TransactionListTile(
-                widget.currency,
+                widget.network.currency,
                 transaction,
                 TransactionInfo(
                     toWallet: widget.addressText == transaction.toText,

@@ -160,7 +160,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "0a2c84112cf99670346cf4ca8d2c0261086ec7b2"
+      resolved-ref: "03327cb7de4735efdf4c6cd5424e138f23a96cde"
       url: "git://github.com/GreenAppers/cruzawl.git"
     source: git
     version: "1.0.6+6"

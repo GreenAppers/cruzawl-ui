@@ -84,6 +84,8 @@ class Cruzawl extends Model {
   HttpClient httpClient;
   FileSystem fileSystem;
   Currency currency;
+  PeerNetwork network;
+  List<PeerNetwork> networks;
   ExchangeRates exchangeRates;
   WalletModel wallet;
   List<WalletModel> wallets = <WalletModel>[];
@@ -106,6 +108,9 @@ class Cruzawl extends Model {
     if (preferences.debugLog) debugLog = '';
     exchangeRates = ExchangeRates(httpClient, preferences, debugPrint: print);
     exchangeRates.checkForUpdate();
+    networks = currencies
+        .map((currency) => currency.createNetwork(() => reloadWallets(currency), () => updateWallets(currency)))
+        .toList();
     setTheme();
   }
 
@@ -145,8 +150,15 @@ class Cruzawl extends Model {
   void openWallets() {
     Map<String, String> loadedWallets = preferences.wallets;
     loadedWallets.forEach((k, v) => addWallet(
-        Wallet.fromFile(databaseFactory, fileSystem, getWalletFilename(k),
-            Seed(base64.decode(v)), preferences, print, openedWallet),
+        Wallet.fromFile(
+            databaseFactory,
+            networks,
+            fileSystem,
+            getWalletFilename(k),
+            Seed(base64.decode(v)),
+            preferences,
+            print,
+            openedWallet),
         store: false));
   }
 
@@ -159,15 +171,20 @@ class Cruzawl extends Model {
       }
     } else {
       /// Replaces [LoadingCurrency]
-      if (wallet.wallet == x) currency = x.currency;
+      if (wallet.wallet == x) setCurrency(x.currency);
       walletsLoading--;
     }
     notifyListeners();
   }
 
+  void setCurrency(Currency x) {
+    currency = x;
+    network = findPeerNetworkForCurrency(networks, x);
+  }
+
   void setWallet(WalletModel x) {
     wallet = x;
-    currency = wallet.wallet.currency;
+    setCurrency(wallet.wallet.currency);
   }
 
   String getWalletFilename(String walletName) =>
@@ -203,7 +220,7 @@ class Cruzawl extends Model {
 
   void updateWallets(Currency currency) {
     if (wallets.isEmpty) {
-      print('updated ${currency.network.tipHeight}');
+      print('updated ${network.tipHeight}');
       notifyListeners();
     } else
       for (WalletModel m in wallets) {
@@ -214,9 +231,8 @@ class Cruzawl extends Model {
   void reloadWallets(Currency currency) async {
     print('Cruzawl reloadWallets');
     if (wallets.isEmpty) {
-      if (currency.network.hasPeer)
-        (await currency.network.getPeer())
-            .filterAdd(currency.nullAddress, (v) {});
+      if (network.hasPeer)
+        (await network.getPeer()).filterAdd(currency.nullAddress, (v) {});
     } else
       for (WalletModel m in wallets) {
         if (m.wallet.currency == currency) m.wallet.reload();
@@ -225,7 +241,7 @@ class Cruzawl extends Model {
   }
 
   void reconnectPeers(Currency currency) {
-    currency.network.shutdown();
+    network.shutdown();
     connectPeers(currency);
   }
 
@@ -241,12 +257,13 @@ class Cruzawl extends Model {
     Currency currency = Currency.fromJson(x.currency);
     if (currency == null) return null;
 
+    PeerNetwork network = findPeerNetworkForCurrency(networks, currency);
+    if (network == null) return null;
+
     x.debugPrint = print;
     x.debugLevel = debugLevel;
-    currency.network.tipChanged = () => updateWallets(currency);
-    currency.network.peerChanged = () => reloadWallets(currency);
-    return currency.network.addPeer(currency.network
-        .createPeerWithSpec(x, currency.genesisBlock().id().toJson()));
+    return network.addPeer(
+        network.createPeerWithSpec(x, currency.genesisBlock().id().toJson()));
   }
 
   /// https://github.com/jspschool/tweetnacl-dart/issues/3

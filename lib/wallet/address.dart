@@ -176,8 +176,8 @@ class _AddressWidgetState extends State<AddressWidget> {
 
     assert(!widget.address.loadIterator.done);
 
-    if (widget.wallet.currency.network.hasPeer)
-      widget.wallet.currency.network.getPeer().then((Peer peer) {
+    if (widget.wallet.network.hasPeer)
+      widget.wallet.network.getPeer().then((Peer peer) {
         if (peer != null)
           widget.wallet
               .getNextTransactions(peer, widget.address)

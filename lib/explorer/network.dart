@@ -28,7 +28,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
     final Cruzawl appState =
         ScopedModel.of<Cruzawl>(context, rebuildOnChange: true);
     final Localization locale = Localization.of(context);
-    final PeerNetwork network = appState.currency.network;
+    final PeerNetwork network = appState.network;
 
     peers = appState.preferences.peers;
 
@@ -184,7 +184,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
     final Localization locale = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Currency currency = appState.currency;
-    final PeerNetwork network = currency.network;
+    final PeerNetwork network = appState.network;
     final List<PeerPreference> peers = appState.preferences.peers;
 
     return Form(

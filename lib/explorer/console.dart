@@ -18,9 +18,9 @@ import '../model.dart';
 import '../ui.dart';
 
 class CruzawlConsole extends StatefulWidget {
-  final Currency currency;
+  final PeerNetwork network;
   final SyntaxHighlighterStyle style = SyntaxHighlighterStyle.lightThemeStyle();
-  CruzawlConsole(this.currency);
+  CruzawlConsole(this.network);
 
   @override
   _CruzawlConsoleState createState() => _CruzawlConsoleState();
@@ -83,7 +83,7 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
   }
 
   String validateInput(String query, Localization locale) {
-    if (!widget.currency.network.hasPeer) return locale.networkOffline;
+    if (!widget.network.hasPeer) return locale.networkOffline;
     try {
       if ((inputJson = jsonDecode(query)) == null) throw FormatException();
       return null;
@@ -94,7 +94,7 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
 
   void submitInput() async {
     if (!formKey.currentState.validate()) return;
-    CruzPeer peer = await widget.currency.network.getPeer();
+    CruzPeer peer = await widget.network.getPeer();
     if (peer == null) return;
     peer.addJsonMessage(
         inputJson,
