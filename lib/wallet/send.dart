@@ -227,8 +227,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       validator: (value) {
                         num v = currency.parse(value);
                         if (!(v > 0)) return locale.valueMustBePositive;
-                        num amount =
-                            currency.parse(amountController.text);
+                        num amount = currency.parse(amountController.text);
                         Address fromAddress =
                             wallet.addresses[fromController.text];
                         if (fromAddress != null &&

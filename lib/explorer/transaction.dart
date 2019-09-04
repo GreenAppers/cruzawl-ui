@@ -40,12 +40,11 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   _TransactionWidgetState(this.transaction);
 
   void load() async {
-    if (loading || transaction != null || !widget.network.hasPeer)
-      return;
+    if (loading || transaction != null || !widget.network.hasPeer) return;
     loading = true;
-    transaction = await (await widget.network.getPeer())
-        .getTransaction(
-            widget.network.currency.fromTransactionIdJson(widget.transactionIdText));
+    transaction = await (await widget.network.getPeer()).getTransaction(widget
+        .network.currency
+        .fromTransactionIdJson(widget.transactionIdText));
 
     if (transaction == null) loading = false;
     setState(() {});

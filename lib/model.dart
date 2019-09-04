@@ -109,7 +109,8 @@ class Cruzawl extends Model {
     exchangeRates = ExchangeRates(httpClient, preferences, debugPrint: print);
     exchangeRates.checkForUpdate();
     networks = currencies
-        .map((currency) => currency.createNetwork(() => reloadWallets(currency), () => updateWallets(currency)))
+        .map((currency) => currency.createNetwork(
+            () => reloadWallets(currency), () => updateWallets(currency)))
         .toList();
     setTheme();
   }

@@ -35,7 +35,8 @@ import 'package:cruzawl_ui/wallet/settings.dart';
 void main() async {
   for (Locale locale in Localization.supportedLocales) {
     CruzawlPreferences preferences = CruzawlPreferences(
-        await databaseFactoryMemoryFs.openDatabase('settings_$locale.db'),
+        await databaseFactoryMemoryFs
+            .openDatabase('settings_wallet_$locale.db'),
         () => NumberFormat.currency().currencyName);
     await preferences.load();
     preferences.networkEnabled = false;

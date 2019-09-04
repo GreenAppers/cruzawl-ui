@@ -231,7 +231,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
 
           Currency currency = Currency.fromJson(currencyName);
           PeerNetwork network =
-                widget.appState.networks.singleWhere((net) => net.currency == currency);
+              findPeerNetworkForCurrency(widget.appState.networks, currency);
 
           if (hdWallet) {
             widget.appState.addWallet(Wallet.fromSeedPhrase(

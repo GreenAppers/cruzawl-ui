@@ -23,6 +23,8 @@ dependencies:
       url: git://github.com/lukef/qr.flutter.git
   sembast: ^2.0.1
   scoped_model: ^1.0.1
+  syntax_highlighter: ^0.1.0
+  tuple: ^1.0.2
   tweetnacl: ^0.3.2
 
 dev_dependencies:
