@@ -95,10 +95,8 @@ class PastableTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller != null &&
-        !Platform.isMacOS &&
-        !Platform.isLinux &&
-        !Platform.isWindows) {
+    if (controller == null ||
+        (!Platform.isMacOS && !Platform.isLinux && !Platform.isWindows)) {
       return buildWrapped(context);
     }
 

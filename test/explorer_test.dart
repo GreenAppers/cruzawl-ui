@@ -351,6 +351,43 @@ void runExplorerTests(
                         includeWalletRoutes: true, cruzbaseSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/network'))));
+
+    // Open AddPeerWidget
+    await tester.pump(Duration(seconds: 1));
+    expect(find.byType(Row), findsOneWidget);
+    List<Element> buttons = find
+        .descendant(of: find.byType(Row), matching: find.byType(IconButton))
+        .evaluate()
+        .toList();
+    expect(buttons.length, 2);
+    await tester.tap(find.byWidget(buttons[1].widget));
+
+    // Add a peer
+    String peerName = 'peerNameFoo', peerUrl = '127.99.99.99';
+    await tester.pumpAndSettle();
+    expect(find.byType(TextFormField), findsNWidgets(2));
+    await tester.enterText(find.byType(TextFormField).at(0), peerName);
+    await tester.enterText(find.byType(TextFormField).at(1), peerUrl);
+    await tester.tap(find.byType(RaisedGradientButton));
+
+    // Check added peer
+    await tester.pumpAndSettle();
+    expect(find.text(peerName), findsOneWidget);
+    List<PeerPreference> peers = preferences.peers;
+    expect(peers.length, 2);
+    expect(peers[1].name, peerName);
+    expect(peers[1].url, peerUrl);
+
+    // Open Remove Peer AlertDialog
+    await tester.tap(find.text(peerName));
+    await tester.tap(find.byWidget(buttons[0].widget));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(locale.delete));
+
+    // Remove the added peer
+    await tester.pumpAndSettle();
+    peers = preferences.peers;
+    expect(peers.length, 1);
   });
 
   testWidgets('CruzawlSettings', (WidgetTester tester) async {

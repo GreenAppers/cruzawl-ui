@@ -34,6 +34,7 @@ import 'package:cruzawl_ui/wallet/settings.dart';
 
 void main() async {
   for (Locale locale in Localization.supportedLocales) {
+    if ('$locale' != 'en') continue;
     CruzawlPreferences preferences = CruzawlPreferences(
         await databaseFactoryMemoryFs
             .openDatabase('settings_wallet_$locale.db'),

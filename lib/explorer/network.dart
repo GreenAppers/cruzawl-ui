@@ -176,8 +176,15 @@ class AddPeerWidget extends StatefulWidget {
 
 class _AddPeerWidgetState extends State<AddPeerWidget> {
   final formKey = GlobalKey<FormState>();
+  final TextEditingController urlController = TextEditingController();
   String name, url;
   bool certRequired = true;
+
+  @override
+  void dispose() {
+    urlController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext c) {
@@ -207,8 +214,9 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
           ),
         ),
         ListTile(
-          subtitle: TextFormField(
+          subtitle: PastableTextFormField(
             keyboardType: TextInputType.emailAddress,
+            controller: urlController,
             decoration: InputDecoration(
               labelText: locale.url,
             ),

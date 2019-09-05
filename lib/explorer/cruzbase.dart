@@ -217,7 +217,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               title: locale.loading);
 
     if (refresh == null) {
-      refresh = Timer.periodic(widget.animate, (Timer t) => setState(() {}));
+      refresh = Timer.periodic(widget.animate, (Timer t) {
+        if (mounted) setState(() {});
+      });
     }
 
     num price = appState.exchangeRates
