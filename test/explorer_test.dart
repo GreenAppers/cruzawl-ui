@@ -61,8 +61,15 @@ void runExplorerTests(
 
   SetClipboardText stringCallback = (BuildContext c, String x) {};
   TestHttpClient httpClient = TestHttpClient();
-  Cruzawl appState = Cruzawl((String x) => x, stringCallback, stringCallback,
-      null, databaseFactoryMemoryFs, preferences, '/', NullFileSystem(),
+  Cruzawl appState = Cruzawl(
+      (String x) => 'assets/' + x,
+      stringCallback,
+      stringCallback,
+      null,
+      databaseFactoryMemoryFs,
+      preferences,
+      '/',
+      NullFileSystem(),
       httpClient: httpClient);
   appState.debugLevel = debugLevelDebug;
   TestWebSocket socket = TestWebSocket();
@@ -92,6 +99,9 @@ void runExplorerTests(
       '0000000000003e69ff6f9e82aed1edf4fbeff282f483a155f15993a1d5b388f1';
   String chainWork =
       '00000000000000000000000000000000000000000000000029fbd65f3156de92';
+  String nonce = '568670894';
+  String transactionId =
+      '8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f';
 
   test('CruzPeer connect', () {
     expect(socket.sent.length, 2);
@@ -264,6 +274,8 @@ void runExplorerTests(
   });
 
   testWidgets('CruzbaseWidget', (WidgetTester tester) async {
+    final SimpleScaffoldActions searchBar =
+        SimpleScaffoldActions(<Widget>[], searchBar: true);
     Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
@@ -272,7 +284,12 @@ void runExplorerTests(
             child: MaterialApp(
                 localizationsDelegates: localizationsDelegates,
                 supportedLocales: supportedLocales,
-                home: CruzbaseWidget(appState.network, fetchBlock: 2)))));
+                home: ScopedModel(
+                    model: searchBar,
+                    child: CruzbaseWidget(appState.network, fetchBlock: 2)),
+                onGenerateRoute: CruzawlRoutes(appState,
+                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                    .onGenerateRoute))));
 
     int time1 = DateTime.now().millisecondsSinceEpoch ~/ 1000,
         time2 = time1 - 60 * 60 * 6;
@@ -302,12 +319,53 @@ void runExplorerTests(
         find.text(locale
             .formatHashRate((block1.blockWork() ~/ BigInt.from(3600)).toInt())),
         findsOneWidget);
+
+    /// Open search box
+    expect(find.byType(IconButton), findsOneWidget);
+    await tester.tap(find.byType(IconButton));
+    await tester.pumpAndSettle();
+    expect(find.byType(TextFormField), findsOneWidget);
+
+    /// Search transaction
+    await tester.enterText(find.byType(TextFormField), transactionId);
+    expect(find.byType(IconButton), findsNWidgets(2));
+    //await tester.tap(find.byType(IconButton).at(0);
+    //await tester.tap(find.descendant(of: find.byType(TextFormField), matching: find.byType(IconButton)));
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+
+    /// Respond to search
+    await tester.pump(Duration(seconds: 1));
+    expect(socket.sent.length, 2);
+    msg = jsonDecode(socket.sent.first);
+    expect(msg['type'], 'get_block_header');
+    expect(msg['body']['block_id'], transactionId);
+    socket.sent.removeFirst();
+    socket.messageHandler(
+        '{"type":"block_header","body":{"block_id":"$transactionId"}}');
+    msg = jsonDecode(socket.sent.first);
+    expect(msg['type'], 'get_transaction');
+    expect(msg['body']['transaction_id'], transactionId);
+    socket.sent.removeFirst();
+    socket.messageHandler(
+        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}');
+
+    /// Respond to [TransactionWidget.load]
+    await tester.pump(Duration(seconds: 1));
+    expect(socket.sent.length, 1);
+    msg = jsonDecode(socket.sent.first);
+    expect(msg['type'], 'get_transaction');
+    expect(msg['body']['transaction_id'], transactionId);
+    socket.sent.removeFirst();
+    socket.messageHandler(
+        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}');
+
+    await tester.pump(Duration(seconds: 1));
+    expect(socket.sent.length, 0);
+    expect(find.text(locale.nonce), findsOneWidget);
+    expect(find.text(nonce), findsOneWidget);
   });
 
   testWidgets('TransactionWidget', (WidgetTester tester) async {
-    String nonce = '568670894';
-    String transactionId =
-        '8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f';
     Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
@@ -404,5 +462,8 @@ void runExplorerTests(
                         includeWalletRoutes: true, cruzbaseSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/settings'))));
+
+    await tester.pump(Duration(seconds: 1));
+    expect(find.text(locale.theme), findsOneWidget);
   });
 }
