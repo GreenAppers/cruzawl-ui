@@ -43,9 +43,13 @@ class _BlockWidgetState extends State<BlockWidget> {
   _BlockWidgetState(this.isTip);
 
   void load() async {
-    if (loading || !widget.network.hasPeer) return;
-    Peer peer = await widget.network.getPeer();
+    if (loading ||
+        !widget.network.hasPeer ||
+        (widget.blockId != null && widget.blockId.isEmpty)) {
+      return;
+    }
     loading = true;
+    Peer peer = await widget.network.getPeer();
 
     BlockMessage message;
     if ((blockHeight = widget.blockHeight) != null) {

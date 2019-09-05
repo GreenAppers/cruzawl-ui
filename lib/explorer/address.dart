@@ -37,7 +37,9 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
   _ExternalAddressWidgetState();
 
   void load() async {
-    if (loading || !widget.network.hasPeer) return;
+    if (loading || !widget.network.hasPeer || widget.addressText.isEmpty) {
+      return;
+    }
     loading = true;
 
     int tipHeight = widget.network.tip.height;

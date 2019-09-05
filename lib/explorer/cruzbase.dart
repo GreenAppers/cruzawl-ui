@@ -1,6 +1,7 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter_web/material.dart'
@@ -26,14 +27,17 @@ enum CruzbaseBucketDuration { minute, hour }
 class CruzbaseWidget extends StatefulWidget {
   final PeerNetwork network;
   final Widget loadingWidget;
-  final Duration windowDuration;
+  final Duration windowDuration, animate = Duration(seconds: 5);
   final CruzbaseBucketDuration bucketDuration;
   final bool wideStyle;
+  final int fetchBlock;
+
   CruzbaseWidget(this.network,
       {this.loadingWidget,
       this.wideStyle = false,
       this.windowDuration = const Duration(hours: 1),
-      this.bucketDuration = CruzbaseBucketDuration.minute});
+      this.bucketDuration = CruzbaseBucketDuration.minute,
+      this.fetchBlock = 50});
 
   @override
   _CruzbaseWidgetState createState() =>
@@ -45,12 +49,18 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   SortedListSet<TimeSeriesBlocks> data;
   int dataStartHeight, dataEndHeight, dataMaxBucketBlocks;
   DateTime dataInit, dataStart, dataEnd, windowStart, windowEnd;
-  Duration windowDuration, animate = Duration(seconds: 5);
+  Duration windowDuration;
   CruzbaseBucketDuration bucketDuration;
   bool loading = false;
-  var refresh;
+  Timer refresh;
 
   _CruzbaseWidgetState(this.windowDuration, this.bucketDuration);
+
+  @override
+  void dispose() {
+    if (refresh != null) refresh.cancel();
+    super.dispose();
+  }
 
   /// Resets [data]. e.g. for changing [bucketDuration].
   void clear() {
@@ -159,7 +169,8 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     }
 
     for (bool done = false; !done && dataStartHeight >= 0; /**/) {
-      List<BlockHeader> blocks = await fetch(peer, dataStartHeight, 50);
+      List<BlockHeader> blocks =
+          await fetch(peer, dataStartHeight, widget.fetchBlock);
       if (blocks == null || blocks.isEmpty) return;
       done = !blocks.last.dateTime.isAfter(queryBackTo);
       dataStartHeight -= blocks.length;
@@ -205,10 +216,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
           SimpleScaffold(Center(child: CircularProgressIndicator()),
               title: locale.loading);
 
-    if (refresh == null)
-      refresh = Future.delayed(animate, () {
-        if (mounted) setState(() => refresh = null);
-      });
+    if (refresh == null) {
+      refresh = Timer.periodic(widget.animate, (Timer t) => setState(() {}));
+    }
 
     num price = appState.exchangeRates
         .rateViaBTC('CRUZ', appState.preferences.localCurrency);

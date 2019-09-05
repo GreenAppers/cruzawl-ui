@@ -23,7 +23,7 @@ import 'model.dart';
 import 'ui.dart';
 import 'wallet/address.dart';
 
-class CruzallRoutes {
+class CruzawlRoutes {
   final Cruzawl appState;
   final double maxWidth;
   final Widget loadingWidget;
@@ -31,7 +31,7 @@ class CruzallRoutes {
   final bool includeWalletRoutes;
   final SimpleScaffoldActions searchBar;
 
-  CruzallRoutes(this.appState,
+  CruzawlRoutes(this.appState,
       {this.maxWidth,
       this.loadingWidget,
       this.defaultRoute,
@@ -125,14 +125,14 @@ class CruzallRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) => SimpleScaffold(
-              CruzallSettings(walletSettings: includeWalletRoutes),
+              CruzawlSettings(walletSettings: includeWalletRoutes),
               title: Localization.of(context).settings),
         );
 
       case 'support':
         return MaterialPageRoute(
           settings: settings,
-          builder: (BuildContext context) => SimpleScaffold(CruzallSupport(),
+          builder: (BuildContext context) => SimpleScaffold(CruzawlSupport(),
               title: Localization.of(context).support),
         );
 

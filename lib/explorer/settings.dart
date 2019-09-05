@@ -12,15 +12,15 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
-class CruzallSettings extends StatefulWidget {
+class CruzawlSettings extends StatefulWidget {
   final bool walletSettings;
-  CruzallSettings({this.walletSettings = false});
+  CruzawlSettings({this.walletSettings = false});
 
   @override
-  _CruzallSettingsState createState() => _CruzallSettingsState();
+  _CruzawlSettingsState createState() => _CruzawlSettingsState();
 }
 
-class _CruzallSettingsState extends State<CruzallSettings> {
+class _CruzawlSettingsState extends State<CruzawlSettings> {
   @override
   Widget build(BuildContext context) {
     final Cruzawl appState =
@@ -256,7 +256,7 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
   }
 }
 
-class CruzallSupport extends StatelessWidget {
+class CruzawlSupport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
