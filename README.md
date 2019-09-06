@@ -1,5 +1,7 @@
 # cruzawl-ui [![Build Status](https://travis-ci.org/GreenAppers/cruzawl-ui.svg?branch=master)](https://travis-ci.org/GreenAppers/cruzawl-ui) [![Coverage Status](https://coveralls.io/repos/github/GreenAppers/cruzawl-ui/badge.svg?branch=master)](https://coveralls.io/github/GreenAppers/cruzawl-ui?branch=master)
-<img width=128 src="https://www.greenappers.com/cruzall/en/assets/cruzbit.png" /> <img src="https://www.greenappers.com/cruzall/en/assets/icon.png"/><br/> [Flutter](https://flutter.dev/) package for [CRUZ](https://github.com/cruzbit/cruzbit) cryptocurrency wallet [cruzall](https://github.com/GreenAppers/cruzall) and block explorer [cruzweb](https://github.com/GreenAppers/cruzweb).
+<img width=128 src="https://www.greenappers.com/cruzall/en/assets/cruzbit.png" /> <img src="https://www.greenappers.com/cruzall/en/assets/icon.png"/>
+
+[Flutter](https://flutter.dev/) package for [CRUZ](https://github.com/cruzbit/cruzbit) cryptocurrency wallet [cruzall](https://github.com/GreenAppers/cruzall) and block explorer [cruzweb](https://github.com/GreenAppers/cruzweb).
 
 # Setup
 
