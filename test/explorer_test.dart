@@ -23,17 +23,17 @@ import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 import 'package:cruzawl/websocket.dart';
 
-import '../lib/localization.dart';
-import '../lib/model.dart';
-import '../lib/routes.dart';
-import '../lib/ui.dart';
-import '../lib/explorer/address.dart';
-import '../lib/explorer/block.dart';
-import '../lib/explorer/console.dart';
-import '../lib/explorer/cruzbase.dart';
-import '../lib/explorer/network.dart';
-import '../lib/explorer/settings.dart';
-import '../lib/explorer/transaction.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/routes.dart';
+import 'package:cruzawl_ui/ui.dart';
+import 'package:cruzawl_ui/explorer/address.dart';
+import 'package:cruzawl_ui/explorer/block.dart';
+import 'package:cruzawl_ui/explorer/console.dart';
+import 'package:cruzawl_ui/explorer/cruzbase.dart';
+import 'package:cruzawl_ui/explorer/network.dart';
+import 'package:cruzawl_ui/explorer/settings.dart';
+import 'package:cruzawl_ui/explorer/transaction.dart';
 
 void main() async {
   for (Locale locale in Localization.supportedLocales) {

@@ -151,12 +151,10 @@ packages:
   cruzawl:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "03327cb7de4735efdf4c6cd5424e138f23a96cde"
-      url: "git://github.com/GreenAppers/cruzawl.git"
-    source: git
-    version: "1.0.6+6"
+      path: "../cruzawl"
+      relative: true
+    source: path
+    version: "1.0.7+7"
   crypto:
     dependency: transitive
     description:

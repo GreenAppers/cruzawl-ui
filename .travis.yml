@@ -31,6 +31,9 @@ before_install:
   - echo $TRAVIS_OS_NAME
   - echo ${HOME}
   - echo ${TRAVIS_BUILD_DIR}
+  - cd ..
+  - git clone https://github.com/GreenAppers/cruzawl
+  - cd cruzawl-ui
   - echo "repo_token:" $COVERALLS_REPO_TOKEN > .coveralls.yml
   - yes | sdkmanager "platforms;android-27"
   - yes | sdkmanager ndk-bundle
