@@ -24,6 +24,7 @@ import 'package:cruzawl/websocket.dart';
 
 import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/routes.dart';
 import 'package:cruzawl_ui/ui.dart';
 import 'package:cruzawl_ui/wallet/add.dart';
 import 'package:cruzawl_ui/wallet/address.dart';
@@ -34,7 +35,6 @@ import 'package:cruzawl_ui/wallet/settings.dart';
 
 void main() async {
   for (Locale locale in Localization.supportedLocales) {
-    if ('$locale' != 'en') continue;
     CruzawlPreferences preferences = CruzawlPreferences(
         await databaseFactoryMemoryFs
             .openDatabase('settings_wallet_$locale.db'),
@@ -205,8 +205,23 @@ void runWalletTests(
                 localizationsDelegates: localizationsDelegates,
                 supportedLocales: supportedLocales,
                 home: SimpleScaffold(WalletSendWidget(wallet),
-                    title: wallet.name)))));
+                    title: wallet.name),
+                onGenerateRoute: CruzawlRoutes(appState,
+                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                    .onGenerateRoute,
+                routes: <String, WidgetBuilder>{
+                  '/sendFrom': (BuildContext context) => SimpleScaffold(
+                      SendFromWidget(wallet),
+                      title: Localization.of(context).from),
+                }))));
     await tester.pumpAndSettle();
+
+    /// Select from
+    await tester.tap(find.text(locale.from));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(moneyAddr));
+    await tester.pumpAndSettle();
+
     await tester.enterText(find.byType(TextFormField).at(1), sendTo);
     await tester.enterText(
         find.byType(TextFormField).at(3), sendMoney.toString());
@@ -269,20 +284,6 @@ void runWalletTests(
     expect(transaction.tx.verify(), false);
   });
 
-  testWidgets('WalletReceiveWidget', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
-    await tester.pumpWidget(ScopedModel(
-        model: appState,
-        child: ScopedModel(
-            model: appState.wallet,
-            child: MaterialApp(
-                localizationsDelegates: localizationsDelegates,
-                supportedLocales: supportedLocales,
-                home: SimpleScaffold(WalletReceiveWidget(),
-                    title: wallet.name)))));
-    await tester.pumpAndSettle();
-  });
-
   testWidgets('WalletAddressWidget', (WidgetTester tester) async {
     Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
@@ -295,6 +296,27 @@ void runWalletTests(
                 home: SimpleScaffold(
                     AddressWidget(wallet, wallet.addresses[moneyAddr]),
                     title: wallet.name)))));
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('WalletReceiveWidget', (WidgetTester tester) async {
+    Wallet wallet = appState.wallet.wallet;
+    await tester.pumpWidget(ScopedModel(
+        model: appState,
+        child: ScopedModel(
+            model: appState.wallet,
+            child: MaterialApp(
+                localizationsDelegates: localizationsDelegates,
+                supportedLocales: supportedLocales,
+                home: SimpleScaffold(WalletReceiveWidget(), title: wallet.name),
+                onGenerateRoute: CruzawlRoutes(appState,
+                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                    .onGenerateRoute))));
+    await tester.pumpAndSettle();
+    //await tester.tap(find.text(locale.generateNewAddress));
+    //await tester.pumpAndSettle();
+    await tester
+        .tap(find.text(wallet.getNextReceiveAddress().publicKey.toJson()));
     await tester.pumpAndSettle();
   });
 }

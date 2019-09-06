@@ -107,6 +107,7 @@ void runExplorerTests(
       '8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f';
 
   test('CruzPeer connect', () {
+    expect(appState.runQuickTestVector(), true);
     expect(socket.sent.length, 2);
     var msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_tip_header');
