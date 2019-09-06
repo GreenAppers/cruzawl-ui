@@ -22,16 +22,17 @@ import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 import 'package:cruzawl/websocket.dart';
 
-import 'package:cruzawl_ui/localization.dart';
-import 'package:cruzawl_ui/model.dart';
-import 'package:cruzawl_ui/routes.dart';
-import 'package:cruzawl_ui/ui.dart';
-import 'package:cruzawl_ui/wallet/add.dart';
-import 'package:cruzawl_ui/wallet/address.dart';
-import 'package:cruzawl_ui/wallet/balance.dart';
-import 'package:cruzawl_ui/wallet/receive.dart';
-import 'package:cruzawl_ui/wallet/send.dart';
-import 'package:cruzawl_ui/wallet/settings.dart';
+import '../lib/localization.dart';
+import '../lib/model.dart';
+import '../lib/routes.dart';
+import '../lib/ui.dart';
+import '../lib/wallet/add.dart';
+import '../lib/wallet/app.dart';
+import '../lib/wallet/address.dart';
+import '../lib/wallet/balance.dart';
+import '../lib/wallet/receive.dart';
+import '../lib/wallet/send.dart';
+import '../lib/wallet/settings.dart';
 
 void main() async {
   for (Locale locale in Localization.supportedLocales) {
@@ -76,19 +77,21 @@ void runWalletTests(
   String moneyAddr,
       moneySender = 'xRL0D9U+jav9NxOwz4LsXe8yZ8KSS7Hst4/P8ChciAI=';
   String sendTo = '5lojzpXqrpAfrYSxF0s8vyRSQ0SlhiovzacD+tI1oK8=';
+  String walletName = 'normalFoolbar-$testLocale';
+  String watchWalletName = 'watchOnlyFoobar-$testLocale';
 
-  testWidgets('AddWalletWidget', (WidgetTester tester) async {
+  testWidgets('WalletApp Init', (WidgetTester tester) async {
     expect(appState.wallets.length, 0);
-    AddWalletWidget addWallet = AddWalletWidget(appState);
-    await tester.pumpWidget(ScopedModel(
-        model: appState,
-        child: MaterialApp(
-            localizationsDelegates: localizationsDelegates,
-            supportedLocales: supportedLocales,
-            home: SimpleScaffold(AddWalletWidget(appState),
-                title: locale.addWallet))));
+    WalletApp app = WalletApp(appState, localizationsDelegates);
+    await tester.pumpWidget(ScopedModel(model: appState, child: app));
     await tester.pumpAndSettle();
+
+    // Enter wallet name
+    await tester.enterText(find.byType(TextFormField).at(1), walletName);
+    await tester.pumpAndSettle();
+
     await tester.tap(find.byType(RaisedGradientButton));
+    await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
     expect(appState.wallets.length, 1);
@@ -197,6 +200,7 @@ void runWalletTests(
 
   testWidgets('WalletSendWidget', (WidgetTester tester) async {
     Wallet wallet = appState.wallet.wallet;
+    expect(wallet.transactions.length, 1);
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -249,6 +253,10 @@ void runWalletTests(
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
     expect(find.text(locale.sentTransactionId(transactionId)), findsOneWidget);
+    await tester.pump(Duration(seconds: 1));
+    await tester.pump(Duration(seconds: 2));
+    await tester.pumpAndSettle();
+    expect(wallet.transactions.length, 2);
   });
 
   testWidgets('WalletBalanceWidget', (WidgetTester tester) async {
@@ -267,7 +275,9 @@ void runWalletTests(
         find.text(
             cruz.format(moneyBalance - sendMoneyBalance - feeMoneyBalance)),
         findsOneWidget);
+    await tester.drag(find.byType(TransactionListTile).at(0), Offset(0.0, -600));
 
+    expect(wallet.transactions.length, 2);
     List<Element> transactions =
         find.byType(TransactionListTile).evaluate().toList();
     expect(transactions.length, 2);
@@ -318,5 +328,113 @@ void runWalletTests(
     await tester
         .tap(find.text(wallet.getNextReceiveAddress().publicKey.toJson()));
     await tester.pumpAndSettle();
+  });
+
+  testWidgets('AddWalletWidget watch-only wallet', (WidgetTester tester) async {
+    expect(appState.wallets.length, 1);
+    AddWalletWidget addWallet = AddWalletWidget(appState);
+    await tester.pumpWidget(ScopedModel(
+        model: appState,
+        child: MaterialApp(
+            localizationsDelegates: localizationsDelegates,
+            supportedLocales: supportedLocales,
+            home: SimpleScaffold(AddWalletWidget(appState),
+                title: locale.addWallet))));
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+
+    // Disable HD wallet switch
+    expect(find.byType(SwitchListTile), findsOneWidget);
+    await tester.tap(find.byType(SwitchListTile));
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+
+    // Enable watch-only wallet switch
+    expect(find.byType(SwitchListTile), findsNWidgets(2));
+    await tester.tap(find.byType(SwitchListTile).at(1));
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+
+    // Enter name & private key
+    expect(find.byType(TextFormField), findsNWidgets(3));
+    await tester.enterText(find.byType(TextFormField).at(1), watchWalletName);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(2), moneyAddr);
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+
+    // Generate
+    expect(find.byType(RaisedGradientButton), findsOneWidget);
+    await tester.tap(find.byType(RaisedGradientButton));
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+    expect(appState.wallets.length, 2);
+
+    expect(appState.wallet.wallet.addresses.length, 1);
+    for (var address in appState.wallet.wallet.addresses.values) {
+      address.state = AddressState.used;
+    }
+  });
+
+  test('watch-only wallet CruzPeer filter_add', () {
+    expect(socket.sent.length, 1);
+    var msg = jsonDecode(socket.sent.first);
+    expect(msg['type'], 'filter_add');
+    expect(msg['body']['public_keys'][0], moneyAddr);
+    socket.sent.removeFirst();
+    socket.messageHandler('{"type":"filter_result"}');
+  });
+
+  /*test('watch-only wallet CruzPeer get_balance', () {
+    expect(socket.sent.length, 1);
+    var msg = jsonDecode(socket.sent.first);
+    expect(msg['type'], 'get_balance');
+    String addr = msg['body']['public_key'];
+    expect(addr, moneyAddr);
+    socket.sent.removeFirst();
+    socket.messageHandler(
+        '{"type":"balance","body":{"block_id":"0000000000000ab4ac72b9b6061cb19195fe1a8a6d5b961f793f6b61f6f9aa9c","height":25352,"public_key":"$addr","balance":$moneyBalance}}');
+  });
+
+  test('watch-only wallet CruzPeer get_public_key_transactions', () {
+    expect(socket.sent.length, 1);
+    var msg = jsonDecode(socket.sent.first);
+    expect(msg['type'], 'get_public_key_transactions');
+    String addr = msg['body']['public_key'];
+    expect(addr, moneyAddr);
+    socket.sent.removeFirst();
+    socket.messageHandler(
+        '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":[{"block_id":"00000000000555de1d28a55fd2d5d2069c61fd46c4618cfea16c5adf6d902f4d","header":{"previous":"000000000001e0313c0536e700a8e6c02b2fc6bbddb755d749d6e00746d52b2b","hash_list_root":"3c1b3f728653444e8bca498bf5a6d76a259637e592f749ad881f1f1da0087db0","time":1564553276,"target":"000000000007a38c469f3be96898a11435ea27592c2bae351147392e9cd3408d","chain_work":"00000000000000000000000000000000000000000000000000faa7649c97e894","nonce":1989109050083893,"height":17067,"transaction_count":2},"transactions":[{"time":1564550817,"nonce":1130916028,"from":"$moneySender","to":"$addr","amount":$moneyBalance,"fee":1000000,"expires":17068,"series":17,"signature":"mcvGJ59Q9U9j5Tbjk/gIKYPFmz3lXNb3t8DwkznINJWI7uFPymmywBJjE18UzL2+MMicm0xbyKVJ3XEvQiQ5BQ=="}]}]}}');
+  });*/
+
+  testWidgets('WalletSettingsWidget Delete', (WidgetTester tester) async {
+    Wallet wallet = appState.wallet.wallet;
+    await tester.pumpWidget(ScopedModel(
+        model: appState,
+        child: MaterialApp(
+            localizationsDelegates: localizationsDelegates,
+            supportedLocales: supportedLocales,
+            home: SimpleScaffold(WalletSettingsWidget(wallet),
+                title: wallet.name))));
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+    await expect(find.text(locale.name), findsOneWidget);
+    await expect(
+        find.descendant(
+            of: find.byType(ListTile), matching: find.text(watchWalletName)),
+        findsOneWidget);
+
+    // Open delete wallet AlertDialog
+    await tester.tap(find.descendant(
+        of: find.byType(RaisedButton),
+        matching: find.text(locale.deleteThisWallet)));
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+
+    // Delete the wallet
+    await tester.tap(find.text(locale.delete));
+    await tester.pumpAndSettle();
+    await tester.pump(Duration(seconds: 1));
+    expect(appState.wallets.length, 1);
   });
 }

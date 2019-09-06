@@ -23,17 +23,17 @@ import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 import 'package:cruzawl/websocket.dart';
 
-import 'package:cruzawl_ui/localization.dart';
-import 'package:cruzawl_ui/model.dart';
-import 'package:cruzawl_ui/routes.dart';
-import 'package:cruzawl_ui/ui.dart';
-import 'package:cruzawl_ui/explorer/address.dart';
-import 'package:cruzawl_ui/explorer/block.dart';
-import 'package:cruzawl_ui/explorer/console.dart';
-import 'package:cruzawl_ui/explorer/cruzbase.dart';
-import 'package:cruzawl_ui/explorer/network.dart';
-import 'package:cruzawl_ui/explorer/settings.dart';
-import 'package:cruzawl_ui/explorer/transaction.dart';
+import '../lib/localization.dart';
+import '../lib/model.dart';
+import '../lib/routes.dart';
+import '../lib/ui.dart';
+import '../lib/explorer/address.dart';
+import '../lib/explorer/block.dart';
+import '../lib/explorer/console.dart';
+import '../lib/explorer/cruzbase.dart';
+import '../lib/explorer/network.dart';
+import '../lib/explorer/settings.dart';
+import '../lib/explorer/transaction.dart';
 
 void main() async {
   for (Locale locale in Localization.supportedLocales) {
@@ -107,7 +107,6 @@ void runExplorerTests(
       '8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f';
 
   test('CruzPeer connect', () {
-    expect(appState.runQuickTestVector(), true);
     expect(socket.sent.length, 2);
     var msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_tip_header');

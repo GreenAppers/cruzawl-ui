@@ -218,6 +218,9 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
         onPressed: () async {
           if (!formKey.currentState.validate()) return;
           formKey.currentState.save();
+          formKey.currentState.reset();
+          keyListController.clear();
+          seedPhraseController.clear();
           FocusScope.of(context).requestFocus(FocusNode());
           Scaffold.of(context).showSnackBar(SnackBar(
               content: Text(hdWallet
