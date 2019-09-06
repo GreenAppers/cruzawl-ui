@@ -70,7 +70,8 @@ void runExplorerTests(
       preferences,
       '/',
       NullFileSystem(),
-      packageInfo: PackageInfo('Cruzall', 'com.greenappers.cruzall', '1.0.0', '0'),
+      packageInfo:
+          PackageInfo('Cruzall', 'com.greenappers.cruzall', '1.0.0', '0'),
       httpClient: httpClient);
   appState.debugLevel = debugLevelDebug;
   appState.preferences.debugLog = true;
@@ -471,7 +472,7 @@ void runExplorerTests(
     await tester.pumpAndSettle();
 
     await tester.pump(Duration(seconds: 1));
-    expect(find.text(locale.title), findsOneWidget);
+    expect(find.byType(LicensePage), findsOneWidget);
   });
 
   testWidgets('CruzawlSettings', (WidgetTester tester) async {
@@ -486,22 +487,26 @@ void runExplorerTests(
                 home: Container(),
                 routes: <String, WidgetBuilder>{
                   '/enableEncryption': (BuildContext context) => SimpleScaffold(
-                       EnableEncryptionWidget(),
-                       title: Localization.of(context).encryption),
+                      EnableEncryptionWidget(),
+                      title: Localization.of(context).encryption),
                 },
                 onGenerateRoute: CruzawlRoutes(appState,
                         includeWalletRoutes: true, cruzbaseSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/settings'))));
     await tester.pump(Duration(seconds: 1));
+    await tester.drag(find.text(locale.theme), Offset(0.0, -300));
     expect(find.text(locale.theme), findsOneWidget);
 
     // Open EnableEncryptionWidget
-    Finder parent = find.ancestor(of: find.text(locale.encryption), matching: find.byType(ListTile));
-    await tester.tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    Finder parent = find.ancestor(
+        of: find.text(locale.encryption), matching: find.byType(ListTile));
+    await tester
+        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
-    expect(find.text(locale.encrypt), findsOneWidget);
+    expect(find.widgetWithText(RaisedGradientButton, locale.encrypt),
+        findsOneWidget);
 
     // Enable encryption
     String password = 'foobar';
@@ -515,23 +520,60 @@ void runExplorerTests(
     expect(preferences.walletsEncrypted, true);
 
     // Disable encryption
-    parent = find.ancestor(of: find.text(locale.encryption), matching: find.byType(ListTile));
-    await tester.tap(find.descendant(of: parent, matching: find.byType(Switch)));
-    await tester.drag(find.text(locale.encryption), Offset(0.0, -600));
+    parent = find.ancestor(
+        of: find.text(locale.encryption), matching: find.byType(ListTile));
+    await tester
+        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    await tester.drag(find.text(locale.encryption), Offset(0.0, -300));
     await tester.pumpAndSettle();
     expect(preferences.walletsEncrypted, false);
 
     // Disable insecureDeviceWarning
     expect(preferences.insecureDeviceWarning, true);
-    parent = find.ancestor(of: find.text(locale.insecureDeviceWarning), matching: find.byType(ListTile));
-    await tester.tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    parent = find.ancestor(
+        of: find.text(locale.insecureDeviceWarning),
+        matching: find.byType(ListTile));
+    await tester
+        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
     await tester.pumpAndSettle();
     expect(preferences.insecureDeviceWarning, false);
 
+    // Enable verifyAddressEveryLoad
+    expect(preferences.verifyAddressEveryLoad, false);
+    parent = find.ancestor(
+        of: find.text(locale.verifyKeyPairsEveryLoad),
+        matching: find.byType(ListTile));
+    await tester
+        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    await tester.pumpAndSettle();
+    expect(preferences.verifyAddressEveryLoad, true);
+
+    // Enable unitTestBeforeCreatingWallets
+    expect(preferences.unitTestBeforeCreating, false);
+    parent = find.ancestor(
+        of: find.text(locale.unitTestBeforeCreatingWallets),
+        matching: find.byType(ListTile));
+    await tester
+        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    await tester.pumpAndSettle();
+    expect(preferences.unitTestBeforeCreating, true);
+
+    // Enable walletNameInTitle
+    expect(preferences.walletNameInTitle, false);
+    parent = find.ancestor(
+        of: find.text(locale.showWalletNameInTitle),
+        matching: find.byType(ListTile));
+    await tester
+        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    await tester.pumpAndSettle();
+    expect(preferences.walletNameInTitle, true);
+
     // Disable debugLog
     expect(preferences.debugLog, true);
-    parent = find.ancestor(of: find.text(locale.debugLog), matching: find.byType(ListTile));
-    await tester.tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    parent = find.ancestor(
+        of: find.text(locale.debugLog), matching: find.byType(ListTile));
+    await tester
+        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
     await tester.pumpAndSettle();
     expect(preferences.debugLog, false);
   });
