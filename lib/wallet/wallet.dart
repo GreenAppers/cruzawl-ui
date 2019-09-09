@@ -236,8 +236,10 @@ class _WalletWidgetState extends State<WalletWidget> {
     if (cruzbaseOffset >= 0) {
       String path = uri.substring(cruzbaseOffset + cruzbasePrefix.length);
       if (path.startsWith('/#/')) path = path.substring(2);
-      if (path.isEmpty || path == '/') widget.appState.navigateToAddressText(context, 'cruzbase');
-      else Navigator.of(context).pushNamed(path);
+      if (path.isEmpty || path == '/')
+        widget.appState.navigateToAddressText(context, 'cruzbase');
+      else
+        Navigator.of(context).pushNamed(path);
     } else {
       int hostOffset = uri.indexOf('://');
       if (!mounted || hostOffset < 0) return;

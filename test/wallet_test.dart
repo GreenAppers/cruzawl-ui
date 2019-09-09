@@ -439,4 +439,8 @@ void runWalletTests(
     await tester.pump(Duration(seconds: 1));
     expect(appState.wallets.length, 1);
   });
+
+  test('CruzPeerNetwork shutdown', () {
+    appState.network.shutdown();
+  });
 }

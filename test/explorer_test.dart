@@ -577,4 +577,8 @@ void runExplorerTests(
     await tester.pumpAndSettle();
     expect(preferences.debugLog, false);
   });
+
+  test('CruzPeerNetwork shutdown', () {
+    appState.network.shutdown();
+  });
 }

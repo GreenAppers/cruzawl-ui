@@ -154,6 +154,7 @@ class WalletSettingsWidget extends StatelessWidget {
           return AddressListTile(
             wallet,
             address,
+            appState.createIconImage(address.publicKey.toJson()),
             onTap: () => appState.navigateToAddress(context, address),
           );
         } else {

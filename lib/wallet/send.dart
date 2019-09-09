@@ -309,10 +309,15 @@ class SendFromWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     return ListView.builder(
       itemCount: addresses.length,
-      itemBuilder: (BuildContext context, int index) =>
-          AddressListTile(wallet, addresses[index], onTap: onTap),
+      itemBuilder: (BuildContext context, int index) {
+        Address address = addresses[index];
+        return AddressListTile(wallet, address,
+            appState.createIconImage(address.publicKey.toJson()),
+            onTap: onTap);
+      },
     );
   }
 }

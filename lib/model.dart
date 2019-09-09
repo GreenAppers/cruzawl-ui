@@ -7,6 +7,7 @@ import 'dart:typed_data';
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sembast/sembast.dart' as sembast;
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tweetnacl/tweetnacl.dart' as tweetnacl;
@@ -25,6 +26,7 @@ import 'ui.dart';
 typedef StringFilter = String Function(String);
 typedef StringFutureFunction = Future<String> Function();
 typedef SetClipboardText = void Function(BuildContext, String);
+typedef QrImageFunction = Widget Function(String);
 
 class PackageInfo {
   final String appName, packageName, version, buildNumber;
@@ -74,6 +76,7 @@ class Cruzawl extends Model {
   StringFilter assetPath;
   SetClipboardText launchUrl, setClipboardText;
   StringFutureFunction getClipboardText, barcodeScan;
+  QrImageFunction createIconImage;
   sembast.DatabaseFactory databaseFactory;
   CruzawlPreferences preferences;
   FlutterErrorDetails fatal;
@@ -93,19 +96,22 @@ class Cruzawl extends Model {
   static String walletSuffix = '.cruzall';
 
   Cruzawl(
-      this.assetPath,
-      this.launchUrl,
-      this.setClipboardText,
-      this.getClipboardText,
-      this.databaseFactory,
-      this.preferences,
-      this.dataDir,
-      this.fileSystem,
-      {this.packageInfo,
-      this.barcodeScan,
-      this.httpClient,
-      this.isTrustFall = false}) {
+    this.assetPath,
+    this.launchUrl,
+    this.setClipboardText,
+    this.getClipboardText,
+    this.databaseFactory,
+    this.preferences,
+    this.dataDir,
+    this.fileSystem, {
+    this.packageInfo,
+    this.barcodeScan,
+    this.httpClient,
+    this.createIconImage,
+    this.isTrustFall = false,
+  }) {
     if (preferences.debugLog) debugLog = '';
+    createIconImage = createIconImage ?? (String x) => QrImage(data: x);
     exchangeRates = ExchangeRates(httpClient, preferences, debugPrint: print);
     exchangeRates.checkForUpdate();
     networks = currencies
