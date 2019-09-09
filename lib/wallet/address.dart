@@ -6,6 +6,8 @@ import 'dart:math';
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jdenticon_dart/jdenticon_dart.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -194,16 +196,19 @@ class AddressListTile extends StatelessWidget {
   final Wallet wallet;
   final Address address;
   final VoidCallback onTap;
-  AddressListTile(this.wallet, this.address, {this.onTap});
+  final String addressText, svg;
+  AddressListTile(this.wallet, this.address, {this.onTap}) :
+    this.addressText = address.publicKey.toJson(),
+    this.svg = Jdenticon.toSvg(address.publicKey.toJson());
 
   @override
   Widget build(BuildContext context) {
-    final String addressText = address.publicKey.toJson();
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16),
       child: ListTile(
         title: Text(addressText),
-        leading: QrImage(data: addressText),
+        //leading: QrImage(data: addressText),
+        leading: SvgPicture.string(svg, fit: BoxFit.contain, height: 64, width: 64),
         trailing: Text(
           wallet.currency.format(address.balance),
           style: address.balance > 0 ? TextStyle(color: Colors.green) : null,

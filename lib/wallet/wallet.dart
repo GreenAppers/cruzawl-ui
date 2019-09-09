@@ -1,8 +1,12 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+import 'dart:async';
+
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
+import 'package:flutter_web/services.dart'
+    if (dart.library.io) 'package:flutter/services.dart';
 
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -17,17 +21,30 @@ import 'balance.dart';
 import 'receive.dart';
 import 'send.dart';
 
+typedef FutureStringFunction = Future<String> Function();
+
 /// Main wallet [TabBarView] with Receive, Balance, Send.
 class WalletWidget extends StatefulWidget {
   final Wallet wallet;
   final Cruzawl appState;
-  WalletWidget(this.wallet, this.appState);
+  final FutureStringFunction initialUri;
+  final Stream<String> uriStream;
+  WalletWidget(this.wallet, this.appState, [this.initialUri, this.uriStream]);
 
   @override
   _WalletWidgetState createState() => _WalletWidgetState();
 }
 
 class _WalletWidgetState extends State<WalletWidget> {
+  StreamSubscription uriSubscription;
+  Uri uri;
+
+  @override
+  void dispose() {
+    if (uriSubscription != null) uriSubscription.cancel();
+    super.dispose();
+  }
+
   /// Shows "Insecure Device Warning" if [Cruzawl.isTrustFall].
   @override
   void initState() {
@@ -52,6 +69,8 @@ class _WalletWidgetState extends State<WalletWidget> {
                   borderRadius: BorderRadius.all(Radius.circular(32.0))),
             );
           }));
+
+    initUriHandling();
   }
 
   @override
@@ -194,5 +213,36 @@ class _WalletWidgetState extends State<WalletWidget> {
               ),
             ),
           );
+  }
+
+  void initUriHandling() async {
+    uriSubscription = widget.uriStream.listen(handleUri,
+        onError: (err) => debugPrint('Failed to get latest link: $err.'));
+    String initialUri;
+    try {
+      initialUri = await widget.initialUri();
+    } on PlatformException {
+      debugPrint('Failed to get initial uri.');
+    } on FormatException {
+      debugPrint('Bad parse the initial link as Uri.');
+    }
+    if (initialUri != null) handleUri(initialUri);
+  }
+
+  void handleUri(String uri) {
+    debugPrint('handleUri (mounted=$mounted) $uri');
+    const String cruzbasePrefix = 'cruzbase.com';
+    int cruzbaseOffset = uri.indexOf(cruzbasePrefix);
+    if (cruzbaseOffset >= 0) {
+      String path = uri.substring(cruzbaseOffset + cruzbasePrefix.length);
+      if (path.startsWith('/#/')) path = path.substring(2);
+      if (path.isEmpty || path == '/') widget.appState.navigateToAddressText(context, 'cruzbase');
+      else Navigator.of(context).pushNamed(path);
+    } else {
+      int hostOffset = uri.indexOf('://');
+      if (!mounted || hostOffset < 0) return;
+      String addr = uri.substring(hostOffset + 3);
+      widget.appState.navigateToAddressText(context, addr);
+    }
   }
 }

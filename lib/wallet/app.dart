@@ -1,9 +1,10 @@
 // Copyright 2019 cruzall developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+import 'dart:async';
+
 import 'package:flutter_web/foundation.dart'
     if (dart.library.io) 'package:flutter/foundation.dart';
-
 import 'package:flutter_web/material.dart'
     if (dart.library.io) 'package:flutter/material.dart';
 
@@ -98,7 +99,10 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
 class WalletApp extends StatefulWidget {
   final Cruzawl appState;
   final List<LocalizationsDelegate> localizationsDelegates;
-  WalletApp(this.appState, this.localizationsDelegates);
+  final FutureStringFunction initialUri;
+  final Stream<String> uriStream;
+  WalletApp(this.appState, this.localizationsDelegates,
+      [this.initialUri, this.uriStream]);
 
   @override
   WalletAppState createState() => WalletAppState();
@@ -179,7 +183,8 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
             localizationsDelegates: widget.localizationsDelegates,
             onGenerateTitle: (BuildContext context) =>
                 Localization.of(context).title,
-            home: WalletWidget(wallet, appState),
+            home: WalletWidget(
+                wallet, appState, widget.initialUri, widget.uriStream),
             routes: <String, WidgetBuilder>{
               '/wallet': (BuildContext context) => SimpleScaffold(
                   WalletSettingsWidget(wallet),

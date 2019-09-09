@@ -11,11 +11,13 @@ dependencies:
   charts_flutter: ^0.6.0
   cruzawl:
     path: ../cruzawl
+  jdenticon_dart: ^1.2.1+1
   json_annotation: ^3.0.0
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^0.14.1
   gradient_app_bar: ^0.0.1
   qr_flutter:
     git:

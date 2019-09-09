@@ -82,7 +82,8 @@ void runWalletTests(
 
   testWidgets('WalletApp Init', (WidgetTester tester) async {
     expect(appState.wallets.length, 0);
-    WalletApp app = WalletApp(appState, localizationsDelegates);
+    WalletApp app = WalletApp(appState, localizationsDelegates,
+        () async => null, Stream<String>.empty());
     await tester.pumpWidget(ScopedModel(model: appState, child: app));
     await tester.pumpAndSettle();
 
@@ -275,7 +276,8 @@ void runWalletTests(
         find.text(
             cruz.format(moneyBalance - sendMoneyBalance - feeMoneyBalance)),
         findsOneWidget);
-    await tester.drag(find.byType(TransactionListTile).at(0), Offset(0.0, -600));
+    await tester.drag(
+        find.byType(TransactionListTile).at(0), Offset(0.0, -600));
 
     expect(wallet.transactions.length, 2);
     List<Element> transactions =

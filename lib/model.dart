@@ -80,7 +80,7 @@ class Cruzawl extends Model {
   PackageInfo packageInfo;
   bool isTrustFall;
   String dataDir, debugLog;
-  int debugLevel = debugLevelDebug;
+  int debugLevel = debugLevelInfo;
   HttpClient httpClient;
   FileSystem fileSystem;
   Currency currency;
