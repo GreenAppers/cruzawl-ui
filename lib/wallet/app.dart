@@ -210,7 +210,7 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
     debugPrint('didChangeAppLifecycleState $state');
     if (state == AppLifecycleState.paused) {
       paused = DateTime.now();
-    } else if (state == AppLifecycleState.resumed) {
+    } else if (state == AppLifecycleState.resumed && paused != null) {
       Duration pausedDuration = DateTime.now().difference(paused);
       if (pausedDuration.inMinutes > 0)
         for (Currency currency in currencies)

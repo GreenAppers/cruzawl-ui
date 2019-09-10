@@ -13,7 +13,7 @@ WidgetBuilder backButtonBuilder = (BuildContext context) => GestureDetector(
       child: Image.asset('logo.png'),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(9.0),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.grey[500],

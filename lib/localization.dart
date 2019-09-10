@@ -509,7 +509,9 @@ class LocalizationMarkup {
   List<Widget> widget;
   TextStyle style;
   VoidCallback onTap;
-  LocalizationMarkup({this.widget, this.style, this.onTap});
+  String semanticsLabel;
+  LocalizationMarkup(
+      {this.widget, this.style, this.onTap, this.semanticsLabel});
 }
 
 abstract class LocalizationMarkupVisitor {
@@ -525,14 +527,20 @@ class TextSpanLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
 
   void visit(String curText) {
     GestureRecognizer recognizer;
-    if (currentTag != null && currentTag.onTap != null)
-      recognizer = TapGestureRecognizer()..onTap = currentTag.onTap;
+    String semanticsLabel;
+    if (currentTag != null) {
+      if (currentTag.onTap != null) {
+        recognizer = TapGestureRecognizer()..onTap = currentTag.onTap;
+      }
+      semanticsLabel = currentTag.semanticsLabel;
+    }
 
     TextSpan cur = TextSpan(
         text: curText,
         children: <TextSpan>[],
         style: currentStyle,
-        recognizer: recognizer);
+        recognizer: recognizer,
+        semanticsLabel: semanticsLabel);
 
     if (ret == null)
       ret = cur;
@@ -548,7 +556,10 @@ class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
     if (currentTag != null && currentTag.widget != null) {
       ret.addAll(currentTag.widget);
     } else {
-      Widget child = Text(curText, style: currentStyle);
+      Widget child = Text(curText,
+          style: currentStyle,
+          semanticsLabel:
+              currentTag != null ? currentTag.semanticsLabel : null);
       ret.add((currentTag != null && currentTag.onTap != null)
           ? GestureDetector(onTap: currentTag.onTap, child: child)
           : child);

@@ -27,6 +27,7 @@ typedef StringFilter = String Function(String);
 typedef StringFutureFunction = Future<String> Function();
 typedef SetClipboardText = void Function(BuildContext, String);
 typedef QrImageFunction = Widget Function(String);
+typedef CruzawlCallback = void Function(Cruzawl);
 
 class PackageInfo {
   final String appName, packageName, version, buildNumber;
@@ -227,7 +228,7 @@ class Cruzawl extends Model {
 
   void updateWallets(Currency currency) {
     if (wallets.isEmpty) {
-      print('updated ${network.tipHeight}');
+      if (network != null) print('updated ${network.tipHeight}');
       notifyListeners();
     } else
       for (WalletModel m in wallets) {
@@ -238,7 +239,7 @@ class Cruzawl extends Model {
   void reloadWallets(Currency currency) async {
     print('Cruzawl reloadWallets');
     if (wallets.isEmpty) {
-      if (network.hasPeer)
+      if (network != null && network.hasPeer)
         (await network.getPeer()).filterAdd(currency.nullAddress, (v) {});
     } else
       for (WalletModel m in wallets) {
@@ -330,6 +331,8 @@ class Cruzawl extends Model {
       Navigator.of(c).pushNamed('/address/${address.publicKey.toJson()}');
   void navigateToAddressText(BuildContext c, String text) =>
       Navigator.of(c).pushNamed('/address/$text');
+  void navigateToBlockChart(BuildContext c) =>
+      navigateToAddressText(c, 'cruzbase');
   void navigateToBlockId(BuildContext c, String blockId) =>
       Navigator.of(c).pushNamed('/block/$blockId');
   void navigateToHeight(BuildContext c, int height) =>

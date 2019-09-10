@@ -40,8 +40,7 @@ class WalletBalanceWidget extends StatelessWidget {
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
                       style: appState.theme.linkStyle,
-                      onTap: () =>
-                          appState.navigateToAddressText(context, 'cruzbase'),
+                      onTap: () => appState.navigateToBlockChart(context),
                     ),
                   },
                 ),

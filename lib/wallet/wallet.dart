@@ -237,7 +237,7 @@ class _WalletWidgetState extends State<WalletWidget> {
       String path = uri.substring(cruzbaseOffset + cruzbasePrefix.length);
       if (path.startsWith('/#/')) path = path.substring(2);
       if (path.isEmpty || path == '/')
-        widget.appState.navigateToAddressText(context, 'cruzbase');
+        widget.appState.navigateToBlockChart(context);
       else
         Navigator.of(context).pushNamed(path);
     } else {
