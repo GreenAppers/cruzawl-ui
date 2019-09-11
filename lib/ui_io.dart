@@ -101,7 +101,7 @@ class PastableTextFormField extends StatelessWidget {
     }
 
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -115,7 +115,7 @@ class PastableTextFormField extends StatelessWidget {
           items: [
             PopupMenuItem(
               value: '',
-              child: Text(locale.paste),
+              child: Text(l10n.paste),
             ),
           ],
         );

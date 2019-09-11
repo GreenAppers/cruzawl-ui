@@ -45,14 +45,14 @@ void main() async {
     await preferences.load();
     preferences.networkEnabled = false;
     preferences.minimumReserveAddress = 3;
-    Localization localization = await Localization.load(locale);
+    Localization l10n = await Localization.load(locale);
     group('Wallet tests $locale',
-        () => runWalletTests(preferences, locale, localization));
+        () => runWalletTests(preferences, locale, l10n));
   }
 }
 
 void runWalletTests(
-    CruzawlPreferences preferences, Locale testLocale, Localization locale) {
+    CruzawlPreferences preferences, Locale testLocale, Localization l10n) {
   List<LocalizationsDelegate> localizationsDelegates = <LocalizationsDelegate>[
     LocalizationDelegate(),
     GlobalMaterialLocalizations.delegate,
@@ -193,28 +193,27 @@ void runWalletTests(
             home: SimpleScaffold(WalletSettingsWidget(wallet),
                 title: wallet.name))));
     await tester.pumpAndSettle();
-    await tester.drag(find.text(locale.addresses), Offset(0.0, -600));
+    await tester.drag(find.text(l10n.addresses), Offset(0.0, -600));
     await tester.pump();
-    await tester.tap(find.widgetWithText(RaisedGradientButton, locale.verify));
+    await tester.tap(find.widgetWithText(RaisedGradientButton, l10n.verify));
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
-    expect(find.text(locale.verifyWalletResults(3, 3, 11, 11)), findsOneWidget);
+    expect(find.text(l10n.verifyWalletResults(3, 3, 11, 11)), findsOneWidget);
   });
 
   testWidgets('WalletSendWidget', (WidgetTester tester) async {
     Wallet wallet = appState.wallet.wallet;
     expect(wallet.transactions.length, 1);
     await tester.pumpWidget(ScopedModel(
-        model: appState,
-        child: WalletApp(appState, localizationsDelegates)));
+        model: appState, child: WalletApp(appState, localizationsDelegates)));
     await tester.pumpAndSettle();
 
     // Open Send
-    await tester.tap(find.text(locale.send));
+    await tester.tap(find.text(l10n.send));
     await tester.pumpAndSettle();
 
     /// Select from
-    await tester.tap(find.text(locale.from));
+    await tester.tap(find.text(l10n.from));
     await tester.pumpAndSettle();
     await tester.tap(find.text(moneyAddr));
     await tester.pumpAndSettle();
@@ -222,7 +221,7 @@ void runWalletTests(
     /// Open contacts
     String contactName = 'Foobar Contact';
     expect(preferences.contacts.length, 0);
-    await tester.tap(find.text(locale.payTo));
+    await tester.tap(find.text(l10n.payTo));
     await tester.pumpAndSettle();
 
     /// Add contact
@@ -230,7 +229,7 @@ void runWalletTests(
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextFormField).at(0), contactName);
     await tester.enterText(find.byType(TextFormField).at(1), sendTo);
-    await tester.tap(find.widgetWithText(RaisedGradientButton, locale.create));
+    await tester.tap(find.widgetWithText(RaisedGradientButton, l10n.create));
     await tester.pumpAndSettle();
 
     /// Select contact
@@ -245,8 +244,12 @@ void runWalletTests(
     await tester.pumpAndSettle();
 
     // Send
-    //await tester.tap(find.widgetWithText(RaisedGradientButton, locale.send));
-    RaisedGradientButton send = find.widgetWithText(RaisedGradientButton, locale.send).evaluate().first.widget;
+    //await tester.tap(find.widgetWithText(RaisedGradientButton, l10n.send));
+    RaisedGradientButton send = find
+        .widgetWithText(RaisedGradientButton, l10n.send)
+        .evaluate()
+        .first
+        .widget;
     send.onPressed();
     await tester.pumpAndSettle();
     expect(socket.sent.length, 1);
@@ -269,7 +272,7 @@ void runWalletTests(
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
-    expect(find.text(locale.sentTransactionId(transactionId)), findsOneWidget);
+    expect(find.text(l10n.sentTransactionId(transactionId)), findsOneWidget);
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
     await tester.pumpAndSettle();
@@ -341,7 +344,7 @@ void runWalletTests(
                         includeWalletRoutes: true, cruzbaseSearchBar: true)
                     .onGenerateRoute))));
     await tester.pumpAndSettle();
-    //await tester.tap(find.text(locale.generateNewAddress));
+    //await tester.tap(find.text(l10n.generateNewAddress));
     //await tester.pumpAndSettle();
     await tester
         .tap(find.text(wallet.getNextReceiveAddress().publicKey.toJson()));
@@ -357,7 +360,7 @@ void runWalletTests(
             localizationsDelegates: localizationsDelegates,
             supportedLocales: supportedLocales,
             home: SimpleScaffold(AddWalletWidget(appState),
-                title: locale.addWallet))));
+                title: l10n.addWallet))));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
 
@@ -436,7 +439,7 @@ void runWalletTests(
                 title: wallet.name))));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
-    await expect(find.text(locale.name), findsOneWidget);
+    await expect(find.text(l10n.name), findsOneWidget);
     await expect(
         find.descendant(
             of: find.byType(ListTile), matching: find.text(watchWalletName)),
@@ -445,12 +448,12 @@ void runWalletTests(
     // Open delete wallet AlertDialog
     await tester.tap(find.descendant(
         of: find.byType(RaisedButton),
-        matching: find.text(locale.deleteThisWallet)));
+        matching: find.text(l10n.deleteThisWallet)));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
 
     // Delete the wallet
-    await tester.tap(find.text(locale.delete));
+    await tester.tap(find.text(l10n.delete));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
     expect(appState.wallets.length, 1);

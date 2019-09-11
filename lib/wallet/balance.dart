@@ -17,7 +17,7 @@ class WalletBalanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Wallet wallet =
         ScopedModel.of<WalletModel>(context, rebuildOnChange: true).wallet;
@@ -32,10 +32,9 @@ class WalletBalanceWidget extends StatelessWidget {
         child: RichText(
           text: !hasPeer
               ? TextSpan(
-                  text: locale.currentBalanceIs,
-                  style: appState.theme.labelStyle)
+                  text: l10n.currentBalanceIs, style: appState.theme.labelStyle)
               : buildLocalizationMarkupTextSpan(
-                  locale.balanceAtHeightIs(wallet.network.tipHeight),
+                  l10n.balanceAtHeightIs(wallet.network.tipHeight),
                   style: appState.theme.labelStyle,
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
@@ -56,7 +55,7 @@ class WalletBalanceWidget extends StatelessWidget {
     ];
 
     if (wallet.maturesBalance > 0) {
-      ret.add(Text(locale.balanceMaturingByHeightIs(wallet.maturesHeight),
+      ret.add(Text(l10n.balanceMaturingByHeightIs(wallet.maturesHeight),
           style: appState.theme.labelStyle));
       ret.add(
         Container(
@@ -70,7 +69,7 @@ class WalletBalanceWidget extends StatelessWidget {
     }
 
     if (numTransactions > 0) {
-      ret.add(Text(locale.recentHistory, style: appState.theme.labelStyle));
+      ret.add(Text(l10n.recentHistory, style: appState.theme.labelStyle));
       ret.add(
         Expanded(
           child: ListView.builder(

@@ -95,11 +95,11 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     if (transactions == null) {
       load();
       return SimpleScaffold(Center(child: CircularProgressIndicator()),
-          title: locale.loading);
+          title: l10n.loading);
     }
 
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
@@ -121,14 +121,14 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
     ];
 
     if (appState.createIconImage != createQrImage) {
-      header.add(AddressRow(locale.externalAddress,
-          appState.createIconImage(widget.addressText)));
+      header.add(AddressRow(
+          l10n.externalAddress, appState.createIconImage(widget.addressText)));
     }
 
     header.add(Center(
       child: Container(
         padding: const EdgeInsets.only(top: 16),
-        child: Text(locale.address, style: labelTextStyle),
+        child: Text(l10n.address, style: labelTextStyle),
       ),
     ));
     header.add(Center(
@@ -138,24 +138,24 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       ),
     ));
     header.add(ListTile(
-      title: Text(locale.balance, style: labelTextStyle),
+      title: Text(l10n.balance, style: labelTextStyle),
       trailing: Text(widget.network.currency.format(balance)),
     ));
 
     if (maturing > 0)
       header.add(ListTile(
-        title: Text(locale.maturing, style: labelTextStyle),
+        title: Text(l10n.maturing, style: labelTextStyle),
         trailing: Text(widget.network.currency.format(maturing)),
       ));
     if (fullyLoaded && earliestSeen != null)
       header.add(ListTile(
-        title: Text(locale.earliestSeen, style: labelTextStyle),
+        title: Text(l10n.earliestSeen, style: labelTextStyle),
         trailing: Text(earliestSeen.toString()),
       ));
 
     if (widget.addressText == 'RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI=') {
       header.add(Center(
-          child: Text(locale.thanksForDonating,
+          child: Text(l10n.thanksForDonating,
               style: TextStyle(color: Colors.green))));
     }
 
@@ -172,7 +172,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
             if (index < header.length) return header[index];
             if (index == header.length)
               return Center(
-                  child: Text(locale.numTransactions(transactions.length),
+                  child: Text(l10n.numTransactions(transactions.length),
                       style: labelTextStyle));
 
             int transactionIndex = index - header.length - 1;
@@ -200,7 +200,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
           },
         ),
       ),
-      title: widget.title ?? locale.addressTitle(widget.addressText),
+      title: widget.title ?? l10n.addressTitle(widget.addressText),
     );
   }
 }

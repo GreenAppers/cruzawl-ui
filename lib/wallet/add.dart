@@ -43,8 +43,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
 
   @override
   Widget build(BuildContext c) {
-    final Localization locale = Localization.of(c);
-    if (name == null) name = locale.defaultWalletName;
+    final Localization l10n = Localization.of(c);
+    if (name == null) name = l10n.defaultWalletName;
 
     List<Widget> ret = <Widget>[];
     ret.add(
@@ -54,10 +54,10 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           initialValue: currencyName,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            labelText: locale.currency,
+            labelText: l10n.currency,
           ),
           validator: (value) {
-            if (Currency.fromJson(value) == null) return locale.unknownAddress;
+            if (Currency.fromJson(value) == null) return l10n.unknownAddress;
             return null;
           },
           onSaved: (value) => currencyName = value,
@@ -72,12 +72,12 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           keyboardType: TextInputType.emailAddress,
           initialValue: name,
           decoration: InputDecoration(
-            labelText: locale.name,
+            labelText: l10n.name,
           ),
           validator: (value) {
             if (widget.appState.wallets
                     .indexWhere((v) => v.wallet.name == value) !=
-                -1) return locale.nameMustBeUnique;
+                -1) return l10n.nameMustBeUnique;
             return null;
           },
           onSaved: (val) => name = val,
@@ -86,7 +86,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
     );
 
     ret.add(SwitchListTile(
-      title: Text(locale.hdWallet),
+      title: Text(l10n.hdWallet),
       value: hdWallet,
       onChanged: (bool value) => setState(() => hdWallet = value),
     ));
@@ -94,7 +94,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
     if (!hdWallet)
       ret.add(
         SwitchListTile(
-          title: Text(locale.watchOnlyWallet),
+          title: Text(l10n.watchOnlyWallet),
           value: watchOnlyWallet,
           onChanged: (bool value) => setState(() => watchOnlyWallet = value),
         ),
@@ -102,8 +102,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
 
     if (hdWallet) {
       ret.add(ListTile(
-          title: Text(locale.warning, style: widget.appState.theme.labelStyle),
-          subtitle: Text(locale.seedPhraseWarning,
+          title: Text(l10n.warning, style: widget.appState.theme.labelStyle),
+          subtitle: Text(l10n.seedPhraseWarning,
               style: TextStyle(color: Colors.red))));
       ret.add(ListTile(
         subtitle: PastableTextFormField(
@@ -111,14 +111,14 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           controller: seedPhraseController,
           keyboardType: TextInputType.multiline,
           decoration: InputDecoration(
-            labelText: locale.seedPhrase,
+            labelText: l10n.seedPhrase,
             suffixIcon: IconButton(
               icon: Icon(Icons.refresh),
               onPressed: () => seedPhraseController.text = generateMnemonic(),
             ),
           ),
           validator: (value) {
-            if (!validateMnemonic(value)) return locale.invalidMnemonic;
+            if (!validateMnemonic(value)) return l10n.invalidMnemonic;
             return null;
           },
           onSaved: (val) => seedPhrase = val,
@@ -132,24 +132,24 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                 controller: keyListController,
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
-                  labelText: locale.publicKeyList,
+                  labelText: l10n.publicKeyList,
                 ),
                 validator: (value) {
                   Currency cur = Currency.fromJson(currencyName);
-                  if (cur == null) return locale.invalidCurrency;
+                  if (cur == null) return l10n.invalidCurrency;
                   try {
                     List<PublicAddress> keys = value
                         .trim()
                         .split(RegExp(r'\s+'))
                         .map((key) => cur.fromPublicAddressJson(key))
                         .toList();
-                    if (keys.length <= 0) return locale.noPublicKeys;
+                    if (keys.length <= 0) return l10n.noPublicKeys;
                     for (PublicAddress key in keys) {
-                      if (key == null) return locale.invalidPublicKey;
+                      if (key == null) return l10n.invalidPublicKey;
                     }
                   } catch (error) {
-                    debugPrint('${locale.invalidPublicKey}: $error');
-                    return locale.invalidPublicKey;
+                    debugPrint('${l10n.invalidPublicKey}: $error');
+                    return l10n.invalidPublicKey;
                   }
                 },
                 onSaved: (value) {
@@ -165,8 +165,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
       );
     } else {
       ret.add(ListTile(
-          title: Text(locale.warning, style: widget.appState.theme.labelStyle),
-          subtitle: Text(locale.backupKeysWarning,
+          title: Text(l10n.warning, style: widget.appState.theme.labelStyle),
+          subtitle: Text(l10n.backupKeysWarning,
               style: TextStyle(color: Colors.red))));
       ret.add(
         ListTile(
@@ -175,27 +175,27 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                 controller: keyListController,
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
-                  labelText: locale.privateKeyList,
+                  labelText: l10n.privateKeyList,
                 ),
                 validator: (value) {
                   Currency cur = Currency.fromJson(currencyName);
-                  if (cur == null) return locale.invalidCurrency;
+                  if (cur == null) return l10n.invalidCurrency;
                   try {
                     List<PrivateKey> keys = value
                         .trim()
                         .split(RegExp(r'\s+'))
                         .map((key) => cur.fromPrivateKeyJson(key))
                         .toList();
-                    if (keys.length <= 0) return locale.noPrivateKeys;
+                    if (keys.length <= 0) return l10n.noPrivateKeys;
                     for (PrivateKey key in keys) {
-                      if (key == null) return locale.invalidPrivateKey;
+                      if (key == null) return l10n.invalidPrivateKey;
                       if (!cur.fromPrivateKey(key).verify()) {
-                        return locale.verifyAddressFailed(key.toJson());
+                        return l10n.verifyAddressFailed(key.toJson());
                       }
                     }
                   } catch (error) {
-                    debugPrint('${locale.invalidPrivateKey}: $error');
-                    return locale.invalidPrivateKey;
+                    debugPrint('${l10n.invalidPrivateKey}: $error');
+                    return l10n.invalidPrivateKey;
                   }
                 },
                 onSaved: (value) {
@@ -213,7 +213,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
 
     ret.add(
       RaisedGradientButton(
-        labelText: locale.create,
+        labelText: l10n.create,
         padding: EdgeInsets.all(32),
         onPressed: () async {
           if (!formKey.currentState.validate()) return;
@@ -224,8 +224,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           FocusScope.of(context).requestFocus(FocusNode());
           Scaffold.of(context).showSnackBar(SnackBar(
               content: Text(hdWallet
-                  ? locale.creatingUsingAlgorithm(locale.hdWalletAlgorithm)
-                  : locale.creating)));
+                  ? l10n.creatingUsingAlgorithm(l10n.hdWalletAlgorithm)
+                  : l10n.creating)));
           widget.appState.setState(() => widget.appState.walletsLoading++);
           await Future.delayed(Duration(seconds: 1));
 

@@ -44,14 +44,14 @@ void main() async {
     await preferences.load();
     preferences.networkEnabled = false;
     preferences.minimumReserveAddress = 3;
-    Localization localization = await Localization.load(locale);
+    Localization l10n = await Localization.load(locale);
     group('Explorer tests $locale',
-        () => runExplorerTests(preferences, locale, localization));
+        () => runExplorerTests(preferences, locale, l10n));
   }
 }
 
 void runExplorerTests(
-    CruzawlPreferences preferences, Locale testLocale, Localization locale) {
+    CruzawlPreferences preferences, Locale testLocale, Localization l10n) {
   List<LocalizationsDelegate> localizationsDelegates = <LocalizationsDelegate>[
     LocalizationDelegate(),
     GlobalMaterialLocalizations.delegate,
@@ -204,7 +204,7 @@ void runExplorerTests(
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
-    expect(find.text(locale.balance), findsOneWidget);
+    expect(find.text(l10n.balance), findsOneWidget);
     expect(find.text('$balance'), findsOneWidget);
   });
 
@@ -243,7 +243,7 @@ void runExplorerTests(
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
-    expect(find.text(locale.chainWork), findsOneWidget);
+    expect(find.text(l10n.chainWork), findsOneWidget);
     expect(find.text('$chainWork'), findsOneWidget);
   });
 
@@ -319,7 +319,7 @@ void runExplorerTests(
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
     expect(
-        find.text(locale
+        find.text(l10n
             .formatHashRate((block1.blockWork() ~/ BigInt.from(3600)).toInt())),
         findsOneWidget);
 
@@ -364,7 +364,7 @@ void runExplorerTests(
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
-    expect(find.text(locale.nonce), findsOneWidget);
+    expect(find.text(l10n.nonce), findsOneWidget);
     expect(find.text(nonce), findsOneWidget);
   });
 
@@ -394,7 +394,7 @@ void runExplorerTests(
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
-    expect(find.text(locale.nonce), findsOneWidget);
+    expect(find.text(l10n.nonce), findsOneWidget);
     expect(find.text(nonce), findsOneWidget);
   });
 
@@ -443,7 +443,7 @@ void runExplorerTests(
     await tester.tap(find.text(peerName));
     await tester.tap(find.byWidget(buttons[0].widget));
     await tester.pumpAndSettle();
-    await tester.tap(find.text(locale.delete));
+    await tester.tap(find.text(l10n.delete));
 
     // Remove the added peer
     await tester.pumpAndSettle();
@@ -468,7 +468,7 @@ void runExplorerTests(
 
     await tester.pump(Duration(seconds: 1));
     expect(find.text('support@greenappers.com'), findsOneWidget);
-    await tester.tap(find.text(locale.license));
+    await tester.tap(find.text(l10n.license));
     await tester.pumpAndSettle();
 
     await tester.pump(Duration(seconds: 1));
@@ -495,17 +495,17 @@ void runExplorerTests(
                     .onGenerateRoute,
                 initialRoute: '/settings'))));
     await tester.pump(Duration(seconds: 1));
-    await tester.drag(find.text(locale.theme), Offset(0.0, -300));
-    expect(find.text(locale.theme), findsOneWidget);
+    await tester.drag(find.text(l10n.theme), Offset(0.0, -300));
+    expect(find.text(l10n.theme), findsOneWidget);
 
     // Open EnableEncryptionWidget
     Finder parent = find.ancestor(
-        of: find.text(locale.encryption), matching: find.byType(ListTile));
+        of: find.text(l10n.encryption), matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
-    expect(find.widgetWithText(RaisedGradientButton, locale.encrypt),
+    expect(find.widgetWithText(RaisedGradientButton, l10n.encrypt),
         findsOneWidget);
 
     // Enable encryption
@@ -516,22 +516,22 @@ void runExplorerTests(
     await tester.tap(find.byType(RaisedGradientButton));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
-    expect(find.text(locale.theme), findsOneWidget);
+    expect(find.text(l10n.theme), findsOneWidget);
     expect(preferences.walletsEncrypted, true);
 
     // Disable encryption
     parent = find.ancestor(
-        of: find.text(locale.encryption), matching: find.byType(ListTile));
+        of: find.text(l10n.encryption), matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
-    await tester.drag(find.text(locale.encryption), Offset(0.0, -300));
+    await tester.drag(find.text(l10n.encryption), Offset(0.0, -300));
     await tester.pumpAndSettle();
     expect(preferences.walletsEncrypted, false);
 
     // Disable insecureDeviceWarning
     expect(preferences.insecureDeviceWarning, true);
     parent = find.ancestor(
-        of: find.text(locale.insecureDeviceWarning),
+        of: find.text(l10n.insecureDeviceWarning),
         matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
@@ -541,7 +541,7 @@ void runExplorerTests(
     // Enable verifyAddressEveryLoad
     expect(preferences.verifyAddressEveryLoad, false);
     parent = find.ancestor(
-        of: find.text(locale.verifyKeyPairsEveryLoad),
+        of: find.text(l10n.verifyKeyPairsEveryLoad),
         matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
@@ -551,7 +551,7 @@ void runExplorerTests(
     // Enable unitTestBeforeCreatingWallets
     expect(preferences.unitTestBeforeCreating, false);
     parent = find.ancestor(
-        of: find.text(locale.unitTestBeforeCreatingWallets),
+        of: find.text(l10n.unitTestBeforeCreatingWallets),
         matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
@@ -561,7 +561,7 @@ void runExplorerTests(
     // Enable walletNameInTitle
     expect(preferences.walletNameInTitle, false);
     parent = find.ancestor(
-        of: find.text(locale.showWalletNameInTitle),
+        of: find.text(l10n.showWalletNameInTitle),
         matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
@@ -571,7 +571,7 @@ void runExplorerTests(
     // Disable debugLog
     expect(preferences.debugLog, true);
     parent = find.ancestor(
-        of: find.text(locale.debugLog), matching: find.byType(ListTile));
+        of: find.text(l10n.debugLog), matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
     await tester.pumpAndSettle();

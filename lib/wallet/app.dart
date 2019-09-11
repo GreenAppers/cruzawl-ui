@@ -27,21 +27,21 @@ import 'wallet.dart';
 class WelcomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     return SimpleScaffold(
       Column(
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(top: 32),
-            child: Text(locale.welcomeDesc),
+            child: Text(l10n.welcomeDesc),
           ),
           Expanded(
             child: AddWalletWidget(appState, welcome: true),
           ),
         ],
       ),
-      title: locale.welcomeTitle,
+      title: l10n.welcomeTitle,
     );
   }
 }
@@ -58,7 +58,7 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
   @override
   Widget build(BuildContext c) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
 
     return SimpleScaffold(
       Form(
@@ -70,17 +70,17 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
               obscureText: true,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: locale.password,
+                labelText: l10n.password,
               ),
               validator: (value) {
-                if (!(value.length > 0)) return locale.passwordCantBeEmpty;
+                if (!(value.length > 0)) return l10n.passwordCantBeEmpty;
                 return null;
               },
               onSaved: (val) => password = val,
             ),
           ),
           RaisedGradientButton(
-            labelText: locale.unlock,
+            labelText: l10n.unlock,
             padding: EdgeInsets.all(32),
             onPressed: () {
               if (!formKey.currentState.validate()) return;
@@ -92,7 +92,7 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
           ),
         ]),
       ),
-      title: locale.unlockTitle,
+      title: l10n.unlockTitle,
     );
   }
 }

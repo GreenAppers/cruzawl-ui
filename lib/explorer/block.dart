@@ -95,12 +95,12 @@ class _BlockWidgetState extends State<BlockWidget> {
       block = null;
     }
 
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     if (block == null) {
       load();
       return widget.loadingWidget ??
           SimpleScaffold(Center(child: CircularProgressIndicator()),
-              title: locale.loading);
+              title: l10n.loading);
     }
 
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
@@ -113,11 +113,11 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     List<Widget> header = <Widget>[
       ListTile(
-        title: Text(locale.time),
+        title: Text(l10n.time),
         trailing: Text(block.header.dateTime.toString()),
       ),
       ListTile(
-        title: Text(locale.height),
+        title: Text(l10n.height),
         trailing: GestureDetector(
           child: Text(block.header.height.toString(),
               style: wideStyle ? linkStyle : null),
@@ -131,15 +131,15 @@ class _BlockWidgetState extends State<BlockWidget> {
       if (duration.inSeconds > 0) {
         header.add(
           ListTile(
-            title: Text(locale.deltaTime),
-            trailing: Text(locale.formatShortDuration(duration)),
+            title: Text(l10n.deltaTime),
+            trailing: Text(l10n.formatShortDuration(duration)),
           ),
         );
         header.add(
           ListTile(
-            title: Text(locale.deltaHashPower),
+            title: Text(l10n.deltaHashPower),
             trailing:
-                Text(locale.formatHashRate(block.header.hashRate(prevBlock))),
+                Text(l10n.formatHashRate(block.header.hashRate(prevBlock))),
           ),
         );
       }
@@ -147,7 +147,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     header.add(
       ListTile(
-        title: Text(locale.nonce),
+        title: Text(l10n.nonce),
         trailing: Text(block.header.nonce.toString()),
       ),
     );
@@ -155,7 +155,7 @@ class _BlockWidgetState extends State<BlockWidget> {
     if (block.transactions[0].memo != null) {
       header.add(
         buildListTile(
-          Text(locale.memo),
+          Text(l10n.memo),
           wideStyle,
           Text(block.transactions[0].memo),
         ),
@@ -164,7 +164,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     header.add(
       buildListTile(
-        Text(locale.id),
+        Text(l10n.id),
         wideStyle,
         GestureDetector(
           child: Text(blockId, style: wideStyle ? linkStyle : null),
@@ -175,7 +175,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     header.add(
       buildListTile(
-        Text(locale.previous),
+        Text(l10n.previous),
         wideStyle,
         GestureDetector(
           child: Text(previousBlockId, style: wideStyle ? linkStyle : null),
@@ -187,7 +187,7 @@ class _BlockWidgetState extends State<BlockWidget> {
     if (nextBlockId != null)
       header.add(
         buildListTile(
-          Text(locale.next),
+          Text(l10n.next),
           wideStyle,
           GestureDetector(
             child: Text(nextBlockId, style: wideStyle ? linkStyle : null),
@@ -198,25 +198,25 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     header.add(
       buildListTile(
-        Text(locale.target),
+        Text(l10n.target),
         wideStyle,
         Text(block.header.target.toJson()),
       ),
     );
 
     header.add(
-      buildListTile(Text(locale.chainWork), wideStyle,
+      buildListTile(Text(l10n.chainWork), wideStyle,
           Text(block.header.chainWork.toJson())),
     );
 
     header.add(
-      buildListTile(Text(locale.hashListRoot), wideStyle,
+      buildListTile(Text(l10n.hashListRoot), wideStyle,
           Text(block.header.hashListRoot.toJson())),
     );
 
     List<Widget> footer = <Widget>[
       RaisedGradientButton(
-        labelText: locale.copy,
+        labelText: l10n.copy,
         onPressed: () => appState.setClipboardText(context, jsonEncode(block)),
       )
     ];
@@ -236,7 +236,7 @@ class _BlockWidgetState extends State<BlockWidget> {
             if (index == header.length)
               return Center(
                   child: Text(
-                      locale.numTransactions(block.header.transactionCount),
+                      l10n.numTransactions(block.header.transactionCount),
                       style: labelTextStyle));
             int transactionIndex = index - header.length - 1;
             if (transactionIndex < block.transactions.length) {
@@ -258,8 +258,7 @@ class _BlockWidgetState extends State<BlockWidget> {
           },
         ),
       ),
-      title:
-          widget.title ?? (isTip ? locale.tip : locale.block) + ' ' + blockId,
+      title: widget.title ?? (isTip ? l10n.tip : l10n.block) + ' ' + blockId,
     );
   }
 }

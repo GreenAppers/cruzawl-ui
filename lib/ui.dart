@@ -36,8 +36,8 @@ class SimpleScaffoldActions extends Model {
     notifyListeners();
   }
 
-  String getSearchError(Localization locale) {
-    if (searching) return locale.loading;
+  String getSearchError(Localization l10n) {
+    if (searching) return l10n.loading;
     String ret = searchError;
     searchError = null;
     return ret;
@@ -76,7 +76,7 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
   @override
   Widget build(BuildContext context) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final ThemeData theme = Theme.of(context);
     SimpleScaffoldActions model;
     List<Widget> actions;
@@ -124,18 +124,18 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
                                       color: titleStyle.color),
                                   onPressed: () async =>
                                       await searchSubmit(context, model)),
-                              hintText: locale.search,
+                              hintText: l10n.search,
                               hintStyle: titleStyle),
                           style: titleStyle,
                           cursorColor: Colors.white,
                           autofocus: true,
                           validator: (q) =>
-                              model.getSearchError(locale) ??
-                              validateQuery(q, appState, locale),
+                              model.getSearchError(l10n) ??
+                              validateQuery(q, appState, l10n),
                           onFieldSubmitted: (q) async =>
                               await searchSubmit(context, model))))
               : (widget.titleWidget ??
-                  Text(widget.title ?? locale.title, style: titleStyle)),
+                  Text(widget.title ?? l10n.title, style: titleStyle)),
           actions: actions,
           backgroundColorStart: theme.primaryColor,
           backgroundColorEnd: theme.accentColor,
@@ -171,7 +171,7 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
       BuildContext context, SimpleScaffoldActions model) async {
     if (!formKey.currentState.validate()) return;
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
 
     if (queryAddress != null) {
       appState.navigateToAddressText(context, queryAddress.toJson());
@@ -209,18 +209,18 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
       return;
     }
 
-    model.searchError = locale.unknownQuery;
+    model.searchError = l10n.unknownQuery;
     model.setSearching(false);
   }
 
-  String validateQuery(String query, Cruzawl appState, Localization locale) {
+  String validateQuery(String query, Cruzawl appState, Localization l10n) {
     query.trim();
     Currency currency = appState.currency;
     PeerNetwork network = appState.network;
-    if (!network.hasPeer) return locale.networkOffline;
+    if (!network.hasPeer) return l10n.networkOffline;
     if ((queryAddress = currency.fromPublicAddressJson(query)) != null)
       return null;
-    if (currency.fromPrivateKeyJson(query) != null) return locale.privateKey;
+    if (currency.fromPrivateKeyJson(query) != null) return l10n.privateKey;
     if ((queryHeight = int.tryParse(query)) != null) {
       if (queryHeight < network.tipHeight && queryHeight >= 0) {
         return null;
@@ -231,7 +231,7 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
     queryBlock = currency.fromBlockIdJson(query, true);
     queryTransaction = currency.fromTransactionIdJson(query, true);
     if (queryBlock != null || queryTransaction != null) return null;
-    return locale.unknownQuery;
+    return l10n.unknownQuery;
   }
 }
 
@@ -396,7 +396,7 @@ class _HideableWidgetState extends State<HideableWidget> {
 
   @override
   Widget build(BuildContext c) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -412,7 +412,7 @@ class _HideableWidgetState extends State<HideableWidget> {
                   : <TextSpan>[
                       TextSpan(text: ' '),
                       buildLocalizationMarkupTextSpan(
-                        locale.menuOfOne(locale.hide),
+                        l10n.menuOfOne(l10n.hide),
                         tags: <String, LocalizationMarkup>{
                           'a': LocalizationMarkup(
                             style: appState.theme.linkStyle,
@@ -428,7 +428,7 @@ class _HideableWidgetState extends State<HideableWidget> {
             ? widget.child
             : RichText(
                 text: buildLocalizationMarkupTextSpan(
-                locale.menuOfOne(locale.show),
+                l10n.menuOfOne(l10n.show),
                 style: appState.theme.labelStyle,
                 tags: <String, LocalizationMarkup>{
                   'a': LocalizationMarkup(
@@ -551,7 +551,7 @@ class TransactionListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final bool amountLink = info.wideStyle && onTap != null;
 
@@ -562,28 +562,28 @@ class TransactionListTile extends StatelessWidget {
           child: (info.wideStyle && onToTap != null)
               ? RichText(
                   text: buildLocalizationMarkupTextSpan(
-                    locale.toAddress('{@<a>}${tx.toText}{@</a>}'),
+                    l10n.toAddress('{@<a>}${tx.toText}{@</a>}'),
                     style: appState.theme.labelStyle,
                     tags: <String, LocalizationMarkup>{
                       'a': LocalizationMarkup(style: appState.theme.linkStyle),
                     },
                   ),
                 )
-              : Text(locale.toAddress(tx.toText)),
+              : Text(l10n.toAddress(tx.toText)),
           onTap: onToTap == null ? null : () => onToTap(tx),
         ),
         subtitle: GestureDetector(
           child: (info.wideStyle && onFromTap != null)
               ? RichText(
                   text: buildLocalizationMarkupTextSpan(
-                    locale.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
+                    l10n.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
                     style: appState.theme.labelStyle,
                     tags: <String, LocalizationMarkup>{
                       'a': LocalizationMarkup(style: appState.theme.linkStyle),
                     },
                   ),
                 )
-              : Text(locale.fromAddress(tx.fromText)),
+              : Text(l10n.fromAddress(tx.fromText)),
           onTap: onFromTap == null ? null : () => onFromTap(tx),
         ),
         trailing: Text(

@@ -203,7 +203,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
 
@@ -214,7 +214,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     if (loading)
       return widget.loadingWidget ??
           SimpleScaffold(Center(child: CircularProgressIndicator()),
-              title: locale.loading);
+              title: l10n.loading);
 
     if (refresh == null) {
       refresh = Timer.periodic(widget.animate, (Timer t) {
@@ -309,7 +309,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
   Widget buildBottomBar(BuildContext context, int totalBlocks,
       int totalTransactions, int maxHeight, int tipHeight, num price) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
     final TextStyle titleStyle = appState.theme.titleStyle;
@@ -317,14 +317,14 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         .copyWith(decoration: TextDecoration.underline);
 
     List<Widget> totalBlocksInLast = buildTotalBlocksInLast(
-        totalBlocks, totalTransactions, locale,
+        totalBlocks, totalTransactions, l10n,
         titleStyle: titleStyle, linkStyle: linkStyle);
-    List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
+    List<Widget> heightEquals = buildHeightEquals(maxHeight, l10n,
         titleStyle: titleStyle,
         linkStyle: linkStyle,
         onTap: () => appState.navigateToHeight(context, maxHeight));
     List<Widget> marketCap = buildMarketCap(
-        tipHeight, price, appState.preferences.localCurrency, locale,
+        tipHeight, price, appState.preferences.localCurrency, l10n,
         titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
 
     return Container(
@@ -346,7 +346,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               textBaseline: TextBaseline.alphabetic,
               children: marketCap == null
                   ? heightEquals
-                  : locale.listOfTwoWidgets(heightEquals, marketCap,
+                  : l10n.listOfTwoWidgets(heightEquals, marketCap,
                       style: titleStyle)),
         ],
       )),
@@ -362,7 +362,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       int maxHeight,
       int tipHeight,
       num price) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final ThemeData theme = Theme.of(context);
     final TextStyle titleStyle = appState.theme.titleStyle;
@@ -370,16 +370,16 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
         .copyWith(decoration: TextDecoration.underline);
 
     List<Widget> hashRate =
-        buildHashRate(first, last, locale, titleStyle: titleStyle);
+        buildHashRate(first, last, l10n, titleStyle: titleStyle);
     List<Widget> totalBlocksInLast = buildTotalBlocksInLast(
-        totalBlocks, totalTransactions, locale,
+        totalBlocks, totalTransactions, l10n,
         titleStyle: titleStyle, linkStyle: linkStyle);
-    List<Widget> heightEquals = buildHeightEquals(maxHeight, locale,
+    List<Widget> heightEquals = buildHeightEquals(maxHeight, l10n,
         titleStyle: titleStyle,
         linkStyle: linkStyle,
         onTap: () => appState.navigateToHeight(context, maxHeight));
     List<Widget> marketCap = buildMarketCap(
-        tipHeight, price, appState.preferences.localCurrency, locale,
+        tipHeight, price, appState.preferences.localCurrency, l10n,
         titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
 
     return Row(
@@ -388,10 +388,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       textBaseline: TextBaseline.alphabetic,
       children: widget.wideStyle
           ? (marketCap != null
-              ? locale.listOfFourWidgets(
+              ? l10n.listOfFourWidgets(
                   hashRate, totalBlocksInLast, heightEquals, marketCap,
                   style: titleStyle)
-              : locale.listOfThreeWidgets(
+              : l10n.listOfThreeWidgets(
                   hashRate, totalBlocksInLast, heightEquals,
                   style: titleStyle))
           : hashRate,
@@ -399,11 +399,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   }
 
   List<Widget> buildHashRate(
-      BlockHeader first, BlockHeader last, Localization locale,
+      BlockHeader first, BlockHeader last, Localization l10n,
       {TextStyle titleStyle}) {
     return <Widget>[
       Text(
-          locale.formatHashRate(last == null
+          l10n.formatHashRate(last == null
               ? 0
               : ((first.blockWork() + last.deltaWork(first)) ~/
                       BigInt.from(windowDuration.inSeconds))
@@ -413,11 +413,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   }
 
   List<Widget> buildTotalBlocksInLast(
-      int totalBlocks, int totalTransactions, Localization locale,
+      int totalBlocks, int totalTransactions, Localization l10n,
       {TextStyle titleStyle, TextStyle linkStyle}) {
-    final String duration = locale.formatDuration(windowDuration);
+    final String duration = l10n.formatDuration(windowDuration);
     return buildLocalizationMarkupWidgets(
-      locale.totalBlocksTransactionsInLastDuration(
+      l10n.totalBlocksTransactionsInLastDuration(
           totalBlocks, totalTransactions, duration),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
@@ -429,10 +429,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
           widget: <Widget>[
             (PopupMenuBuilder()
                   ..addItem(
-                      text: locale.formatDuration(Duration(days: 1)),
+                      text: l10n.formatDuration(Duration(days: 1)),
                       onSelected: setIntervalDaily)
                   ..addItem(
-                      text: locale.formatDuration(Duration(hours: 1)),
+                      text: l10n.formatDuration(Duration(hours: 1)),
                       onSelected: setIntervalHourly))
                 .build(
                     child: Text('$duration', style: linkStyle), padding: null),
@@ -442,10 +442,10 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     );
   }
 
-  List<Widget> buildHeightEquals(int maxHeight, Localization locale,
+  List<Widget> buildHeightEquals(int maxHeight, Localization l10n,
           {TextStyle titleStyle, TextStyle linkStyle, VoidCallback onTap}) =>
       buildLocalizationMarkupWidgets(
-        locale.heightEquals(maxHeight),
+        l10n.heightEquals(maxHeight),
         style: titleStyle,
         tags: <String, LocalizationMarkup>{
           'a': LocalizationMarkup(
@@ -456,12 +456,12 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       );
 
   List<Widget> buildMarketCap(
-      int tipHeight, num price, String currency, Localization locale,
+      int tipHeight, num price, String currency, Localization l10n,
       {TextStyle titleStyle, VoidCallback onTap}) {
     int cap = (widget.network.currency.supply(tipHeight) * price).round();
     return cap > 0
         ? buildLocalizationMarkupWidgets(
-            locale.marketCap(
+            l10n.marketCap(
                 NumberFormat.compactSimpleCurrency(name: currency).format(cap)),
             style: titleStyle,
             tags: <String, LocalizationMarkup>{

@@ -50,7 +50,7 @@ class _AddressWidgetState extends State<AddressWidget> {
   Widget build(BuildContext context) {
     final Address address = widget.address;
     final String addressText = address.publicKey.toJson();
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final TextStyle labelTextStyle = appState.theme.labelStyle;
@@ -67,14 +67,14 @@ class _AddressWidgetState extends State<AddressWidget> {
 
     if (appState.createIconImage != createQrImage) {
       top.add(AddressRow(
-          locale.walletAccountName(widget.wallet.name, address.accountId + 1,
+          l10n.walletAccountName(widget.wallet.name, address.accountId + 1,
               address.chainIndex + 1),
           appState.createIconImage(addressText)));
     }
 
     top.add(Container(
       padding: const EdgeInsets.only(top: 16),
-      child: Text(locale.address, style: labelTextStyle),
+      child: Text(l10n.address, style: labelTextStyle),
     ));
 
     top.add(Container(
@@ -84,7 +84,7 @@ class _AddressWidgetState extends State<AddressWidget> {
 
     if (address.chainCode != null)
       top.add(HideableWidget(
-        title: locale.chainCode,
+        title: l10n.chainCode,
         child:
             CopyableText(address.chainCode.toJson(), appState.setClipboardText),
       ));
@@ -92,7 +92,7 @@ class _AddressWidgetState extends State<AddressWidget> {
     if (address.privateKey != null)
       top.add(
         HideableWidget(
-          title: locale.privateKey,
+          title: l10n.privateKey,
           child: CopyableText(
               address.privateKey.toJson(), appState.setClipboardText),
         ),
@@ -110,32 +110,32 @@ class _AddressWidgetState extends State<AddressWidget> {
 
     header.add(
       ListTile(
-        title: Text(locale.account, style: labelTextStyle),
+        title: Text(l10n.account, style: labelTextStyle),
         trailing: Text('${address.accountId + 1}'),
       ),
     );
     if (address.chainIndex != null && widget.wallet.hdWallet)
       header.add(
         ListTile(
-          title: Text(locale.chainIndex, style: labelTextStyle),
+          title: Text(l10n.chainIndex, style: labelTextStyle),
           trailing: Text('${address.chainIndex + 1}'),
         ),
       );
     header.add(
       ListTile(
-        title: Text(locale.state, style: labelTextStyle),
-        trailing: Text(locale.addressState(address.state)),
+        title: Text(l10n.state, style: labelTextStyle),
+        trailing: Text(l10n.addressState(address.state)),
       ),
     );
     header.add(
       ListTile(
-        title: Text(locale.balance, style: labelTextStyle),
+        title: Text(l10n.balance, style: labelTextStyle),
         trailing: Text(widget.wallet.currency.format(address.balance)),
       ),
     );
     header.add(
       ListTile(
-        title: Text(locale.transactions, style: labelTextStyle),
+        title: Text(l10n.transactions, style: labelTextStyle),
         trailing:
             Text((transactions != null ? transactions.length : 0).toString()),
       ),
@@ -143,14 +143,14 @@ class _AddressWidgetState extends State<AddressWidget> {
     if (address.earliestSeen != null)
       header.add(
         ListTile(
-          title: Text(locale.earliestSeen, style: labelTextStyle),
+          title: Text(l10n.earliestSeen, style: labelTextStyle),
           trailing: Text(address.earliestSeen.toString()),
         ),
       );
     if (address.latestSeen != null)
       header.add(
         ListTile(
-          title: Text(locale.latestSeen, style: labelTextStyle),
+          title: Text(l10n.latestSeen, style: labelTextStyle),
           trailing: Text(address.latestSeen.toString()),
         ),
       );
@@ -168,10 +168,10 @@ class _AddressWidgetState extends State<AddressWidget> {
   Widget itemBuilder(BuildContext context, int index) {
     if (index < header.length) return header[index];
     if (index == header.length) {
-      final Localization locale = Localization.of(context);
+      final Localization l10n = Localization.of(context);
       final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
       final TextStyle labelTextStyle = appState.theme.labelStyle;
-      return Center(child: Text(locale.transactions, style: labelTextStyle));
+      return Center(child: Text(l10n.transactions, style: labelTextStyle));
     }
 
     int transactionIndex = index - header.length - 1;

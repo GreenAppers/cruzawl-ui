@@ -115,10 +115,10 @@ class CruzawlRoutes {
             builder: (BuildContext context) =>
                 ScopedModelDescendant<WalletModel>(
                     builder: (context, child, model) {
-                  final Localization locale = Localization.of(context);
+                  final Localization l10n = Localization.of(context);
                   return SimpleScaffold(CruzawlNetworkSettings(),
-                      title: locale
-                          .networkType(locale.ticker(wallet.currency.ticker)));
+                      title: l10n
+                          .networkType(l10n.ticker(wallet.currency.ticker)));
                 }));
 
       case 'settings':

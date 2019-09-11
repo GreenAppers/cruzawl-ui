@@ -26,5 +26,5 @@ cruzawl-ui is released under the terms of the MIT license. See [LICENSE](https:/
 
 ## Donations
 
-Right on!  [T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI=](https://www.cruzbase.com/#/address/RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI=)
+Right on!  [RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI=](https://www.cruzbase.com/#/address/RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI=)
 

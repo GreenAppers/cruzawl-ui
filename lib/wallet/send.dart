@@ -47,7 +47,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final TextStyle labelTextStyle =
         TextStyle(fontFamily: appState.theme.titleFont);
@@ -89,7 +89,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       onTap: chooseSendFrom,
                       child: Padding(
                         padding: const EdgeInsets.all(32.0),
-                        child: Text(locale.from, style: labelTextStyle),
+                        child: Text(l10n.from, style: labelTextStyle),
                       ),
                     ),
                     GestureDetector(
@@ -103,9 +103,9 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                         keyboardType: TextInputType.multiline,
                         validator: (value) {
                           Address fromAddress = wallet.addresses[value];
-                          if (fromAddress == null) return locale.unknownAddress;
+                          if (fromAddress == null) return l10n.unknownAddress;
                           if (fromAddress.privateKey == null)
-                            return locale.watchOnlyWallet;
+                            return l10n.watchOnlyWallet;
                           return null;
                         },
                         onSaved: (value) => fromInput = value,
@@ -123,7 +123,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                       onTap: chooseSendTo,
                       child: Padding(
                         padding: const EdgeInsets.all(32.0),
-                        child: Text(locale.payTo, style: labelTextStyle),
+                        child: Text(l10n.payTo, style: labelTextStyle),
                       ),
                     ),
                     PastableTextFormField(
@@ -148,7 +148,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                             ),
                       validator: (value) {
                         if (currency.fromPublicAddressJson(value) == null)
-                          return locale.invalidAddress;
+                          return l10n.invalidAddress;
                         return null;
                       },
                       onSaved: (value) => toInput = value,
@@ -160,7 +160,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                     const Icon(Icons.edit),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
-                      child: Text(locale.memo, style: labelTextStyle),
+                      child: Text(l10n.memo, style: labelTextStyle),
                     ),
                     PastableTextFormField(
                       maxLines: null,
@@ -171,7 +171,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                         hintText: '',
                       ),
                       validator: (value) {
-                        if (value.length > 100) return locale.maxMemoLength;
+                        if (value.length > 100) return l10n.maxMemoLength;
                         return null;
                       },
                       onSaved: (value) => memoInput = value,
@@ -183,7 +183,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                     const Icon(Icons.attach_money),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
-                      child: Text(locale.amount, style: labelTextStyle),
+                      child: Text(l10n.amount, style: labelTextStyle),
                     ),
                     PastableTextFormField(
                       controller: amountController,
@@ -192,23 +192,23 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                           TextInputType.numberWithOptions(decimal: true),
                       decoration: InputDecoration(
                         hintText: '0.0',
-                        suffixText: ' ' + locale.ticker(currency.ticker),
+                        suffixText: ' ' + l10n.ticker(currency.ticker),
                       ),
                       validator: (value) {
                         num v = currency.parse(value);
-                        if (!(v > 0)) return locale.valueMustBePositive;
+                        if (!(v > 0)) return l10n.valueMustBePositive;
                         Address fromAddress =
                             wallet.addresses[fromController.text];
                         if (fromAddress != null) {
                           if (fromAddress.privateKey == null)
-                            return locale.watchOnlyWallet;
+                            return l10n.watchOnlyWallet;
                           if (v > fromAddress.balance)
-                            return locale.insufficientFunds;
+                            return l10n.insufficientFunds;
                         }
                         if (wallet.network.minAmount == null)
-                          return locale.networkOffline;
+                          return l10n.networkOffline;
                         if (v < wallet.network.minAmount)
-                          return locale.minAmount(wallet.network.minAmount);
+                          return l10n.minAmount(wallet.network.minAmount);
                         return null;
                       },
                       onSaved: (value) => amountInput = currency.parse(value),
@@ -220,7 +220,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                     const Icon(Icons.rowing),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
-                      child: Text(locale.fee, style: labelTextStyle),
+                      child: Text(l10n.fee, style: labelTextStyle),
                     ),
                     TextFormField(
                       initialValue: currency.suggestedFee(null),
@@ -229,23 +229,23 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                           TextInputType.numberWithOptions(decimal: true),
                       decoration: InputDecoration(
                         hintText: currency.suggestedFee(null),
-                        suffixText: ' ' + locale.ticker(currency.ticker),
+                        suffixText: ' ' + l10n.ticker(currency.ticker),
                       ),
                       validator: (value) {
                         num v = currency.parse(value);
-                        if (!(v > 0)) return locale.valueMustBePositive;
+                        if (!(v > 0)) return l10n.valueMustBePositive;
                         num amount = currency.parse(amountController.text);
                         Address fromAddress =
                             wallet.addresses[fromController.text];
                         if (fromAddress != null &&
                             (amount + v) > fromAddress.balance)
-                          return locale.insufficientFunds;
+                          return l10n.insufficientFunds;
                         if (wallet.network.tipHeight == null ||
                             wallet.network.tipHeight == 0 ||
                             wallet.network.minFee == null)
-                          return locale.networkOffline;
+                          return l10n.networkOffline;
                         if (v < wallet.network.minFee)
-                          return locale.minFee(wallet.network.minFee);
+                          return l10n.minFee(wallet.network.minFee);
                         return null;
                       },
                       onSaved: (value) => feeInput = currency.parse(value),
@@ -256,7 +256,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
             ),
           ),
           RaisedGradientButton(
-            labelText: locale.send,
+            labelText: l10n.send,
             onPressed: () async {
               if (!formKey.currentState.validate()) return;
               formKey.currentState.save();
@@ -267,7 +267,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
               amountController.clear();
               FocusScope.of(context).requestFocus(FocusNode());
               Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text(locale.sending)));
+                  .showSnackBar(SnackBar(content: Text(l10n.sending)));
               Address fromAddress = wallet.addresses[fromInput];
               Transaction transaction = await wallet.createTransaction(
                   currency.signedTransaction(
@@ -287,11 +287,11 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
               }
               if (transactionId != null)
                 Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text(
-                        locale.sentTransactionId(transactionId.toJson()))));
+                    content:
+                        Text(l10n.sentTransactionId(transactionId.toJson()))));
               else
                 Scaffold.of(context)
-                    .showSnackBar(SnackBar(content: Text(locale.sendFailed)));
+                    .showSnackBar(SnackBar(content: Text(l10n.sendFailed)));
             },
           ),
         ],

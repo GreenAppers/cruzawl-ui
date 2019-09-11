@@ -36,7 +36,7 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
   @override
   Widget build(BuildContext context) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
 
     return SimpleScaffold(
         ListView(
@@ -52,11 +52,11 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
                   labelText: 'cruzbit.1 JSON:',
                   labelStyle: appState.theme.labelStyle,
                 ),
-                validator: (v) => validateInput(v, locale),
+                validator: (v) => validateInput(v, l10n),
               ),
             ),
             RaisedGradientButton(
-              labelText: locale.send,
+              labelText: l10n.send,
               onPressed: () async => await submitInput(),
             ),
             Container(
@@ -64,8 +64,8 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
               child: output.isEmpty
                   ? null
                   : Center(
-                      child: Text(locale.result,
-                          style: appState.theme.labelStyle)),
+                      child:
+                          Text(l10n.result, style: appState.theme.labelStyle)),
             ),
             RichText(
               text: TextSpan(
@@ -79,16 +79,16 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
             ),
           ],
         ),
-        title: locale.console);
+        title: l10n.console);
   }
 
-  String validateInput(String query, Localization locale) {
-    if (!widget.network.hasPeer) return locale.networkOffline;
+  String validateInput(String query, Localization l10n) {
+    if (!widget.network.hasPeer) return l10n.networkOffline;
     try {
       if ((inputJson = jsonDecode(query)) == null) throw FormatException();
       return null;
     } catch (error) {
-      return '${locale.invalidJson} ${error.toString()}';
+      return '${l10n.invalidJson} ${error.toString()}';
     }
   }
 

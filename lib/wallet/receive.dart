@@ -24,7 +24,7 @@ class WalletReceiveWidget extends StatefulWidget {
 class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
   @override
   Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Wallet wallet =
         ScopedModel.of<WalletModel>(context, rebuildOnChange: true).wallet;
@@ -42,7 +42,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
 
     if (appState.createIconImage != createQrImage) {
       children.add(AddressRow(
-          locale.walletAccountName(
+          l10n.walletAccountName(
               wallet.name, address.accountId + 1, address.chainIndex + 1),
           appState.createIconImage(addressText)));
     }
@@ -52,7 +52,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.only(top: 16),
-          child: Text(locale.address, style: appState.theme.labelStyle),
+          child: Text(l10n.address, style: appState.theme.labelStyle),
         ),
         CopyableText(
           addressText,
@@ -67,7 +67,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
               color: appState.theme.linkColor,
             ),
             label: Text(
-              locale.generateNewAddress,
+              l10n.generateNewAddress,
               style: TextStyle(
                 color: appState.theme.linkColor,
               ),
@@ -78,7 +78,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
         ),
         Container(
           padding: EdgeInsets.only(left: 32, right: 32),
-          child: Text(locale.typingAddressesWarning),
+          child: Text(l10n.typingAddressesWarning),
         ),
       ],
     ));

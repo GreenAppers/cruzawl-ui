@@ -63,11 +63,11 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     if (transaction == null) {
       load();
       return SimpleScaffold(Center(child: CircularProgressIndicator()),
-          title: locale.loading);
+          title: l10n.loading);
     }
 
     final Transaction txn = transaction.transaction;
@@ -78,23 +78,23 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     List<Widget> ret = <Widget>[
       ListTile(
-        title: Text(locale.date, style: labelTextStyle),
+        title: Text(l10n.date, style: labelTextStyle),
         subtitle: CopyableText(
             txn.dateTime.toString(), appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
-        title: Text(locale.from, style: labelTextStyle),
+        title: Text(l10n.from, style: labelTextStyle),
         subtitle: CopyableText(txn.fromText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
-        title: Text(locale.to, style: labelTextStyle),
+        title: Text(l10n.to, style: labelTextStyle),
         subtitle: CopyableText(txn.toText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
-        title: Text(locale.id, style: labelTextStyle),
+        title: Text(l10n.id, style: labelTextStyle),
         subtitle: CopyableText(txn.id().toJson(), appState.setClipboardText,
             style: valueTextStyle),
       ),
@@ -103,7 +103,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     if (txn.memo != null) {
       ret.add(
         ListTile(
-          title: Text(locale.memo, style: labelTextStyle),
+          title: Text(l10n.memo, style: labelTextStyle),
           subtitle: CopyableText(txn.memo, appState.setClipboardText,
               style: valueTextStyle),
         ),
@@ -112,7 +112,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     ret.add(
       ListTile(
-        title: Text(locale.amount, style: labelTextStyle),
+        title: Text(l10n.amount, style: labelTextStyle),
         trailing: Text(widget.network.currency.format(txn.amount),
             style: (widget.info.color != null
                 ? TextStyle(color: widget.info.color)
@@ -122,7 +122,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     ret.add(
       ListTile(
-        title: Text(locale.fee, style: labelTextStyle),
+        title: Text(l10n.fee, style: labelTextStyle),
         trailing: Text(widget.network.currency.format(txn.fee),
             style: (widget.info.fromWallet
                 ? TextStyle(color: Colors.red)
@@ -132,7 +132,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     if (txn.height != null) {
       ret.add(ListTile(
-        title: Text(locale.height, style: labelTextStyle),
+        title: Text(l10n.height, style: labelTextStyle),
         trailing: Text(txn.height.toString(), style: valueTextStyle),
         onTap:
             widget.onHeightTap != null ? () => widget.onHeightTap(txn) : null,
@@ -140,10 +140,10 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
       if (txn.height <= tipHeight) {
         ret.add(ListTile(
-          title: Text(locale.confirmations, style: labelTextStyle),
+          title: Text(l10n.confirmations, style: labelTextStyle),
           trailing: Text(
               txn.height == null
-                  ? locale.pending
+                  ? l10n.pending
                   : (1 + tipHeight - txn.height).toString(),
               style: valueTextStyle),
         ));
@@ -151,14 +151,14 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     }
 
     ret.add(ListTile(
-      title: Text(locale.nonce, style: labelTextStyle),
+      title: Text(l10n.nonce, style: labelTextStyle),
       trailing: Text(txn.nonce.toString(), style: valueTextStyle),
     ));
 
     if (txn.matures != null) {
       int matures = txn.matures;
       ret.add(ListTile(
-        title: Text(matures <= tipHeight ? locale.matured : locale.matures,
+        title: Text(matures <= tipHeight ? l10n.matured : l10n.matures,
             style: labelTextStyle),
         trailing: Text(matures.toString(), style: valueTextStyle),
       ));
@@ -167,14 +167,14 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     if (txn.expires != null) {
       int expires = txn.expires;
       ret.add(ListTile(
-        title: Text(expires <= tipHeight ? locale.expired : locale.expires,
+        title: Text(expires <= tipHeight ? l10n.expired : l10n.expires,
             style: labelTextStyle),
         trailing: Text(expires.toString(), style: valueTextStyle),
       ));
     }
 
     ret.add(RaisedGradientButton(
-      labelText: locale.copy,
+      labelText: l10n.copy,
       onPressed: () => appState.setClipboardText(context, jsonEncode(txn)),
     ));
 
@@ -188,7 +188,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           children: ret,
         ),
       ),
-      title: locale.transaction + ' ' + (widget.transactionIdText ?? ''),
+      title: l10n.transaction + ' ' + (widget.transactionIdText ?? ''),
     );
   }
 }

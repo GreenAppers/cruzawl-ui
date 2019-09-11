@@ -23,32 +23,32 @@ class WalletSettingsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final TextStyle labelTextStyle = appState.theme.labelStyle;
 
     List<Widget> header = <Widget>[
       ListTile(
-        title: Text(locale.name, style: labelTextStyle),
+        title: Text(l10n.name, style: labelTextStyle),
         trailing: Text(wallet.name),
       ),
       ListTile(
-        title: Text(locale.accounts, style: labelTextStyle),
+        title: Text(l10n.accounts, style: labelTextStyle),
         trailing: Text(wallet.accounts.length.toString()),
       ),
       ListTile(
-        title: Text(locale.addresses, style: labelTextStyle),
+        title: Text(l10n.addresses, style: labelTextStyle),
         trailing: Text(addresses.length.toString()),
       ),
       ListTile(
-        title: Text(locale.balance, style: labelTextStyle),
+        title: Text(l10n.balance, style: labelTextStyle),
         trailing: Text(wallet.currency.format(wallet.balance)),
       ),
       ListTile(
-        title: Text(locale.activeTransactions, style: labelTextStyle),
+        title: Text(l10n.activeTransactions, style: labelTextStyle),
         trailing: Text(wallet.pendingCount.toString()),
       ),
       ListTile(
-        title: Text(locale.maturingTransactions, style: labelTextStyle),
+        title: Text(l10n.maturingTransactions, style: labelTextStyle),
         trailing: Text(wallet.maturing.length.toString()),
       ),
     ];
@@ -56,7 +56,7 @@ class WalletSettingsWidget extends StatelessWidget {
     if (wallet.hdWallet)
       header.add(
         HideableWidget(
-          title: locale.seedPhrase,
+          title: l10n.seedPhrase,
           child: CopyableText(wallet.seedPhrase, appState.setClipboardText),
         ),
       );
@@ -67,18 +67,18 @@ class WalletSettingsWidget extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(top: 32),
-            child: Text(locale.dangerZone, style: labelTextStyle),
+            child: Text(l10n.dangerZone, style: labelTextStyle),
           ),
           Container(
             margin: EdgeInsets.only(left: 16, bottom: 48),
             decoration: BoxDecoration(border: Border.all(color: Colors.red)),
             child: ListTile(
-              title: Text(locale.deleteThisWallet),
-              subtitle: Text(locale.deleteWalletDescription),
+              title: Text(l10n.deleteThisWallet),
+              subtitle: Text(l10n.deleteWalletDescription),
               trailing: RaisedButton(
                 onPressed: () => deleteWallet(context, appState),
                 textColor: Colors.red,
-                child: Text(locale.deleteThisWallet),
+                child: Text(l10n.deleteThisWallet),
               ),
             ),
           ),
@@ -88,11 +88,11 @@ class WalletSettingsWidget extends StatelessWidget {
 
     List<Widget> footer = <Widget>[
       RaisedGradientButton(
-        labelText: locale.verify,
+        labelText: l10n.verify,
         padding: EdgeInsets.all(32),
         onPressed: () async {
           Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text(locale.verifying)));
+              .showSnackBar(SnackBar(content: Text(l10n.verifying)));
           await Future.delayed(Duration(seconds: 1));
 
           int verifiedAddresses = 0, ranTests = appState.runUnitTests();
@@ -105,18 +105,18 @@ class WalletSettingsWidget extends StatelessWidget {
             context: context,
             builder: (_) => AlertDialog(
               content: TitledWidget(
-                title: locale.verify,
+                title: l10n.verify,
                 content: ListTile(
                   leading: Icon(unitTests ? Icons.check : Icons.close),
                   title: Text(unitTests
-                      ? locale.verifyWalletResults(verifiedAddresses,
+                      ? l10n.verifyWalletResults(verifiedAddresses,
                           addresses.length, ranTests, ranTests)
-                      : locale.unitTestFailure),
+                      : l10n.unitTestFailure),
                 ),
               ),
               actions: <Widget>[
                 FlatButton(
-                  child: Text(locale.ok),
+                  child: Text(l10n.ok),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ],
@@ -127,7 +127,7 @@ class WalletSettingsWidget extends StatelessWidget {
         },
       ),
       RaisedGradientButton(
-        labelText: locale.copyPublicKeys,
+        labelText: l10n.copyPublicKeys,
         padding: EdgeInsets.all(32),
         onPressed: () {
           String publicKeyList = '';
@@ -135,7 +135,7 @@ class WalletSettingsWidget extends StatelessWidget {
             publicKeyList += '${address.publicKey.toJson()}\n';
           appState.setClipboardText(context, publicKeyList);
           Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text(locale.copied)));
+              .showSnackBar(SnackBar(content: Text(l10n.copied)));
         },
       ),
     ];
@@ -146,7 +146,7 @@ class WalletSettingsWidget extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         if (index < header.length) return header[index];
         if (index == header.length)
-          return Center(child: Text(locale.addresses, style: labelTextStyle));
+          return Center(child: Text(l10n.addresses, style: labelTextStyle));
         int addressIndex = index - header.length - 1;
         if (addressIndex < addresses.length) {
           Address address = addresses[addressIndex];
@@ -168,10 +168,10 @@ class WalletSettingsWidget extends StatelessWidget {
   }
 
   void deleteWallet(BuildContext context, Cruzawl appState) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     if (appState.wallets.length < 2) {
       Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text(locale.cantDeleteOnlyWallet)));
+          .showSnackBar(SnackBar(content: Text(l10n.cantDeleteOnlyWallet)));
       return;
     }
 
@@ -179,7 +179,7 @@ class WalletSettingsWidget extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         content: TitledWidget(
-          title: locale.deleteWallet,
+          title: l10n.deleteWallet,
           content: ListTile(
             leading: Icon(Icons.cast),
             title: Text(wallet.name),
@@ -189,11 +189,11 @@ class WalletSettingsWidget extends StatelessWidget {
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text(locale.cancel),
+            child: Text(l10n.cancel),
             onPressed: () => Navigator.of(context).pop(),
           ),
           FlatButton(
-            child: Text(locale.delete),
+            child: Text(l10n.delete),
             onPressed: () {
               appState.removeWallet();
               appState.setState(() {});

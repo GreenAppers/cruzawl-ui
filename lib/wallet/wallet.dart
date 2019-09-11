@@ -54,14 +54,14 @@ class _WalletWidgetState extends State<WalletWidget> {
       Future.delayed(Duration(seconds: 0)).then((_) => showDialog(
           context: context,
           builder: (context) {
-            final Localization locale = Localization.of(context);
+            final Localization l10n = Localization.of(context);
             return AlertDialog(
-              title: Text(locale.insecureDeviceWarning),
-              content: Text(locale.insecureDeviceWarningDescription,
+              title: Text(l10n.insecureDeviceWarning),
+              content: Text(l10n.insecureDeviceWarningDescription,
                   style: TextStyle(color: Colors.red)),
               actions: <Widget>[
                 FlatButton(
-                  child: Text(locale.ignore),
+                  child: Text(l10n.ignore),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ],
@@ -77,7 +77,7 @@ class _WalletWidgetState extends State<WalletWidget> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final Currency currency = widget.wallet.currency;
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
 
     return DefaultTabController(
       length: 3,
@@ -86,7 +86,7 @@ class _WalletWidgetState extends State<WalletWidget> {
         appBar: GradientAppBar(
           centerTitle: true,
           title: Text(
-            locale.balanceTitle(locale.ticker(currency.ticker),
+            l10n.balanceTitle(l10n.ticker(currency.ticker),
                 currency.format(widget.wallet.balance)),
             overflow: TextOverflow.ellipsis,
             style: widget.appState.theme.titleStyle,
@@ -98,25 +98,25 @@ class _WalletWidgetState extends State<WalletWidget> {
             (PopupMenuBuilder()
                   ..addItem(
                     icon: Icons.settings,
-                    text: locale.settings,
+                    text: l10n.settings,
                     onSelected: () =>
                         widget.appState.navigateToSettings(context),
                   )
                   ..addItem(
                     icon: Icons.vpn_lock,
-                    text: locale.network,
+                    text: l10n.network,
                     onSelected: () =>
                         widget.appState.navigateToNetwork(context),
                   )
                   /*..addItem(
                     icon: Icons.aspect_ratio,
-                    text: locale.console,
+                    text: l10n.console,
                     onSelected: () =>
                         widget.appState.navigateToConsole(context),
                   )*/
                   ..addItem(
                     icon: Icons.redeem,
-                    text: locale.donations,
+                    text: l10n.donations,
                     onSelected: () => widget.appState.navigateToAddressText(
                         context,
                         'RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI='),
@@ -129,15 +129,15 @@ class _WalletWidgetState extends State<WalletWidget> {
             tabs: <Widget>[
               Tab(
                 icon: Icon(Icons.attach_money),
-                text: locale.receive,
+                text: l10n.receive,
               ),
               Tab(
                 icon: Icon(Icons.receipt),
-                text: locale.balance,
+                text: l10n.balance,
               ),
               Tab(
                 icon: Icon(Icons.send),
-                text: locale.send,
+                text: l10n.send,
               ),
             ],
           ),
@@ -161,7 +161,7 @@ class _WalletWidgetState extends State<WalletWidget> {
   Widget buildWalletsMenu(BuildContext context,
       [IconData menuIcon = Icons.menu]) {
     final ThemeData theme = Theme.of(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final PopupMenuBuilder walletsMenu = PopupMenuBuilder();
 
     for (WalletModel x in widget.appState.wallets) {
@@ -176,7 +176,7 @@ class _WalletWidgetState extends State<WalletWidget> {
     }
     walletsMenu.addItem(
       icon: Icons.add,
-      text: locale.addWallet,
+      text: l10n.addWallet,
       onSelected: () => widget.appState.navigateToAddWallet(context),
     );
 

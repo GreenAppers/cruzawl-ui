@@ -104,7 +104,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
 
   @override
   Widget build(BuildContext c) {
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Currency currency = appState.currency;
     final Map<String, Contact> contacts = appState.preferences.contacts;
@@ -118,12 +118,12 @@ class _AddContactWidgetState extends State<AddContactWidget> {
             keyboardType: TextInputType.emailAddress,
             controller: nameController,
             decoration: InputDecoration(
-              labelText: locale.name,
+              labelText: l10n.name,
             ),
             validator: (value) {
-              if (value.isEmpty) return locale.nameMustBeUnique;
+              if (value.isEmpty) return l10n.nameMustBeUnique;
               for (Contact contact in contacts.values) {
-                if (contact.name == value) return locale.nameMustBeUnique;
+                if (contact.name == value) return l10n.nameMustBeUnique;
               }
               return null;
             },
@@ -135,19 +135,19 @@ class _AddContactWidgetState extends State<AddContactWidget> {
             keyboardType: TextInputType.emailAddress,
             controller: addressController,
             decoration: InputDecoration(
-              labelText: locale.address,
+              labelText: l10n.address,
             ),
             validator: (value) {
               value = value.trim();
               try {
                 if (contacts[value] != null) {
-                  return locale.addressMustBeUnique;
+                  return l10n.addressMustBeUnique;
                 }
                 if (appState.currency.fromPublicAddressJson(value) == null) {
-                  return locale.invalidAddress;
+                  return l10n.invalidAddress;
                 }
               } on Exception {
-                return locale.invalidAddress;
+                return l10n.invalidAddress;
               }
               return null;
             },
@@ -155,7 +155,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
           ),
         ),
         RaisedGradientButton(
-          labelText: locale.create,
+          labelText: l10n.create,
           padding: EdgeInsets.all(32),
           onPressed: () {
             if (!formKey.currentState.validate()) return;
@@ -165,7 +165,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
             addressController.clear();
             FocusScope.of(context).requestFocus(FocusNode());
             Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text(locale.creating)));
+                .showSnackBar(SnackBar(content: Text(l10n.creating)));
 
             contacts[address] =
                 Contact(name, null, null, currency.ticker, '', address);

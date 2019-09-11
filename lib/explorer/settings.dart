@@ -25,7 +25,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
   Widget build(BuildContext context) {
     final Cruzawl appState =
         ScopedModel.of<Cruzawl>(context, rebuildOnChange: true);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final bool encryptionEnabled = appState.preferences.walletsEncrypted;
     final bool warningEnabled = appState.preferences.insecureDeviceWarning;
     final bool unitTestBeforeCreating =
@@ -42,15 +42,15 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         leading: Container(
             padding: EdgeInsets.all(10),
             child: Image.asset(appState.assetPath('icon.png'))),
-        title: Text(locale.version),
+        title: Text(l10n.version),
         trailing: Text(appState.packageInfo == null
-            ? locale.unknown
+            ? l10n.unknown
             : appState.packageInfo.version),
       ),
       GestureDetector(
         child: ListTile(
           leading: Icon(Icons.people),
-          title: Text(locale.support),
+          title: Text(l10n.support),
           trailing:
               Text('>', style: TextStyle(color: appState.theme.linkColor)),
         ),
@@ -58,7 +58,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ),
       ListTile(
         leading: Icon(Icons.color_lens),
-        title: Text(locale.theme),
+        title: Text(l10n.theme),
         trailing: DropdownButton<String>(
           value: appState.preferences.theme,
           onChanged: (String val) {
@@ -70,7 +70,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ),
       ListTile(
         leading: Icon(Icons.attach_money),
-        title: Text(locale.currency),
+        title: Text(l10n.currency),
         trailing: DropdownButton<String>(
           value: appState.preferences.localCurrency,
           onChanged: (String val) {
@@ -85,9 +85,9 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
     if (widget.walletSettings) {
       ret.add(ListTile(
         leading: Icon(Icons.language),
-        title: Text(locale.language),
+        title: Text(l10n.language),
         trailing: DropdownButton<String>(
-          value: locale.localeLanguage,
+          value: l10n.localeLanguage,
           onChanged: (String val) {
             int index =
                 Localization.supportedLanguages.indexWhere((e) => e == val);
@@ -100,7 +100,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ));
       ret.add(ListTile(
         leading: Icon(encryptionEnabled ? Icons.lock_outline : Icons.lock_open),
-        title: Text(locale.encryption),
+        title: Text(l10n.encryption),
         trailing: Switch(
           value: encryptionEnabled,
           onChanged: (bool value) async {
@@ -113,7 +113,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ));
       ret.add(ListTile(
         leading: Icon(warningEnabled ? Icons.lock_outline : Icons.lock_open),
-        title: Text(locale.insecureDeviceWarning),
+        title: Text(l10n.insecureDeviceWarning),
         trailing: Switch(
           value: warningEnabled,
           onChanged: (bool value) => setState(
@@ -123,7 +123,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ret.add(ListTile(
         leading:
             Icon(verifyAddressEveryLoad ? Icons.lock_outline : Icons.lock_open),
-        title: Text(locale.verifyKeyPairsEveryLoad),
+        title: Text(l10n.verifyKeyPairsEveryLoad),
         trailing: Switch(
           value: verifyAddressEveryLoad,
           onChanged: (bool value) => setState(
@@ -133,7 +133,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ret.add(ListTile(
         leading:
             Icon(unitTestBeforeCreating ? Icons.lock_outline : Icons.lock_open),
-        title: Text(locale.unitTestBeforeCreatingWallets),
+        title: Text(l10n.unitTestBeforeCreatingWallets),
         trailing: Switch(
           value: unitTestBeforeCreating,
           onChanged: (bool value) => setState(
@@ -143,14 +143,14 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ret.add(GestureDetector(
         child: ListTile(
           leading: Icon(Icons.contacts),
-          title: Text(locale.contacts),
+          title: Text(l10n.contacts),
           trailing:
               Text('>', style: TextStyle(color: appState.theme.linkColor)),
         ),
         onTap: () => Navigator.of(context).pushNamed('/settings/contacts'),
       ));
       ret.add(ListTile(
-        title: Text(locale.showWalletNameInTitle),
+        title: Text(l10n.showWalletNameInTitle),
         trailing: Switch(
           value: appState.preferences.walletNameInTitle,
           onChanged: (bool value) {
@@ -160,7 +160,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         ),
       ));
       ret.add(ListTile(
-        title: Text(locale.debugLog),
+        title: Text(l10n.debugLog),
         trailing: Switch(
           value: appState.preferences.debugLog,
           onChanged: (bool value) {
@@ -175,7 +175,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
       ret.add(
         Center(
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-            Text(locale.debugLog + ' ', style: appState.theme.labelStyle),
+            Text(l10n.debugLog + ' ', style: appState.theme.labelStyle),
             IconButton(
               icon: Icon(Icons.content_copy),
               color: appState.theme.linkColor,
@@ -213,7 +213,7 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
 
   @override
   Widget build(BuildContext c) {
-    final Localization locale = Localization.of(c);
+    final Localization l10n = Localization.of(c);
 
     return Form(
       key: formKey,
@@ -225,10 +225,10 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
             obscureText: true,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              labelText: locale.password,
+              labelText: l10n.password,
             ),
             validator: (value) {
-              if (!(value.length > 0)) return locale.passwordCantBeEmpty;
+              if (!(value.length > 0)) return l10n.passwordCantBeEmpty;
               return null;
             },
             onSaved: (val) => password = val,
@@ -239,18 +239,18 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
             obscureText: true,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              labelText: locale.confirmPassword,
+              labelText: l10n.confirmPassword,
             ),
             validator: (value) {
               if (passwordKey.currentState.value != value)
-                return locale.passwordsDontMatch;
+                return l10n.passwordsDontMatch;
               return null;
             },
             onSaved: (val) => confirm = val,
           ),
         ),
         RaisedGradientButton(
-          labelText: locale.encrypt,
+          labelText: l10n.encrypt,
           padding: EdgeInsets.all(32),
           onPressed: () {
             if (!formKey.currentState.validate()) return;
@@ -269,7 +269,7 @@ class CruzawlSupport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final Localization locale = Localization.of(context);
+    final Localization l10n = Localization.of(context);
     final String languageCode = Localizations.localeOf(context).languageCode;
 
     final List<Widget> ret = <Widget>[
@@ -291,7 +291,7 @@ class CruzawlSupport extends StatelessWidget {
       GestureDetector(
         child: ListTile(
           leading: Icon(Icons.home),
-          title: Text(locale.homePage(locale.title)),
+          title: Text(l10n.homePage(l10n.title)),
           trailing:
               Text('>', style: TextStyle(color: appState.theme.linkColor)),
         ),
@@ -301,7 +301,7 @@ class CruzawlSupport extends StatelessWidget {
       GestureDetector(
         child: ListTile(
           leading: Icon(Icons.security),
-          title: Text(locale.privacyPolicy),
+          title: Text(l10n.privacyPolicy),
           trailing:
               Text('>', style: TextStyle(color: appState.theme.linkColor)),
         ),
@@ -330,13 +330,13 @@ class CruzawlSupport extends StatelessWidget {
       GestureDetector(
         child: ListTile(
           leading: Icon(Icons.business_center),
-          title: Text(locale.license),
+          title: Text(l10n.license),
           trailing:
               Text('>', style: TextStyle(color: appState.theme.linkColor)),
         ),
         onTap: () => showLicensePage(
             context: context,
-            applicationName: locale.title,
+            applicationName: l10n.title,
             applicationVersion: appState.packageInfo.version,
             applicationIcon: Image.asset(appState.assetPath('icon.png'))),
       ),
