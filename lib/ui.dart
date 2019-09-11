@@ -598,3 +598,46 @@ class TransactionListTile extends StatelessWidget {
     );
   }
 }
+
+class AddressListTile extends StatelessWidget {
+  final Currency currency;
+  final String text, name;
+  final Widget icon;
+  final num balance;
+  final VoidCallback onTap;
+  AddressListTile(this.currency, this.text, this.icon,
+      {this.name, this.balance, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 16),
+      child: ListTile(
+        title: Text(name ?? text),
+        subtitle: name == null ? null : Text(text),
+        leading: icon,
+        trailing: balance == null
+            ? null
+            : Text(
+                currency.format(balance),
+                style: balance > 0 ? TextStyle(color: Colors.green) : null,
+              ),
+        onTap: onTap ?? () => Navigator.of(context).pop(text),
+      ),
+    );
+  }
+}
+
+class AddressRow extends StatelessWidget {
+  final String name;
+  final Widget icon;
+  AddressRow(this.name, this.icon);
+
+  @override
+  Widget build(BuildContext context) => Container(
+      padding: const EdgeInsets.only(left: 32, top: 32, right: 72, bottom: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[icon, Text(name)],
+      ));
+}

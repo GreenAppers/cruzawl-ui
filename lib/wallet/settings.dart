@@ -12,7 +12,6 @@ import 'package:cruzawl/wallet.dart';
 import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
-import 'address.dart';
 
 class WalletSettingsWidget extends StatelessWidget {
   final Wallet wallet;
@@ -151,10 +150,12 @@ class WalletSettingsWidget extends StatelessWidget {
         int addressIndex = index - header.length - 1;
         if (addressIndex < addresses.length) {
           Address address = addresses[addressIndex];
+          String addressText = address.publicKey.toJson();
           return AddressListTile(
-            wallet,
-            address,
-            appState.createIconImage(address.publicKey.toJson()),
+            wallet.currency,
+            addressText,
+            appState.createIconImage(addressText),
+            balance: address.balance,
             onTap: () => appState.navigateToAddress(context, address),
           );
         } else {

@@ -19,6 +19,7 @@ import '../model.dart';
 import '../routes.dart';
 import '../ui.dart';
 import 'add.dart';
+import 'contacts.dart';
 import 'send.dart';
 import 'settings.dart';
 import 'wallet.dart';
@@ -192,6 +193,12 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
               '/addWallet': (BuildContext context) => SimpleScaffold(
                   AddWalletWidget(appState),
                   title: Localization.of(context).newWallet),
+              '/addContact': (BuildContext context) => SimpleScaffold(
+                  AddContactWidget(),
+                  title: Localization.of(context).newContact),
+              '/settings/contacts': (BuildContext context) =>
+                  ContactsWidget(editing: true),
+              '/contacts': (BuildContext context) => ContactsWidget(),
               '/sendFrom': (BuildContext context) => SimpleScaffold(
                   SendFromWidget(wallet),
                   title: Localization.of(context).from),

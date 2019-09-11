@@ -112,7 +112,7 @@ class Cruzawl extends Model {
     this.isTrustFall = false,
   }) {
     if (preferences.debugLog) debugLog = '';
-    createIconImage = createIconImage ?? (String x) => QrImage(data: x);
+    createIconImage = createIconImage ?? createQrImage;
     exchangeRates = ExchangeRates(httpClient, preferences, debugPrint: print);
     exchangeRates.checkForUpdate();
     networks = currencies
@@ -355,3 +355,5 @@ class PagePath {
         : PagePath(path.substring(start), '');
   }
 }
+
+QrImageFunction createQrImage = (String x) => QrImage(data: x);

@@ -30,6 +30,7 @@ import 'package:cruzawl_ui/wallet/add.dart';
 import 'package:cruzawl_ui/wallet/app.dart';
 import 'package:cruzawl_ui/wallet/address.dart';
 import 'package:cruzawl_ui/wallet/balance.dart';
+import 'package:cruzawl_ui/wallet/contacts.dart';
 import 'package:cruzawl_ui/wallet/receive.dart';
 import 'package:cruzawl_ui/wallet/send.dart';
 import 'package:cruzawl_ui/wallet/settings.dart';

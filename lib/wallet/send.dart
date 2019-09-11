@@ -10,6 +10,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
+import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
@@ -81,11 +82,11 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                 TableRow(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: chooseAddress,
+                      onTap: chooseSendFrom,
                       child: const Icon(Icons.person),
                     ),
                     GestureDetector(
-                      onTap: chooseAddress,
+                      onTap: chooseSendFrom,
                       child: Padding(
                         padding: const EdgeInsets.all(32.0),
                         child: Text(locale.from, style: labelTextStyle),
@@ -93,7 +94,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: chooseAddress,
+                      onTap: chooseSendFrom,
                       child: TextFormField(
                         enabled: false,
                         maxLines: null,
@@ -114,10 +115,16 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                 ),
                 TableRow(
                   children: <Widget>[
-                    const Icon(Icons.send),
-                    Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: Text(locale.payTo, style: labelTextStyle),
+                    GestureDetector(
+                      onTap: chooseSendTo,
+                      child: const Icon(Icons.send),
+                    ),
+                    GestureDetector(
+                      onTap: chooseSendTo,
+                      child: Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: Text(locale.payTo, style: labelTextStyle),
+                      ),
                     ),
                     PastableTextFormField(
                       maxLines: null,
@@ -292,32 +299,15 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
     );
   }
 
-  void chooseAddress() async {
+  void chooseSendFrom() async {
     var addr = await Navigator.of(context).pushNamed('/sendFrom');
     if (addr != null) fromController.text = addr;
     fromController.selection = TextSelection(baseOffset: 0, extentOffset: 0);
   }
-}
 
-class SendFromWidget extends StatelessWidget {
-  final VoidCallback onTap;
-  final Wallet wallet;
-  final List<Address> addresses;
-  SendFromWidget(this.wallet, {this.onTap})
-      : addresses = wallet.addresses.values.where((v) => v.balance > 0).toList()
-          ..sort(Address.compareBalance);
-
-  @override
-  Widget build(BuildContext context) {
-    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    return ListView.builder(
-      itemCount: addresses.length,
-      itemBuilder: (BuildContext context, int index) {
-        Address address = addresses[index];
-        return AddressListTile(wallet, address,
-            appState.createIconImage(address.publicKey.toJson()),
-            onTap: onTap);
-      },
-    );
+  void chooseSendTo() async {
+    var addr = await Navigator.of(context).pushNamed('/contacts');
+    if (addr != null) toController.text = addr;
+    toController.selection = TextSelection(baseOffset: 0, extentOffset: 0);
   }
 }

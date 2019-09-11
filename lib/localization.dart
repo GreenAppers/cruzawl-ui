@@ -57,6 +57,9 @@ class Localization {
   String balanceMaturingByHeightIs(int height) =>
       Intl.message('Your balance maturing by height $height is:',
           name: 'balanceMaturingByHeightIs', args: [height]);
+  String walletAccountName(String walletName, int accountId, int chainIndex) =>
+      Intl.message('$walletName: Account $accountId, Address $chainIndex',
+          name: 'walletAccountName', args: [walletName, accountId, chainIndex]);
   String get insecureDeviceWarning =>
       Intl.message('Insecure Device Warning', name: 'insecureDeviceWarning');
   String get insecureDeviceWarningDescription => Intl.message(
@@ -68,6 +71,9 @@ class Localization {
   String get backupKeysWarning =>
       Intl.message('Your keys must be backed up on external storage.',
           name: 'backupKeysWarning');
+  String get typingAddressesWarning => Intl.message(
+      'Warning: Typing addresses by hand is dangerous and error prone.  Always use the copy button or QR scanner.',
+      name: 'typingAddressesWarning');
 
   /// Wallet
   String creatingUsingAlgorithm(String algorithm) =>
@@ -203,11 +209,13 @@ class Localization {
   String get receive => Intl.message('Receive', name: 'receive');
   String get search => Intl.message('Search', name: 'search');
   String get result => Intl.message('Result', name: 'result');
+  String get contacts => Intl.message('Contacts', name: 'contacts');
   String get console => Intl.message('Console', name: 'console');
   String get unknown => Intl.message('Unknown', name: 'unknown');
   String get settings => Intl.message('Settings', name: 'settings');
   String get network => Intl.message('Network', name: 'network');
   String get newPeer => Intl.message('New Peer', name: 'newPeer');
+  String get newContact => Intl.message('New Contact', name: 'newContact');
   String get newWallet => Intl.message('New Wallet', name: 'newWallet');
   String get peers => Intl.message('Peers', name: 'peers');
   String get deletePeer => Intl.message('Delete Peer', name: 'deletePeer');
@@ -320,6 +328,8 @@ class Localization {
       Intl.message('Maximum memo length is 100', name: 'maxMemoLength');
   String get nameMustBeUnique =>
       Intl.message('Name must be unique.', name: 'nameMustBeUnique');
+  String get addressMustBeUnique =>
+      Intl.message('Address must be unique.', name: 'addressMustBeUnique');
   String get passwordCantBeEmpty =>
       Intl.message("Password can't be empty.", name: 'passwordCantBeEmpty');
   String get passwordsDontMatch =>

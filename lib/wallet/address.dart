@@ -63,15 +63,24 @@ class _AddressWidgetState extends State<AddressWidget> {
           size: min(screenSize.width, screenSize.height) * 2 / 3.0,
         ),
       ),
-      Container(
-        padding: const EdgeInsets.only(top: 16),
-        child: Text(locale.address, style: labelTextStyle),
-      ),
-      Container(
-        padding: EdgeInsets.only(right: 32),
-        child: CopyableText(addressText, appState.setClipboardText),
-      ),
     ];
+
+    if (appState.createIconImage != createQrImage) {
+      top.add(AddressRow(
+          locale.walletAccountName(widget.wallet.name, address.accountId + 1,
+              address.chainIndex + 1),
+          appState.createIconImage(addressText)));
+    }
+
+    top.add(Container(
+      padding: const EdgeInsets.only(top: 16),
+      child: Text(locale.address, style: labelTextStyle),
+    ));
+
+    top.add(Container(
+      padding: EdgeInsets.only(right: 32),
+      child: CopyableText(addressText, appState.setClipboardText),
+    ));
 
     if (address.chainCode != null)
       top.add(HideableWidget(
@@ -102,14 +111,14 @@ class _AddressWidgetState extends State<AddressWidget> {
     header.add(
       ListTile(
         title: Text(locale.account, style: labelTextStyle),
-        trailing: Text(address.accountId.toString()),
+        trailing: Text('${address.accountId + 1}'),
       ),
     );
     if (address.chainIndex != null && widget.wallet.hdWallet)
       header.add(
         ListTile(
           title: Text(locale.chainIndex, style: labelTextStyle),
-          trailing: Text(address.chainIndex.toString()),
+          trailing: Text('${address.chainIndex + 1}'),
         ),
       );
     header.add(
@@ -187,31 +196,5 @@ class _AddressWidgetState extends State<AddressWidget> {
       });
 
     return Center(child: CircularProgressIndicator());
-  }
-}
-
-class AddressListTile extends StatelessWidget {
-  final Wallet wallet;
-  final Address address;
-  final VoidCallback onTap;
-  final Widget addressIcon;
-  final String addressText;
-  AddressListTile(this.wallet, this.address, this.addressIcon, {this.onTap})
-      : this.addressText = address.publicKey.toJson();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      child: ListTile(
-        title: Text(addressText),
-        leading: addressIcon,
-        trailing: Text(
-          wallet.currency.format(address.balance),
-          style: address.balance > 0 ? TextStyle(color: Colors.green) : null,
-        ),
-        onTap: onTap ?? () => Navigator.of(context).pop(addressText),
-      ),
-    );
   }
 }

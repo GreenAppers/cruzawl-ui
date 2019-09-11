@@ -118,23 +118,29 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
               3.0,
         ),
       ),
-      Center(
-        child: Container(
-          padding: const EdgeInsets.only(top: 16),
-          child: Text(locale.address, style: labelTextStyle),
-        ),
-      ),
-      Center(
-        child: Container(
-          padding: EdgeInsets.only(right: 32),
-          child: CopyableText(widget.addressText, appState.setClipboardText),
-        ),
-      ),
-      ListTile(
-        title: Text(locale.balance, style: labelTextStyle),
-        trailing: Text(widget.network.currency.format(balance)),
-      ),
     ];
+
+    if (appState.createIconImage != createQrImage) {
+      header.add(AddressRow(locale.externalAddress,
+          appState.createIconImage(widget.addressText)));
+    }
+
+    header.add(Center(
+      child: Container(
+        padding: const EdgeInsets.only(top: 16),
+        child: Text(locale.address, style: labelTextStyle),
+      ),
+    ));
+    header.add(Center(
+      child: Container(
+        padding: EdgeInsets.only(right: 32),
+        child: CopyableText(widget.addressText, appState.setClipboardText),
+      ),
+    ));
+    header.add(ListTile(
+      title: Text(locale.balance, style: labelTextStyle),
+      trailing: Text(widget.network.currency.format(balance)),
+    ));
 
     if (maturing > 0)
       header.add(ListTile(

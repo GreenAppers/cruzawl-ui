@@ -140,6 +140,15 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
               () => appState.preferences.unitTestBeforeCreating = value),
         ),
       ));
+      ret.add(GestureDetector(
+        child: ListTile(
+          leading: Icon(Icons.contacts),
+          title: Text(locale.contacts),
+          trailing:
+              Text('>', style: TextStyle(color: appState.theme.linkColor)),
+        ),
+        onTap: () => Navigator.of(context).pushNamed('/settings/contacts'),
+      ));
       ret.add(ListTile(
         title: Text(locale.showWalletNameInTitle),
         trailing: Switch(
