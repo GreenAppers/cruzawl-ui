@@ -29,17 +29,22 @@ class WalletBalanceWidget extends StatelessWidget {
     final List<Widget> ret = <Widget>[
       Container(
         padding: EdgeInsets.only(top: 32),
-        child: RichText(
-          text: !hasPeer
-              ? TextSpan(
-                  text: l10n.currentBalanceIs, style: appState.theme.labelStyle)
-              : buildLocalizationMarkupTextSpan(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: !hasPeer
+              ? <Widget>[
+                  Text(l10n.currentBalanceIs, style: appState.theme.labelStyle)
+                ]
+              : buildLocalizationMarkupWidgets(
                   l10n.balanceAtHeightIs(wallet.network.tipHeight),
                   style: appState.theme.labelStyle,
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
                       style: appState.theme.linkStyle,
                       onTap: () => appState.navigateToBlockChart(context),
+                      key: Key('chartLink'),
                     ),
                   },
                 ),

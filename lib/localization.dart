@@ -517,11 +517,12 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
 class LocalizationMarkup {
   List<Widget> widget;
+  Key key;
   TextStyle style;
   VoidCallback onTap;
   String semanticsLabel;
   LocalizationMarkup(
-      {this.widget, this.style, this.onTap, this.semanticsLabel});
+      {this.widget, this.key, this.style, this.onTap, this.semanticsLabel});
 }
 
 abstract class LocalizationMarkupVisitor {
@@ -568,6 +569,7 @@ class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
     } else {
       Widget child = Text(curText,
           style: currentStyle,
+          key: currentTag != null ? currentTag.key : null,
           semanticsLabel:
               currentTag != null ? currentTag.semanticsLabel : null);
       ret.add((currentTag != null && currentTag.onTap != null)

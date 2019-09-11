@@ -341,6 +341,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               textBaseline: TextBaseline.alphabetic,
               children: totalBlocksInLast),
           Row(
+              key: marketCap == null ? null : Key('marketCap'),
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
