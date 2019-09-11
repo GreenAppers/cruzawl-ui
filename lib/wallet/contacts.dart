@@ -18,7 +18,7 @@ import 'address.dart';
 
 class ContactsWidget extends StatefulWidget {
   final bool editing;
-  ContactsWidget({this.editing});
+  ContactsWidget({this.editing = false});
 
   @override
   _ContactsWidgetState createState() => _ContactsWidgetState();
@@ -138,6 +138,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
               labelText: locale.address,
             ),
             validator: (value) {
+              value = value.trim();
               try {
                 if (contacts[value] != null) {
                   return locale.addressMustBeUnique;
@@ -150,7 +151,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
               }
               return null;
             },
-            onSaved: (val) => address = val,
+            onSaved: (value) => address = value.trim(),
           ),
         ),
         RaisedGradientButton(

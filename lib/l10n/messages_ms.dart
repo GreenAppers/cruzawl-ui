@@ -3,22 +3,21 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
-// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-// ignore: unused_element
-final _keepAnalysisHappy = Intl.defaultLocale;
-
-// ignore: non_constant_identifier_names
-typedef MessageIfAbsent(String message_str, List args);
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'ms';
+  String get localeName => 'ms';
 
   static m0(address) => "Alamat ${address}";
 
@@ -92,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Alamat disahkan ${goodAddresses} / ${totalAddresses} dan ${goodTests} / ${totalTests} berjaya";
 
+  static m36(walletName, accountId, chainIndex) => "${walletName}: Akaun ${accountId}, Alamat ${chainIndex}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("Akaun"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("Urus niaga aktif"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("Tambah Wallet"),
     "address" : MessageLookupByLibrary.simpleMessage("Alamat"),
+    "addressMustBeUnique" : MessageLookupByLibrary.simpleMessage("Alamat mestilah unik."),
     "addressStateOpen" : MessageLookupByLibrary.simpleMessage("buka"),
     "addressStateReserve" : MessageLookupByLibrary.simpleMessage("rizab"),
     "addressStateUsed" : MessageLookupByLibrary.simpleMessage("digunakan"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword" : MessageLookupByLibrary.simpleMessage("Sahkan Kata Laluan"),
     "confirmations" : MessageLookupByLibrary.simpleMessage("Pengesahan"),
     "console" : MessageLookupByLibrary.simpleMessage("Konsol"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("Kenalan"),
     "copied" : MessageLookupByLibrary.simpleMessage("Disalin."),
     "copy" : MessageLookupByLibrary.simpleMessage("Salinan"),
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("Salin Kunci Awam"),
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "network" : MessageLookupByLibrary.simpleMessage("Rangkaian"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Rangkaian di luar talian"),
     "networkType" : m25,
+    "newContact" : MessageLookupByLibrary.simpleMessage("Kenalan baru"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("Peer Baru"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Wallet Baru"),
     "next" : MessageLookupByLibrary.simpleMessage("Seterusnya"),
@@ -255,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transaksi"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Urus niaga"),
+    "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Amaran: Mengetik alamat dengan tangan adalah berbahaya dan rawan ralat. Sentiasa gunakan butang salin atau pengimbas QR."),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Ujian unit sebelum membuat dompet"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Kegagalan ujian unit"),
     "unknown" : MessageLookupByLibrary.simpleMessage("Tidak diketahui"),
@@ -270,6 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("Mengesahkan ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Versi"),
+    "walletAccountName" : m36,
     "warning" : MessageLookupByLibrary.simpleMessage("Amaran"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Wallet Hanya Tonton"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("Untuk memulakan, buat dompet:"),

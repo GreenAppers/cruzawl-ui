@@ -56,6 +56,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName} : 계정 {accountId}, 주소 {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "안전하지 않은 장치 경고",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -73,6 +82,11 @@
   },
   "backupKeysWarning": "키는 외부 저장소에 백업해야합니다.",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "경고 : 직접 손으로 주소를 입력하면 위험하고 오류가 발생하기 쉽습니다. 항상 복사 버튼 또는 QR 스캐너를 사용하십시오.",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -337,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "콘택트 렌즈",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "콘솔",
   "@console": {
     "type": "text",
@@ -359,6 +378,11 @@
   },
   "newPeer": "새로운 피어",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "새로운 연락처",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -767,6 +791,11 @@
   },
   "nameMustBeUnique": "이름은 고유해야합니다.",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "주소는 고유해야합니다.",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

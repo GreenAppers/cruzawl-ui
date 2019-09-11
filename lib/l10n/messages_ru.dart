@@ -3,22 +3,21 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
-// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-// ignore: unused_element
-final _keepAnalysisHappy = Intl.defaultLocale;
-
-// ignore: non_constant_identifier_names
-typedef MessageIfAbsent(String message_str, List args);
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'ru';
+  String get localeName => 'ru';
 
   static m0(address) => "Адрес ${address}";
 
@@ -92,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Проверенные ${goodAddresses} / ${totalAddresses} и ${goodTests} / ${totalTests} успешно";
 
+  static m36(walletName, accountId, chainIndex) => "${walletName}: Account ${accountId}, Address ${chainIndex}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("учетная запись"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("Активные транзакции"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("Добавить кошелек"),
     "address" : MessageLookupByLibrary.simpleMessage("Адрес"),
+    "addressMustBeUnique" : MessageLookupByLibrary.simpleMessage("Адрес должен быть уникальным."),
     "addressStateOpen" : MessageLookupByLibrary.simpleMessage("открыть"),
     "addressStateReserve" : MessageLookupByLibrary.simpleMessage("резерв"),
     "addressStateUsed" : MessageLookupByLibrary.simpleMessage("используемый"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword" : MessageLookupByLibrary.simpleMessage("Подтвердите Пароль"),
     "confirmations" : MessageLookupByLibrary.simpleMessage("Подтверждения"),
     "console" : MessageLookupByLibrary.simpleMessage("Приставка"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("контакты"),
     "copied" : MessageLookupByLibrary.simpleMessage("Скопировано."),
     "copy" : MessageLookupByLibrary.simpleMessage("копия"),
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("Копировать открытые ключи"),
@@ -204,7 +207,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "network" : MessageLookupByLibrary.simpleMessage("сеть"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Сеть оффлайн"),
     "networkType" : m25,
-    "newPeer" : MessageLookupByLibrary.simpleMessage("New Peer"),
+    "newContact" : MessageLookupByLibrary.simpleMessage("Новый контакт"),
+    "newPeer" : MessageLookupByLibrary.simpleMessage("Новый пэр"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Новый кошелек"),
     "next" : MessageLookupByLibrary.simpleMessage("следующий"),
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("Нет закрытых ключей"),
@@ -255,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("Сделка"),
     "transactions" : MessageLookupByLibrary.simpleMessage("операции"),
+    "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Предупреждение: ввод адресов вручную опасен и подвержен ошибкам. Всегда используйте кнопку копирования или QR-сканер."),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Юнит тест перед созданием кошельков"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Ошибка модульного теста"),
     "unknown" : MessageLookupByLibrary.simpleMessage("неизвестный"),
@@ -270,6 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("Проверка ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Версия"),
+    "walletAccountName" : m36,
     "warning" : MessageLookupByLibrary.simpleMessage("Предупреждение"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Часы только кошелек"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("Для начала создайте кошелек:"),

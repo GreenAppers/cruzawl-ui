@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-08-20T11:28:22.974763",
+  "@@last_modified": "2019-09-11T10:01:02.062618",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -57,6 +57,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName}: Account {accountId}, Address {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "Insecure Device Warning",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -74,6 +83,11 @@
   },
   "backupKeysWarning": "Your keys must be backed up on external storage.",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "Warning: Typing addresses by hand is dangerous and error prone.  Always use the copy button or QR scanner.",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -338,6 +352,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "Contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "Console",
   "@console": {
     "type": "text",
@@ -360,6 +379,11 @@
   },
   "newPeer": "New Peer",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "New Contact",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -768,6 +792,11 @@
   },
   "nameMustBeUnique": "Name must be unique.",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "Address must be unique.",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

@@ -56,6 +56,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName}: Účet {accountId}, adresa {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "Upozornění na nezabezpečené zařízení",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -73,6 +82,11 @@
   },
   "backupKeysWarning": "Vaše klíče musí být zálohovány na externí úložiště.",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "Upozornění: Ruční psaní adres je nebezpečné a náchylné k chybám. Vždy používejte tlačítko kopírování nebo QR skener.",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -337,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "Kontakty",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "Utěšit",
   "@console": {
     "type": "text",
@@ -359,6 +378,11 @@
   },
   "newPeer": "New Peer",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "Nový kontakt",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -767,6 +791,11 @@
   },
   "nameMustBeUnique": "Název musí být jedinečný.",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "Adresa musí být jedinečná.",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

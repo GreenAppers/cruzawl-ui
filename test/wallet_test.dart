@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast/sembast_memory.dart';
@@ -205,21 +206,11 @@ void runWalletTests(
     expect(wallet.transactions.length, 1);
     await tester.pumpWidget(ScopedModel(
         model: appState,
-        child: ScopedModel(
-            model: appState.wallet,
-            child: MaterialApp(
-                localizationsDelegates: localizationsDelegates,
-                supportedLocales: supportedLocales,
-                home: SimpleScaffold(WalletSendWidget(wallet),
-                    title: wallet.name),
-                onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
-                    .onGenerateRoute,
-                routes: <String, WidgetBuilder>{
-                  '/sendFrom': (BuildContext context) => SimpleScaffold(
-                      SendFromWidget(wallet),
-                      title: Localization.of(context).from),
-                }))));
+        child: WalletApp(appState, localizationsDelegates)));
+    await tester.pumpAndSettle();
+
+    // Open Send
+    await tester.tap(find.text(locale.send));
     await tester.pumpAndSettle();
 
     /// Select from
@@ -228,12 +219,36 @@ void runWalletTests(
     await tester.tap(find.text(moneyAddr));
     await tester.pumpAndSettle();
 
+    /// Open contacts
+    String contactName = 'Foobar Contact';
+    expect(preferences.contacts.length, 0);
+    await tester.tap(find.text(locale.payTo));
+    await tester.pumpAndSettle();
+
+    /// Add contact
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(0), contactName);
     await tester.enterText(find.byType(TextFormField).at(1), sendTo);
+    await tester.tap(find.widgetWithText(RaisedGradientButton, locale.create));
+    await tester.pumpAndSettle();
+
+    /// Select contact
+    expect(preferences.contacts.length, 1);
+    await tester.tap(find.text(contactName));
+    await tester.pumpAndSettle();
+    //await tester.enterText(find.byType(TextFormField).at(1), sendTo);
+
+    // Enter amount
     await tester.enterText(
         find.byType(TextFormField).at(3), sendMoney.toString());
-    await tester.tap(find.widgetWithText(RaisedGradientButton, locale.send));
-    await tester.pump(Duration(seconds: 1));
-    await tester.pump(Duration(seconds: 2));
+    await tester.pumpAndSettle();
+
+    // Send
+    //await tester.tap(find.widgetWithText(RaisedGradientButton, locale.send));
+    RaisedGradientButton send = find.widgetWithText(RaisedGradientButton, locale.send).evaluate().first.widget;
+    send.onPressed();
+    await tester.pumpAndSettle();
     expect(socket.sent.length, 1);
     var msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'push_transaction');

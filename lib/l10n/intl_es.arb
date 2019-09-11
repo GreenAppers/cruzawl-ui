@@ -56,6 +56,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName}: Cuenta {accountId}, Dirección {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "Advertencia de dispositivo inseguro",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -73,6 +82,11 @@
   },
   "backupKeysWarning": "Sus claves deben estar respaldadas en almacenamiento externo.",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "Advertencia: escribir direcciones a mano es peligroso y propenso a errores. Utilice siempre el botón copiar o el escáner QR.",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -337,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "Contactos",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "Consola",
   "@console": {
     "type": "text",
@@ -359,6 +378,11 @@
   },
   "newPeer": "Nuevo par",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "Nuevo contacto",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -767,6 +791,11 @@
   },
   "nameMustBeUnique": "El nombre debe ser único.",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "La dirección debe ser única.",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

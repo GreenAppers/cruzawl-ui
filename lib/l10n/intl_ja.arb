@@ -56,6 +56,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName}：アカウント{accountId}、アドレス{chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "安全でないデバイスの警告",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -73,6 +82,11 @@
   },
   "backupKeysWarning": "キーは外部ストレージにバックアップする必要があります。",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "警告：手動でアドレスを入力することは危険であり、エラーが発生しやすくなります。 常にコピーボタンまたはQRスキャナーを使用してください。",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -337,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "連絡先",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "コンソール",
   "@console": {
     "type": "text",
@@ -359,6 +378,11 @@
   },
   "newPeer": "ニューピア",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "新しい連絡先",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -767,6 +791,11 @@
   },
   "nameMustBeUnique": "名前は一意である必要があります。",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "アドレスは一意でなければなりません。",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

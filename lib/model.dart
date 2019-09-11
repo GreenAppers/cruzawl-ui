@@ -269,7 +269,7 @@ class Cruzawl extends Model {
     if (network == null) return null;
 
     x.debugPrint = print;
-    x.debugLevel = debugLevel;
+    x.debugLevel = debugLog != null ? debugLevelDebug : debugLevel;
     return network.addPeer(
         network.createPeerWithSpec(x, currency.genesisBlock().id().toJson()));
   }

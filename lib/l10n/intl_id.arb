@@ -56,6 +56,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName}: Akun {accountId}, Alamat {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "Peringatan Perangkat Tidak Aman",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -73,6 +82,11 @@
   },
   "backupKeysWarning": "Kunci Anda harus dicadangkan di penyimpanan eksternal.",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "Peringatan: Mengetik alamat dengan tangan berbahaya dan rentan kesalahan. Selalu gunakan tombol salin atau pemindai QR.",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -337,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "Kontak",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "Menghibur",
   "@console": {
     "type": "text",
@@ -359,6 +378,11 @@
   },
   "newPeer": "Rekan Baru",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "Kontak baru",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -767,6 +791,11 @@
   },
   "nameMustBeUnique": "Nama harus unik.",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "Alamat harus unik.",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

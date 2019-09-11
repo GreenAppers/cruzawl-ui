@@ -3,22 +3,21 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
-// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-// ignore: unused_element
-final _keepAnalysisHappy = Intl.defaultLocale;
-
-// ignore: non_constant_identifier_names
-typedef MessageIfAbsent(String message_str, List args);
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'es';
+  String get localeName => 'es';
 
   static m0(address) => "Dirección ${address}";
 
@@ -92,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Se verificaron las ${goodAddresses} / ${totalAddresses} y ${goodTests} / ${totalTests}";
 
+  static m36(walletName, accountId, chainIndex) => "${walletName}: Cuenta ${accountId}, Dirección ${chainIndex}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("Cuenta"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("Transacciones activas"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("Agregar billetera"),
     "address" : MessageLookupByLibrary.simpleMessage("Dirección"),
+    "addressMustBeUnique" : MessageLookupByLibrary.simpleMessage("La dirección debe ser única."),
     "addressStateOpen" : MessageLookupByLibrary.simpleMessage("abierto"),
     "addressStateReserve" : MessageLookupByLibrary.simpleMessage("reserva"),
     "addressStateUsed" : MessageLookupByLibrary.simpleMessage("usado"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword" : MessageLookupByLibrary.simpleMessage("Confirmar contraseña"),
     "confirmations" : MessageLookupByLibrary.simpleMessage("Confirmaciones"),
     "console" : MessageLookupByLibrary.simpleMessage("Consola"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("Contactos"),
     "copied" : MessageLookupByLibrary.simpleMessage("Copiado"),
     "copy" : MessageLookupByLibrary.simpleMessage("Dupdo"),
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("Copiar claves públicas"),
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "network" : MessageLookupByLibrary.simpleMessage("Red"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Red fuera de línea"),
     "networkType" : m25,
+    "newContact" : MessageLookupByLibrary.simpleMessage("Nuevo contacto"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("Nuevo par"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Nueva billetera"),
     "next" : MessageLookupByLibrary.simpleMessage("próximo"),
@@ -255,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transacción"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Actas"),
+    "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Advertencia: escribir direcciones a mano es peligroso y propenso a errores. Utilice siempre el botón copiar o el escáner QR."),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Prueba unitaria antes de crear billeteras"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Falla de prueba de unidad"),
     "unknown" : MessageLookupByLibrary.simpleMessage("Desconocido"),
@@ -270,6 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("Verificando ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Versión"),
+    "walletAccountName" : m36,
     "warning" : MessageLookupByLibrary.simpleMessage("Advertencia"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Cartera de solo reloj"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("Para comenzar, cree una billetera:"),

@@ -56,6 +56,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName}: Account {accountId}, Address {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "Предупреждение о небезопасном устройстве",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -73,6 +82,11 @@
   },
   "backupKeysWarning": "Ваши ключи должны быть сохранены на внешнем хранилище.",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "Предупреждение: ввод адресов вручную опасен и подвержен ошибкам. Всегда используйте кнопку копирования или QR-сканер.",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -337,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "контакты",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "Приставка",
   "@console": {
     "type": "text",
@@ -357,8 +376,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "newPeer": "New Peer",
+  "newPeer": "Новый пэр",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "Новый контакт",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -767,6 +791,11 @@
   },
   "nameMustBeUnique": "Имя должно быть уникальным.",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "Адрес должен быть уникальным.",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

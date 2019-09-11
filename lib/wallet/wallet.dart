@@ -70,7 +70,7 @@ class _WalletWidgetState extends State<WalletWidget> {
             );
           }));
 
-    initUriHandling();
+    if (widget.uriStream != null) initUriHandling();
   }
 
   @override

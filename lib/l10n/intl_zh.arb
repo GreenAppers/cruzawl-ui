@@ -56,6 +56,15 @@
       "height": {}
     }
   },
+  "walletAccountName": "{walletName}：帐户{accountId}，地址{chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
   "insecureDeviceWarning": "不安全的设备警告",
   "@insecureDeviceWarning": {
     "type": "text",
@@ -73,6 +82,11 @@
   },
   "backupKeysWarning": "您的密钥必须备份在外部存储上。",
   "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "警告：手动键入地址很危险且容易出错。 始终使用复印按钮或QR扫描仪。",
+  "@typingAddressesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -337,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "contacts": "往来",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
   "console": "安慰",
   "@console": {
     "type": "text",
@@ -359,6 +378,11 @@
   },
   "newPeer": "新同行",
   "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "新联系人",
+  "@newContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -767,6 +791,11 @@
   },
   "nameMustBeUnique": "名称必须是唯一的。",
   "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "地址必须是唯一的。",
+  "@addressMustBeUnique": {
     "type": "text",
     "placeholders": {}
   },

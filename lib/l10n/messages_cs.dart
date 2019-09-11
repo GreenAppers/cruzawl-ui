@@ -3,22 +3,21 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
-// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-// ignore: unused_element
-final _keepAnalysisHappy = Intl.defaultLocale;
-
-// ignore: non_constant_identifier_names
-typedef MessageIfAbsent(String message_str, List args);
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'cs';
+  String get localeName => 'cs';
 
   static m0(address) => "Adresa ${address}";
 
@@ -92,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Ověřené ${goodAddresses} / ${totalAddresses} adresy a ${goodTests} / ${totalTests} testy byly úspěšné";
 
+  static m36(walletName, accountId, chainIndex) => "${walletName}: Účet ${accountId}, adresa ${chainIndex}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("Účet"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("Aktivní transakce"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("Přidat peněženku"),
     "address" : MessageLookupByLibrary.simpleMessage("Adresa"),
+    "addressMustBeUnique" : MessageLookupByLibrary.simpleMessage("Adresa musí být jedinečná."),
     "addressStateOpen" : MessageLookupByLibrary.simpleMessage("otevřeno"),
     "addressStateReserve" : MessageLookupByLibrary.simpleMessage("rezervovat"),
     "addressStateUsed" : MessageLookupByLibrary.simpleMessage("použitý"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword" : MessageLookupByLibrary.simpleMessage("Potvrďte heslo"),
     "confirmations" : MessageLookupByLibrary.simpleMessage("Potvrzení"),
     "console" : MessageLookupByLibrary.simpleMessage("Utěšit"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("Kontakty"),
     "copied" : MessageLookupByLibrary.simpleMessage("Zkopírováno."),
     "copy" : MessageLookupByLibrary.simpleMessage("kopírovat"),
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("Kopírování veřejných klíčů"),
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "network" : MessageLookupByLibrary.simpleMessage("Síť"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Síť offline"),
     "networkType" : m25,
+    "newContact" : MessageLookupByLibrary.simpleMessage("Nový kontakt"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("New Peer"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Nová peněženka"),
     "next" : MessageLookupByLibrary.simpleMessage("další"),
@@ -255,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transakce"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transakce"),
+    "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Upozornění: Ruční psaní adres je nebezpečné a náchylné k chybám. Vždy používejte tlačítko kopírování nebo QR skener."),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Test jednotky před vytvořením peněženky"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Selhání testu jednotky"),
     "unknown" : MessageLookupByLibrary.simpleMessage("Neznámý"),
@@ -270,6 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("Ověření ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Verze"),
+    "walletAccountName" : m36,
     "warning" : MessageLookupByLibrary.simpleMessage("Varování"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Peněženka pouze pro sledování"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("Nejprve vytvořte peněženku:"),

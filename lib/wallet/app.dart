@@ -124,11 +124,16 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     widget.appState.runQuickTestVector();
 
-    if (!widget.appState.preferences.walletsEncrypted)
+    if (widget.appState.wallets.isEmpty &&
+        !widget.appState.preferences.walletsEncrypted) {
       widget.appState.openWallets();
+    }
 
-    for (Currency currency in currencies)
-      widget.appState.connectPeers(currency);
+    if (widget.appState.preferences.networkEnabled) {
+      for (Currency currency in currencies) {
+        widget.appState.connectPeers(currency);
+      }
+    }
   }
 
   @override

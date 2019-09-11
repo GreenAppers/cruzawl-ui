@@ -3,22 +3,21 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
-// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-// ignore: unused_element
-final _keepAnalysisHappy = Intl.defaultLocale;
-
-// ignore: non_constant_identifier_names
-typedef MessageIfAbsent(String message_str, List args);
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'zh';
+  String get localeName => 'zh';
 
   static m0(address) => "地址${address}";
 
@@ -92,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "已验证的${goodAddresses} / ${totalAddresses}地址和${goodTests} / ${totalTests}测试成功";
 
+  static m36(walletName, accountId, chainIndex) => "${walletName}：帐户${accountId}，地址${chainIndex}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("帐户"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("活跃的交易"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("添加钱包"),
     "address" : MessageLookupByLibrary.simpleMessage("地址"),
+    "addressMustBeUnique" : MessageLookupByLibrary.simpleMessage("地址必须是唯一的。"),
     "addressStateOpen" : MessageLookupByLibrary.simpleMessage("打开"),
     "addressStateReserve" : MessageLookupByLibrary.simpleMessage("保留"),
     "addressStateUsed" : MessageLookupByLibrary.simpleMessage("用过的"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword" : MessageLookupByLibrary.simpleMessage("确认密码"),
     "confirmations" : MessageLookupByLibrary.simpleMessage("确认"),
     "console" : MessageLookupByLibrary.simpleMessage("安慰"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("往来"),
     "copied" : MessageLookupByLibrary.simpleMessage("复制。"),
     "copy" : MessageLookupByLibrary.simpleMessage("复制"),
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("复制公钥"),
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "network" : MessageLookupByLibrary.simpleMessage("网络"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("网络离线"),
     "networkType" : m25,
+    "newContact" : MessageLookupByLibrary.simpleMessage("新联系人"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("新同行"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("新款钱包"),
     "next" : MessageLookupByLibrary.simpleMessage("下一个"),
@@ -255,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("交易"),
     "transactions" : MessageLookupByLibrary.simpleMessage("交易"),
+    "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("警告：手动键入地址很危险且容易出错。 始终使用复印按钮或QR扫描仪。"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("创建钱包之前的单元测试"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("单元测试失败"),
     "unknown" : MessageLookupByLibrary.simpleMessage("未知"),
@@ -270,6 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("验证中..."),
     "version" : MessageLookupByLibrary.simpleMessage("版"),
+    "walletAccountName" : m36,
     "warning" : MessageLookupByLibrary.simpleMessage("警告"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("仅限观看的钱包"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("首先，创建一个钱包："),

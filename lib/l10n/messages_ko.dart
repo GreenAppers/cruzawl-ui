@@ -3,22 +3,21 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
-// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-// ignore: unused_element
-final _keepAnalysisHappy = Intl.defaultLocale;
-
-// ignore: non_constant_identifier_names
-typedef MessageIfAbsent(String message_str, List args);
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'ko';
+  String get localeName => 'ko';
 
   static m0(address) => "주소 ${address}";
 
@@ -92,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "확인 된 ${goodAddresses} / ${totalAddresses} 주소 및 ${goodTests} / ${totalTests} 테스트 성공";
 
+  static m36(walletName, accountId, chainIndex) => "${walletName} : 계정 ${accountId}, 주소 ${chainIndex}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("계정"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("활성 거래"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("월렛 추가"),
     "address" : MessageLookupByLibrary.simpleMessage("주소"),
+    "addressMustBeUnique" : MessageLookupByLibrary.simpleMessage("주소는 고유해야합니다."),
     "addressStateOpen" : MessageLookupByLibrary.simpleMessage("열다"),
     "addressStateReserve" : MessageLookupByLibrary.simpleMessage("비축"),
     "addressStateUsed" : MessageLookupByLibrary.simpleMessage("익숙한"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword" : MessageLookupByLibrary.simpleMessage("비밀번호 확인"),
     "confirmations" : MessageLookupByLibrary.simpleMessage("확인"),
     "console" : MessageLookupByLibrary.simpleMessage("콘솔"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("콘택트 렌즈"),
     "copied" : MessageLookupByLibrary.simpleMessage("복사했습니다."),
     "copy" : MessageLookupByLibrary.simpleMessage("부"),
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("공개 키 복사"),
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "network" : MessageLookupByLibrary.simpleMessage("회로망"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("네트워크 오프라인"),
     "networkType" : m25,
+    "newContact" : MessageLookupByLibrary.simpleMessage("새로운 연락처"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("새로운 피어"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("새 월렛"),
     "next" : MessageLookupByLibrary.simpleMessage("다음 것"),
@@ -255,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("트랜잭션"),
     "transactions" : MessageLookupByLibrary.simpleMessage("업무"),
+    "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("경고 : 직접 손으로 주소를 입력하면 위험하고 오류가 발생하기 쉽습니다. 항상 복사 버튼 또는 QR 스캐너를 사용하십시오."),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("지갑을 만들기 전에 단위 테스트"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("단위 테스트 실패"),
     "unknown" : MessageLookupByLibrary.simpleMessage("알 수 없는"),
@@ -270,6 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("확인 중 ..."),
     "version" : MessageLookupByLibrary.simpleMessage("번역"),
+    "walletAccountName" : m36,
     "warning" : MessageLookupByLibrary.simpleMessage("경고"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("시계 전용 지갑"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("시작하려면 지갑을 만드십시오."),

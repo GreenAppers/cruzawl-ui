@@ -3,22 +3,21 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
-// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-// ignore: unused_element
-final _keepAnalysisHappy = Intl.defaultLocale;
-
-// ignore: non_constant_identifier_names
-typedef MessageIfAbsent(String message_str, List args);
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  get localeName => 'ja';
+  String get localeName => 'ja';
 
   static m0(address) => "アドレス${address}";
 
@@ -92,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "検証済みの${goodAddresses} / ${totalAddresses}アドレスと${goodTests} / ${totalTests}テストが成功しました";
 
+  static m36(walletName, accountId, chainIndex) => "${walletName}：アカウント${accountId}、アドレス${chainIndex}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("アカウント"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeTransactions" : MessageLookupByLibrary.simpleMessage("アクティブなトランザクション"),
     "addWallet" : MessageLookupByLibrary.simpleMessage("ウォレットを追加"),
     "address" : MessageLookupByLibrary.simpleMessage("住所"),
+    "addressMustBeUnique" : MessageLookupByLibrary.simpleMessage("アドレスは一意でなければなりません。"),
     "addressStateOpen" : MessageLookupByLibrary.simpleMessage("開いた"),
     "addressStateReserve" : MessageLookupByLibrary.simpleMessage("予備"),
     "addressStateUsed" : MessageLookupByLibrary.simpleMessage("中古"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword" : MessageLookupByLibrary.simpleMessage("パスワードを認証する"),
     "confirmations" : MessageLookupByLibrary.simpleMessage("確認"),
     "console" : MessageLookupByLibrary.simpleMessage("コンソール"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("連絡先"),
     "copied" : MessageLookupByLibrary.simpleMessage("コピーしました。"),
     "copy" : MessageLookupByLibrary.simpleMessage("コピー"),
     "copyPublicKeys" : MessageLookupByLibrary.simpleMessage("公開鍵をコピーする"),
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "network" : MessageLookupByLibrary.simpleMessage("ネットワーク"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("ネットワークオフライン"),
     "networkType" : m25,
+    "newContact" : MessageLookupByLibrary.simpleMessage("新しい連絡先"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("ニューピア"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("新しいウォレット"),
     "next" : MessageLookupByLibrary.simpleMessage("次"),
@@ -255,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalBlocksTransactionsInLastDuration" : m33,
     "transaction" : MessageLookupByLibrary.simpleMessage("トランザクション"),
     "transactions" : MessageLookupByLibrary.simpleMessage("取引"),
+    "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("警告：手動でアドレスを入力することは危険であり、エラーが発生しやすくなります。 常にコピーボタンまたはQRスキャナーを使用してください。"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("ウォレットを作成する前の単体テスト"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("単体テストの失敗"),
     "unknown" : MessageLookupByLibrary.simpleMessage("道の"),
@@ -270,6 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyWalletResults" : m35,
     "verifying" : MessageLookupByLibrary.simpleMessage("確認しています..."),
     "version" : MessageLookupByLibrary.simpleMessage("バージョン"),
+    "walletAccountName" : m36,
     "warning" : MessageLookupByLibrary.simpleMessage("警告"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("時計専用ウォレット"),
     "welcomeDesc" : MessageLookupByLibrary.simpleMessage("開始するには、ウォレットを作成します。"),
