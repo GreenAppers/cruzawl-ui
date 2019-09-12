@@ -3,10 +3,8 @@
 
 import 'dart:async';
 
-import 'package:flutter_web/foundation.dart'
-    if (dart.library.io) 'package:flutter/foundation.dart';
-import 'package:flutter_web/material.dart'
-    if (dart.library.io) 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 

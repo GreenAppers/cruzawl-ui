@@ -4,8 +4,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:flutter_web/material.dart'
-    if (dart.library.io) 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sembast/sembast.dart' as sembast;

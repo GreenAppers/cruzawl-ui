@@ -4,8 +4,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter_web/material.dart'
-    if (dart.library.io) 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:collection/collection.dart';

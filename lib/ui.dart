@@ -1,10 +1,8 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
-import 'package:flutter_web/gestures.dart'
-    if (dart.library.io) 'package:flutter/gestures.dart';
-import 'package:flutter_web/material.dart'
-    if (dart.library.io) 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:scoped_model/scoped_model.dart';

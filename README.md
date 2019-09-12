@@ -3,16 +3,6 @@
 
 [Flutter](https://flutter.dev/) package for [CRUZ](https://github.com/cruzbit/cruzbit) cryptocurrency wallet [cruzall](https://github.com/GreenAppers/cruzall) and block explorer [cruzweb](https://github.com/GreenAppers/cruzweb).
 
-# Setup
-
-        cd flutter_app/lib
-        git submodule add https://github.com/GreenAppers/cruzawl-ui
-
-Adding via submodule (instead of dependency in pubspec.yaml) allows
-cruzawl-ui to work with Flutter Web in addition to Flutter Mobile (and 
-Flutter Desktop). Once Flutter Web is merged cruzawl-ui will be setup
-like usual and published on pub.dev.
-
 # Project Map
 <img src="https://www.greenappers.com/cruzawl/diagram.svg" />
 

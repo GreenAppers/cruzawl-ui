@@ -1,10 +1,8 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
-import 'package:flutter_web/material.dart'
-    if (dart.library.io) 'package:flutter/material.dart';
-import 'package:flutter_web/services.dart'
-    if (dart.library.io) 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 

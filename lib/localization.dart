@@ -3,11 +3,8 @@
 
 import 'dart:async';
 
-import 'package:flutter_web/material.dart'
-    if (dart.library.io) 'package:flutter/material.dart';
-
-import 'package:flutter_web/gestures.dart'
-    if (dart.library.io) 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
 import 'package:intl/intl.dart';
 
