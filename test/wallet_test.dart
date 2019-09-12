@@ -325,11 +325,8 @@ void runWalletTests(
 
     // Open WalletAddressWidget
     //await tester.tap(find.text(publicKey));
-    CopyableText address = find
-        .widgetWithText(CopyableText, publicKey)
-        .evaluate()
-        .first
-        .widget;
+    CopyableText address =
+        find.widgetWithText(CopyableText, publicKey).evaluate().first.widget;
     address.onTap();
     await tester.pumpAndSettle();
     expect(find.text(l10n.chainCode), findsOneWidget);

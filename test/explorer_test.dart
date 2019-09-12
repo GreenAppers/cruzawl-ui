@@ -36,6 +36,10 @@ import 'package:cruzawl_ui/explorer/settings.dart';
 import 'package:cruzawl_ui/explorer/transaction.dart';
 
 void main() async {
+  await runExplorerGroups((String asset) => 'assets/' + asset);
+}
+
+void runExplorerGroups(StringFilter assetPath) async {
   for (Locale locale in Localization.supportedLocales) {
     CruzawlPreferences preferences = CruzawlPreferences(
         await databaseFactoryMemoryFs
@@ -46,12 +50,12 @@ void main() async {
     preferences.minimumReserveAddress = 3;
     Localization l10n = await Localization.load(locale);
     group('Explorer tests $locale',
-        () => runExplorerTests(preferences, locale, l10n));
+        () => runExplorerTests(preferences, locale, l10n, assetPath));
   }
 }
 
-void runExplorerTests(
-    CruzawlPreferences preferences, Locale testLocale, Localization l10n) {
+void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
+    Localization l10n, StringFilter assetPath) {
   List<LocalizationsDelegate> localizationsDelegates = <LocalizationsDelegate>[
     LocalizationDelegate(),
     GlobalMaterialLocalizations.delegate,
@@ -62,7 +66,7 @@ void runExplorerTests(
   SetClipboardText stringCallback = (BuildContext c, String x) {};
   TestHttpClient httpClient = TestHttpClient();
   Cruzawl appState = Cruzawl(
-      (String x) => 'assets/' + x,
+      assetPath,
       stringCallback,
       stringCallback,
       null,
