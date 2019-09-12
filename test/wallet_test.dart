@@ -282,14 +282,7 @@ void runWalletTests(
   testWidgets('WalletBalanceWidget', (WidgetTester tester) async {
     Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
-        model: appState,
-        child: ScopedModel(
-            model: appState.wallet,
-            child: MaterialApp(
-                localizationsDelegates: localizationsDelegates,
-                supportedLocales: supportedLocales,
-                home: SimpleScaffold(WalletBalanceWidget(),
-                    title: wallet.name)))));
+        model: appState, child: WalletApp(appState, localizationsDelegates)));
     await tester.pumpAndSettle();
     expect(
         find.text(
@@ -315,40 +308,31 @@ void runWalletTests(
     expect(transaction.tx.verify(), false);
   });
 
-  testWidgets('WalletAddressWidget', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
-    await tester.pumpWidget(ScopedModel(
-        model: appState,
-        child: ScopedModel(
-            model: appState.wallet,
-            child: MaterialApp(
-                localizationsDelegates: localizationsDelegates,
-                supportedLocales: supportedLocales,
-                home: SimpleScaffold(
-                    AddressWidget(wallet, wallet.addresses[moneyAddr]),
-                    title: wallet.name)))));
-    await tester.pumpAndSettle();
-  });
-
   testWidgets('WalletReceiveWidget', (WidgetTester tester) async {
     Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
-        model: appState,
-        child: ScopedModel(
-            model: appState.wallet,
-            child: MaterialApp(
-                localizationsDelegates: localizationsDelegates,
-                supportedLocales: supportedLocales,
-                home: SimpleScaffold(WalletReceiveWidget(), title: wallet.name),
-                onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
-                    .onGenerateRoute))));
+        model: appState, child: WalletApp(appState, localizationsDelegates)));
     await tester.pumpAndSettle();
+
+    // Open Receive
+    await tester.tap(find.text(l10n.receive));
+    await tester.pumpAndSettle();
+    String publicKey = wallet.getNextReceiveAddress().publicKey.toJson();
+    expect(find.text(publicKey), findsOneWidget);
+
     //await tester.tap(find.text(l10n.generateNewAddress));
     //await tester.pumpAndSettle();
-    await tester
-        .tap(find.text(wallet.getNextReceiveAddress().publicKey.toJson()));
+
+    // Open WalletAddressWidget
+    //await tester.tap(find.text(publicKey));
+    CopyableText address = find
+        .widgetWithText(CopyableText, publicKey)
+        .evaluate()
+        .first
+        .widget;
+    address.onTap();
     await tester.pumpAndSettle();
+    expect(find.text(l10n.chainCode), findsOneWidget);
   });
 
   testWidgets('AddWalletWidget watch-only wallet', (WidgetTester tester) async {

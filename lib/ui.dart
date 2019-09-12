@@ -398,45 +398,45 @@ class _HideableWidgetState extends State<HideableWidget> {
   Widget build(BuildContext c) {
     final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final Widget title = Text(widget.title, style: appState.theme.labelStyle);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
           padding: const EdgeInsets.only(top: 16),
-          child: RichText(
-            text: TextSpan(
-              text: widget.title,
-              style: appState.theme.labelStyle,
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
               children: !show
-                  ? null
-                  : <TextSpan>[
-                      TextSpan(text: ' '),
-                      buildLocalizationMarkupTextSpan(
-                        l10n.menuOfOne(l10n.hide),
-                        tags: <String, LocalizationMarkup>{
-                          'a': LocalizationMarkup(
-                            style: appState.theme.linkStyle,
-                            onTap: () => setState(() => show = false),
-                          ),
-                        },
-                      ),
-                    ],
-            ),
-          ),
+                  ? <Widget>[title]
+                  : (buildLocalizationMarkupWidgets(
+                      ' ' + l10n.menuOfOne(l10n.hide),
+                      style: appState.theme.labelStyle,
+                      tags: <String, LocalizationMarkup>{
+                        'a': LocalizationMarkup(
+                          style: appState.theme.linkStyle,
+                          onTap: () => setState(() => show = false),
+                        ),
+                      },
+                    )..insert(0, title))),
         ),
         (show
             ? widget.child
-            : RichText(
-                text: buildLocalizationMarkupTextSpan(
-                l10n.menuOfOne(l10n.show),
-                style: appState.theme.labelStyle,
-                tags: <String, LocalizationMarkup>{
-                  'a': LocalizationMarkup(
-                    style: appState.theme.linkStyle,
-                    onTap: () => setState(() => show = true),
-                  ),
-                },
-              ))),
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: buildLocalizationMarkupWidgets(
+                  l10n.menuOfOne(l10n.show),
+                  style: appState.theme.labelStyle,
+                  tags: <String, LocalizationMarkup>{
+                    'a': LocalizationMarkup(
+                      style: appState.theme.linkStyle,
+                      onTap: () => setState(() => show = true),
+                    ),
+                  },
+                ))),
       ],
     );
   }
@@ -638,6 +638,10 @@ class AddressRow extends StatelessWidget {
       padding: const EdgeInsets.only(left: 32, top: 32, right: 72, bottom: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[icon, Text(name)],
+        children: <Widget>[
+          icon,
+          Flexible(
+              child: Text(name, maxLines: 2, overflow: TextOverflow.ellipsis))
+        ],
       ));
 }
