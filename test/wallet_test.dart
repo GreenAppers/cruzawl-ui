@@ -2,14 +2,11 @@
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast/sembast_memory.dart';
@@ -18,33 +15,27 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/http.dart';
 import 'package:cruzawl/preferences.dart';
-import 'package:cruzawl/test.dart';
+import 'package:cruzawl/sembast.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 import 'package:cruzawl/websocket.dart';
 
 import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
-import 'package:cruzawl_ui/routes.dart';
 import 'package:cruzawl_ui/ui.dart';
 import 'package:cruzawl_ui/wallet/add.dart';
 import 'package:cruzawl_ui/wallet/app.dart';
-import 'package:cruzawl_ui/wallet/address.dart';
-import 'package:cruzawl_ui/wallet/balance.dart';
-import 'package:cruzawl_ui/wallet/contacts.dart';
-import 'package:cruzawl_ui/wallet/receive.dart';
-import 'package:cruzawl_ui/wallet/send.dart';
 import 'package:cruzawl_ui/wallet/settings.dart';
 
 void main() async {
   for (Locale locale in Localization.supportedLocales) {
     CruzawlPreferences preferences = CruzawlPreferences(
-        await databaseFactoryMemoryFs
-            .openDatabase('settings_wallet_$locale.db'),
+        SembastPreferences(await databaseFactoryMemoryFs
+            .openDatabase('settings_wallet_$locale.db')),
         () => NumberFormat.currency().currencyName);
-    await preferences.load();
-    preferences.networkEnabled = false;
-    preferences.minimumReserveAddress = 3;
+    await preferences.storage.load();
+    preferences.setNetworkEnabled(false);
+    preferences.setMinimumReserveAddress(3);
     Localization l10n = await Localization.load(locale);
     group('Wallet tests $locale',
         () => runWalletTests(preferences, locale, l10n));
@@ -75,7 +66,6 @@ void runWalletTests(
   int money = 13, moneyBalance = money * CRUZ.cruzbitsPerCruz;
   int sendMoneyBalance = (sendMoney * CRUZ.cruzbitsPerCruz).toInt();
   int feeMoneyBalance = (feeMoney * CRUZ.cruzbitsPerCruz).toInt();
-  int feeBalance = (feeMoney * CRUZ.cruzbitsPerCruz).toInt();
   String moneyAddr,
       moneySender = 'xRL0D9U+jav9NxOwz4LsXe8yZ8KSS7Hst4/P8ChciAI=';
   String sendTo = '5lojzpXqrpAfrYSxF0s8vyRSQ0SlhiovzacD+tI1oK8=';
@@ -334,7 +324,6 @@ void runWalletTests(
 
   testWidgets('AddWalletWidget watch-only wallet', (WidgetTester tester) async {
     expect(appState.wallets.length, 1);
-    AddWalletWidget addWallet = AddWalletWidget(appState);
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: MaterialApp(
@@ -420,8 +409,8 @@ void runWalletTests(
                 title: wallet.name))));
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
-    await expect(find.text(l10n.name), findsOneWidget);
-    await expect(
+    expect(find.text(l10n.name), findsOneWidget);
+    expect(
         find.descendant(
             of: find.byType(ListTile), matching: find.text(watchWalletName)),
         findsOneWidget);

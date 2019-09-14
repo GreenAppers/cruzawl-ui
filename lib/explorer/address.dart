@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// In-depth single [PublicAddress] explorer.
+library explorer_address;
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -15,11 +18,23 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Explore the transactions and metadata for one [PublicAddress].
 class ExternalAddressWidget extends StatefulWidget {
+  /// The [PeerNetwork] to retrieve [PublicAddress] and [Transaction] data from.
   final PeerNetwork network;
-  final String addressText, title;
+
+  /// The title for this [Widget].
+  final String title;
+
+  /// Queries the [PublicAddress] with [addressText].
+  final String addressText;
+
+  /// Displayed while fetching data.
   final Widget loadingWidget;
+
+  /// If specified, the maximum width used.
   final double maxWidth;
+
   ExternalAddressWidget(this.network, this.addressText,
       {this.loadingWidget, this.maxWidth, this.title});
 

@@ -2,7 +2,6 @@
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/http.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/network.dart';
-import 'package:cruzawl/test.dart';
+import 'package:cruzawl/sembast.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 import 'package:cruzawl/websocket.dart';
@@ -27,27 +26,22 @@ import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
 import 'package:cruzawl_ui/routes.dart';
 import 'package:cruzawl_ui/ui.dart';
-import 'package:cruzawl_ui/explorer/address.dart';
-import 'package:cruzawl_ui/explorer/block.dart';
-import 'package:cruzawl_ui/explorer/console.dart';
 import 'package:cruzawl_ui/explorer/cruzbase.dart';
-import 'package:cruzawl_ui/explorer/network.dart';
 import 'package:cruzawl_ui/explorer/settings.dart';
-import 'package:cruzawl_ui/explorer/transaction.dart';
 
 void main() async {
   await runExplorerGroups((String asset) => 'assets/' + asset);
 }
 
-void runExplorerGroups(StringFilter assetPath) async {
+Future<void> runExplorerGroups(StringFilter assetPath) async {
   for (Locale locale in Localization.supportedLocales) {
     CruzawlPreferences preferences = CruzawlPreferences(
-        await databaseFactoryMemoryFs
-            .openDatabase('settings_explorer_$locale.db'),
+        SembastPreferences(await databaseFactoryMemoryFs
+            .openDatabase('settings_explorer_$locale.db')),
         () => NumberFormat.currency().currencyName);
-    await preferences.load();
-    preferences.networkEnabled = false;
-    preferences.minimumReserveAddress = 3;
+    await preferences.storage.load();
+    preferences.setNetworkEnabled(false);
+    preferences.setMinimumReserveAddress(3);
     Localization l10n = await Localization.load(locale);
     group('Explorer tests $locale',
         () => runExplorerTests(preferences, locale, l10n, assetPath));
@@ -78,7 +72,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
           PackageInfo('Cruzall', 'com.greenappers.cruzall', '1.0.0', '0'),
       httpClient: httpClient);
   appState.debugLevel = debugLevelDebug;
-  appState.preferences.debugLog = true;
+  appState.preferences.setDebugLog(true);
   TestWebSocket socket = TestWebSocket();
 
   Currency currency = Currency.fromJson('CRUZ');
@@ -169,7 +163,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('ExternalAddressWidget', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -213,7 +206,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('BlockWidget', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -252,7 +244,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('CruzawlConsole', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -283,7 +274,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   testWidgets('CruzbaseWidget', (WidgetTester tester) async {
     final SimpleScaffoldActions searchBar =
         SimpleScaffoldActions(<Widget>[], searchBar: true);
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -313,7 +303,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
 
     String blockJson2 =
         '{"previous":"00000000000016b4d4fd6a6b73b13d370023f84b9912083d2e8910a1fa1ba22b","hash_list_root":"3789ee33ed9817a99dfed1c40d2a6dc05d76cdd7a8001b7b570fcfd8f3245c43","time":$time2,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"0000000000000000000000000000000000000000000000002a057cb894aede85","nonce":119850769305355,"height":26516,"transaction_count":1}';
-    CruzBlockHeader block2 = CruzBlockHeader.fromJson(jsonDecode(blockJson2));
+    //CruzBlockHeader block2 = CruzBlockHeader.fromJson(jsonDecode(blockJson2));
     msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_block_header_by_height');
     socket.sent.removeFirst();
@@ -373,7 +363,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('TransactionWidget', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -403,7 +392,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('CruzawlNetworkSettings', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -456,7 +444,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('CruzawlSupport', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -480,7 +467,6 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('CruzawlSettings', (WidgetTester tester) async {
-    Wallet wallet = appState.wallet.wallet;
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(

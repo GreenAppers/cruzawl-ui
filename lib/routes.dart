@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
-import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/wallet.dart';
 
@@ -22,12 +21,24 @@ import 'model.dart';
 import 'ui.dart';
 import 'wallet/address.dart';
 
+/// cruzawl_ui routes.
 class CruzawlRoutes {
+  /// The [Model] for this app.
   final Cruzawl appState;
+
+  /// If specified, the maximum width used.
   final double maxWidth;
+
+  /// Displayed while fetching data.
   final Widget loadingWidget;
+
+  /// The default [Route].
   final Route defaultRoute;
+
+  /// Include cruzawl [Wallet] routes.
   final bool includeWalletRoutes;
+
+  /// Optionally include [searchBar].
   final SimpleScaffoldActions searchBar;
 
   CruzawlRoutes(this.appState,

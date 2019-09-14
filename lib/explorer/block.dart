@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// In-depth single [Block] explorer
+library explorer_block;
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -15,12 +18,26 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Explore the transactions and metadata for one [Block].
 class BlockWidget extends StatefulWidget {
+  /// The [PeerNetwork] to retrieve the [Block] from.
   final PeerNetwork network;
-  final String blockId, title;
+
+  /// The title for this [Widget].
+  final String title;
+
+  /// Queries the [Block] with [BlockHeader.id()].
+  final String blockId;
+
+  /// Queries the [Block] with [BlockHeader.height].
   final int blockHeight;
+
+  /// Displayed while fetching data.
   final Widget loadingWidget;
+
+  /// If specified, the maximum width used.
   final double maxWidth;
+
   BlockWidget(this.network,
       {this.blockId,
       this.blockHeight,

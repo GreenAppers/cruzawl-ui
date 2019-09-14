@@ -1,6 +1,9 @@
 // Copyright 2019 cruzall developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Cruzawl settings.
+library explorer_settings;
+
 import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
@@ -11,8 +14,11 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Configure cruzawl settings e.g. language, currency, theme.
 class CruzawlSettings extends StatefulWidget {
+  /// Enable wallet related settings.
   final bool walletSettings;
+
   CruzawlSettings({this.walletSettings = false});
 
   @override
@@ -60,8 +66,8 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         title: Text(l10n.theme),
         trailing: DropdownButton<String>(
           value: appState.preferences.theme,
-          onChanged: (String val) {
-            appState.preferences.theme = val;
+          onChanged: (String val) async {
+            await appState.preferences.setTheme(val);
             appState.setState(() => appState.setTheme());
           },
           items: buildDropdownMenuItem(themes.keys.toList()),
@@ -72,8 +78,8 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         title: Text(l10n.currency),
         trailing: DropdownButton<String>(
           value: appState.preferences.localCurrency,
-          onChanged: (String val) {
-            appState.preferences.localCurrency = val;
+          onChanged: (String val) async {
+            await appState.preferences.setLocalCurrency(val);
             appState.setState(() => appState.setLocalCurrency());
           },
           items: buildDropdownMenuItem(coinbaseCurrencies),
@@ -106,7 +112,8 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
             var password = value
                 ? await Navigator.of(context).pushNamed('/enableEncryption')
                 : null;
-            setState(() => appState.preferences.encryptWallets(password));
+            await appState.preferences.encryptWallets(password);
+            setState(() {});
           },
         ),
       ));
@@ -115,8 +122,10 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         title: Text(l10n.insecureDeviceWarning),
         trailing: Switch(
           value: warningEnabled,
-          onChanged: (bool value) => setState(
-              () => appState.preferences.insecureDeviceWarning = value),
+          onChanged: (bool value) async {
+            await appState.preferences.setInsecureDeviceWarning(value);
+            setState(() {});
+          },
         ),
       ));
       ret.add(ListTile(
@@ -124,20 +133,22 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
             Icon(verifyAddressEveryLoad ? Icons.lock_outline : Icons.lock_open),
         title: Text(l10n.verifyKeyPairsEveryLoad),
         trailing: Switch(
-          value: verifyAddressEveryLoad,
-          onChanged: (bool value) => setState(
-              () => appState.preferences.verifyAddressEveryLoad = value),
-        ),
+            value: verifyAddressEveryLoad,
+            onChanged: (bool value) async {
+              await appState.preferences.setVerifyAddressEveryLoad(value);
+              setState(() {});
+            }),
       ));
       ret.add(ListTile(
         leading:
             Icon(unitTestBeforeCreating ? Icons.lock_outline : Icons.lock_open),
         title: Text(l10n.unitTestBeforeCreatingWallets),
         trailing: Switch(
-          value: unitTestBeforeCreating,
-          onChanged: (bool value) => setState(
-              () => appState.preferences.unitTestBeforeCreating = value),
-        ),
+            value: unitTestBeforeCreating,
+            onChanged: (bool value) async {
+              await appState.preferences.setUnitTestBeforeCreating(value);
+              setState(() {});
+            }),
       ));
       ret.add(GestureDetector(
         child: ListTile(
@@ -152,8 +163,8 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         title: Text(l10n.showWalletNameInTitle),
         trailing: Switch(
           value: appState.preferences.walletNameInTitle,
-          onChanged: (bool value) {
-            appState.preferences.walletNameInTitle = value;
+          onChanged: (bool value) async {
+            await appState.preferences.setWalletNameInTitle(value);
             appState.setState(() {});
           },
         ),
@@ -162,8 +173,8 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         title: Text(l10n.debugLog),
         trailing: Switch(
           value: appState.preferences.debugLog,
-          onChanged: (bool value) {
-            appState.preferences.debugLog = value;
+          onChanged: (bool value) async {
+            await appState.preferences.setDebugLog(value);
             appState.setState(() => appState.debugLog = value ? '' : null);
           },
         ),
@@ -200,6 +211,7 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
   }
 }
 
+/// Setup passphrase and enable wallet encryption.
 class EnableEncryptionWidget extends StatefulWidget {
   @override
   _EnableEncryptionWidgetState createState() => _EnableEncryptionWidgetState();
@@ -264,6 +276,7 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
   }
 }
 
+/// Get support, FAQ, legal.
 class CruzawlSupport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

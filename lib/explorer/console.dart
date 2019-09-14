@@ -1,6 +1,9 @@
 // Copyright 2019 cruzall developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Interactive cruzbit.1 protocol explorer.
+library explorer_console;
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:syntax_highlighter/syntax_highlighter.dart';
 
-import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
 
@@ -16,9 +18,14 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// JSON debug console for cruzbit.1.
 class CruzawlConsole extends StatefulWidget {
+  /// The [PeerNetwork] to query.
   final PeerNetwork network;
+
+  /// The syntax highlighting style, e.g. light or dark.
   final SyntaxHighlighterStyle style = SyntaxHighlighterStyle.lightThemeStyle();
+
   CruzawlConsole(this.network);
 
   @override
@@ -91,7 +98,7 @@ class _CruzawlConsoleState extends State<CruzawlConsole> {
     }
   }
 
-  void submitInput() async {
+  Future<void> submitInput() async {
     if (!formKey.currentState.validate()) return;
     CruzPeer peer = await widget.network.getPeer();
     if (peer == null) return;

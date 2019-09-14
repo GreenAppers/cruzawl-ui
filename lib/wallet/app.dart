@@ -1,6 +1,9 @@
 // Copyright 2019 cruzall developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Widgets for running cruzawl [Wallet] app.
+library wallet_app;
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -18,10 +21,10 @@ import '../routes.dart';
 import '../ui.dart';
 import 'add.dart';
 import 'contacts.dart';
-import 'send.dart';
 import 'settings.dart';
 import 'wallet.dart';
 
+/// Displayed on app's first run.
 class WelcomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,7 @@ class WelcomeWidget extends StatelessWidget {
   }
 }
 
+/// Displayed on app init when encryption is enabled.
 class UnlockWalletWidget extends StatefulWidget {
   @override
   _UnlockWalletWidgetState createState() => _UnlockWalletWidgetState();
@@ -85,7 +89,7 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
               formKey.currentState.save();
               formKey.currentState.reset();
               if (appState.unlockWallets(password))
-                appState.setState(() => appState.openWallets());
+                appState.setState(() async => await appState.openWallets());
             },
           ),
         ]),
@@ -95,11 +99,20 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
   }
 }
 
+/// Forwards to either [WelcomeWidget], [UnlockWalletWidget], [WalletWidget], or [ErrorWidget].
 class WalletApp extends StatefulWidget {
+  /// The [Model] for this app.
   final Cruzawl appState;
+
+  /// The [LocalizationsDelgate]s to use for this app.
   final List<LocalizationsDelegate> localizationsDelegates;
+
+  /// Returns the URI causing this app to open, if any.
   final FutureStringFunction initialUri;
+
+  /// Called with URIs handled by this app, if any.
   final Stream<String> uriStream;
+
   WalletApp(this.appState, this.localizationsDelegates,
       [this.initialUri, this.uriStream]);
 
@@ -108,6 +121,7 @@ class WalletApp extends StatefulWidget {
 }
 
 class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
+  /// The time this app was last paused.
   DateTime paused;
 
   @override

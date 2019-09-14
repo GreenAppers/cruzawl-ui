@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// [CruzBlock] time series explorer
+library explorer_cruzbase;
+
 import 'dart:async';
 import 'dart:math';
 
@@ -24,11 +27,25 @@ enum CruzbaseBucketDuration { minute, hour }
 
 /// Chart of mined blocks, e.g. chart of [Transction.isCoinbase()].
 class CruzbaseWidget extends StatefulWidget {
+  /// The [PeerNetwork] to retrieve [BlockHeader]s from.
   final PeerNetwork network;
+
+  /// Displayed while fetching data.
   final Widget loadingWidget;
-  final Duration windowDuration, animate = Duration(seconds: 5);
+
+  /// The whole chart interval.
+  final Duration windowDuration;
+
+  /// Enables timer to shift the time series left.
+  final Duration animate = Duration(seconds: 5);
+
+  /// The bar interval.
   final CruzbaseBucketDuration bucketDuration;
+
+  /// Layout for desktop (as opposed to mobile).
   final bool wideStyle;
+
+  /// Pipeline this number of [BlockHeader] fetches.
   final int fetchBlock;
 
   CruzbaseWidget(this.network,
@@ -364,7 +381,6 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
       num price) {
     final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
-    final ThemeData theme = Theme.of(context);
     final TextStyle titleStyle = appState.theme.titleStyle;
     final TextStyle linkStyle = appState.theme.titleStyle
         .copyWith(decoration: TextDecoration.underline);
@@ -475,16 +491,24 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
   }
 }
 
-/// Element
+/// Time series element
 class TimeSeriesBlocks {
+  /// Lower bound time for blocks in this bucket.
   DateTime time;
+
+  /// Sum of the number of transcations in [block].
   int transactions = 0;
+
+  /// The blocks with [BlockHeader.time] in this bucket.
   SortedListSet<BlockHeader> block = SortedListSet<BlockHeader>(
       BlockHeader.compareHeight, List<BlockHeader>());
+
   TimeSeriesBlocks(this.time);
 
+  /// The number of blocks in this bucket.
   int get blocks => block.length;
 
+  /// Compare the [BlockHeader.time] of two [BlockHeader].
   static int compareTime(dynamic a, dynamic b) => b.time.compareTo(a.time);
 }
 

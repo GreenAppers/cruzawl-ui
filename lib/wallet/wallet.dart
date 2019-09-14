@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Widgets for navigating cruzawl [Wallet] app.
+library wallet_wallet;
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';

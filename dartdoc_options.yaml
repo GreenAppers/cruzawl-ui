@@ -1,0 +1,2 @@
+dartdoc:
+  exclude: ["messages_all", "messages_cs", "messages_de", "messages_en", "messages_es", "messages_id", "messages_ja", "messages_ko", "messages_ms", "messages_ru", "messages_zh", ]

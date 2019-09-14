@@ -1,5 +1,8 @@
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Widgets for creating cruzawl [Wallet]s.
+library wallet_add;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,9 +17,14 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Adds a new [Wallet].
 class AddWalletWidget extends StatefulWidget {
+  /// The [Model] to call [Cruzawl.addWallet] on.
   final Cruzawl appState;
+
+  /// Whether being displayed on the app's first run.
   final bool welcome;
+
   AddWalletWidget(this.appState, {this.welcome = false});
 
   @override
@@ -149,6 +157,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                     debugPrint('${l10n.invalidPublicKey}: $error');
                     return l10n.invalidPublicKey;
                   }
+                  return null;
                 },
                 onSaved: (value) {
                   Currency cur = Currency.fromJson(currencyName);
@@ -191,6 +200,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                         return l10n.verifyAddressFailed(key.toJson());
                       }
                     }
+                    return null;
                   } catch (error) {
                     debugPrint('${l10n.invalidPrivateKey}: $error');
                     return l10n.invalidPrivateKey;

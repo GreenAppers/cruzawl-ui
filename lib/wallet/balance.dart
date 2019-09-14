@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Widgets for [Wallet] summary.
+library wallet_balance;
+
 import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
@@ -12,6 +15,7 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Show the [Wallet]'s balance and maturing balance.
 class WalletBalanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

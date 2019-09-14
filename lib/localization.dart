@@ -12,10 +12,14 @@ import 'package:cruzawl/currency.dart';
 
 import 'l10n/messages_all.dart';
 
+/// Cruzawl localization strings
 class Localization {
+  /// Optionally overrides the app's title.
   String titleOverride;
+
   Localization({this.titleOverride});
 
+  /// Load the [Localization] for [locale].
   static Future<Localization> load(Locale locale, {String titleOverride}) {
     final String name =
         locale.countryCode == null ? locale.languageCode : locale.toString();
@@ -27,14 +31,14 @@ class Localization {
     });
   }
 
-  static Localization of(BuildContext context) {
-    return Localizations.of<Localization>(context, Localization);
-  }
+  /// Get the [Localization] for [context].
+  static Localization of(BuildContext context) =>
+      Localizations.of<Localization>(context, Localization);
 
   /// Value must be contained in [supportedLanguages]
   String get localeLanguage => Intl.message('English', name: 'localeLanguage');
 
-  /// Title & balance
+  // Title & balance
   String get title => titleOverride ?? Intl.message('Cruzall', name: 'title');
   String get unlockTitle => Intl.message('Unlock Cruzall', name: 'unlockTitle');
   String get welcomeTitle =>
@@ -72,7 +76,7 @@ class Localization {
       'Warning: Typing addresses by hand is dangerous and error prone.  Always use the copy button or QR scanner.',
       name: 'typingAddressesWarning');
 
-  /// Wallet
+  // Wallet
   String creatingUsingAlgorithm(String algorithm) =>
       Intl.message('Creating... ($algorithm)',
           name: 'creatingUsingAlgorithm', args: [algorithm]);
@@ -121,7 +125,7 @@ class Localization {
     }
   }
 
-  /// Verbs & interactions
+  // Verbs & interactions
   String get ok => Intl.message('Ok', name: 'ok');
   String get hide => Intl.message('Hide', name: 'hide');
   String get show => Intl.message('Show', name: 'show');
@@ -147,7 +151,7 @@ class Localization {
       Intl.message('Sent $transactionId',
           name: 'sentTransactionId', args: [transactionId]);
 
-  /// Format
+  // Format
   String listOfTwo(String item1, String item2) =>
       Intl.message('$item1, $item2', name: 'listOfTwo', args: [item1, item2]);
   String listOfThree(String item1, String item2, String item3) =>
@@ -196,7 +200,7 @@ class Localization {
             'a4': LocalizationMarkup(widget: item4),
           });
 
-  /// Titles
+  // Titles
   String get account => Intl.message('Account', name: 'account');
   String get accounts => Intl.message('Accounts', name: 'accounts');
   String get externalAddress =>
@@ -248,7 +252,7 @@ class Localization {
           name: 'totalBlocksTransactionsInLastDuration',
           args: [totalBlocks, totalTransactions, duration]);
 
-  /// Fields
+  // Fields
   String get id => Intl.message('Id', name: 'id');
   String get tip => Intl.message('Tip', name: 'tip');
   String get date => Intl.message('Date', name: 'date');
@@ -311,7 +315,7 @@ class Localization {
   String marketCap(String cap) => Intl.message('Market cap {@<a>}$cap{@</a>}',
       name: 'marketCap', args: [cap]);
 
-  /// Meta-Fields
+  // Meta-Fields
   String get pending => Intl.message('Pending', name: 'pending');
   String get invalidUrl => Intl.message('Invalid URL.', name: 'invalidUrl');
   String get invalidJson => Intl.message('Invalid JSON.', name: 'invalidJson');
@@ -359,7 +363,7 @@ class Localization {
   String minAmount(num amount) => Intl.message('Minimum amount is $amount',
       name: 'minAmount', args: [amount]);
 
-  /// Settings & Verify
+  // Settings & Verify
   String get defaultWalletName =>
       Intl.message('My wallet', name: 'defaultWalletName');
   String get debugLog => Intl.message('Debug Log', name: 'debugLog');
@@ -385,7 +389,7 @@ class Localization {
           name: 'verifyWalletResults',
           args: [goodAddresses, totalAddresses, goodTests, totalTests]);
 
-  /// Durations / rates
+  // Durations / rates
   String secondsDuration(int seconds) => Intl.plural(seconds,
       one: '$seconds second',
       other: '$seconds seconds',
@@ -467,6 +471,7 @@ class Localization {
     return minutesAndSecondsDuration(mins, secs);
   }
 
+  /// The [Locale] that this app supports.
   static final supportedLocales = <Locale>[
     const Locale('en'),
     const Locale('cs'),
@@ -480,7 +485,7 @@ class Localization {
     const Locale('zh'),
   ];
 
-  /// Values must have one-to-one correspondence with [supportedLocales]
+  /// Values must have one-to-one correspondence with [supportedLocales].
   static final supportedLanguages = <String>[
     'English',
     'Čeština',
@@ -512,6 +517,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   bool shouldReload(LocalizationsDelegate<Localization> old) => false;
 }
 
+/// Style applied to localization markup, e.g. {@<a>}markedUp{@</a>}
 class LocalizationMarkup {
   List<Widget> widget;
   Key key;
@@ -522,6 +528,7 @@ class LocalizationMarkup {
       {this.widget, this.key, this.style, this.onTap, this.semanticsLabel});
 }
 
+/// Visitor interface for parsing localization markup.
 abstract class LocalizationMarkupVisitor {
   int state = 0;
   String lastOpenedTag;
@@ -530,6 +537,9 @@ abstract class LocalizationMarkupVisitor {
   void visit(String curText);
 }
 
+/// Parses localization markup, e.g. "Before{@<a>}markedUp{@</a>}after" to:
+/// TextSpan(text: 'Before', children: <TextSpan>[
+///   TextSpan(text: 'markedUp'), TextSpan(text: 'after') ])
 class TextSpanLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
   TextSpan ret;
 
@@ -557,6 +567,9 @@ class TextSpanLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
   }
 }
 
+/// Parses localization markup, e.g. "Before{@<a>}markedUp{@</a>}after" to:
+/// List<Widget>[
+///   Text('Before'), Text('markedUp'), Text('after') ]
 class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
   List<Widget> ret = <Widget>[];
 
@@ -576,6 +589,7 @@ class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
   }
 }
 
+/// Parses localization markup to [TextSpan].
 TextSpan buildLocalizationMarkupTextSpan(String text,
     {TextStyle style, Map<String, LocalizationMarkup> tags}) {
   if (tags == null || tags.length == 0)
@@ -586,6 +600,7 @@ TextSpan buildLocalizationMarkupTextSpan(String text,
   return visitor.ret;
 }
 
+/// Parses localization markup to [List<Widget>].
 List<Widget> buildLocalizationMarkupWidgets(String text,
     {TextStyle style, Map<String, LocalizationMarkup> tags}) {
   if (tags == null || tags.length == 0)

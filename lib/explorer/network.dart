@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// [PeerNetwork] settings.
+library explorer_network;
+
 import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
@@ -13,6 +16,7 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Manage [PeerPreference] list.
 class CruzawlNetworkSettings extends StatefulWidget {
   @override
   _CruzawlNetworkSettingsState createState() => _CruzawlNetworkSettingsState();
@@ -35,8 +39,8 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
       SwitchListTile(
         title: Text(l10n.network),
         value: appState.preferences.networkEnabled,
-        onChanged: (bool value) {
-          appState.preferences.networkEnabled = value;
+        onChanged: (bool value) async {
+          await appState.preferences.setNetworkEnabled(value);
           appState.reconnectPeers(appState.currency);
           appState.setState(() {});
         },
@@ -109,13 +113,13 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
       Flexible(
         child: ReorderableListView(
           children: reorder,
-          onReorder: (int oldIndex, int newIndex) {
+          onReorder: (int oldIndex, int newIndex) async {
             debugPrint('reorder $oldIndex -> $newIndex');
+            PeerPreference peer = peers[oldIndex];
+            peers.insert(newIndex, peer);
+            peers.removeAt(oldIndex + (newIndex < oldIndex ? 1 : 0));
+            await appState.preferences.setPeers(peers);
             setState(() {
-              PeerPreference peer = peers[oldIndex];
-              peers.insert(newIndex, peer);
-              peers.removeAt(oldIndex + (newIndex < oldIndex ? 1 : 0));
-              appState.preferences.peers = peers;
               if (selectedPeerIndex == oldIndex)
                 selectedPeerIndex = newIndex - (newIndex > oldIndex ? 1 : 0);
             });
@@ -151,12 +155,10 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
           ),
           FlatButton(
             child: Text(l10n.delete),
-            onPressed: () {
-              setState(() {
-                peers.removeAt(selectedPeerIndex);
-                appState.preferences.peers = peers;
-                appState.reconnectPeers(appState.currency);
-              });
+            onPressed: () async {
+              peers.removeAt(selectedPeerIndex);
+              await appState.preferences.setPeers(peers);
+              setState(() => appState.reconnectPeers(appState.currency));
               Navigator.of(context).pop();
             },
           ),
@@ -168,6 +170,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
   }
 }
 
+/// Add [PeerPreference] to list.
 class AddPeerWidget extends StatefulWidget {
   @override
   _AddPeerWidgetState createState() => _AddPeerWidgetState();
@@ -242,7 +245,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
         RaisedGradientButton(
           labelText: l10n.create,
           padding: EdgeInsets.all(32),
-          onPressed: () {
+          onPressed: () async {
             if (!formKey.currentState.validate()) return;
             formKey.currentState.save();
             formKey.currentState.reset();
@@ -253,7 +256,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
             String options =
                 PeerPreference.formatOptions(ignoreBadCert: !certRequired);
             peers.add(PeerPreference(name, url, currency.ticker, options));
-            appState.preferences.peers = peers;
+            await appState.preferences.setPeers(peers);
             if (peers.length == 1) appState.connectPeers(currency);
 
             appState.setState(() {});

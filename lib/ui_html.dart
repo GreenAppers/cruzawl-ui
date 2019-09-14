@@ -6,6 +6,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Home button with logo.png instead of "back" button the browser already has.
 WidgetBuilder backButtonBuilder = (BuildContext context) => GestureDetector(
     child: Center(
         child: Container(
@@ -29,14 +30,15 @@ WidgetBuilder backButtonBuilder = (BuildContext context) => GestureDetector(
       window.history.replaceState({}, '', '/#/');
     });
 
+/// Wraps [TextFormField] adding "Paste" context menu and <Enter> submitting.
 class EnterTextFormField extends StatelessWidget {
-  TextEditingController controller;
-  InputDecoration decoration;
-  TextStyle style;
-  Color cursorColor;
-  bool autofocus, autocorrect;
-  FormFieldValidator<String> validator;
-  ValueChanged<String> onFieldSubmitted;
+  final TextEditingController controller;
+  final InputDecoration decoration;
+  final TextStyle style;
+  final Color cursorColor;
+  final bool autofocus, autocorrect;
+  final FormFieldValidator<String> validator;
+  final ValueChanged<String> onFieldSubmitted;
   EnterTextFormField(
       {this.controller,
       this.decoration,

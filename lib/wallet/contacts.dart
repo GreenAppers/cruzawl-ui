@@ -1,22 +1,27 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Widgets for managing [Contact]s.
+library wallet_contacts;
+
 import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
-import 'package:cruzawl/network.dart';
 import 'package:cruzawl/preferences.dart';
+import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
-import 'address.dart';
 
+/// Select or modify [CruzawlPreferences.contacts].
 class ContactsWidget extends StatefulWidget {
+  /// If editing or selecting.
   final bool editing;
+
   ContactsWidget({this.editing = false});
 
   @override
@@ -73,16 +78,17 @@ class _ContactsWidgetState extends State<ContactsWidget> {
         ));
   }
 
-  void removeSelectedContact() {
-    if (selectedContactIndex == null) return;
+  Future<void> removeSelectedContact() async {
+    if (selectedContactIndex == null) return voidResult;
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     Map<String, Contact> newContacts = appState.preferences.contacts;
     newContacts.remove(contacts[selectedContactIndex].addressText);
-    appState.preferences.contacts = newContacts;
+    await appState.preferences.setContacts(newContacts);
     setState(() => selectedContactIndex = null);
   }
 }
 
+/// Adds new [Contact] to [CruzawlPreferences.contacts].
 class AddContactWidget extends StatefulWidget {
   @override
   _AddContactWidgetState createState() => _AddContactWidgetState();
@@ -156,7 +162,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
         RaisedGradientButton(
           labelText: l10n.create,
           padding: EdgeInsets.all(32),
-          onPressed: () {
+          onPressed: () async {
             if (!formKey.currentState.validate()) return;
             formKey.currentState.save();
             formKey.currentState.reset();
@@ -168,7 +174,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
 
             contacts[address] =
                 Contact(name, null, null, currency.ticker, '', address);
-            appState.preferences.contacts = contacts;
+            await appState.preferences.setContacts(contacts);
 
             appState.setState(() {});
             Navigator.of(context).pop();
@@ -179,6 +185,7 @@ class _AddContactWidgetState extends State<AddContactWidget> {
   }
 }
 
+/// Selects a [Wallet] [Address] to send a [Transcation] from.
 class SendFromWidget extends StatelessWidget {
   final Wallet wallet;
   final VoidCallback onTap;

@@ -9,31 +9,48 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
-import 'package:cruzawl/util.dart' hide VoidCallback;
 
 import 'localization.dart';
 import 'model.dart';
 import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
 export 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
 
+/// Use desktop instead of mobile style if [maxWidth] exceeded.
 bool useWideStyle(BuildContext context, double maxWidth) =>
     MediaQuery.of(context).size.width > (maxWidth ?? double.maxFinite);
 
+/// [Model] controlling [GradientAppBar.actions] for [SimpleScaffold].
 class SimpleScaffoldActions extends Model {
+  /// The actions [SimpleScaffold] should supply [AppBar].
   List<Widget> actions;
+
+  /// Search error text;
   String searchError;
-  bool searchBar, showSearchBar = false, searching = false;
+
+  /// Enables an [AppBar] search box.
+  bool searchBar;
+
+  /// If the search box is currently displayed.
+  bool showSearchBar = false;
+
+  /// If currently fetching search results.
+  bool searching = false;
+
   SimpleScaffoldActions(this.actions, {this.searchBar = false});
 
+  /// Toggle the search box, e.g. if user tapped the search icon.
   void toggleSearchBar() => setState(() => showSearchBar = !showSearchBar);
 
+  /// Set when sending search queries and cleared after receving results.
   void setSearching(bool v) => setState(() => searching = v);
 
+  /// Like [State.setState()] for this [Model].
   void setState(VoidCallback stateChangeCb) {
     stateChangeCb();
     notifyListeners();
   }
 
+  /// Retrieves and clears the search error, if any.
   String getSearchError(Localization l10n) {
     if (searching) return l10n.loading;
     String ret = searchError;
@@ -42,9 +59,22 @@ class SimpleScaffoldActions extends Model {
   }
 }
 
+/// A [Scaffold] with [GradientAppBar] and [SimpleScaffoldActions] controls.
 class SimpleScaffold extends StatefulWidget {
+  /// Specifies [GradientAppBar.title] as [Text] with [title].
   final String title;
-  final Widget body, secondColumn, titleWidget, bottomNavigationBar;
+
+  /// Specifies [GradientAppBar.title] with [titleWidget].
+  final Widget titleWidget;
+
+  /// The [Scaffold.body].
+  final Widget body;
+
+  /// Optionally place [secondColumn] next to [body].
+  final Widget secondColumn;
+
+  /// Optionally adds a bottom navigation bar.
+  final Widget bottomNavigationBar;
 
   SimpleScaffold(this.body,
       {this.title,
@@ -233,10 +263,15 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
   }
 }
 
+/// Simple model for [PopupMenuButton].
 class PopupMenuBuilder {
+  /// List of [PopupMenuItem] actions.
   List<PopupMenuItem<int>> item = <PopupMenuItem<int>>[];
+
+  /// Called by corresponding [item]'s [PopupMenuButton.onSelected].
   List<VoidCallback> onSelectedCallback = <VoidCallback>[];
 
+  /// Add actions to the [PopupMenuButton] returned by [build()].
   PopupMenuBuilder addItem(
       {IconData icon, String text, VoidCallback onSelected}) {
     onSelectedCallback.add(onSelected);
@@ -261,6 +296,7 @@ class PopupMenuBuilder {
     return this;
   }
 
+  /// Build the [PopupMenuButton].
   Widget build(
       {Icon icon,
       Widget child,
@@ -276,13 +312,24 @@ class PopupMenuBuilder {
   }
 }
 
+/// Gradient filled [FlatButton] with [BoxShadow].
 class RaisedGradientButton extends StatelessWidget {
+  /// Text labeling this button.
   final String labelText;
+
+  /// Icon for this button.
+  final IconData icon;
+
+  /// Called when this button pressed.
   final VoidCallback onPressed;
+
+  /// Padding for this button.
   final EdgeInsets padding;
+
   RaisedGradientButton(
       {this.labelText,
       this.onPressed,
+      this.icon = Icons.send,
       this.padding = const EdgeInsets.all(16)});
 
   @override
@@ -312,10 +359,7 @@ class RaisedGradientButton extends StatelessWidget {
             ),
             child: FlatButton.icon(
               color: Colors.transparent,
-              icon: const Icon(
-                Icons.send,
-                color: Colors.white,
-              ),
+              icon: icon == null ? null : Icon(icon, color: Colors.white),
               label: Text(
                 labelText,
                 style: TextStyle(
@@ -332,9 +376,14 @@ class RaisedGradientButton extends StatelessWidget {
   }
 }
 
+/// Gradient and title for [AlertDialog.content].
 class TitledWidget extends StatelessWidget {
+  /// The title for this widget.
   final String title;
+
+  /// The content for this widget.
   final Widget content;
+
   TitledWidget({this.title, this.content});
 
   @override
@@ -380,9 +429,14 @@ class TitledWidget extends StatelessWidget {
   }
 }
 
+/// Widget for optionally displaying private information.
 class HideableWidget extends StatefulWidget {
+  /// Title of the private information.
   final String title;
+
+  /// The private information to optionally display.
   final Widget child;
+
   HideableWidget({this.title, this.child});
 
   @override
@@ -440,11 +494,20 @@ class _HideableWidgetState extends State<HideableWidget> {
   }
 }
 
+/// Adds copy icon before [text].
 class CopyableText extends StatelessWidget {
+  /// The text to display and optionally copy.
   final String text;
+
+  /// The [TextStyle] for [text].
   final TextStyle style;
+
+  /// Called when text is tapped.
   final VoidCallback onTap;
+
+  /// Called when copy icon is pressed
   final SetClipboardText setClipboardText;
+
   CopyableText(this.text, this.setClipboardText, {this.style, this.onTap});
 
   @override
@@ -471,6 +534,7 @@ class CopyableText extends StatelessWidget {
       );
 }
 
+/// Returns list of [DropdownMenuItem] with value x, and child Text(x).
 List<DropdownMenuItem<String>> buildDropdownMenuItem(List<String> x) {
   return x
       .map<DropdownMenuItem<String>>((String value) => DropdownMenuItem<String>(
@@ -480,6 +544,7 @@ List<DropdownMenuItem<String>> buildDropdownMenuItem(List<String> x) {
       .toList();
 }
 
+/// Returns [ListTile] styled for desktop or mobile depending on [wideStyle].
 Widget buildListTile(Widget title, bool wideStyle, Widget widget) {
   return wideStyle
       ? ListTile(title: title, trailing: widget)
@@ -488,16 +553,32 @@ Widget buildListTile(Widget title, bool wideStyle, Widget widget) {
           child: ListTile(title: Center(child: title), subtitle: widget));
 }
 
+/// [ThemeData] and further customizations.
 class AppTheme {
+  /// The [ThemeData] for this app.
   ThemeData data;
+
+  /// Color to use for links, e.g. [data.accentColor].
   Color linkColor;
+
+  /// Font to use in [AppBar].
   String titleFont;
-  TextStyle titleStyle, labelStyle, linkStyle;
+
+  /// Style to use in [AppBar].
+  TextStyle titleStyle;
+
+  /// Style to use for labels.
+  TextStyle labelStyle;
+
+  /// Style to use for links, e.g. underlined [data.accentColor].
+  TextStyle linkStyle;
+
   AppTheme(this.data, {this.linkColor}) {
     linkColor = linkColor ?? data.primaryColor;
   }
 }
 
+/// Supported themes.
 Map<String, AppTheme> themes = <String, AppTheme>{
   'red': AppTheme(
       ThemeData(primarySwatch: Colors.red, accentColor: Colors.redAccent)),

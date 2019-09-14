@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Widgets for sending [Transcation].
+library wallet_send;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,14 +11,13 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
-import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/wallet.dart';
 
 import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
-import 'address.dart';
 
+/// Send [Transcation] using [Address] from [Wallet].
 class WalletSendWidget extends StatefulWidget {
   final Wallet wallet;
   WalletSendWidget(this.wallet);

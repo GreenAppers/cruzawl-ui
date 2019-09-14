@@ -161,14 +161,14 @@ packages:
       path: "../cruzawl"
       relative: true
     source: path
-    version: "1.0.7+7"
+    version: "1.0.8+8"
   crypto:
     dependency: transitive
     description:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   csslib:
     dependency: transitive
     description:

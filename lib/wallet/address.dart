@@ -1,6 +1,9 @@
 // Copyright 2019 cruzall developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// In-depth single [Wallet] [Address] examiner.
+library wallet_address;
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -17,9 +20,14 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Examine the transactions and metadata for one [Wallet] [Address].
 class AddressWidget extends StatefulWidget {
+  /// The [Wallet] holding [address].
   final Wallet wallet;
+
+  /// The [Address] to examine.
   final Address address;
+
   AddressWidget(this.wallet, this.address);
 
   @override

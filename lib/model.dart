@@ -154,9 +154,9 @@ class Cruzawl extends Model {
     }
   }
 
-  void openWallets() {
+  Future<void> openWallets() async {
     Map<String, String> loadedWallets = preferences.wallets;
-    loadedWallets.forEach((k, v) => addWallet(
+    loadedWallets.forEach((k, v) async => await addWallet(
         Wallet.fromFile(
             databaseFactory,
             networks,
@@ -197,7 +197,7 @@ class Cruzawl extends Model {
   String getWalletFilename(String walletName) =>
       dataDir + walletName + walletSuffix;
 
-  Wallet addWallet(Wallet x, {bool store = true}) {
+  Future<Wallet> addWallet(Wallet x, {bool store = true}) async {
     walletsLoading++;
     x.balanceChanged = notifyListeners;
     setWallet(WalletModel(x));
@@ -205,7 +205,7 @@ class Cruzawl extends Model {
     if (store) {
       Map<String, String> loadedWallets = preferences.wallets;
       loadedWallets[x.name] = base64.encode(x.seed.data);
-      preferences.wallets = loadedWallets;
+      await preferences.setWallets(loadedWallets);
     }
     return x;
   }
@@ -218,7 +218,7 @@ class Cruzawl extends Model {
     if (store) {
       Map<String, String> loadedWallets = preferences.wallets;
       loadedWallets.remove(name);
-      preferences.wallets = loadedWallets;
+      await preferences.setWallets(loadedWallets);
     }
     await fileSystem.remove(getWalletFilename(name));
   }

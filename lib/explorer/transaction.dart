@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// In-depth single [Transaction] explorer
+library explorer_transaction;
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -14,14 +17,29 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Explore the transaction and metadata for one [Transaction].
 class TransactionWidget extends StatefulWidget {
+  /// The [PeerNetwork] to retrieve the [Transaction] from.
   final PeerNetwork network;
-  final TransactionMessage transaction;
+
+  /// The associated [TransactionInfo], e.g. is this transaction to/from our wallet?
   final TransactionInfo info;
+
+  /// Queries with the [Transaction] itself.
+  final TransactionMessage transaction;
+
+  /// Queries the [Transaction] with [Transcation.id()].
   final String transactionIdText;
+
+  /// onTap callback for [Transcation.height] e.g. to link to the [Block].
   final TransactionCallback onHeightTap;
+
+  /// Displayed while fetching data.
   final Widget loadingWidget;
+
+  /// If specified, the maximum width used.
   final double maxWidth;
+
   TransactionWidget(this.network, this.info,
       {this.transaction,
       this.transactionIdText,

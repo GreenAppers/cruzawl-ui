@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// Widgets for receiving [Transcation].
+library wallet_receive;
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -15,6 +18,7 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Generate or retrieve an [Address] from [Wallet].
 class WalletReceiveWidget extends StatefulWidget {
   @override
   _WalletReceiveWidgetState createState() => _WalletReceiveWidgetState();

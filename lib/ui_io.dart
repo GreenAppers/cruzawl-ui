@@ -10,8 +10,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'localization.dart';
 import 'model.dart';
 
-WidgetBuilder backButtonBuilder = null;
+WidgetBuilder backButtonBuilder;
 
+/// Wraps [TextFormField] adding "Paste" context menu and <Enter> submitting.
 class EnterTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final InputDecoration decoration;
@@ -42,6 +43,7 @@ class EnterTextFormField extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted);
 }
 
+/// Wraps [TextFormField] adding "Paste" context menu.
 class PastableTextFormField extends StatelessWidget {
   final Key key;
   final TextEditingController controller;

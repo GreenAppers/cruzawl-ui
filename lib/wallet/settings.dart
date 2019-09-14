@@ -1,6 +1,9 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
+/// In-depth single [Wallet] examiner.
+library wallet_address;
+
 import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
@@ -12,9 +15,14 @@ import '../localization.dart';
 import '../model.dart';
 import '../ui.dart';
 
+/// Examine the transactions and metadata for a [Wallet].
 class WalletSettingsWidget extends StatelessWidget {
+  /// The [Wallet] to examine.
   final Wallet wallet;
+
+  /// Populated from [wallet] in constructor.
   final List<Address> addresses;
+
   WalletSettingsWidget(this.wallet)
       : addresses = wallet.addresses.values.toList()
           ..sort(Address.compareBalance);
