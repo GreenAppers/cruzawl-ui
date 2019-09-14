@@ -28,11 +28,13 @@ typedef SetClipboardText = void Function(BuildContext, String);
 typedef QrImageFunction = Widget Function(String);
 typedef CruzawlCallback = void Function(Cruzawl);
 
+/// Package details from pubspec.yaml.
 class PackageInfo {
   final String appName, packageName, version, buildNumber;
   PackageInfo(this.appName, this.packageName, this.version, this.buildNumber);
 }
 
+/// [Transaction] metadata, e.g. is this transaction to/from our wallet?
 class TransactionInfo {
   Color color;
   String amountPrefix = '';
@@ -52,6 +54,7 @@ class TransactionInfo {
   }
 }
 
+/// Check if [Transaction] is to/from our [Wallet].
 class WalletTransactionInfo extends TransactionInfo {
   WalletTransactionInfo(Wallet wallet, Transaction tx)
       : super(
@@ -59,6 +62,7 @@ class WalletTransactionInfo extends TransactionInfo {
             fromWallet: wallet.addresses.containsKey(tx.fromText));
 }
 
+/// [Model] wrapper for the pure-dart [Wallet.notifyListeners].
 class WalletModel extends Model {
   final Wallet wallet;
   WalletModel(this.wallet) {
@@ -68,8 +72,10 @@ class WalletModel extends Model {
   }
 
   Currency get currency => wallet.currency;
+  PeerNetwork get network => wallet.network;
 }
 
+/// Main [Model].
 class Cruzawl extends Model {
   AppTheme theme;
   Locale localeOverride;
@@ -121,13 +127,16 @@ class Cruzawl extends Model {
     setTheme();
   }
 
+  /// Like [State.setState()] for this [Model].
   void setState(VoidCallback stateChangeCb) {
     stateChangeCb();
     notifyListeners();
   }
 
+  /// Update for new local currency.
   void setLocalCurrency() => defaultUpdateBtcToCurrency(exchangeRates);
 
+  /// Update for new theme.
   void setTheme() {
     theme = themes[preferences.theme] ?? themes['teal'];
     theme.titleFont = 'MartelSans';
@@ -144,6 +153,7 @@ class Cruzawl extends Model {
     );
   }
 
+  /// Unlock all our wallets using [password].
   bool unlockWallets(String password) {
     try {
       preferences.walletsPassword = password;
@@ -154,6 +164,7 @@ class Cruzawl extends Model {
     }
   }
 
+  /// Open our wallets from storage.
   Future<void> openWallets() async {
     Map<String, String> loadedWallets = preferences.wallets;
     loadedWallets.forEach((k, v) async => await addWallet(
@@ -169,6 +180,7 @@ class Cruzawl extends Model {
         store: false));
   }
 
+  /// Called once [x] has been opened.
   void openedWallet(Wallet x) {
     if (x.fatal != null) {
       if (fatal == null) {
@@ -178,25 +190,29 @@ class Cruzawl extends Model {
       }
     } else {
       /// Replaces [LoadingCurrency]
-      if (wallet.wallet == x) setCurrency(x.currency);
+      if (wallet.wallet == x) _setCurrency(x.currency);
       walletsLoading--;
     }
     notifyListeners();
   }
 
-  void setCurrency(Currency x) {
+  /// Set the active currency.
+  void _setCurrency(Currency x) {
     currency = x;
     network = findPeerNetworkForCurrency(networks, x);
   }
 
+  /// Set the active wallet.
   void setWallet(WalletModel x) {
     wallet = x;
-    setCurrency(wallet.wallet.currency);
+    _setCurrency(wallet.wallet.currency);
   }
 
+  /// Returns the filename for [walletName].
   String getWalletFilename(String walletName) =>
       dataDir + walletName + walletSuffix;
 
+  /// Add [x] to [wallets].
   Future<Wallet> addWallet(Wallet x, {bool store = true}) async {
     walletsLoading++;
     x.balanceChanged = notifyListeners;
@@ -210,6 +226,7 @@ class Cruzawl extends Model {
     return x;
   }
 
+  /// Remove and delete the currenly active wallet.
   void removeWallet({bool store = true}) async {
     assert(wallets.length > 1);
     String name = wallet.wallet.name;
@@ -223,8 +240,10 @@ class Cruzawl extends Model {
     await fileSystem.remove(getWalletFilename(name));
   }
 
+  /// Changes the active wallet to [x].
   void changeActiveWallet(WalletModel x) => setState(() => setWallet(x));
 
+  /// Called on new tip.
   void updateWallets(Currency currency) {
     if (wallets.isEmpty) {
       if (network != null) print('updated ${network.tipHeight}');
@@ -235,6 +254,7 @@ class Cruzawl extends Model {
       }
   }
 
+  /// Called on new peer connection.
   void reloadWallets(Currency currency) async {
     print('Cruzawl reloadWallets');
     if (wallets.isEmpty) {
@@ -247,11 +267,13 @@ class Cruzawl extends Model {
     notifyListeners();
   }
 
+  /// Reconnect to the [PeerNetwork].
   void reconnectPeers(Currency currency) {
     network.shutdown();
     connectPeers(currency);
   }
 
+  /// Calls [addPeer] on [peers] with [Peer.currency] matching [currency].
   void connectPeers(Currency currency) {
     List<Peer> peers = preferences.peers
         .where((v) => v.currency == currency.ticker)
@@ -260,6 +282,7 @@ class Cruzawl extends Model {
     if (peers.length > 0 && preferences.networkEnabled) peers[0].connect();
   }
 
+  /// Creates the [Peer] described by [x] and adds to [PeerNetwork].
   Peer addPeer(PeerPreference x) {
     Currency currency = Currency.fromJson(x.currency);
     if (currency == null) return null;
@@ -288,6 +311,7 @@ class Cruzawl extends Model {
     return true;
   }
 
+  /// Runs a unit test suite on-device.
   int runUnitTests() {
     int tests = 0;
     print('running unit tests');
@@ -308,6 +332,7 @@ class Cruzawl extends Model {
     return tests;
   }
 
+  /// Wraps [debugPrint()] and appends to [debugLog].
   void print(String text) {
     if (debugLog != null) {
       debugLog += text;
@@ -340,19 +365,6 @@ class Cruzawl extends Model {
       Navigator.of(c).pushNamed('/transaction/' + tx.id().toJson());
   void launchMarketUrl(BuildContext c) =>
       launchUrl(c, 'https://qtrade.io/market/CRUZ_BTC');
-}
-
-class PagePath {
-  String page, arg;
-  PagePath(this.page, this.arg);
-
-  factory PagePath.parse(String path) {
-    int start = 0 + (path.length > 0 && path[0] == '/' ? 1 : 0);
-    int slash = path.indexOf('/', start);
-    return (slash >= start && slash < path.length)
-        ? PagePath(path.substring(start, slash), path.substring(slash + 1))
-        : PagePath(path.substring(start), '');
-  }
 }
 
 QrImageFunction createQrImage = (String x) => QrImage(data: x);

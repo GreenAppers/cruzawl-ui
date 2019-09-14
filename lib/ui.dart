@@ -620,11 +620,26 @@ Map<String, AppTheme> themes = <String, AppTheme>{
       primarySwatch: Colors.blueGrey, accentColor: Colors.blueGrey[100])),
 };
 
+/// [ListTile] describing a [Transaction].
 class TransactionListTile extends StatelessWidget {
+  /// The [Currency] for this transaction.
   final Currency currency;
+
+  /// The [Transaction] data.
   final Transaction tx;
+
+  /// The associated [TransactionInfo], e.g. is this transaction to/from our wallet?
   final TransactionInfo info;
-  final TransactionCallback onTap, onFromTap, onToTap;
+
+  /// Called when the [ListTile] is tapped.
+  final TransactionCallback onTap;
+
+  /// Called when the [Transaction.from] text is tapped.
+  final TransactionCallback onFromTap;
+
+  /// Called when the [Transaction.to] text is tapped.
+  final TransactionCallback onToTap;
+
   TransactionListTile(this.currency, this.tx, this.info,
       {this.onTap, this.onFromTap, this.onToTap});
 
@@ -678,12 +693,26 @@ class TransactionListTile extends StatelessWidget {
   }
 }
 
+/// [ListTile] describing an [Address].
 class AddressListTile extends StatelessWidget {
+  /// The [Currency] for this transaction.
   final Currency currency;
-  final String text, name;
+
+  /// The [Address.publicKey] text.
+  final String text;
+
+  /// The name of this address, e.g. from [Contact] list.
+  final String name;
+
+  /// An icon for this address, e.g. a Jdenticon.
   final Widget icon;
+
+  /// The balance for this address.
   final num balance;
+
+  /// Called when the [ListTile] is tapped.
   final VoidCallback onTap;
+
   AddressListTile(this.currency, this.text, this.icon,
       {this.name, this.balance, this.onTap});
 
@@ -707,9 +736,14 @@ class AddressListTile extends StatelessWidget {
   }
 }
 
+/// [Row] describing an [Address].
 class AddressRow extends StatelessWidget {
+  /// The name of this address, e.g. from [Contact] list.
   final String name;
+
+  /// An icon for this address, e.g. a Jdenticon.
   final Widget icon;
+
   AddressRow(this.name, this.icon);
 
   @override

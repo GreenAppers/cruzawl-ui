@@ -21,6 +21,26 @@ import 'model.dart';
 import 'ui.dart';
 import 'wallet/address.dart';
 
+/// cruzawl_ui route.
+class PagePath {
+  /// The page, e.g. /address or /transaction.
+  String page;
+
+  /// The argument, e.g. /address/<addressText> or /transcation/<transactionId>.
+  String arg;
+
+  PagePath(this.page, this.arg);
+
+  /// Parses paths into [page] and [arg].
+  factory PagePath.parse(String path) {
+    int start = 0 + (path.length > 0 && path[0] == '/' ? 1 : 0);
+    int slash = path.indexOf('/', start);
+    return (slash >= start && slash < path.length)
+        ? PagePath(path.substring(start, slash), path.substring(slash + 1))
+        : PagePath(path.substring(start), '');
+  }
+}
+
 /// cruzawl_ui routes.
 class CruzawlRoutes {
   /// The [Model] for this app.

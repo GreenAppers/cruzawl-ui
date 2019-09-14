@@ -59,40 +59,17 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
 
   SetClipboardText stringCallback = (BuildContext c, String x) {};
   TestHttpClient httpClient = TestHttpClient();
-  Cruzawl appState = Cruzawl(
-      assetPath,
-      stringCallback,
-      stringCallback,
-      null,
-      databaseFactoryMemoryFs,
-      preferences,
-      '/',
-      NullFileSystem(),
+  Cruzawl appState = Cruzawl(assetPath, stringCallback, stringCallback, null,
+      databaseFactoryMemoryFs, preferences, '/', NullFileSystem(),
       packageInfo:
           PackageInfo('Cruzall', 'com.greenappers.cruzall', '1.0.0', '0'),
       httpClient: httpClient);
   appState.debugLevel = debugLevelDebug;
   appState.preferences.setDebugLog(true);
   TestWebSocket socket = TestWebSocket();
-
   Currency currency = Currency.fromJson('CRUZ');
-  appState.addWallet(
-      Wallet.fromPublicKeyList(
-          databaseFactoryMemoryFs,
-          appState.fileSystem,
-          'empty.cruzall',
-          'Empty wallet',
-          findPeerNetworkForCurrency(appState.networks, currency),
-          Seed(randBytes(64)),
-          <PublicAddress>[currency.nullAddress],
-          appState.preferences,
-          debugPrint,
-          appState.openedWallet),
-      store: false);
+  CruzPeer peer;
 
-  CruzPeer peer = appState.addPeer(appState.preferences.peers[0]);
-  peer.ws = socket;
-  peer.connect();
   String addressText = '5lojzpXqrpAfrYSxF0s8vyRSQ0SlhiovzacD+tI1oK8=';
   String tipBlockId =
       '0000000000000ab4ac72b9b6061cb19195fe1a8a6d5b961f793f6b61f6f9aa9c';
@@ -104,7 +81,25 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   String transactionId =
       '8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f';
 
-  test('CruzPeer connect', () {
+  test('CruzPeer connect', () async {
+    appState.addWallet(
+        Wallet.fromPublicKeyList(
+            databaseFactoryMemoryFs,
+            appState.fileSystem,
+            'empty.cruzall',
+            'Empty wallet',
+            findPeerNetworkForCurrency(appState.networks, currency),
+            Seed(randBytes(64)),
+            <PublicAddress>[currency.nullAddress],
+            appState.preferences,
+            debugPrint,
+            appState.openedWallet),
+        store: false);
+
+    peer = appState.addPeer(appState.preferences.peers[0]);
+    peer.ws = socket;
+    peer.connect();
+
     expect(socket.sent.length, 2);
     var msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_tip_header');
@@ -117,22 +112,21 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     socket.sent.removeFirst();
     socket.messageHandler(
         '{"type":"transaction_relay_policy","body":{"min_fee":1000000,"min_amount":1000000}}');
-
     expect(appState.network.tipHeight, 25352);
-  });
+    await pumpEventQueue();
 
-  test('CruzPeer filter_add', () {
+    // filter_add
     expect(socket.sent.length, 1);
-    var msg = jsonDecode(socket.sent.first);
+    msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'filter_add');
     expect(msg['body']['public_keys'][0], cruz.nullAddress.toJson());
     socket.sent.removeFirst();
     socket.messageHandler('{"type":"filter_result"}');
-  });
+    await pumpEventQueue();
 
-  test('CruzPeer get_balance', () {
+    // get_balance
     expect(socket.sent.length, 1);
-    var msg = jsonDecode(socket.sent.first);
+    msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_balance');
     String addr = msg['body']['public_key'];
     int balance = 0;
@@ -140,22 +134,22 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     socket.sent.removeFirst();
     socket.messageHandler(
         '{"type":"balance","body":{"block_id":"0000000000000ab4ac72b9b6061cb19195fe1a8a6d5b961f793f6b61f6f9aa9c","height":25352,"public_key":"$addr","balance":$balance}}');
-  });
+    await pumpEventQueue();
 
-  test('CruzPeer get_public_key_transactions', () {
+    // get_public_key_transactions
     expect(socket.sent.length, 1);
-    var msg = jsonDecode(socket.sent.first);
+    msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_public_key_transactions');
-    String addr = msg['body']['public_key'];
+    addr = msg['body']['public_key'];
     expect(addr, cruz.nullAddress.toJson());
     socket.sent.removeFirst();
     socket.messageHandler(
         '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":null}}');
-  });
+    await pumpEventQueue();
 
-  test('CruzPeer get_filter_transaction_queue', () {
+    // get_filter_transaction_queue
     expect(socket.sent.length, 1);
-    var msg = jsonDecode(socket.sent.first);
+    msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_filter_transaction_queue');
     socket.sent.removeFirst();
     socket.messageHandler(

@@ -1,14 +1,17 @@
 name: cruzawl_ui
-description: Flutter package for the CRUZ cryptocurrency and the cruzbit.1 network.
-
 version: 1.0.0+0
+description: Flutter package for the CRUZ cryptocurrency and the cruzbit.1 network.
+author: Green Appers, Inc. <greenappers@gmail.com>
+homepage: https://github.com/GreenAppers/cruzawl-ui
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   barcode_scan: ^1.0.0
+  bip39: ^1.0.3
   charts_flutter: ^0.8.0
+  collection: ^1.14.11
   cruzawl:
     path: ../cruzawl
   json_annotation: ^3.0.0
@@ -17,9 +20,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   gradient_app_bar: ^0.0.1
-  qr_flutter:
-    git:
-      url: git://github.com/lukef/qr.flutter.git
+  intl: ^0.16.0
+  qr_flutter: ^3.0.1
   sembast: ^2.0.1
   scoped_model: ^1.0.1
   syntax_highlighter: ^0.1.0
