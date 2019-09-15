@@ -19,9 +19,9 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 enum CruzbaseBucketDuration { minute, hour }
 
@@ -86,22 +86,24 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
   /// Chart of one hour with minute long buckets.
   void setIntervalHourly() {
-    if (!loading)
+    if (!loading) {
       setState(() {
         windowDuration = const Duration(hours: 1);
         bucketDuration = CruzbaseBucketDuration.minute;
         clear();
       });
+    }
   }
 
   /// Chart of one day with hour long buckets.
   void setIntervalDaily() {
-    if (!loading)
+    if (!loading) {
       setState(() {
         windowDuration = const Duration(days: 1);
         bucketDuration = CruzbaseBucketDuration.hour;
         clear();
       });
+    }
   }
 
   /// Add a new block to [data].
@@ -139,8 +141,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
 
   /// Window to the left moves backwards as [data] grows backwards.
   void updateWindowStartTime([DateTime newDataStart]) {
-    if (windowStart.compareTo(dataStart) <= 0)
+    if (windowStart.compareTo(dataStart) <= 0) {
       windowStart = newDataStart ?? dataStart;
+    }
     windowEnd = windowStart.add(windowDuration);
   }
 
@@ -204,8 +207,9 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     int count = 0;
     List<Future<BlockHeaderMessage>> blocks =
         List<Future<BlockHeaderMessage>>(fetchBlock);
-    for (/**/; count < fetchBlock && height >= 0; count++)
+    for (/**/; count < fetchBlock && height >= 0; count++) {
       blocks[count] = peer.getBlockHeader(height: height--);
+    }
 
     List<BlockHeader> ret = List<BlockHeader>(count);
     for (int i = 0; i < count; i++) {
@@ -227,10 +231,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     load(appState);
     appState.exchangeRates.checkForUpdate();
 
-    if (loading)
+    if (loading) {
       return widget.loadingWidget ??
           SimpleScaffold(Center(child: CircularProgressIndicator()),
               title: l10n.loading);
+    }
 
     if (refresh == null) {
       refresh = Timer.periodic(widget.animate, (Timer t) {
@@ -289,12 +294,13 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
               charts.SelectionModelConfig(
                 type: charts.SelectionModelType.info,
                 changedListener: (charts.SelectionModel model) {
-                  for (charts.SeriesDatum datum in model.selectedDatum)
+                  for (charts.SeriesDatum datum in model.selectedDatum) {
                     if (datum.datum.blocks > 0) {
                       appState.navigateToHeight(
                           context, datum.datum.block.first.height);
                       break;
                     }
+                  }
                 },
               ),
             ],

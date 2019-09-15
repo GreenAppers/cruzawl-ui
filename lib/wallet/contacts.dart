@@ -13,9 +13,9 @@ import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Select or modify [CruzawlPreferences.contacts].
 class ContactsWidget extends StatefulWidget {

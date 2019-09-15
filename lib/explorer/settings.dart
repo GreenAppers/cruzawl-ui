@@ -10,9 +10,9 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/exchange.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Configure cruzawl settings e.g. language, currency, theme.
 class CruzawlSettings extends StatefulWidget {
@@ -93,9 +93,10 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
           onChanged: (String val) {
             int index =
                 Localization.supportedLanguages.indexWhere((e) => e == val);
-            if (index >= 0 && index < Localization.supportedLocales.length)
+            if (index >= 0 && index < Localization.supportedLocales.length) {
               appState.setState(() => appState.localeOverride =
                   Localization.supportedLocales[index]);
+            }
           },
           items: buildDropdownMenuItem(Localization.supportedLanguages),
         ),
@@ -239,7 +240,7 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
               labelText: l10n.password,
             ),
             validator: (value) {
-              if (!(value.length > 0)) return l10n.passwordCantBeEmpty;
+              if (value.isEmpty) return l10n.passwordCantBeEmpty;
               return null;
             },
             onSaved: (val) => password = val,
@@ -253,8 +254,9 @@ class _EnableEncryptionWidgetState extends State<EnableEncryptionWidget> {
               labelText: l10n.confirmPassword,
             ),
             validator: (value) {
-              if (passwordKey.currentState.value != value)
+              if (passwordKey.currentState.value != value) {
                 return l10n.passwordsDontMatch;
+              }
               return null;
             },
             onSaved: (val) => confirm = val,

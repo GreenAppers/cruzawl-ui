@@ -16,9 +16,9 @@ import 'package:cruzawl/network.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/wallet.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Examine the transactions and metadata for one [Wallet] [Address].
 class AddressWidget extends StatefulWidget {
@@ -89,14 +89,15 @@ class _AddressWidgetState extends State<AddressWidget> {
       child: CopyableText(addressText, appState.setClipboardText),
     ));
 
-    if (address.chainCode != null)
+    if (address.chainCode != null) {
       top.add(HideableWidget(
         title: l10n.chainCode,
         child:
             CopyableText(address.chainCode.toJson(), appState.setClipboardText),
       ));
+    }
 
-    if (address.privateKey != null)
+    if (address.privateKey != null) {
       top.add(
         HideableWidget(
           title: l10n.privateKey,
@@ -104,6 +105,7 @@ class _AddressWidgetState extends State<AddressWidget> {
               address.privateKey.toJson(), appState.setClipboardText),
         ),
       );
+    }
 
     header = <Widget>[
       Container(
@@ -121,13 +123,14 @@ class _AddressWidgetState extends State<AddressWidget> {
         trailing: Text('${address.accountId + 1}'),
       ),
     );
-    if (address.chainIndex != null && widget.wallet.hdWallet)
+    if (address.chainIndex != null && widget.wallet.hdWallet) {
       header.add(
         ListTile(
           title: Text(l10n.chainIndex, style: labelTextStyle),
           trailing: Text('${address.chainIndex + 1}'),
         ),
       );
+    }
     header.add(
       ListTile(
         title: Text(l10n.state, style: labelTextStyle),
@@ -147,20 +150,22 @@ class _AddressWidgetState extends State<AddressWidget> {
             Text((transactions != null ? transactions.length : 0).toString()),
       ),
     );
-    if (address.earliestSeen != null)
+    if (address.earliestSeen != null) {
       header.add(
         ListTile(
           title: Text(l10n.earliestSeen, style: labelTextStyle),
           trailing: Text(address.earliestSeen.toString()),
         ),
       );
-    if (address.latestSeen != null)
+    }
+    if (address.latestSeen != null) {
       header.add(
         ListTile(
           title: Text(l10n.latestSeen, style: labelTextStyle),
           trailing: Text(address.latestSeen.toString()),
         ),
       );
+    }
 
     return ListView.builder(
       padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -192,15 +197,17 @@ class _AddressWidgetState extends State<AddressWidget> {
 
     assert(!widget.address.loadIterator.done);
 
-    if (widget.wallet.network.hasPeer)
+    if (widget.wallet.network.hasPeer) {
       widget.wallet.network.getPeer().then((Peer peer) {
-        if (peer != null)
+        if (peer != null) {
           widget.wallet
               .getNextTransactions(peer, widget.address)
               .then((results) {
             if (mounted) setState(() => loadTransactions());
           });
+        }
       });
+    }
 
     return Center(child: CircularProgressIndicator());
   }

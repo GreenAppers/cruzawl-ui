@@ -20,7 +20,7 @@ import 'package:cruzawl/test.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
 import 'package:cruzawl/wallet.dart';
 
-import 'ui.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 typedef StringFilter = String Function(String);
 typedef StringFutureFunction = Future<String> Function();
@@ -66,8 +66,9 @@ class WalletTransactionInfo extends TransactionInfo {
 class WalletModel extends Model {
   final Wallet wallet;
   WalletModel(this.wallet) {
-    if (wallet.notifyListeners != null)
+    if (wallet.notifyListeners != null) {
       throw FormatException('Wallet already bound');
+    }
     wallet.notifyListeners = notifyListeners;
   }
 
@@ -248,22 +249,25 @@ class Cruzawl extends Model {
     if (wallets.isEmpty) {
       if (network != null) print('updated ${network.tipHeight}');
       notifyListeners();
-    } else
+    } else {
       for (WalletModel m in wallets) {
         if (m.wallet.currency == currency) m.wallet.updateTip();
       }
+    }
   }
 
   /// Called on new peer connection.
   void reloadWallets(Currency currency) async {
     print('Cruzawl reloadWallets');
     if (wallets.isEmpty) {
-      if (network != null && network.hasPeer)
-        (await network.getPeer()).filterAdd(currency.nullAddress, (v) {});
-    } else
+      if (network != null && network.hasPeer) {
+        await (await network.getPeer()).filterAdd(currency.nullAddress, (v) {});
+      }
+    } else {
       for (WalletModel m in wallets) {
         if (m.wallet.currency == currency) m.wallet.reload();
       }
+    }
     notifyListeners();
   }
 
@@ -279,7 +283,7 @@ class Cruzawl extends Model {
         .where((v) => v.currency == currency.ticker)
         .map((v) => addPeer(v))
         .toList();
-    if (peers.length > 0 && preferences.networkEnabled) peers[0].connect();
+    if (peers.isNotEmpty && preferences.networkEnabled) peers[0].connect();
   }
 
   /// Creates the [Peer] described by [x] and adds to [PeerNetwork].
@@ -321,9 +325,10 @@ class Cruzawl extends Model {
       f();
     };
     ExpectCallback expectCallback = (x, y) {
-      if (!(x == y))
+      if (!(x == y)) {
         setState(() => fatal = FlutterErrorDetails(
             exception: FormatException('unit test failure')));
+      }
     };
     CruzTester(testCallback, testCallback, expectCallback).run();
     WalletTester(testCallback, testCallback, expectCallback).run();

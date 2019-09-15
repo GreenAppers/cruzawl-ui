@@ -14,9 +14,9 @@ import 'package:syntax_highlighter/syntax_highlighter.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// JSON debug console for cruzbit.1.
 class CruzawlConsole extends StatefulWidget {

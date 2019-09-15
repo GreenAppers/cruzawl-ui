@@ -9,17 +9,17 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/wallet.dart';
 
-import 'explorer/address.dart';
-import 'explorer/block.dart';
-import 'explorer/console.dart';
-import 'explorer/cruzbase.dart';
-import 'explorer/network.dart';
-import 'explorer/settings.dart';
-import 'explorer/transaction.dart';
-import 'localization.dart';
-import 'model.dart';
-import 'ui.dart';
-import 'wallet/address.dart';
+import 'package:cruzawl_ui/explorer/address.dart';
+import 'package:cruzawl_ui/explorer/block.dart';
+import 'package:cruzawl_ui/explorer/console.dart';
+import 'package:cruzawl_ui/explorer/cruzbase.dart';
+import 'package:cruzawl_ui/explorer/network.dart';
+import 'package:cruzawl_ui/explorer/settings.dart';
+import 'package:cruzawl_ui/explorer/transaction.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
+import 'package:cruzawl_ui/wallet/address.dart';
 
 /// cruzawl_ui route.
 class PagePath {
@@ -33,7 +33,7 @@ class PagePath {
 
   /// Parses paths into [page] and [arg].
   factory PagePath.parse(String path) {
-    int start = 0 + (path.length > 0 && path[0] == '/' ? 1 : 0);
+    int start = 0 + (path.isNotEmpty && path[0] == '/' ? 1 : 0);
     int slash = path.indexOf('/', start);
     return (slash >= start && slash < path.length)
         ? PagePath(path.substring(start, slash), path.substring(slash + 1))

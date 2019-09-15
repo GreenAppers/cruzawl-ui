@@ -13,9 +13,9 @@ import 'package:cruzawl/network.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Adds a new [Wallet].
 class AddWalletWidget extends StatefulWidget {
@@ -97,7 +97,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
       onChanged: (bool value) => setState(() => hdWallet = value),
     ));
 
-    if (!hdWallet)
+    if (!hdWallet) {
       ret.add(
         SwitchListTile(
           title: Text(l10n.watchOnlyWallet),
@@ -105,6 +105,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           onChanged: (bool value) => setState(() => watchOnlyWallet = value),
         ),
       );
+    }
 
     if (hdWallet) {
       ret.add(ListTile(
@@ -149,7 +150,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                         .split(RegExp(r'\s+'))
                         .map((key) => cur.fromPublicAddressJson(key))
                         .toList();
-                    if (keys.length <= 0) return l10n.noPublicKeys;
+                    if (keys.isEmpty) return l10n.noPublicKeys;
                     for (PublicAddress key in keys) {
                       if (key == null) return l10n.invalidPublicKey;
                     }
@@ -193,7 +194,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                         .split(RegExp(r'\s+'))
                         .map((key) => cur.fromPrivateKeyJson(key))
                         .toList();
-                    if (keys.length <= 0) return l10n.noPrivateKeys;
+                    if (keys.isEmpty) return l10n.noPrivateKeys;
                     for (PrivateKey key in keys) {
                       if (key == null) return l10n.invalidPrivateKey;
                       if (!cur.fromPrivateKey(key).verify()) {
@@ -245,7 +246,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
               findPeerNetworkForCurrency(widget.appState.networks, currency);
 
           if (hdWallet) {
-            widget.appState.addWallet(Wallet.fromSeedPhrase(
+            await widget.appState.addWallet(Wallet.fromSeedPhrase(
                 widget.appState.databaseFactory,
                 widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
@@ -256,7 +257,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                 debugPrint,
                 widget.appState.openedWallet));
           } else if (watchOnlyWallet) {
-            widget.appState.addWallet(Wallet.fromPublicKeyList(
+            await widget.appState.addWallet(Wallet.fromPublicKeyList(
                 widget.appState.databaseFactory,
                 widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),
@@ -268,7 +269,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                 debugPrint,
                 widget.appState.openedWallet));
           } else {
-            widget.appState.addWallet(Wallet.fromPrivateKeyList(
+            await widget.appState.addWallet(Wallet.fromPrivateKeyList(
                 widget.appState.databaseFactory,
                 widget.appState.fileSystem,
                 widget.appState.getWalletFilename(name),

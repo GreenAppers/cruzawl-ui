@@ -12,9 +12,9 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/preferences.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Manage [PeerPreference] list.
 class CruzawlNetworkSettings extends StatefulWidget {
@@ -48,7 +48,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
       ),
     ];
 
-    for (Peer peer in network.peers)
+    for (Peer peer in network.peers) {
       ret.add(
         ListTile(
           leading: Icon(Icons.check),
@@ -60,6 +60,7 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
           ),
         ),
       );
+    }
 
     List<Widget> reorder = <Widget>[];
     for (int i = 0; i < peers.length; i++) {
@@ -120,8 +121,9 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
             peers.removeAt(oldIndex + (newIndex < oldIndex ? 1 : 0));
             await appState.preferences.setPeers(peers);
             setState(() {
-              if (selectedPeerIndex == oldIndex)
+              if (selectedPeerIndex == oldIndex) {
                 selectedPeerIndex = newIndex - (newIndex > oldIndex ? 1 : 0);
+              }
             });
           },
         ),
@@ -208,8 +210,9 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
               labelText: l10n.name,
             ),
             validator: (value) {
-              if (peers.indexWhere((v) => v.name == value) != -1)
+              if (peers.indexWhere((v) => v.name == value) != -1) {
                 return l10n.nameMustBeUnique;
+              }
               return null;
             },
             onSaved: (val) => name = val,

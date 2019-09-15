@@ -14,9 +14,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Explore the transactions and metadata for one [PublicAddress].
 class ExternalAddressWidget extends StatefulWidget {
@@ -83,14 +83,16 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
           maturing += transaction.amount;
           maturesHeight = max(maturesHeight, transaction.maturity);
         }
-        if (earliestSeen == null || transaction.height < earliestSeen)
+        if (earliestSeen == null || transaction.height < earliestSeen) {
           earliestSeen = transaction.height;
+        }
       }
 
-      if (transactions == null)
+      if (transactions == null) {
         transactions = results.transactions;
-      else
+      } else {
         transactions.addAll(results.transactions);
+      }
 
       iter = TransactionIterator(results.height, results.index);
 
@@ -156,16 +158,18 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       trailing: Text(widget.network.currency.format(balance)),
     ));
 
-    if (maturing > 0)
+    if (maturing > 0) {
       header.add(ListTile(
         title: Text(l10n.maturing, style: labelTextStyle),
         trailing: Text(widget.network.currency.format(maturing)),
       ));
-    if (fullyLoaded && earliestSeen != null)
+    }
+    if (fullyLoaded && earliestSeen != null) {
       header.add(ListTile(
         title: Text(l10n.earliestSeen, style: labelTextStyle),
         trailing: Text(earliestSeen.toString()),
       ));
+    }
 
     if (widget.addressText == 'RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI=') {
       header.add(Center(
@@ -180,14 +184,15 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
             : BoxConstraints(maxWidth: widget.maxWidth),
         child: ListView.builder(
           itemCount: header.length +
-              (transactions.length > 0 ? (fullyLoaded ? 1 : 2) : 0) +
+              (transactions.isNotEmpty ? (fullyLoaded ? 1 : 2) : 0) +
               transactions.length,
           itemBuilder: (BuildContext context, int index) {
             if (index < header.length) return header[index];
-            if (index == header.length)
+            if (index == header.length) {
               return Center(
                   child: Text(l10n.numTransactions(transactions.length),
                       style: labelTextStyle));
+            }
 
             int transactionIndex = index - header.length - 1;
             if (transactionIndex < transactions.length) {

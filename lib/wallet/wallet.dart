@@ -14,9 +14,9 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/wallet.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 import 'balance.dart';
 import 'receive.dart';
@@ -50,8 +50,9 @@ class _WalletWidgetState extends State<WalletWidget> {
   @override
   void initState() {
     super.initState();
+
     if (widget.appState.isTrustFall &&
-        widget.appState.preferences.insecureDeviceWarning)
+        widget.appState.preferences.insecureDeviceWarning) {
       Future.delayed(Duration(seconds: 0)).then((_) => showDialog(
           context: context,
           builder: (context) {
@@ -70,6 +71,7 @@ class _WalletWidgetState extends State<WalletWidget> {
                   borderRadius: BorderRadius.all(Radius.circular(32.0))),
             );
           }));
+    }
 
     if (widget.uriStream != null) initUriHandling();
   }
@@ -237,10 +239,11 @@ class _WalletWidgetState extends State<WalletWidget> {
     if (cruzbaseOffset >= 0) {
       String path = uri.substring(cruzbaseOffset + cruzbasePrefix.length);
       if (path.startsWith('/#/')) path = path.substring(2);
-      if (path.isEmpty || path == '/')
+      if (path.isEmpty || path == '/') {
         widget.appState.navigateToBlockChart(context);
-      else
+      } else {
         Navigator.of(context).pushNamed(path);
+      }
     } else {
       int hostOffset = uri.indexOf('://');
       if (!mounted || hostOffset < 0) return;

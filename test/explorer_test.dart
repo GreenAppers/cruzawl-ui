@@ -40,8 +40,8 @@ Future<void> runExplorerGroups(StringFilter assetPath) async {
             .openDatabase('settings_explorer_$locale.db')),
         () => NumberFormat.currency().currencyName);
     await preferences.storage.load();
-    preferences.setNetworkEnabled(false);
-    preferences.setMinimumReserveAddress(3);
+    await preferences.setNetworkEnabled(false);
+    await preferences.setMinimumReserveAddress(3);
     Localization l10n = await Localization.load(locale);
     group('Explorer tests $locale',
         () => runExplorerTests(preferences, locale, l10n, assetPath));
@@ -82,7 +82,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
       '8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f';
 
   test('CruzPeer connect', () async {
-    appState.addWallet(
+    await appState.addWallet(
         Wallet.fromPublicKeyList(
             databaseFactoryMemoryFs,
             appState.fileSystem,
@@ -154,6 +154,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     socket.sent.removeFirst();
     socket.messageHandler(
         '{"type":"filter_transaction_queue","body":{"transactions":null}}');
+    await pumpEventQueue();
   });
 
   testWidgets('ExternalAddressWidget', (WidgetTester tester) async {
@@ -482,39 +483,19 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     await tester.drag(find.text(l10n.theme), Offset(0.0, -300));
     expect(find.text(l10n.theme), findsOneWidget);
 
-    // Open EnableEncryptionWidget
-    Finder parent = find.ancestor(
-        of: find.text(l10n.encryption), matching: find.byType(ListTile));
-    await tester
-        .tap(find.descendant(of: parent, matching: find.byType(Switch)));
-    await tester.pumpAndSettle();
-    await tester.pump(Duration(seconds: 1));
-    expect(find.widgetWithText(RaisedGradientButton, l10n.encrypt),
-        findsOneWidget);
-
-    // Enable encryption
-    String password = 'foobar';
-    expect(find.byType(TextFormField), findsNWidgets(2));
-    await tester.enterText(find.byType(TextFormField).at(0), password);
-    await tester.enterText(find.byType(TextFormField).at(1), password);
-    await tester.tap(find.byType(RaisedGradientButton));
-    await tester.pumpAndSettle();
-    await tester.pump(Duration(seconds: 1));
-    expect(find.text(l10n.theme), findsOneWidget);
-    expect(preferences.walletsEncrypted, true);
-
-    // Disable encryption
+    /* Disable encryption
     parent = find.ancestor(
         of: find.text(l10n.encryption), matching: find.byType(ListTile));
     await tester
         .tap(find.descendant(of: parent, matching: find.byType(Switch)));
+    expect(preferences.walletsEncrypted, false);
+    */
     await tester.drag(find.text(l10n.encryption), Offset(0.0, -300));
     await tester.pumpAndSettle();
-    expect(preferences.walletsEncrypted, false);
 
     // Disable insecureDeviceWarning
     expect(preferences.insecureDeviceWarning, true);
-    parent = find.ancestor(
+    Finder parent = find.ancestor(
         of: find.text(l10n.insecureDeviceWarning),
         matching: find.byType(ListTile));
     await tester

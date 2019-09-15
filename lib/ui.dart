@@ -10,10 +10,12 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 
-import 'localization.dart';
-import 'model.dart';
-import 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
-export 'ui_html.dart' if (dart.library.io) 'ui_io.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui_html.dart'
+    if (dart.library.io) 'package:cruzawl_ui/ui_io.dart';
+export 'package:cruzawl_ui/ui_html.dart'
+    if (dart.library.io) 'package:cruzawl_ui/ui_io.dart';
 
 /// Use desktop instead of mobile style if [maxWidth] exceeded.
 bool useWideStyle(BuildContext context, double maxWidth) =>
@@ -128,7 +130,9 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
         actions = model.actions;
       }
       if (model.searchError != null) formKey.currentState.validate();
-    } catch (error) {}
+    } catch (error) {
+      // ignore missing ScopedModel exception
+    }
 
     TextStyle titleStyle = appState.theme.titleStyle;
     return Scaffold(
@@ -178,10 +182,11 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
   }
 
   void toggleSearchBar(SimpleScaffoldActions model) {
-    if (model.showSearchBar)
+    if (model.showSearchBar) {
       model.setState(() => searchClear(model));
-    else
+    } else {
       model.toggleSearchBar();
+    }
   }
 
   void searchClear(SimpleScaffoldActions model) {
@@ -246,8 +251,9 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
     Currency currency = appState.currency;
     PeerNetwork network = appState.network;
     if (!network.hasPeer) return l10n.networkOffline;
-    if ((queryAddress = currency.fromPublicAddressJson(query)) != null)
+    if ((queryAddress = currency.fromPublicAddressJson(query)) != null) {
       return null;
+    }
     if (currency.fromPrivateKeyJson(query) != null) return l10n.privateKey;
     if ((queryHeight = int.tryParse(query)) != null) {
       if (queryHeight < network.tipHeight && queryHeight >= 0) {

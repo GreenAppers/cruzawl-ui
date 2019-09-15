@@ -11,9 +11,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/wallet.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Examine the transactions and metadata for a [Wallet].
 class WalletSettingsWidget extends StatelessWidget {
@@ -60,13 +60,14 @@ class WalletSettingsWidget extends StatelessWidget {
       ),
     ];
 
-    if (wallet.hdWallet)
+    if (wallet.hdWallet) {
       header.add(
         HideableWidget(
           title: l10n.seedPhrase,
           child: CopyableText(wallet.seedPhrase, appState.setClipboardText),
         ),
       );
+    }
 
     header.add(
       Column(
@@ -104,11 +105,13 @@ class WalletSettingsWidget extends StatelessWidget {
 
           int verifiedAddresses = 0, ranTests = appState.runUnitTests();
           bool unitTests = ranTests >= 0;
-          if (unitTests)
-            for (Address address in addresses)
+          if (unitTests) {
+            for (Address address in addresses) {
               verifiedAddresses += address.verify() ? 1 : 0;
+            }
+          }
 
-          showDialog(
+          await showDialog(
             context: context,
             builder: (_) => AlertDialog(
               content: TitledWidget(
@@ -138,8 +141,9 @@ class WalletSettingsWidget extends StatelessWidget {
         padding: EdgeInsets.all(32),
         onPressed: () {
           String publicKeyList = '';
-          for (Address address in addresses)
+          for (Address address in addresses) {
             publicKeyList += '${address.publicKey.toJson()}\n';
+          }
           appState.setClipboardText(context, publicKeyList);
           Scaffold.of(context)
               .showSnackBar(SnackBar(content: Text(l10n.copied)));
@@ -152,8 +156,9 @@ class WalletSettingsWidget extends StatelessWidget {
       itemCount: header.length + footer.length + addresses.length + 1,
       itemBuilder: (BuildContext context, int index) {
         if (index < header.length) return header[index];
-        if (index == header.length)
+        if (index == header.length) {
           return Center(child: Text(l10n.addresses, style: labelTextStyle));
+        }
         int addressIndex = index - header.length - 1;
         if (addressIndex < addresses.length) {
           Address address = addresses[addressIndex];

@@ -560,10 +560,11 @@ class TextSpanLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
         recognizer: recognizer,
         semanticsLabel: semanticsLabel);
 
-    if (ret == null)
+    if (ret == null) {
       ret = cur;
-    else
+    } else {
       ret.children.add(cur);
+    }
   }
 }
 
@@ -592,8 +593,9 @@ class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
 /// Parses localization markup to [TextSpan].
 TextSpan buildLocalizationMarkupTextSpan(String text,
     {TextStyle style, Map<String, LocalizationMarkup> tags}) {
-  if (tags == null || tags.length == 0)
+  if (tags == null || tags.isEmpty) {
     return TextSpan(style: style, text: text);
+  }
   TextSpanLocalizationMarkupVisitor visitor =
       TextSpanLocalizationMarkupVisitor();
   buildLocalizationMarkup(text, visitor, style: style, tags: tags);
@@ -603,8 +605,9 @@ TextSpan buildLocalizationMarkupTextSpan(String text,
 /// Parses localization markup to [List<Widget>].
 List<Widget> buildLocalizationMarkupWidgets(String text,
     {TextStyle style, Map<String, LocalizationMarkup> tags}) {
-  if (tags == null || tags.length == 0)
+  if (tags == null || tags.isEmpty) {
     return <Widget>[Text(text, style: style)];
+  }
   WidgetsLocalizationMarkupVisitor visitor = WidgetsLocalizationMarkupVisitor();
   buildLocalizationMarkup(text, visitor, style: style, tags: tags);
   return visitor.ret;
@@ -625,13 +628,14 @@ void buildLocalizationMarkup(String text, LocalizationMarkupVisitor visitor,
     if (next < i) next = text.length;
     String curText = text.substring(i, next);
 
-    if (curText.length > 0) {
+    if (curText.isNotEmpty) {
       if (insideTag) {
         bool insideCloseTag = visitor.state == 3;
         if (insideCloseTag) {
-          if (curText != visitor.lastOpenedTag)
+          if (curText != visitor.lastOpenedTag) {
             throw FormatException(
                 'Closed tag $curText mismatches ${visitor.lastOpenedTag}');
+          }
           visitor.currentStyle = style;
           visitor.currentTag = null;
         } else {

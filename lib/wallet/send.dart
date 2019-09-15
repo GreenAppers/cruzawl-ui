@@ -13,9 +13,9 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/wallet.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Send [Transcation] using [Address] from [Wallet].
 class WalletSendWidget extends StatefulWidget {
@@ -104,8 +104,9 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                         validator: (value) {
                           Address fromAddress = wallet.addresses[value];
                           if (fromAddress == null) return l10n.unknownAddress;
-                          if (fromAddress.privateKey == null)
+                          if (fromAddress.privateKey == null) {
                             return l10n.watchOnlyWallet;
+                          }
                           return null;
                         },
                         onSaved: (value) => fromInput = value,
@@ -147,8 +148,9 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                               hintText: '',
                             ),
                       validator: (value) {
-                        if (currency.fromPublicAddressJson(value) == null)
+                        if (currency.fromPublicAddressJson(value) == null) {
                           return l10n.invalidAddress;
+                        }
                         return null;
                       },
                       onSaved: (value) => toInput = value,
@@ -200,15 +202,19 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                         Address fromAddress =
                             wallet.addresses[fromController.text];
                         if (fromAddress != null) {
-                          if (fromAddress.privateKey == null)
+                          if (fromAddress.privateKey == null) {
                             return l10n.watchOnlyWallet;
-                          if (v > fromAddress.balance)
+                          }
+                          if (v > fromAddress.balance) {
                             return l10n.insufficientFunds;
+                          }
                         }
-                        if (wallet.network.minAmount == null)
+                        if (wallet.network.minAmount == null) {
                           return l10n.networkOffline;
-                        if (v < wallet.network.minAmount)
+                        }
+                        if (v < wallet.network.minAmount) {
                           return l10n.minAmount(wallet.network.minAmount);
+                        }
                         return null;
                       },
                       onSaved: (value) => amountInput = currency.parse(value),
@@ -238,14 +244,17 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                         Address fromAddress =
                             wallet.addresses[fromController.text];
                         if (fromAddress != null &&
-                            (amount + v) > fromAddress.balance)
+                            (amount + v) > fromAddress.balance) {
                           return l10n.insufficientFunds;
+                        }
                         if (wallet.network.tipHeight == null ||
                             wallet.network.tipHeight == 0 ||
-                            wallet.network.minFee == null)
+                            wallet.network.minFee == null) {
                           return l10n.networkOffline;
-                        if (v < wallet.network.minFee)
+                        }
+                        if (v < wallet.network.minFee) {
                           return l10n.minFee(wallet.network.minFee);
+                        }
                         return null;
                       },
                       onSaved: (value) => feeInput = currency.parse(value),
@@ -285,13 +294,14 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
                 if (peer == null) continue;
                 transactionId = await peer.putTransaction(transaction);
               }
-              if (transactionId != null)
+              if (transactionId != null) {
                 Scaffold.of(context).showSnackBar(SnackBar(
                     content:
                         Text(l10n.sentTransactionId(transactionId.toJson()))));
-              else
+              } else {
                 Scaffold.of(context)
                     .showSnackBar(SnackBar(content: Text(l10n.sendFailed)));
+              }
             },
           ),
         ],

@@ -14,9 +14,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/wallet.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Generate or retrieve an [Address] from [Wallet].
 class WalletReceiveWidget extends StatefulWidget {
@@ -31,19 +31,22 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Wallet wallet =
         ScopedModel.of<WalletModel>(context, rebuildOnChange: true).wallet;
-    final Address address = wallet.getNextReceiveAddress();
+    final Address address = wallet.receiveAddress;
     final Size screenSize = MediaQuery.of(context).size;
-    final String addressText = address.publicKey.toJson();
-    final List<Widget> children = <Widget>[
-      Center(
+    final String addressText =
+        address == null ? '' : address.publicKey.toJson();
+    final List<Widget> children = <Widget>[];
+
+    if (address != null) {
+      children.add(Center(
         child: QrImage(
           data: addressText,
           size: min(screenSize.width, screenSize.height) * 2 / 3.0,
         ),
-      ),
-    ];
+      ));
+    }
 
-    if (appState.createIconImage != createQrImage) {
+    if (appState.createIconImage != createQrImage && address != null) {
       children.add(AddressRow(
           l10n.walletAccountName(
               wallet.name, address.accountId + 1, address.chainIndex + 1),
@@ -65,19 +68,22 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
         Container(
           padding: EdgeInsets.all(32),
           child: FlatButton.icon(
-            icon: Icon(
-              Icons.refresh,
-              color: appState.theme.linkColor,
-            ),
-            label: Text(
-              l10n.generateNewAddress,
-              style: TextStyle(
+              icon: Icon(
+                Icons.refresh,
                 color: appState.theme.linkColor,
               ),
-            ),
-            onPressed: () => setState(
-                () => wallet.updateAddressState(address, AddressState.open)),
-          ),
+              label: Text(
+                l10n.generateNewAddress,
+                style: TextStyle(
+                  color: appState.theme.linkColor,
+                ),
+              ),
+              onPressed: () async {
+                if (address != null) {
+                  await wallet.updateAddressState(address, AddressState.open);
+                }
+                setState(() {});
+              }),
         ),
         Container(
           padding: EdgeInsets.only(left: 32, right: 32),

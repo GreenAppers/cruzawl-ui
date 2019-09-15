@@ -20,7 +20,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   gradient_app_bar: ^0.0.1
-  intl: ^0.16.0
+  intl: ^0.15.2
+  pedantic: ^1.8.0
   qr_flutter: ^3.0.1
   sembast: ^2.0.1
   scoped_model: ^1.0.1
@@ -34,9 +35,6 @@ dev_dependencies:
     sdk: flutter
   intl_translation: ^0.17.1
   json_serializable: ^3.2.0
-
-dependency_overrides:
-  intl: 0.16.0
 
 flutter:
   uses-material-design: true

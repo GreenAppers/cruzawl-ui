@@ -14,9 +14,9 @@ import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
 
-import '../localization.dart';
-import '../model.dart';
-import '../ui.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Explore the transactions and metadata for one [Block].
 class BlockWidget extends StatefulWidget {
@@ -85,8 +85,9 @@ class _BlockWidgetState extends State<BlockWidget> {
       if (!isTip) {
         BlockHeaderMessage nextMessage =
             await peer.getBlockHeader(height: message.block.header.height + 1);
-        if (nextMessage != null && nextMessage.id != null)
+        if (nextMessage != null && nextMessage.id != null) {
           nextBlockId = nextMessage.id.toJson();
+        }
       }
       block = message.block;
     }
@@ -200,7 +201,7 @@ class _BlockWidgetState extends State<BlockWidget> {
       ),
     );
 
-    if (nextBlockId != null)
+    if (nextBlockId != null) {
       header.add(
         buildListTile(
           Text(l10n.next),
@@ -211,6 +212,7 @@ class _BlockWidgetState extends State<BlockWidget> {
           ),
         ),
       );
+    }
 
     header.add(
       buildListTile(
@@ -245,15 +247,16 @@ class _BlockWidgetState extends State<BlockWidget> {
         child: ListView.builder(
           itemCount: header.length +
               footer.length +
-              (block.transactions.length > 0 ? 1 : 0) +
+              (block.transactions.isNotEmpty ? 1 : 0) +
               block.transactions.length,
           itemBuilder: (BuildContext context, int index) {
             if (index < header.length) return header[index];
-            if (index == header.length)
+            if (index == header.length) {
               return Center(
                   child: Text(
                       l10n.numTransactions(block.header.transactionCount),
                       style: labelTextStyle));
+            }
             int transactionIndex = index - header.length - 1;
             if (transactionIndex < block.transactions.length) {
               return TransactionListTile(

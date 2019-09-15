@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 
-import 'localization.dart';
-import 'model.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
 
 WidgetBuilder backButtonBuilder;
 

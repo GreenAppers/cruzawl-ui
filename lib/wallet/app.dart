@@ -14,15 +14,15 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/wallet.dart';
 
-import '../explorer/settings.dart';
-import '../localization.dart';
-import '../model.dart';
-import '../routes.dart';
-import '../ui.dart';
-import 'add.dart';
-import 'contacts.dart';
-import 'settings.dart';
-import 'wallet.dart';
+import 'package:cruzawl_ui/explorer/settings.dart';
+import 'package:cruzawl_ui/localization.dart';
+import 'package:cruzawl_ui/model.dart';
+import 'package:cruzawl_ui/routes.dart';
+import 'package:cruzawl_ui/ui.dart';
+import 'package:cruzawl_ui/wallet/add.dart';
+import 'package:cruzawl_ui/wallet/contacts.dart';
+import 'package:cruzawl_ui/wallet/settings.dart';
+import 'package:cruzawl_ui/wallet/wallet.dart';
 
 /// Displayed on app's first run.
 class WelcomeWidget extends StatelessWidget {
@@ -75,7 +75,7 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
                 labelText: l10n.password,
               ),
               validator: (value) {
-                if (!(value.length > 0)) return l10n.passwordCantBeEmpty;
+                if (value.isEmpty) return l10n.passwordCantBeEmpty;
                 return null;
               },
               onSaved: (val) => password = val,
@@ -84,12 +84,14 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
           RaisedGradientButton(
             labelText: l10n.unlock,
             padding: EdgeInsets.all(32),
-            onPressed: () {
+            onPressed: () async {
               if (!formKey.currentState.validate()) return;
               formKey.currentState.save();
               formKey.currentState.reset();
-              if (appState.unlockWallets(password))
-                appState.setState(() async => await appState.openWallets());
+              if (appState.unlockWallets(password)) {
+                await appState.openWallets();
+                appState.setState((){});
+              }
             },
           ),
         ]),
@@ -153,8 +155,8 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
     final Cruzawl appState =
         ScopedModel.of<Cruzawl>(context, rebuildOnChange: true);
 
-    if (appState.wallets.length == 0) {
-      if (appState.fatal != null)
+    if (appState.wallets.isEmpty) {
+      if (appState.fatal != null) {
         return MaterialApp(
           theme: appState.theme.data,
           debugShowCheckedModeBanner: false,
@@ -165,8 +167,9 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
               Localization.of(context).title,
           home: SimpleScaffold(ErrorWidget.builder(appState.fatal)),
         );
+      }
 
-      if (appState.preferences.walletsEncrypted)
+      if (appState.preferences.walletsEncrypted) {
         return MaterialApp(
           theme: appState.theme.data,
           debugShowCheckedModeBanner: false,
@@ -177,6 +180,7 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
               Localization.of(context).title,
           home: UnlockWalletWidget(),
         );
+      }
 
       return MaterialApp(
         theme: appState.theme.data,
@@ -236,9 +240,11 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
       paused = DateTime.now();
     } else if (state == AppLifecycleState.resumed && paused != null) {
       Duration pausedDuration = DateTime.now().difference(paused);
-      if (pausedDuration.inMinutes > 0)
-        for (Currency currency in currencies)
+      if (pausedDuration.inMinutes > 0) {
+        for (Currency currency in currencies) {
           widget.appState.reconnectPeers(currency);
+        }
+      }
     }
   }
 }
