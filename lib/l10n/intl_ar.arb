@@ -1,0 +1,1018 @@
+{
+  "localeLanguage": "العربية",
+  "@localeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "Cruzall",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockTitle": "فتح كروزل",
+  "@unlockTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeTitle": "مرحبا بكم في Cruzall",
+  "@welcomeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeDesc": "للبدء ، أنشئ محفظة:",
+  "@welcomeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentBalanceIs": "رصيدك الحالي هو:",
+  "@currentBalanceIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentHistory": "التاريخ الحديث",
+  "@recentHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balanceTitle": "{ticker} + {balance}",
+  "@balanceTitle": {
+    "type": "text",
+    "placeholders": {
+      "ticker": {},
+      "balance": {}
+    }
+  },
+  "balanceAtHeightIs": "رصيدك عند ارتفاع الكتلة {@<a>} {height} {@</a>} هو:",
+  "@balanceAtHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "balanceMaturingByHeightIs": "رصيدك المستحق حسب الارتفاع {height} هو:",
+  "@balanceMaturingByHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "walletAccountName": "{walletName} : الحساب {accountId} ، العنوان {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
+  "insecureDeviceWarning": "تحذير جهاز غير آمن",
+  "@insecureDeviceWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insecureDeviceWarningDescription": "تم اكتشاف جهاز تم كسره أو كسره. مزيد من الاستخدام غير مستحسن.",
+  "@insecureDeviceWarningDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhraseWarning": "هذه البذرة تسمح لأي شخص يعرف ذلك بإنفاق كل الأموال منك. اكتبه. احتفظ بها آمنة.",
+  "@seedPhraseWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backupKeysWarning": "يجب عمل نسخ احتياطية من مفاتيحك على وحدة التخزين الخارجية.",
+  "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "تحذير: كتابة العناوين باليد أمر خطير وعرضة للخطأ. استخدم دائمًا زر النسخ أو الماسح الضوئي QR.",
+  "@typingAddressesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creatingUsingAlgorithm": "إنشاء ... ( {algorithm} )",
+  "@creatingUsingAlgorithm": {
+    "type": "text",
+    "placeholders": {
+      "algorithm": {}
+    }
+  },
+  "addWallet": "أضف محفظة",
+  "@addWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWallet": "HD محفظة",
+  "@hdWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWalletAlgorithm": "PBKDF: 2048 التكرار",
+  "@hdWalletAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "watchOnlyWallet": "مشاهدة فقط المحفظة",
+  "@watchOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generateNewAddress": "توليد عنوان جديد",
+  "@generateNewAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWallet": "حذف المحفظة",
+  "@deleteWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteThisWallet": "حذف هذه المحفظة",
+  "@deleteThisWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantDeleteOnlyWallet": "لا يمكن حذف المحفظة الوحيدة.",
+  "@cantDeleteOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWalletDescription": "بمجرد حذف محفظة ، لن يكون هناك عودة. يرجى أن تكون متأكدا.",
+  "@deleteWalletDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cruzTicker": "CRUZ",
+  "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateReserve": "الاحتياطي",
+  "@addressStateReserve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateOpen": "افتح",
+  "@addressStateOpen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateUsed": "مستخدم",
+  "@addressStateUsed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "حسنا",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hide": "إخفاء",
+  "@hide": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "show": "تبين",
+  "@show": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "نسخ",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paste": "معجون",
+  "@paste": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "حذف",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "خلق",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "تجاهل",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlock": "الغاء القفل",
+  "@unlock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypt": "تشفير",
+  "@encrypt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "تحقق",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifying": "التحقق من ...",
+  "@verifying": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "إرسال",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sending": "إرسال...",
+  "@sending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFailed": "فشل إرسال",
+  "@sendFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loading": "جار التحميل...",
+  "@loading": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creating": "خلق...",
+  "@creating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copied": "نسخ.",
+  "@copied": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyPublicKeys": "نسخ المفاتيح العامة",
+  "@copyPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentTransactionId": "تم الإرسال {transactionId}",
+  "@sentTransactionId": {
+    "type": "text",
+    "placeholders": {
+      "transactionId": {}
+    }
+  },
+  "listOfTwo": "{item1} ، {item2}",
+  "@listOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "listOfThree": "{item1} ، {item2} ، {item3}",
+  "@listOfThree": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {}
+    }
+  },
+  "listOfFour": "{item1} ، {item2} ، {item3} ، {item4}",
+  "@listOfFour": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {},
+      "item4": {}
+    }
+  },
+  "menuOfOne": "[ {@<a>} {item} {@</a>} ]",
+  "@menuOfOne": {
+    "type": "text",
+    "placeholders": {
+      "item": {}
+    }
+  },
+  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} ، {@<a2>} {item2} {@</a2>} ]",
+  "@menuOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "account": "الحساب",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accounts": "حسابات",
+  "@accounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "externalAddress": "العنوان الخارجي",
+  "@externalAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "address": "عنوان",
+  "@address": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addresses": "عناوين",
+  "@addresses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "receive": "تسلم",
+  "@receive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "بحث",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "result": "نتيجة",
+  "@result": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "جهات الاتصال",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "console": "وحدة التحكم",
+  "@console": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknown": "مجهول",
+  "@unknown": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "الإعدادات",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "network": "شبكة الاتصال",
+  "@network": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPeer": "نظير جديد",
+  "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "جهة اتصال جديدة",
+  "@newContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newWallet": "محفظة جديدة",
+  "@newWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "peers": "الأقران",
+  "@peers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deletePeer": "حذف النظير",
+  "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "block": "منع",
+  "@block": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocks": "كتل",
+  "@blocks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "التشفير",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transaction": "عملية تجارية",
+  "@transaction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactions": "المعاملات",
+  "@transactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dangerZone": "منطقة الخطر",
+  "@dangerZone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "تحذير",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "الدعم",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "رخصة",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donations": "التبرعات",
+  "@donations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "سياسة خاصة",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homePage": "{product} الصفحة الرئيسية",
+  "@homePage": {
+    "type": "text",
+    "placeholders": {
+      "product": {}
+    }
+  },
+  "addressTitle": "العنوان {address}",
+  "@addressTitle": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "networkType": "{type} الشبكة",
+  "@networkType": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "numTransactions": "المعاملات ( {number} )",
+  "@numTransactions": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} الكتل {@</a1>} في آخر {@<a2>} {duration} {@</a2>}",
+  "@totalBlocksInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "duration": {}
+    }
+  },
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} الكتل {@</a1>} ، {totalTransactions} المعاملات في {@<a2>} {duration} {@</a2>}",
+  "@totalBlocksTransactionsInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "totalTransactions": {},
+      "duration": {}
+    }
+  },
+  "id": "هوية شخصية",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tip": "تلميح",
+  "@tip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "تاريخ",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "اسم",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "زمن",
+  "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "البريد الإلكتروني",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "state": "حالة",
+  "@state": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "height": "ارتفاع",
+  "@height": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balance": "توازن",
+  "@balance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currency": "دقة",
+  "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nonce": "مناسبة حالية",
+  "@nonce": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "كمية",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fee": "رسوم",
+  "@fee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payTo": "دفع ل",
+  "@payTo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "to": "إلى",
+  "@to": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "from": "من عند",
+  "@from": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memo": "مذكرة",
+  "@memo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theme": "موضوع",
+  "@theme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "url": "موقع المعلومات العالمي",
+  "@url": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "كلمه السر",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "version": "الإصدار",
+  "@version": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "لغة",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "previous": "السابق",
+  "@previous": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "التالى",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmations": "تأكيدات",
+  "@confirmations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "earliestSeen": "أقرب ينظر",
+  "@earliestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "latestSeen": "شوهد آخر مرة",
+  "@latestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "target": "استهداف",
+  "@target": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainCode": "كود السلسلة",
+  "@chainCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainIndex": "مؤشر السلسلة",
+  "@chainIndex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhrase": "عبارة البذور",
+  "@seedPhrase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKey": "مفتاح سري",
+  "@privateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeTransactions": "المعاملات النشطة",
+  "@activeTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expired": "منتهية الصلاحية",
+  "@expired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expires": "تنتهي",
+  "@expires": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matured": "نضجت",
+  "@matured": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matures": "نضوج",
+  "@matures": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturing": "نضوج",
+  "@maturing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturingTransactions": "المعاملات الناضجة",
+  "@maturingTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainWork": "سلسلة العمل",
+  "@chainWork": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hashListRoot": "تجزئة قائمة الجذر",
+  "@hashListRoot": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaTime": "دلتا الوقت",
+  "@deltaTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaHashPower": "دلتا هاش باور",
+  "@deltaHashPower": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKeyList": "قائمة المفاتيح العامة",
+  "@publicKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKeyList": "قائمة المفاتيح الخاصة",
+  "@privateKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromAddress": "من: {address}",
+  "@fromAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "toAddress": "إلى: {address}",
+  "@toAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "heightEquals": "ارتفاع = {@<a>} {height} {@</a>}",
+  "@heightEquals": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "marketCap": "سقف السوق {@<a>} {cap} {@</a>}",
+  "@marketCap": {
+    "type": "text",
+    "placeholders": {
+      "cap": {}
+    }
+  },
+  "pending": "قيد الانتظار",
+  "@pending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidUrl": "URL غير صالح.",
+  "@invalidUrl": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidJson": "JSON غير صالح.",
+  "@invalidJson": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPrivateKey": "مفتاح خاص غير صالح.",
+  "@invalidPrivateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPublicKey": "المفتاح العمومي غير صالح.",
+  "@invalidPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidCurrency": "عملة غير صالحة",
+  "@invalidCurrency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxMemoLength": "الحد الأقصى لطول المذكرة هو 100",
+  "@maxMemoLength": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameMustBeUnique": "يجب أن يكون الاسم فريدًا.",
+  "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "يجب أن يكون العنوان فريدًا.",
+  "@addressMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordCantBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة.",
+  "@passwordCantBeEmpty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDontMatch": "كلمات المرور غير متطابقة.",
+  "@passwordsDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPassword": "تأكيد كلمة المرور",
+  "@confirmPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownAddress": "عنوان غير معروف",
+  "@unknownAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidAddress": "عنوان خاطئ",
+  "@invalidAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidMnemonic": "ذاكري غير صالح",
+  "@invalidMnemonic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "valueMustBePositive": "يجب أن تكون القيمة إيجابية",
+  "@valueMustBePositive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insufficientFunds": "رصيد غير كاف",
+  "@insufficientFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "networkOffline": "شبكة حاليا",
+  "@networkOffline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicKeys": "لا مفاتيح عامة",
+  "@noPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPrivateKeys": "لا مفاتيح خاصة",
+  "@noPrivateKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownQuery": "استعلام غير معروف",
+  "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thanksForDonating": "الحق علي! شكرا المجتمع CRUZ!",
+  "@thanksForDonating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minFee": "الحد الأدنى للرسوم هو {fee}",
+  "@minFee": {
+    "type": "text",
+    "placeholders": {
+      "fee": {}
+    }
+  },
+  "minAmount": "الحد الأدنى للمبلغ هو {amount}",
+  "@minAmount": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "defaultWalletName": "محفظتي",
+  "@defaultWalletName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "debugLog": "سجل التصحيح",
+  "@debugLog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requireSSLCert": "طلب شهادة SSL",
+  "@requireSSLCert": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showWalletNameInTitle": "إظهار اسم المحفظة في العنوان",
+  "@showWalletNameInTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyKeyPairsEveryLoad": "تحقق من أزواج المفاتيح كل حمولة",
+  "@verifyKeyPairsEveryLoad": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestBeforeCreatingWallets": "اختبار وحدة قبل إنشاء محافظ",
+  "@unitTestBeforeCreatingWallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestFailure": "فشل اختبار الوحدة",
+  "@unitTestFailure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyAddressFailed": "فشل التحقق: {addressText}",
+  "@verifyAddressFailed": {
+    "type": "text",
+    "placeholders": {
+      "addressText": {}
+    }
+  },
+  "verifyWalletResults": "تم {goodAddresses} التحقق من {goodAddresses} / {totalAddresses} و {goodTests} / {totalTests}",
+  "@verifyWalletResults": {
+    "type": "text",
+    "placeholders": {
+      "goodAddresses": {},
+      "totalAddresses": {},
+      "goodTests": {},
+      "totalTests": {}
+    }
+  },
+  "secondsDuration": "{seconds, plural, =1 {{seconds} ثانية} other {{seconds} ثانية}}",
+  "@secondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "minutesDuration": "{minutes, plural, =1 {{minutes} دقيقة} other {{minutes} دقيقة}}",
+  "@minutesDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "hoursDuration": "{hours, plural, =1 {ساعة} other {{hours} ساعات}}",
+  "@hoursDuration": {
+    "type": "text",
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "daysDuration": "{days, plural, =1 {يوم} other {{days} أيام}}",
+  "@daysDuration": {
+    "type": "text",
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "minutesAndSecondsDuration": "{minutes} {seconds}",
+  "@minutesAndSecondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {},
+      "seconds": {}
+    }
+  },
+  "hashPerSecond": "{hashPerSecond} H / s",
+  "@hashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "hashPerSecond": {}
+    }
+  },
+  "kiloHashPerSecond": "{kiloHashPerSecond} KH / s",
+  "@kiloHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "kiloHashPerSecond": {}
+    }
+  },
+  "megaHashPerSecond": "{megaHashPerSecond} MH / s",
+  "@megaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "megaHashPerSecond": {}
+    }
+  },
+  "gigaHashPerSecond": "{gigaHashPerSecond} GH / s",
+  "@gigaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "gigaHashPerSecond": {}
+    }
+  },
+  "teraHashPerSecond": "{teraHashPerSecond} TH / s",
+  "@teraHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "teraHashPerSecond": {}
+    }
+  },
+  "petaHashPerSecond": "{petaHashPerSecond} PH / s",
+  "@petaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "petaHashPerSecond": {}
+    }
+  },
+  "exaHashPerSecond": "{exaHashPerSecond} EH / s",
+  "@exaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "exaHashPerSecond": {}
+    }
+  }
+}

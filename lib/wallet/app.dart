@@ -90,7 +90,7 @@ class _UnlockWalletWidgetState extends State<UnlockWalletWidget> {
               formKey.currentState.reset();
               if (appState.unlockWallets(password)) {
                 await appState.openWallets();
-                appState.setState((){});
+                appState.setState(() {});
               }
             },
           ),
@@ -228,7 +228,7 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
                   title: Localization.of(context).encryption),
             },
             onGenerateRoute: CruzawlRoutes(appState,
-                    includeWalletRoutes: true, cruzbaseSearchBar: true)
+                    includeWalletRoutes: true, blockChartSearchBar: true)
                 .onGenerateRoute));
   }
 

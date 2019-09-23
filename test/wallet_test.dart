@@ -220,7 +220,7 @@ void runWalletTests(
                       title: Localization.of(context).encryption),
                 },
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/settings'))));
     await tester.pumpAndSettle();
@@ -248,7 +248,8 @@ void runWalletTests(
   });
 
   testWidgets('WalletApp load encrypted', (WidgetTester tester) async {
-    await tester.runAsync(() async => await preferences.setMinimumReserveAddress(0));
+    await tester
+        .runAsync(() async => await preferences.setMinimumReserveAddress(0));
     Wallet wallet = appState.wallet.wallet;
     for (Address address in wallet.addresses.values) {
       address.state = AddressState.open;

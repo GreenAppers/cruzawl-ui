@@ -15,10 +15,12 @@ import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 import 'package:intl/src/intl_helpers.dart';
 
+import 'messages_ar.dart' as messages_ar;
 import 'messages_cs.dart' as messages_cs;
 import 'messages_de.dart' as messages_de;
 import 'messages_en.dart' as messages_en;
 import 'messages_es.dart' as messages_es;
+import 'messages_he.dart' as messages_he;
 import 'messages_id.dart' as messages_id;
 import 'messages_ja.dart' as messages_ja;
 import 'messages_ko.dart' as messages_ko;
@@ -28,10 +30,12 @@ import 'messages_zh.dart' as messages_zh;
 
 typedef Future<dynamic> LibraryLoader();
 Map<String, LibraryLoader> _deferredLibraries = {
+  'ar': () => new Future.value(null),
   'cs': () => new Future.value(null),
   'de': () => new Future.value(null),
   'en': () => new Future.value(null),
   'es': () => new Future.value(null),
+  'he': () => new Future.value(null),
   'id': () => new Future.value(null),
   'ja': () => new Future.value(null),
   'ko': () => new Future.value(null),
@@ -42,6 +46,8 @@ Map<String, LibraryLoader> _deferredLibraries = {
 
 MessageLookupByLibrary _findExact(String localeName) {
   switch (localeName) {
+    case 'ar':
+      return messages_ar.messages;
     case 'cs':
       return messages_cs.messages;
     case 'de':
@@ -50,6 +56,8 @@ MessageLookupByLibrary _findExact(String localeName) {
       return messages_en.messages;
     case 'es':
       return messages_es.messages;
+    case 'he':
+      return messages_he.messages;
     case 'id':
       return messages_id.messages;
     case 'ja':

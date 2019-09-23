@@ -26,7 +26,7 @@ import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
 import 'package:cruzawl_ui/routes.dart';
 import 'package:cruzawl_ui/ui.dart';
-import 'package:cruzawl_ui/explorer/cruzbase.dart';
+import 'package:cruzawl_ui/explorer/chart/block.dart';
 import 'package:cruzawl_ui/explorer/settings.dart';
 
 void main() async {
@@ -167,7 +167,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: Container(),
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/address/$addressText'))));
     await tester.pump(Duration(seconds: 1));
@@ -210,7 +210,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: Container(),
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/tip'))));
 
@@ -248,7 +248,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: Container(),
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/console'))));
     await tester.pump(Duration(seconds: 1));
@@ -266,7 +266,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     expect(socket.sent.length, 0);
   });
 
-  testWidgets('CruzbaseWidget', (WidgetTester tester) async {
+  testWidgets('BlockChartWidget', (WidgetTester tester) async {
     final SimpleScaffoldActions searchBar =
         SimpleScaffoldActions(<Widget>[], searchBar: true);
     await tester.pumpWidget(ScopedModel(
@@ -278,9 +278,9 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: ScopedModel(
                     model: searchBar,
-                    child: CruzbaseWidget(appState.network, fetchBlock: 2)),
+                    child: BlockChartWidget(appState.network, fetchBlock: 2)),
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute))));
 
     int time1 = DateTime.now().millisecondsSinceEpoch ~/ 1000,
@@ -367,7 +367,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: Container(),
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/transaction/$transactionId'))));
 
@@ -396,7 +396,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: Container(),
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/network'))));
 
@@ -448,7 +448,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: Container(),
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/support'))));
 
@@ -476,7 +476,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                       title: Localization.of(context).encryption),
                 },
                 onGenerateRoute: CruzawlRoutes(appState,
-                        includeWalletRoutes: true, cruzbaseSearchBar: true)
+                        includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute,
                 initialRoute: '/settings'))));
     await tester.pump(Duration(seconds: 1));

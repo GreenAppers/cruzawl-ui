@@ -11,8 +11,8 @@ import 'package:cruzawl/wallet.dart';
 
 import 'package:cruzawl_ui/explorer/address.dart';
 import 'package:cruzawl_ui/explorer/block.dart';
+import 'package:cruzawl_ui/explorer/chart/block.dart';
 import 'package:cruzawl_ui/explorer/console.dart';
-import 'package:cruzawl_ui/explorer/cruzbase.dart';
 import 'package:cruzawl_ui/explorer/network.dart';
 import 'package:cruzawl_ui/explorer/settings.dart';
 import 'package:cruzawl_ui/explorer/transaction.dart';
@@ -66,8 +66,8 @@ class CruzawlRoutes {
       this.loadingWidget,
       this.defaultRoute,
       this.includeWalletRoutes = false,
-      bool cruzbaseSearchBar = false})
-      : searchBar = cruzbaseSearchBar
+      bool blockChartSearchBar = false})
+      : searchBar = blockChartSearchBar
             ? SimpleScaffoldActions(<Widget>[], searchBar: true)
             : null;
 
@@ -88,7 +88,7 @@ class CruzawlRoutes {
             builder: (context) {
               if (page.arg == 'cruzbase') {
                 Widget ret = ScopedModelDescendant<WalletModel>(
-                    builder: (context, child, model) => CruzbaseWidget(
+                    builder: (context, child, model) => BlockChartWidget(
                         wallet.network,
                         wideStyle: useWideStyle(context, maxWidth)));
                 return searchBar != null

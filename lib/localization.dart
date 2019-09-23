@@ -474,9 +474,11 @@ class Localization {
   /// The [Locale] that this app supports.
   static final supportedLocales = <Locale>[
     const Locale('en'),
+    const Locale('ar'),
     const Locale('cs'),
     const Locale('de'),
     const Locale('es'),
+    const Locale('he'),
     const Locale('id'),
     const Locale('ja'),
     const Locale('ko'),
@@ -488,9 +490,11 @@ class Localization {
   /// Values must have one-to-one correspondence with [supportedLocales].
   static final supportedLanguages = <String>[
     'English',
+    'العربية',
     'Čeština',
     'Deutsch',
     'Español',
+    'עברית',
     'Bahasa Indonesia',
     '日本語',
     '한국어',

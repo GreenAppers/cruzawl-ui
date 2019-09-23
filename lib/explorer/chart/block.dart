@@ -1,8 +1,8 @@
 // Copyright 2019 cruzawl developers
 // Use of this source code is governed by a MIT-style license that can be found in the LICENSE file.
 
-/// [CruzBlock] time series explorer
-library explorer_cruzbase;
+/// [Block] time series explorer
+library explorer_block_chart;
 
 import 'dart:async';
 import 'dart:math';
@@ -23,10 +23,10 @@ import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
 import 'package:cruzawl_ui/ui.dart';
 
-enum CruzbaseBucketDuration { minute, hour }
+enum BlockChartBucketDuration { minute, hour }
 
 /// Chart of mined blocks, e.g. chart of [Transction.isCoinbase()].
-class CruzbaseWidget extends StatefulWidget {
+class BlockChartWidget extends StatefulWidget {
   /// The [PeerNetwork] to retrieve [BlockHeader]s from.
   final PeerNetwork network;
 
@@ -40,7 +40,7 @@ class CruzbaseWidget extends StatefulWidget {
   final Duration animate = Duration(seconds: 5);
 
   /// The bar interval.
-  final CruzbaseBucketDuration bucketDuration;
+  final BlockChartBucketDuration bucketDuration;
 
   /// Layout for desktop (as opposed to mobile).
   final bool wideStyle;
@@ -48,29 +48,29 @@ class CruzbaseWidget extends StatefulWidget {
   /// Pipeline this number of [BlockHeader] fetches.
   final int fetchBlock;
 
-  CruzbaseWidget(this.network,
+  BlockChartWidget(this.network,
       {this.loadingWidget,
       this.wideStyle = false,
       this.windowDuration = const Duration(hours: 1),
-      this.bucketDuration = CruzbaseBucketDuration.minute,
+      this.bucketDuration = BlockChartBucketDuration.minute,
       this.fetchBlock = 50});
 
   @override
-  _CruzbaseWidgetState createState() =>
-      _CruzbaseWidgetState(windowDuration, bucketDuration);
+  _BlockChartWidgetState createState() =>
+      _BlockChartWidgetState(windowDuration, bucketDuration);
 }
 
 /// [fetch] some [data] then [build] dynamic [charts.TimeSeriesChart].
-class _CruzbaseWidgetState extends State<CruzbaseWidget> {
+class _BlockChartWidgetState extends State<BlockChartWidget> {
   SortedListSet<TimeSeriesBlocks> data;
   int dataStartHeight, dataEndHeight, dataMaxBucketBlocks;
   DateTime dataInit, dataStart, dataEnd, windowStart, windowEnd;
   Duration windowDuration;
-  CruzbaseBucketDuration bucketDuration;
+  BlockChartBucketDuration bucketDuration;
   bool loading = false;
   Timer refresh;
 
-  _CruzbaseWidgetState(this.windowDuration, this.bucketDuration);
+  _BlockChartWidgetState(this.windowDuration, this.bucketDuration);
 
   @override
   void dispose() {
@@ -89,7 +89,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     if (!loading) {
       setState(() {
         windowDuration = const Duration(hours: 1);
-        bucketDuration = CruzbaseBucketDuration.minute;
+        bucketDuration = BlockChartBucketDuration.minute;
         clear();
       });
     }
@@ -100,7 +100,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     if (!loading) {
       setState(() {
         windowDuration = const Duration(days: 1);
-        bucketDuration = CruzbaseBucketDuration.hour;
+        bucketDuration = BlockChartBucketDuration.hour;
         clear();
       });
     }
@@ -155,11 +155,11 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     bool initialLoad = data == null;
 
     if (initialLoad) {
-      debugPrint('cruzbase initial load');
+      debugPrint('block chart initial load');
       appState.setLocalCurrency();
       dataMaxBucketBlocks = 0;
       dataInit = dataStart = dataEnd = DateTime.now();
-      dataStartHeight = dataEndHeight = peer.tip.height;
+      dataStartHeight = dataEndHeight = peer.tipHeight;
       data = SortedListSet<TimeSeriesBlocks>(
           TimeSeriesBlocks.compareTime, List<TimeSeriesBlocks>());
       queryBackTo = dataEnd.subtract(windowDuration);
@@ -168,7 +168,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     } else {
       Duration bufferDuration = const Duration(hours: 4);
       updateDataEndTime(DateTime.now());
-      int tipHeight = peer.tip.height;
+      int tipHeight = peer.tipHeight;
       if (tipHeight > dataEndHeight) {
         await fetch(peer, tipHeight, tipHeight - dataEndHeight);
         dataEndHeight = tipHeight;
@@ -183,7 +183,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
           return;
         }
       }
-      debugPrint('cruzbase load more');
+      debugPrint('block chart load more');
       queryBackTo = dataEnd.subtract(bufferDuration);
     }
 
@@ -244,7 +244,7 @@ class _CruzbaseWidgetState extends State<CruzbaseWidget> {
     }
 
     num price = appState.exchangeRates
-        .rateViaBTC('CRUZ', appState.preferences.localCurrency);
+        .rateViaBTC(widget.network.currency.ticker, appState.preferences.localCurrency);
 
     /// truncateTime() makes scrolling jerky but prevents, I think,
     /// a charts bug where the bar widths wildly vary.
@@ -523,16 +523,16 @@ charts.Color chartColor(Color color) =>
     charts.Color(r: color.red, g: color.green, b: color.blue, a: color.alpha);
 
 /// Rounds [time] down to nearest [duration].  e.g. 1:56 to 1:00.
-DateTime truncateTime(DateTime time, CruzbaseBucketDuration duration) =>
+DateTime truncateTime(DateTime time, BlockChartBucketDuration duration) =>
     DateTime(time.year, time.month, time.day, time.hour,
-        duration == CruzbaseBucketDuration.minute ? time.minute : 0);
+        duration == BlockChartBucketDuration.minute ? time.minute : 0);
 
-/// Converts [CruzbaseBucketDuration] to [Duration].
-Duration getBucketDuration(CruzbaseBucketDuration duration) {
+/// Converts [BlockChartBucketDuration] to [Duration].
+Duration getBucketDuration(BlockChartBucketDuration duration) {
   switch (duration) {
-    case CruzbaseBucketDuration.hour:
+    case BlockChartBucketDuration.hour:
       return const Duration(hours: 1);
-    case CruzbaseBucketDuration.minute:
+    case BlockChartBucketDuration.minute:
     default:
       return const Duration(minutes: 1);
   }

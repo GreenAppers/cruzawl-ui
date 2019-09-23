@@ -1,0 +1,1018 @@
+{
+  "localeLanguage": "עברית",
+  "@localeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "קרוזל",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockTitle": "בטל את נעילת קרוזל",
+  "@unlockTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeTitle": "ברוך הבא לקרוזאל",
+  "@welcomeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeDesc": "כדי להתחיל, צור ארנק:",
+  "@welcomeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentBalanceIs": "היתרה הנוכחית שלך היא:",
+  "@currentBalanceIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentHistory": "היסטוריה אחרונה",
+  "@recentHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balanceTitle": "{ticker} + {balance}",
+  "@balanceTitle": {
+    "type": "text",
+    "placeholders": {
+      "ticker": {},
+      "balance": {}
+    }
+  },
+  "balanceAtHeightIs": "היתרה שלך בגובה הבלוק {@<a>} {height} {@</a>} היא:",
+  "@balanceAtHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "balanceMaturingByHeightIs": "היתרה שלך שמתבגרת לפי גובה {height} היא:",
+  "@balanceMaturingByHeightIs": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "walletAccountName": "{walletName} : חשבון {accountId} , כתובת {chainIndex}",
+  "@walletAccountName": {
+    "type": "text",
+    "placeholders": {
+      "walletName": {},
+      "accountId": {},
+      "chainIndex": {}
+    }
+  },
+  "insecureDeviceWarning": "אזהרת מכשירים לא בטוחים",
+  "@insecureDeviceWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insecureDeviceWarningDescription": "התגלה התקן מושרש או שבור בכלא. שימוש נוסף אינו מומלץ.",
+  "@insecureDeviceWarningDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhraseWarning": "זרע זה מאפשר לכל מי שיודע אותו להוציא את כל הכספים מהארנק שלך. תרשום את זה. שמור על זה בטוח.",
+  "@seedPhraseWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backupKeysWarning": "יש לגבות את המפתחות שלך באחסון חיצוני.",
+  "@backupKeysWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typingAddressesWarning": "אזהרה: הקלדת כתובות ביד מסוכנת ונוטה לשגיאה. השתמש תמיד בכפתור ההעתקה או בסורק ה- QR.",
+  "@typingAddressesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creatingUsingAlgorithm": "יוצר ... ( {algorithm} )",
+  "@creatingUsingAlgorithm": {
+    "type": "text",
+    "placeholders": {
+      "algorithm": {}
+    }
+  },
+  "addWallet": "הוסף ארנק",
+  "@addWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWallet": "ארנק HD",
+  "@hdWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hdWalletAlgorithm": "PBKDF: איטרציות של 2048",
+  "@hdWalletAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "watchOnlyWallet": "ארנק לצפייה בלבד",
+  "@watchOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generateNewAddress": "צור כתובת חדשה",
+  "@generateNewAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWallet": "מחק את הארנק",
+  "@deleteWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteThisWallet": "מחק את הארנק הזה",
+  "@deleteThisWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantDeleteOnlyWallet": "לא ניתן למחוק את הארנק היחיד.",
+  "@cantDeleteOnlyWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteWalletDescription": "ברגע שאתה מוחק ארנק, אין חזרה. אנא וודאו.",
+  "@deleteWalletDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cruzTicker": "CRUZ",
+  "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateReserve": "מילואים",
+  "@addressStateReserve": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateOpen": "פתוח",
+  "@addressStateOpen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressStateUsed": "בשימוש",
+  "@addressStateUsed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "בסדר",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hide": "להתחבא",
+  "@hide": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "show": "הופעה",
+  "@show": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "עותק",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "paste": "הדבק",
+  "@paste": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "בטל",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "מחק",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "צור",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "להתעלם",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlock": "לבטל נעילה",
+  "@unlock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypt": "הצפן",
+  "@encrypt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "תאשר",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifying": "מאמת ...",
+  "@verifying": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "שלח",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sending": "שולח ...",
+  "@sending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFailed": "שליחה נכשלה",
+  "@sendFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loading": "טוען...",
+  "@loading": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "creating": "יוצר ...",
+  "@creating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copied": "הועתק.",
+  "@copied": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyPublicKeys": "העתק מפתחות ציבוריים",
+  "@copyPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentTransactionId": "נשלח {transactionId}",
+  "@sentTransactionId": {
+    "type": "text",
+    "placeholders": {
+      "transactionId": {}
+    }
+  },
+  "listOfTwo": "{item1} , {item2}",
+  "@listOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "listOfThree": "{item1} , {item2} , {item3}",
+  "@listOfThree": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {}
+    }
+  },
+  "listOfFour": "{item1} , {item2} , {item3} , {item4}",
+  "@listOfFour": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {},
+      "item3": {},
+      "item4": {}
+    }
+  },
+  "menuOfOne": "[ {@<a>} {item} {@</a>} ]",
+  "@menuOfOne": {
+    "type": "text",
+    "placeholders": {
+      "item": {}
+    }
+  },
+  "menuOfTwo": "[ {@<a1>} {item1} {@</a1>} , {@<a2>} {item2} {@</a2>} ]",
+  "@menuOfTwo": {
+    "type": "text",
+    "placeholders": {
+      "item1": {},
+      "item2": {}
+    }
+  },
+  "account": "חשבון",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accounts": "חשבונות",
+  "@accounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "externalAddress": "כתובת חיצונית",
+  "@externalAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "address": "כתובת",
+  "@address": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addresses": "כתובות",
+  "@addresses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "receive": "לקבל",
+  "@receive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "לחפש",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "result": "תוצאה",
+  "@result": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "אנשי קשר",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "console": "קונסולה",
+  "@console": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknown": "לא ידוע",
+  "@unknown": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "הגדרות",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "network": "רשת",
+  "@network": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPeer": "פרי חדש",
+  "@newPeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newContact": "איש קשר חדש",
+  "@newContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newWallet": "ארנק חדש",
+  "@newWallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "peers": "עמיתים",
+  "@peers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deletePeer": "מחק את עמית",
+  "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "block": "חסום",
+  "@block": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocks": "חסימות",
+  "@blocks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "הצפנה",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transaction": "עסקה",
+  "@transaction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactions": "עסקאות",
+  "@transactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dangerZone": "אזור סכנה",
+  "@dangerZone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "אזהרה",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "תמיכה",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "רישיון",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donations": "תרומות",
+  "@donations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "מדיניות פרטיות",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homePage": "{product} דף הבית",
+  "@homePage": {
+    "type": "text",
+    "placeholders": {
+      "product": {}
+    }
+  },
+  "addressTitle": "כתובת {address}",
+  "@addressTitle": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "networkType": "{type} רשת",
+  "@networkType": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "numTransactions": "עסקאות ( {number} )",
+  "@numTransactions": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "totalBlocksInLastDuration": "{totalBlocks} {@<a1>} חוסם {@</a1>} {@<a2>} {duration} {@</a2>}",
+  "@totalBlocksInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "duration": {}
+    }
+  },
+  "totalBlocksTransactionsInLastDuration": "{totalBlocks} {@<a1>} חוסם {@</a1>} , {totalTransactions} עסקאות ב {@<a2>} {duration} {@</a2>}",
+  "@totalBlocksTransactionsInLastDuration": {
+    "type": "text",
+    "placeholders": {
+      "totalBlocks": {},
+      "totalTransactions": {},
+      "duration": {}
+    }
+  },
+  "id": "מזהה",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tip": "טיפ",
+  "@tip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "תאריך",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "שם",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "זמן",
+  "@time": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "אימייל",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "state": "מדינה",
+  "@state": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "height": "גובה",
+  "@height": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "balance": "איזון",
+  "@balance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currency": "מטבע",
+  "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nonce": "נון",
+  "@nonce": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "כמות",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fee": "תשלום",
+  "@fee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "payTo": "לשלם ל",
+  "@payTo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "to": "ל",
+  "@to": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "from": "מ",
+  "@from": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memo": "תזכיר",
+  "@memo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theme": "נושא",
+  "@theme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "url": "כתובת אתר",
+  "@url": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "סיסמה",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "version": "גרסה",
+  "@version": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "שפה",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "previous": "קודם",
+  "@previous": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "הבא",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmations": "אישורים",
+  "@confirmations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "earliestSeen": "נראה הכי מוקדם",
+  "@earliestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "latestSeen": "נראה לאחרונה",
+  "@latestSeen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "target": "יעד",
+  "@target": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainCode": "קוד שרשרת",
+  "@chainCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainIndex": "מדד שרשרת",
+  "@chainIndex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seedPhrase": "ביטוי זרע",
+  "@seedPhrase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKey": "מפתח פרטי",
+  "@privateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeTransactions": "עסקאות אקטיביות",
+  "@activeTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expired": "לא בתוקף",
+  "@expired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "expires": "פג תוקף",
+  "@expires": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matured": "התבגר",
+  "@matured": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matures": "מתבגר",
+  "@matures": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturing": "התבגרות",
+  "@maturing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maturingTransactions": "עסקאות לפדיון",
+  "@maturingTransactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chainWork": "עבודת שרשרת",
+  "@chainWork": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hashListRoot": "רשימת השורש",
+  "@hashListRoot": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaTime": "זמן דלתא",
+  "@deltaTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deltaHashPower": "כוח הדלתא האש",
+  "@deltaHashPower": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKeyList": "רשימת מפתחות ציבורית",
+  "@publicKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privateKeyList": "רשימת מפתחות פרטית",
+  "@privateKeyList": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromAddress": "מאת: {address}",
+  "@fromAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "toAddress": "אל: {address}",
+  "@toAddress": {
+    "type": "text",
+    "placeholders": {
+      "address": {}
+    }
+  },
+  "heightEquals": "גובה = {@<a>} {height} {@</a>}",
+  "@heightEquals": {
+    "type": "text",
+    "placeholders": {
+      "height": {}
+    }
+  },
+  "marketCap": "שווי שוק {@<a>} {cap} {@</a>}",
+  "@marketCap": {
+    "type": "text",
+    "placeholders": {
+      "cap": {}
+    }
+  },
+  "pending": "ממתין ל",
+  "@pending": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidUrl": "כתובת אתר לא חוקית.",
+  "@invalidUrl": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidJson": "JSON לא חוקי.",
+  "@invalidJson": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPrivateKey": "מפתח פרטי לא חוקי.",
+  "@invalidPrivateKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPublicKey": "מפתח ציבורי לא חוקי.",
+  "@invalidPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidCurrency": "מטבע לא חוקי",
+  "@invalidCurrency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxMemoLength": "אורך התזכר המרבי הוא 100",
+  "@maxMemoLength": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameMustBeUnique": "השם חייב להיות ייחודי.",
+  "@nameMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addressMustBeUnique": "הכתובת חייבת להיות ייחודית.",
+  "@addressMustBeUnique": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordCantBeEmpty": "הסיסמה לא יכולה להיות ריקה.",
+  "@passwordCantBeEmpty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDontMatch": "סיסמאות אינן תואמות.",
+  "@passwordsDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPassword": "אשר סיסמה",
+  "@confirmPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownAddress": "כתובת לא ידועה",
+  "@unknownAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidAddress": "כתובת לא חוקית",
+  "@invalidAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidMnemonic": "ממנומוני לא חוקי",
+  "@invalidMnemonic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "valueMustBePositive": "הערך חייב להיות חיובי",
+  "@valueMustBePositive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "insufficientFunds": "אין די כספים",
+  "@insufficientFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "networkOffline": "רשת במצב לא מקוון",
+  "@networkOffline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicKeys": "אין מפתחות ציבוריים",
+  "@noPublicKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPrivateKeys": "אין מפתחות פרטיים",
+  "@noPrivateKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownQuery": "שאילתה לא ידועה",
+  "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thanksForDonating": "ממש ב! תודה קהילת CRUZ!",
+  "@thanksForDonating": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minFee": "עמלה מינימלית היא {fee}",
+  "@minFee": {
+    "type": "text",
+    "placeholders": {
+      "fee": {}
+    }
+  },
+  "minAmount": "הסכום המינימלי הוא {amount}",
+  "@minAmount": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "defaultWalletName": "הארנק שלי",
+  "@defaultWalletName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "debugLog": "יומן באגים",
+  "@debugLog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requireSSLCert": "דרוש אישור SSL",
+  "@requireSSLCert": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showWalletNameInTitle": "הצג את שם הארנק בכותרת",
+  "@showWalletNameInTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyKeyPairsEveryLoad": "אמת את צמדי המפתח בכל עומס",
+  "@verifyKeyPairsEveryLoad": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestBeforeCreatingWallets": "מבחן יחידה לפני יצירת ארנקים",
+  "@unitTestBeforeCreatingWallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unitTestFailure": "כשל במבחן היחידה",
+  "@unitTestFailure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyAddressFailed": "האימות נכשל: {addressText}",
+  "@verifyAddressFailed": {
+    "type": "text",
+    "placeholders": {
+      "addressText": {}
+    }
+  },
+  "verifyWalletResults": "דילים {goodAddresses} / {totalAddresses} כתובות {goodTests} / {totalTests} מבחנים הצליח",
+  "@verifyWalletResults": {
+    "type": "text",
+    "placeholders": {
+      "goodAddresses": {},
+      "totalAddresses": {},
+      "goodTests": {},
+      "totalTests": {}
+    }
+  },
+  "secondsDuration": "{seconds, plural, =1 {{seconds} שניה} other {{seconds} שניות}}",
+  "@secondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "minutesDuration": "{minutes, plural, =1 {{minutes} דקה} other {{minutes} דקות}}",
+  "@minutesDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "hoursDuration": "{hours, plural, =1 {שעה} other {{hours} שעות}}",
+  "@hoursDuration": {
+    "type": "text",
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "daysDuration": "{days, plural, =1 {יום} other {{days} ימים}}",
+  "@daysDuration": {
+    "type": "text",
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "minutesAndSecondsDuration": "{minutes} {seconds}",
+  "@minutesAndSecondsDuration": {
+    "type": "text",
+    "placeholders": {
+      "minutes": {},
+      "seconds": {}
+    }
+  },
+  "hashPerSecond": "{hashPerSecond} H / s",
+  "@hashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "hashPerSecond": {}
+    }
+  },
+  "kiloHashPerSecond": "{kiloHashPerSecond} KH / s",
+  "@kiloHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "kiloHashPerSecond": {}
+    }
+  },
+  "megaHashPerSecond": "{megaHashPerSecond} MH / s",
+  "@megaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "megaHashPerSecond": {}
+    }
+  },
+  "gigaHashPerSecond": "{gigaHashPerSecond} GH / s",
+  "@gigaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "gigaHashPerSecond": {}
+    }
+  },
+  "teraHashPerSecond": "{teraHashPerSecond} TH / s",
+  "@teraHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "teraHashPerSecond": {}
+    }
+  },
+  "petaHashPerSecond": "{petaHashPerSecond} PH / s",
+  "@petaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "petaHashPerSecond": {}
+    }
+  },
+  "exaHashPerSecond": "{exaHashPerSecond} EH / s",
+  "@exaHashPerSecond": {
+    "type": "text",
+    "placeholders": {
+      "exaHashPerSecond": {}
+    }
+  }
+}

@@ -283,21 +283,28 @@ class Cruzawl extends Model {
         .where((v) => v.currency == currency.ticker)
         .map((v) => addPeer(v))
         .toList();
-    if (peers.isNotEmpty && preferences.networkEnabled) peers[0].connect();
+    if (peers.isNotEmpty && preferences.networkEnabled && peers[0] != null) {
+      peers[0].connect();
+    }
   }
 
   /// Creates the [Peer] described by [x] and adds to [PeerNetwork].
   Peer addPeer(PeerPreference x) {
     Currency currency = Currency.fromJson(x.currency);
-    if (currency == null) return null;
+    if (currency == null) {
+      debugPrint('Unsupported currency: ${x.currency}');
+      return null;
+    }
 
     PeerNetwork network = findPeerNetworkForCurrency(networks, currency);
-    if (network == null) return null;
+    if (network == null) {
+      debugPrint('Unsupported network: ${x.currency}');
+      return null;
+    }
 
     x.debugPrint = print;
     x.debugLevel = debugLog != null ? debugLevelDebug : debugLevel;
-    return network.addPeer(
-        network.createPeerWithSpec(x, currency.genesisBlock().id().toJson()));
+    return network.addPeer(network.createPeerWithSpec(x));
   }
 
   /// https://github.com/jspschool/tweetnacl-dart/issues/3

@@ -228,7 +228,7 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
             validator: (value) {
               try {
                 network.createPeerWithSpec(
-                    PeerPreference('', value, currency.ticker, ''), '');
+                    PeerPreference('', value, currency.ticker, ''));
               } on Exception {
                 return l10n.invalidUrl;
               }

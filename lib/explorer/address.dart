@@ -56,7 +56,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
     }
     loading = true;
 
-    int tipHeight = widget.network.tip.height;
+    int tipHeight = widget.network.tipHeight;
     Peer peer = await widget.network.getPeer();
     PublicAddress address =
         widget.network.currency.fromPublicAddressJson(widget.addressText);

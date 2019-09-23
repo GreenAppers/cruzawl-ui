@@ -112,14 +112,14 @@ packages:
       name: charts_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.0"
+    version: "0.8.1"
   charts_flutter:
     dependency: "direct main"
     description:
       name: charts_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.0"
+    version: "0.8.1"
   checked_yaml:
     dependency: transitive
     description:
@@ -151,10 +151,10 @@ packages:
   cruzawl:
     dependency: "direct main"
     description:
-      path: "../cruzawl"
-      relative: true
-    source: path
-    version: "1.0.8+8"
+      name: cruzawl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.9+9"
   crypto:
     dependency: transitive
     description:
