@@ -51,12 +51,17 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
     for (Peer peer in network.peers) {
       ret.add(
         ListTile(
-          leading: Icon(Icons.check),
+          onTap: nullOp,
+          leading: IconButton(
+            tooltip: l10n.connected,
+            icon: Icon(Icons.check),
+            onPressed: nullOp,
+          ),
           title: Text(peer.spec.name),
           subtitle: Text(peer.spec.url),
           trailing: IconButton(
             icon: Icon(Icons.info_outline),
-            onPressed: () {},
+            onPressed: nullOp,
           ),
         ),
       );
@@ -94,12 +99,14 @@ class _CruzawlNetworkSettingsState extends State<CruzawlNetworkSettings> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               IconButton(
+                tooltip: l10n.deletePeer,
                 icon: Icon(Icons.remove),
                 color: appState.theme.linkColor,
                 onPressed: removeSelectedPeer,
               ),
               Text(l10n.peers),
               IconButton(
+                tooltip: l10n.newPeer,
                 icon: Icon(Icons.add),
                 color: appState.theme.linkColor,
                 onPressed: () => Navigator.of(context).pushNamed('/addPeer'),

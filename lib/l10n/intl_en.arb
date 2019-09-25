@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-11T10:01:02.062618",
+  "@@last_modified": "2019-09-25T13:00:07.116880",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -208,6 +208,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "Submit",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "Unlock",
   "@unlock": {
     "type": "text",
@@ -392,6 +397,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "Wallets",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "Connected",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "Peers",
   "@peers": {
     "type": "text",
@@ -399,6 +414,11 @@
   },
   "deletePeer": "Delete Peer",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Home",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -549,6 +569,11 @@
   },
   "currency": "Currency",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "Duration",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "שלח",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "לבטל נעילה",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "ארנקים",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "מחובר",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "עמיתים",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "מחק את עמית",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "בית",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "מטבע",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "משך הזמן",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

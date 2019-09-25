@@ -35,6 +35,7 @@ class _ContactsWidgetState extends State<ContactsWidget> {
   @override
   Widget build(BuildContext context) {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final Localization l10n = Localization.of(context);
     final ThemeData theme = Theme.of(context);
 
     contacts = appState.preferences.contacts.values.toList();
@@ -43,11 +44,13 @@ class _ContactsWidgetState extends State<ContactsWidget> {
         model: SimpleScaffoldActions(<Widget>[
           selectedContactIndex != null
               ? IconButton(
+                  tooltip: l10n.delete,
                   icon: Icon(Icons.remove,
                       color: theme.primaryTextTheme.title.color),
                   onPressed: removeSelectedContact,
                 )
               : IconButton(
+                  tooltip: l10n.newContact,
                   icon: Icon(Icons.add,
                       color: theme.primaryTextTheme.title.color),
                   onPressed: () =>

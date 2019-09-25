@@ -17,6 +17,9 @@ import 'package:cruzawl_ui/ui_html.dart'
 export 'package:cruzawl_ui/ui_html.dart'
     if (dart.library.io) 'package:cruzawl_ui/ui_io.dart';
 
+/// Passed to onTap to trigger hover highlight.
+void nullOp() {}
+
 /// Use desktop instead of mobile style if [maxWidth] exceeded.
 bool useWideStyle(BuildContext context, double maxWidth) =>
     MediaQuery.of(context).size.width > (maxWidth ?? double.maxFinite);
@@ -120,6 +123,7 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
               ? CircularProgressIndicator()
               : IconButton(
                   icon: Icon(model.showSearchBar ? Icons.close : Icons.search),
+                  tooltip: model.showSearchBar ? l10n.cancel : l10n.search,
                   color: theme.primaryTextTheme.title.color,
                   onPressed: () => toggleSearchBar(model),
                   padding: EdgeInsets.all(0),
@@ -152,6 +156,7 @@ class _SimpleScaffoldState extends State<SimpleScaffold> {
                           controller: searchController,
                           decoration: InputDecoration(
                               prefixIcon: IconButton(
+                                  tooltip: l10n.submit,
                                   icon: Icon(Icons.search,
                                       color: titleStyle.color),
                                   onPressed: () async =>
@@ -306,11 +311,13 @@ class PopupMenuBuilder {
   Widget build(
       {Icon icon,
       Widget child,
+      String tooltip,
       EdgeInsetsGeometry padding = const EdgeInsets.all(8.0)}) {
     return PopupMenuButton(
         icon: icon,
         child: child,
         padding: padding,
+        tooltip: tooltip,
         itemBuilder: (_) => item,
         onSelected: (int v) {
           onSelectedCallback[v]();
@@ -435,6 +442,52 @@ class TitledWidget extends StatelessWidget {
   }
 }
 
+/// Widget providing an underlined hyperlink that highlights on hover.
+class HyperLinkWidget extends StatefulWidget {
+  final Key key;
+  final Widget child;
+  final String text, semanticsLabel;
+  final TextStyle style;
+  final Color hoverBackground, hoverForeground;
+  final VoidCallback onTap;
+  HyperLinkWidget(
+      {this.key,
+      this.child,
+      this.text,
+      this.semanticsLabel,
+      this.style,
+      this.hoverBackground,
+      this.hoverForeground,
+      this.onTap});
+
+  @override
+  _HyperLinkWidgetState createState() => _HyperLinkWidgetState();
+}
+
+class _HyperLinkWidgetState extends State<HyperLinkWidget> {
+  bool hover = false;
+
+  @override
+  Widget build(BuildContext c) => widget.onTap != null
+      ? Material(
+          color: Colors.transparent,
+          child: InkWell(
+              onTap: widget.onTap,
+              hoverColor: widget.hoverBackground,
+              onHover: widget.hoverForeground != null
+                  ? (bool v) => setState(() => hover = v)
+                  : null,
+              child: widget.child ?? buildText()))
+      : buildText();
+
+  Widget buildText() => Text(widget.text,
+      key: widget.key,
+      style: (hover && widget.style != null)
+          ? widget.style.copyWith(color: widget.hoverForeground)
+          : widget.style,
+      semanticsLabel: widget.semanticsLabel);
+}
+
 /// Widget for optionally displaying private information.
 class HideableWidget extends StatefulWidget {
   /// Title of the private information.
@@ -517,27 +570,31 @@ class CopyableText extends StatelessWidget {
   CopyableText(this.text, this.setClipboardText, {this.style, this.onTap});
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: EdgeInsets.only(right: 32),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.content_copy),
-              color: ScopedModel.of<Cruzawl>(context).theme.linkColor,
-              onPressed: () => setClipboardText(context, text),
-            ),
-            Flexible(
-              child: onTap == null
-                  ? Text(text, style: style)
-                  : GestureDetector(
-                      child: Text(text),
-                      onTap: onTap,
-                    ),
-            ),
-          ],
-        ),
-      );
+  Widget build(BuildContext context) {
+    final Localization l10n = Localization.of(context);
+    return Container(
+      padding: EdgeInsets.only(right: 32),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          IconButton(
+            tooltip: l10n.copy,
+            icon: Icon(Icons.content_copy),
+            color: ScopedModel.of<Cruzawl>(context).theme.linkColor,
+            onPressed: () => setClipboardText(context, text),
+          ),
+          Flexible(
+            child: onTap == null
+                ? Text(text, style: style)
+                : GestureDetector(
+                    child: Text(text),
+                    onTap: onTap,
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 /// Returns list of [DropdownMenuItem] with value x, and child Text(x).
@@ -553,10 +610,11 @@ List<DropdownMenuItem<String>> buildDropdownMenuItem(List<String> x) {
 /// Returns [ListTile] styled for desktop or mobile depending on [wideStyle].
 Widget buildListTile(Widget title, bool wideStyle, Widget widget) {
   return wideStyle
-      ? ListTile(title: title, trailing: widget)
+      ? ListTile(title: title, trailing: widget, onTap: nullOp)
       : Container(
           padding: EdgeInsets.only(bottom: 16),
-          child: ListTile(title: Center(child: title), subtitle: widget));
+          child: ListTile(
+              title: Center(child: title), subtitle: widget, onTap: nullOp));
 }
 
 /// [ThemeData] and further customizations.
@@ -564,8 +622,11 @@ class AppTheme {
   /// The [ThemeData] for this app.
   ThemeData data;
 
-  /// Color to use for links, e.g. [data.accentColor].
+  /// Color to use for links, e.g. [data.primaryColor].
   Color linkColor;
+
+  /// Color to use on link hover, e.g. [data.accentColor].
+  Color hoverLinkColor;
 
   /// Font to use in [AppBar].
   String titleFont;
@@ -579,8 +640,9 @@ class AppTheme {
   /// Style to use for links, e.g. underlined [data.accentColor].
   TextStyle linkStyle;
 
-  AppTheme(this.data, {this.linkColor}) {
+  AppTheme(this.data, {this.linkColor, this.hoverLinkColor}) {
     linkColor = linkColor ?? data.primaryColor;
+    hoverLinkColor = hoverLinkColor ?? data.accentColor;
   }
 }
 
@@ -619,7 +681,8 @@ Map<String, AppTheme> themes = <String, AppTheme>{
   'deepOrange': AppTheme(
       ThemeData(
           primarySwatch: Colors.deepOrange, accentColor: Colors.orangeAccent),
-      linkColor: Colors.orangeAccent),
+      linkColor: Colors.orangeAccent,
+      hoverLinkColor: Colors.deepOrange),
   'brown': AppTheme(
       ThemeData(primarySwatch: Colors.brown, accentColor: Colors.brown[100])),
   'blueGrey': AppTheme(ThemeData(
@@ -653,47 +716,65 @@ class TransactionListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final bool toTap = info.wideStyle && onToTap != null;
+    final bool fromTap = info.wideStyle && onFromTap != null;
     final bool amountLink = info.wideStyle && onTap != null;
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16),
       child: ListTile(
-        title: GestureDetector(
-          child: (info.wideStyle && onToTap != null)
-              ? RichText(
-                  text: buildLocalizationMarkupTextSpan(
-                    l10n.toAddress('{@<a>}${tx.toText}{@</a>}'),
-                    style: appState.theme.labelStyle,
-                    tags: <String, LocalizationMarkup>{
-                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
-                    },
-                  ),
-                )
-              : Text(l10n.toAddress(tx.toText)),
-          onTap: onToTap == null ? null : () => onToTap(tx),
+        title: info.wideStyle
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: buildLocalizationMarkupWidgets(
+                  l10n.toAddress('{@<a>}${tx.toText}{@</a>}'),
+                  style: appState.theme.labelStyle,
+                  tags: <String, LocalizationMarkup>{
+                    'a': LocalizationMarkup(
+                      style: toTap ? appState.theme.linkStyle : null,
+                      hoverForeground:
+                          toTap ? appState.theme.hoverLinkColor : null,
+                      onTap: onToTap == null ? null : () => onToTap(tx),
+                    ),
+                  },
+                ),
+              )
+            : GestureDetector(
+                child: Text(l10n.toAddress(tx.toText)),
+                onTap: onToTap == null ? null : () => onToTap(tx)),
+        subtitle: info.wideStyle
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: buildLocalizationMarkupWidgets(
+                  l10n.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
+                  style: appState.theme.labelStyle,
+                  tags: <String, LocalizationMarkup>{
+                    'a': LocalizationMarkup(
+                      style: fromTap ? appState.theme.linkStyle : null,
+                      hoverForeground:
+                          toTap ? appState.theme.hoverLinkColor : null,
+                      onTap: onFromTap == null ? null : () => onFromTap(tx),
+                    ),
+                  },
+                ),
+              )
+            : GestureDetector(
+                child: Text(l10n.fromAddress(tx.fromText)),
+                onTap: onFromTap == null ? null : () => onFromTap(tx)),
+        trailing: HyperLinkWidget(
+          text: info.amountPrefix +
+              currency.format(tx.amount + (info.fromWallet ? tx.fee : 0)),
+          style: (amountLink && !info.fromWallet && !info.toWallet)
+              ? appState.theme.linkStyle
+              : TextStyle(color: info.color).apply(
+                  decoration: amountLink ? TextDecoration.underline : null),
+          hoverForeground: amountLink ? appState.theme.hoverLinkColor : null,
+          onTap: onTap == null ? null : () => onTap(tx),
         ),
-        subtitle: GestureDetector(
-          child: (info.wideStyle && onFromTap != null)
-              ? RichText(
-                  text: buildLocalizationMarkupTextSpan(
-                    l10n.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
-                    style: appState.theme.labelStyle,
-                    tags: <String, LocalizationMarkup>{
-                      'a': LocalizationMarkup(style: appState.theme.linkStyle),
-                    },
-                  ),
-                )
-              : Text(l10n.fromAddress(tx.fromText)),
-          onTap: onFromTap == null ? null : () => onFromTap(tx),
-        ),
-        trailing: Text(
-            info.amountPrefix +
-                currency.format(tx.amount + (info.fromWallet ? tx.fee : 0)),
-            style: (amountLink && !info.fromWallet && !info.toWallet)
-                ? appState.theme.linkStyle
-                : TextStyle(color: info.color).apply(
-                    decoration: amountLink ? TextDecoration.underline : null)),
-        onTap: onTap == null ? null : () => onTap(tx),
       ),
     );
   }

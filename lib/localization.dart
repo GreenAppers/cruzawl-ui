@@ -10,7 +10,8 @@ import 'package:intl/intl.dart';
 
 import 'package:cruzawl/currency.dart';
 
-import 'l10n/messages_all.dart';
+import 'package:cruzawl_ui/l10n/messages_all.dart';
+import 'package:cruzawl_ui/ui.dart';
 
 /// Cruzawl localization strings
 class Localization {
@@ -135,6 +136,7 @@ class Localization {
   String get delete => Intl.message('Delete', name: 'delete');
   String get create => Intl.message('Create', name: 'create');
   String get ignore => Intl.message('Ignore', name: 'ignore');
+  String get submit => Intl.message('Submit', name: 'submit');
   String get unlock => Intl.message('Unlock', name: 'unlock');
   String get encrypt => Intl.message('Encrypt', name: 'encrypt');
   String get verify => Intl.message('Verify', name: 'verify');
@@ -218,8 +220,11 @@ class Localization {
   String get newPeer => Intl.message('New Peer', name: 'newPeer');
   String get newContact => Intl.message('New Contact', name: 'newContact');
   String get newWallet => Intl.message('New Wallet', name: 'newWallet');
+  String get wallets => Intl.message('Wallets', name: 'wallets');
+  String get connected => Intl.message('Connected', name: 'connected');
   String get peers => Intl.message('Peers', name: 'peers');
   String get deletePeer => Intl.message('Delete Peer', name: 'deletePeer');
+  String get home => Intl.message('Home', name: 'home');
   String get block => Intl.message('Block', name: 'block');
   String get blocks => Intl.message('Blocks', name: 'blocks');
   String get encryption => Intl.message('Encryption', name: 'encryption');
@@ -263,6 +268,7 @@ class Localization {
   String get height => Intl.message('Height', name: 'height');
   String get balance => Intl.message('Balance', name: 'balance');
   String get currency => Intl.message('Currency', name: 'currency');
+  String get duration => Intl.message('Duration', name: 'duration');
   String get nonce => Intl.message('Nonce', name: 'nonce');
   String get amount => Intl.message('Amount', name: 'amount');
   String get fee => Intl.message('Fee', name: 'fee');
@@ -528,8 +534,15 @@ class LocalizationMarkup {
   TextStyle style;
   VoidCallback onTap;
   String semanticsLabel;
+  final Color hoverBackground, hoverForeground;
   LocalizationMarkup(
-      {this.widget, this.key, this.style, this.onTap, this.semanticsLabel});
+      {this.widget,
+      this.key,
+      this.style,
+      this.onTap,
+      this.semanticsLabel,
+      this.hoverBackground,
+      this.hoverForeground});
 }
 
 /// Visitor interface for parsing localization markup.
@@ -582,14 +595,21 @@ class WidgetsLocalizationMarkupVisitor extends LocalizationMarkupVisitor {
     if (currentTag != null && currentTag.widget != null) {
       ret.addAll(currentTag.widget);
     } else {
-      Widget child = Text(curText,
-          style: currentStyle,
-          key: currentTag != null ? currentTag.key : null,
-          semanticsLabel:
-              currentTag != null ? currentTag.semanticsLabel : null);
       ret.add((currentTag != null && currentTag.onTap != null)
-          ? GestureDetector(onTap: currentTag.onTap, child: child)
-          : child);
+          ? HyperLinkWidget(
+              text: curText,
+              style: currentStyle,
+              key: currentTag.key,
+              hoverForeground: currentTag.hoverForeground,
+              hoverBackground: currentTag.hoverBackground,
+              semanticsLabel: currentTag.semanticsLabel,
+              onTap: currentTag.onTap,
+            )
+          : Text(curText,
+              style: currentStyle,
+              key: currentTag != null ? currentTag.key : null,
+              semanticsLabel:
+                  currentTag != null ? currentTag.semanticsLabel : null));
     }
   }
 }

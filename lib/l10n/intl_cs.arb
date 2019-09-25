@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "Předložit",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "Odemknout",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "Peněženky",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "Připojeno",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "Vrstevníci",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "Odstranit Peer",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Domov",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "Měna",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "Doba trvání",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

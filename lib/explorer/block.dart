@@ -127,17 +127,23 @@ class _BlockWidgetState extends State<BlockWidget> {
     final bool wideStyle =
         screenSize.width > (widget.maxWidth ?? double.maxFinite);
     final String previousBlockId = block.header.previous.toJson();
+    final ThemeData theme = Theme.of(context);
+    final TextStyle subtitleStyle =
+        theme.textTheme.body1.copyWith(color: theme.textTheme.caption.color);
 
     List<Widget> header = <Widget>[
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.time),
         trailing: Text(block.header.dateTime.toString()),
       ),
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.height),
-        trailing: GestureDetector(
-          child: Text(block.header.height.toString(),
-              style: wideStyle ? linkStyle : null),
+        trailing: HyperLinkWidget(
+          text: block.header.height.toString(),
+          style: wideStyle ? linkStyle : subtitleStyle,
+          hoverForeground: wideStyle ? appState.theme.hoverLinkColor : null,
           onTap: () => appState.navigateToHeight(context, block.header.height),
         ),
       ),
@@ -148,12 +154,14 @@ class _BlockWidgetState extends State<BlockWidget> {
       if (duration.inSeconds > 0) {
         header.add(
           ListTile(
+            onTap: nullOp,
             title: Text(l10n.deltaTime),
             trailing: Text(l10n.formatShortDuration(duration)),
           ),
         );
         header.add(
           ListTile(
+            onTap: nullOp,
             title: Text(l10n.deltaHashPower),
             trailing:
                 Text(l10n.formatHashRate(block.header.hashRate(prevBlock))),
@@ -164,6 +172,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
     header.add(
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.nonce),
         trailing: Text(block.header.nonce.toString()),
       ),
@@ -183,8 +192,10 @@ class _BlockWidgetState extends State<BlockWidget> {
       buildListTile(
         Text(l10n.id),
         wideStyle,
-        GestureDetector(
-          child: Text(blockId, style: wideStyle ? linkStyle : null),
+        HyperLinkWidget(
+          text: blockId,
+          style: wideStyle ? linkStyle : subtitleStyle,
+          hoverForeground: wideStyle ? appState.theme.hoverLinkColor : null,
           onTap: () => appState.navigateToBlockId(context, blockId),
         ),
       ),
@@ -194,8 +205,10 @@ class _BlockWidgetState extends State<BlockWidget> {
       buildListTile(
         Text(l10n.previous),
         wideStyle,
-        GestureDetector(
-          child: Text(previousBlockId, style: wideStyle ? linkStyle : null),
+        HyperLinkWidget(
+          text: previousBlockId,
+          style: wideStyle ? linkStyle : subtitleStyle,
+          hoverForeground: wideStyle ? appState.theme.hoverLinkColor : null,
           onTap: () => appState.navigateToBlockId(context, previousBlockId),
         ),
       ),
@@ -206,8 +219,10 @@ class _BlockWidgetState extends State<BlockWidget> {
         buildListTile(
           Text(l10n.next),
           wideStyle,
-          GestureDetector(
-            child: Text(nextBlockId, style: wideStyle ? linkStyle : null),
+          HyperLinkWidget(
+            text: nextBlockId,
+            style: wideStyle ? linkStyle : subtitleStyle,
+            hoverForeground: wideStyle ? appState.theme.hoverLinkColor : null,
             onTap: () => appState.navigateToBlockId(context, nextBlockId),
           ),
         ),

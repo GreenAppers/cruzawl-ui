@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "Kirimkan",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "Membuka kunci",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "Dompet",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "Terhubung",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "Teman sebaya",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "Hapus Peer",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Rumah",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "Mata uang",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "Durasi",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

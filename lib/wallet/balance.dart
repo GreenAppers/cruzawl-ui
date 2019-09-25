@@ -46,6 +46,7 @@ class WalletBalanceWidget extends StatelessWidget {
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
                       style: appState.theme.linkStyle,
+                      hoverForeground: appState.theme.hoverLinkColor,
                       onTap: () => appState.navigateToBlockChart(context),
                       key: Key('chartLink'),
                     ),

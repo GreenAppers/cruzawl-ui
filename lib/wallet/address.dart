@@ -61,13 +61,14 @@ class _AddressWidgetState extends State<AddressWidget> {
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final TextStyle labelTextStyle = appState.theme.labelStyle;
-    final bool fullyLoaded = address.loadIterator.done;
+    final bool fullyLoaded =
+        address.loadIterator == null ? false : address.loadIterator.done;
 
     final List<Widget> top = <Widget>[
       Center(
         child: QrImage(
           data: addressText,
-          size: min(screenSize.width, screenSize.height) * 2 / 3.0,
+          size: min(256, min(screenSize.width, screenSize.height) * 2 / 3.0),
         ),
       ),
     ];
@@ -119,6 +120,7 @@ class _AddressWidgetState extends State<AddressWidget> {
 
     header.add(
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.account, style: labelTextStyle),
         trailing: Text('${address.accountId + 1}'),
       ),
@@ -126,6 +128,7 @@ class _AddressWidgetState extends State<AddressWidget> {
     if (address.chainIndex != null && widget.wallet.hdWallet) {
       header.add(
         ListTile(
+          onTap: nullOp,
           title: Text(l10n.chainIndex, style: labelTextStyle),
           trailing: Text('${address.chainIndex + 1}'),
         ),
@@ -133,18 +136,21 @@ class _AddressWidgetState extends State<AddressWidget> {
     }
     header.add(
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.state, style: labelTextStyle),
         trailing: Text(l10n.addressState(address.state)),
       ),
     );
     header.add(
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.balance, style: labelTextStyle),
         trailing: Text(widget.wallet.currency.format(address.balance)),
       ),
     );
     header.add(
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.transactions, style: labelTextStyle),
         trailing:
             Text((transactions != null ? transactions.length : 0).toString()),
@@ -153,6 +159,7 @@ class _AddressWidgetState extends State<AddressWidget> {
     if (address.earliestSeen != null) {
       header.add(
         ListTile(
+          onTap: nullOp,
           title: Text(l10n.earliestSeen, style: labelTextStyle),
           trailing: Text(address.earliestSeen.toString()),
         ),
@@ -161,6 +168,7 @@ class _AddressWidgetState extends State<AddressWidget> {
     if (address.latestSeen != null) {
       header.add(
         ListTile(
+          onTap: nullOp,
           title: Text(l10n.latestSeen, style: labelTextStyle),
           trailing: Text(address.latestSeen.toString()),
         ),
@@ -195,7 +203,8 @@ class _AddressWidgetState extends State<AddressWidget> {
           onTap: (tx) => appState.navigateToTransaction(context, tx));
     }
 
-    assert(!widget.address.loadIterator.done);
+    assert(widget.address.loadIterator == null ||
+        !widget.address.loadIterator.done);
 
     if (widget.wallet.network.hasPeer) {
       widget.wallet.network.getPeer().then((Peer peer) {

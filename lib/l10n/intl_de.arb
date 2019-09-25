@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "einreichen",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "Freischalten",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "Geldbörsen",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "In Verbindung gebracht",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "Gleichaltrigen",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "Peer löschen",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Zuhause",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "Währung",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "Dauer",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

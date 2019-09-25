@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "تقديم",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "الغاء القفل",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "محافظ",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "متصل",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "الأقران",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "حذف النظير",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "الصفحة الرئيسية",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "دقة",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "المدة الزمنية",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

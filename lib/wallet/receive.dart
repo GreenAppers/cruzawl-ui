@@ -41,7 +41,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
       children.add(Center(
         child: QrImage(
           data: addressText,
-          size: min(screenSize.width, screenSize.height) * 2 / 3.0,
+          size: min(256, min(screenSize.width, screenSize.height) * 2 / 3.0),
         ),
       ));
     }

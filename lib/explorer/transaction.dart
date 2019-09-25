@@ -95,22 +95,26 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     List<Widget> ret = <Widget>[
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.date, style: labelTextStyle),
         subtitle: CopyableText(
             txn.dateTime.toString(), appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.from, style: labelTextStyle),
         subtitle: CopyableText(txn.fromText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.to, style: labelTextStyle),
         subtitle: CopyableText(txn.toText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.id, style: labelTextStyle),
         subtitle: CopyableText(txn.id().toJson(), appState.setClipboardText,
             style: valueTextStyle),
@@ -120,6 +124,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     if (txn.memo != null) {
       ret.add(
         ListTile(
+          onTap: nullOp,
           title: Text(l10n.memo, style: labelTextStyle),
           subtitle: CopyableText(txn.memo, appState.setClipboardText,
               style: valueTextStyle),
@@ -129,6 +134,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     ret.add(
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.amount, style: labelTextStyle),
         trailing: Text(widget.network.currency.format(txn.amount),
             style: (widget.info.color != null
@@ -139,6 +145,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
     ret.add(
       ListTile(
+        onTap: nullOp,
         title: Text(l10n.fee, style: labelTextStyle),
         trailing: Text(widget.network.currency.format(txn.fee),
             style: (widget.info.fromWallet
@@ -157,6 +164,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
       if (txn.height <= tipHeight) {
         ret.add(ListTile(
+          onTap: nullOp,
           title: Text(l10n.confirmations, style: labelTextStyle),
           trailing: Text(
               txn.height == null
@@ -168,6 +176,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     }
 
     ret.add(ListTile(
+      onTap: nullOp,
       title: Text(l10n.nonce, style: labelTextStyle),
       trailing: Text(txn.nonce.toString(), style: valueTextStyle),
     ));
@@ -175,6 +184,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     if (txn.matures != null) {
       int matures = txn.matures;
       ret.add(ListTile(
+        onTap: nullOp,
         title: Text(matures <= tipHeight ? l10n.matured : l10n.matures,
             style: labelTextStyle),
         trailing: Text(matures.toString(), style: valueTextStyle),
@@ -184,6 +194,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     if (txn.expires != null) {
       int expires = txn.expires;
       ret.add(ListTile(
+        onTap: nullOp,
         title: Text(expires <= tipHeight ? l10n.expired : l10n.expires,
             style: labelTextStyle),
         trailing: Text(expires.toString(), style: valueTextStyle),

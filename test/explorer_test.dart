@@ -278,7 +278,10 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
                 supportedLocales: supportedLocales,
                 home: ScopedModel(
                     model: searchBar,
-                    child: BlockChartWidget(appState.network, fetchBlock: 2)),
+                    child: BlockChartWidget(appState.network,
+                        fetchBlock: 2,
+                        windowDuration: const Duration(hours: 1),
+                        bucketDuration: BlockChartBucketDuration.minute)),
                 onGenerateRoute: CruzawlRoutes(appState,
                         includeWalletRoutes: true, blockChartSearchBar: true)
                     .onGenerateRoute))));

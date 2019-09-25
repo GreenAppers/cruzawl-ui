@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "提交",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "开锁",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "钱包",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "连接的",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "同行",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "删除对等",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "家",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "货币",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "持续时间",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

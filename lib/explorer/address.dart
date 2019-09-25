@@ -129,9 +129,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       Center(
         child: QrImage(
           data: widget.addressText,
-          size: min(screenSize.width, screenSize.height) *
-              (wideStyle ? 1 : 2) /
-              3.0,
+          size: min(256, min(screenSize.width, screenSize.height) * 2 / 3.0),
         ),
       ),
     ];
@@ -154,18 +152,21 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       ),
     ));
     header.add(ListTile(
+      onTap: nullOp,
       title: Text(l10n.balance, style: labelTextStyle),
       trailing: Text(widget.network.currency.format(balance)),
     ));
 
     if (maturing > 0) {
       header.add(ListTile(
+        onTap: nullOp,
         title: Text(l10n.maturing, style: labelTextStyle),
         trailing: Text(widget.network.currency.format(maturing)),
       ));
     }
     if (fullyLoaded && earliestSeen != null) {
       header.add(ListTile(
+        onTap: nullOp,
         title: Text(l10n.earliestSeen, style: labelTextStyle),
         trailing: Text(earliestSeen.toString()),
       ));

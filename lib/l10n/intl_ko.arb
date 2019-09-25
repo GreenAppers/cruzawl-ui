@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "제출",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "터놓다",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "지갑",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "연결됨",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "동료",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "동료 삭제",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "집",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "통화",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "지속",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

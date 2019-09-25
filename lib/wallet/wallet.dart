@@ -96,7 +96,8 @@ class _WalletWidgetState extends State<WalletWidget> {
           ),
           backgroundColorStart: theme.primaryColor,
           backgroundColorEnd: theme.accentColor,
-          leading: buildWalletsMenu(context),
+          leading:
+              Tooltip(message: l10n.wallets, child: buildWalletsMenu(context)),
           actions: <Widget>[
             (PopupMenuBuilder()
                   ..addItem(

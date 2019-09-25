@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "Enviar",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "desbloquear",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "Carteras",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "Conectada",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "Pares",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "Eliminar par",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Casa",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "Moneda",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "Duración",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "представить",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "отпереть",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "бумажники",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "Связано",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "Сверстники",
   "@peers": {
     "type": "text",
@@ -398,6 +413,16 @@
   },
   "deletePeer": "Удалить Peer",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Главная",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "продолжительность",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },

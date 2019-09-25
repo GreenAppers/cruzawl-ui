@@ -51,8 +51,8 @@ class BlockChartWidget extends StatefulWidget {
   BlockChartWidget(this.network,
       {this.loadingWidget,
       this.wideStyle = false,
-      this.windowDuration = const Duration(hours: 1),
-      this.bucketDuration = BlockChartBucketDuration.minute,
+      this.windowDuration = const Duration(days: 1),
+      this.bucketDuration = BlockChartBucketDuration.hour,
       this.fetchBlock = 50});
 
   @override
@@ -243,8 +243,8 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
       });
     }
 
-    num price = appState.exchangeRates
-        .rateViaBTC(widget.network.currency.ticker, appState.preferences.localCurrency);
+    num price = appState.exchangeRates.rateViaBTC(
+        widget.network.currency.ticker, appState.preferences.localCurrency);
 
     /// truncateTime() makes scrolling jerky but prevents, I think,
     /// a charts bug where the bar widths wildly vary.
@@ -337,17 +337,23 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
     final TextStyle titleStyle = appState.theme.titleStyle;
     final TextStyle linkStyle = appState.theme.titleStyle
         .copyWith(decoration: TextDecoration.underline);
+    final Color hoverForeground = theme.accentColor;
 
     List<Widget> totalBlocksInLast = buildTotalBlocksInLast(
         totalBlocks, totalTransactions, l10n,
-        titleStyle: titleStyle, linkStyle: linkStyle);
+        titleStyle: titleStyle,
+        linkStyle: linkStyle,
+        hoverForeground: hoverForeground);
     List<Widget> heightEquals = buildHeightEquals(maxHeight, l10n,
         titleStyle: titleStyle,
         linkStyle: linkStyle,
+        hoverForeground: hoverForeground,
         onTap: () => appState.navigateToHeight(context, maxHeight));
     List<Widget> marketCap = buildMarketCap(
         tipHeight, price, appState.preferences.localCurrency, l10n,
-        titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
+        titleStyle: titleStyle,
+        hoverForeground: hoverForeground,
+        onTap: () => appState.launchMarketUrl(context));
 
     return Container(
       height: 100,
@@ -390,19 +396,26 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
     final TextStyle titleStyle = appState.theme.titleStyle;
     final TextStyle linkStyle = appState.theme.titleStyle
         .copyWith(decoration: TextDecoration.underline);
+    final ThemeData theme = Theme.of(context);
+    final Color hoverForeground = theme.accentColor;
 
     List<Widget> hashRate =
         buildHashRate(first, last, l10n, titleStyle: titleStyle);
     List<Widget> totalBlocksInLast = buildTotalBlocksInLast(
         totalBlocks, totalTransactions, l10n,
-        titleStyle: titleStyle, linkStyle: linkStyle);
+        titleStyle: titleStyle,
+        linkStyle: linkStyle,
+        hoverForeground: hoverForeground);
     List<Widget> heightEquals = buildHeightEquals(maxHeight, l10n,
         titleStyle: titleStyle,
         linkStyle: linkStyle,
+        hoverForeground: hoverForeground,
         onTap: () => appState.navigateToHeight(context, maxHeight));
     List<Widget> marketCap = buildMarketCap(
         tipHeight, price, appState.preferences.localCurrency, l10n,
-        titleStyle: titleStyle, onTap: () => appState.launchMarketUrl(context));
+        titleStyle: titleStyle,
+        hoverForeground: hoverForeground,
+        onTap: () => appState.launchMarketUrl(context));
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -436,7 +449,7 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
 
   List<Widget> buildTotalBlocksInLast(
       int totalBlocks, int totalTransactions, Localization l10n,
-      {TextStyle titleStyle, TextStyle linkStyle}) {
+      {TextStyle titleStyle, TextStyle linkStyle, Color hoverForeground}) {
     final String duration = l10n.formatDuration(windowDuration);
     return buildLocalizationMarkupWidgets(
       l10n.totalBlocksTransactionsInLastDuration(
@@ -445,19 +458,23 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
       tags: <String, LocalizationMarkup>{
         'a1': LocalizationMarkup(
           style: linkStyle,
+          hoverForeground: hoverForeground,
           onTap: () => Navigator.of(context).pushNamed('/tip'),
         ),
         'a2': LocalizationMarkup(
           widget: <Widget>[
-            (PopupMenuBuilder()
-                  ..addItem(
-                      text: l10n.formatDuration(Duration(days: 1)),
-                      onSelected: setIntervalDaily)
-                  ..addItem(
-                      text: l10n.formatDuration(Duration(hours: 1)),
-                      onSelected: setIntervalHourly))
-                .build(
-                    child: Text('$duration', style: linkStyle), padding: null),
+            Tooltip(
+                message: l10n.duration,
+                child: (PopupMenuBuilder()
+                      ..addItem(
+                          text: l10n.formatDuration(Duration(days: 1)),
+                          onSelected: setIntervalDaily)
+                      ..addItem(
+                          text: l10n.formatDuration(Duration(hours: 1)),
+                          onSelected: setIntervalHourly))
+                    .build(
+                        child: Text('$duration', style: linkStyle),
+                        padding: null)),
           ],
         ),
       },
@@ -465,7 +482,10 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
   }
 
   List<Widget> buildHeightEquals(int maxHeight, Localization l10n,
-          {TextStyle titleStyle, TextStyle linkStyle, VoidCallback onTap}) =>
+          {TextStyle titleStyle,
+          TextStyle linkStyle,
+          Color hoverForeground,
+          VoidCallback onTap}) =>
       buildLocalizationMarkupWidgets(
         l10n.heightEquals(maxHeight),
         style: titleStyle,
@@ -473,13 +493,14 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
           'a': LocalizationMarkup(
             style: linkStyle,
             onTap: onTap,
+            hoverForeground: hoverForeground,
           ),
         },
       );
 
   List<Widget> buildMarketCap(
       int tipHeight, num price, String currency, Localization l10n,
-      {TextStyle titleStyle, VoidCallback onTap}) {
+      {TextStyle titleStyle, Color hoverForeground, VoidCallback onTap}) {
     int cap = (widget.network.currency.supply(tipHeight) * price).round();
     return cap > 0
         ? buildLocalizationMarkupWidgets(
@@ -490,6 +511,7 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
               'a': LocalizationMarkup(
                 style: titleStyle,
                 onTap: onTap,
+                hoverForeground: hoverForeground,
               ),
             },
           )

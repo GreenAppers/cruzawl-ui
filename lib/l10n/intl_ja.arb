@@ -207,6 +207,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "submit": "提出する",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unlock": "ロック解除",
   "@unlock": {
     "type": "text",
@@ -391,6 +396,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "wallets": "財布",
+  "@wallets": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connected": "接続済み",
+  "@connected": {
+    "type": "text",
+    "placeholders": {}
+  },
   "peers": "仲間",
   "@peers": {
     "type": "text",
@@ -398,6 +413,11 @@
   },
   "deletePeer": "ピアを削除",
   "@deletePeer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "ホーム",
+  "@home": {
     "type": "text",
     "placeholders": {}
   },
@@ -548,6 +568,11 @@
   },
   "currency": "通貨",
   "@currency": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "duration": "期間",
+  "@duration": {
     "type": "text",
     "placeholders": {}
   },
