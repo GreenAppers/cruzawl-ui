@@ -469,16 +469,23 @@ class _HyperLinkWidgetState extends State<HyperLinkWidget> {
 
   @override
   Widget build(BuildContext c) => widget.onTap != null
-      ? Material(
-          color: Colors.transparent,
-          child: InkWell(
-              onTap: widget.onTap,
-              hoverColor: widget.hoverBackground,
-              onHover: widget.hoverForeground != null
-                  ? (bool v) => setState(() => hover = v)
-                  : null,
-              child: widget.child ?? buildText()))
+      ? (widget.hoverBackground != null
+          ? Material(
+              color: Colors.transparent,
+              textStyle: (hover && widget.style != null)
+                  ? widget.style.copyWith(color: widget.hoverForeground)
+                  : widget.style,
+              child: buildInkWell())
+          : buildInkWell())
       : buildText();
+
+  Widget buildInkWell() => InkWell(
+      onTap: widget.onTap,
+      hoverColor: widget.hoverBackground,
+      onHover: widget.hoverForeground != null
+          ? (bool v) => setState(() => hover = v)
+          : null,
+      child: widget.child ?? buildText());
 
   Widget buildText() => Text(widget.text,
       key: widget.key,

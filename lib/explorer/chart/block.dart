@@ -397,7 +397,7 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
     final TextStyle linkStyle = appState.theme.titleStyle
         .copyWith(decoration: TextDecoration.underline);
     final ThemeData theme = Theme.of(context);
-    final Color hoverForeground = theme.accentColor;
+    final Color hoverForeground = theme.secondaryHeaderColor;
 
     List<Widget> hashRate =
         buildHashRate(first, last, l10n, titleStyle: titleStyle);

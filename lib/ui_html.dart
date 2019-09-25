@@ -6,29 +6,33 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:cruzawl_ui/localization.dart';
+
 /// Home button with logo.png instead of "back" button the browser already has.
-WidgetBuilder backButtonBuilder = (BuildContext context) => GestureDetector(
-    child: Center(
-        child: Container(
-      margin: EdgeInsets.all(3),
-      padding: EdgeInsets.all(3),
-      child: Image.asset('assets/logo.png'),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(9.0),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.grey[500],
-            offset: Offset(0.0, 1.5),
-            blurRadius: 1.5,
+WidgetBuilder backButtonBuilder = (BuildContext context) => Tooltip(
+    message: Localization.of(context).home,
+    child: GestureDetector(
+        child: Center(
+            child: Container(
+          margin: EdgeInsets.all(3),
+          padding: EdgeInsets.all(3),
+          child: Image.asset('assets/logo.png'),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(9.0),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.grey[500],
+                offset: Offset(0.0, 1.5),
+                blurRadius: 1.5,
+              ),
+            ],
           ),
-        ],
-      ),
-    )),
-    onTap: () {
-      Navigator.of(context).pushNamed('/');
-      window.history.replaceState({}, '', '/#/');
-    });
+        )),
+        onTap: () {
+          Navigator.of(context).pushNamed('/');
+          window.history.replaceState({}, '', '/#/');
+        }));
 
 /// Wraps [TextFormField] adding "Paste" context menu and <Enter> submitting.
 class EnterTextFormField extends StatelessWidget {

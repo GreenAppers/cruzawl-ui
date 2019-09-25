@@ -142,7 +142,7 @@ class _BlockWidgetState extends State<BlockWidget> {
         title: Text(l10n.height),
         trailing: HyperLinkWidget(
           text: block.header.height.toString(),
-          style: wideStyle ? linkStyle : subtitleStyle,
+          style: wideStyle ? linkStyle : null,
           hoverForeground: wideStyle ? appState.theme.hoverLinkColor : null,
           onTap: () => appState.navigateToHeight(context, block.header.height),
         ),
