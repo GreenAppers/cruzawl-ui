@@ -147,6 +147,8 @@ class Localization {
   String get loading => Intl.message('Loading...', name: 'loading');
   String get creating => Intl.message('Creating...', name: 'creating');
   String get copied => Intl.message('Copied.', name: 'copied');
+  String get copyAddresses =>
+      Intl.message('Copy Addresses', name: 'copyAddresses');
   String get copyPublicKeys =>
       Intl.message('Copy Public Keys', name: 'copyPublicKeys');
   String sentTransactionId(String transactionId) =>
@@ -303,8 +305,7 @@ class Localization {
   String get maturingTransactions =>
       Intl.message('Maturing transactions', name: 'maturingTransactions');
   String get chainWork => Intl.message('Chain Work', name: 'chainWork');
-  String get hashListRoot =>
-      Intl.message('Hash List Root', name: 'hashListRoot');
+  String get hashRoot => Intl.message('Hash Root', name: 'hashRoot');
   String get deltaTime => Intl.message('Delta Time', name: 'deltaTime');
   String get deltaHashPower =>
       Intl.message('Delta Hash Power', name: 'deltaHashPower');

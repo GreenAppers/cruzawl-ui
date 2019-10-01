@@ -262,6 +262,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "copyAddresses": "주소 복사",
+  "@copyAddresses": {
+    "type": "text",
+    "placeholders": {}
+  },
   "copyPublicKeys": "공개 키 복사",
   "@copyPublicKeys": {
     "type": "text",
@@ -726,8 +731,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "해시 목록 루트",
-  "@hashListRoot": {
+  "hashRoot": "해시 루트",
+  "@hashRoot": {
     "type": "text",
     "placeholders": {}
   },

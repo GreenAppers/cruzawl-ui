@@ -103,7 +103,8 @@ class WalletSettingsWidget extends StatelessWidget {
               .showSnackBar(SnackBar(content: Text(l10n.verifying)));
           await Future.delayed(Duration(seconds: 1));
 
-          int verifiedAddresses = 0, ranTests = appState.runUnitTests();
+          int verifiedAddresses = 0,
+              ranTests = appState.runUnitTests(wallet.currency);
           bool unitTests = ranTests >= 0;
           if (unitTests) {
             for (Address address in addresses) {
@@ -137,14 +138,14 @@ class WalletSettingsWidget extends StatelessWidget {
         },
       ),
       RaisedGradientButton(
-        labelText: l10n.copyPublicKeys,
+        labelText: l10n.copyAddresses,
         padding: EdgeInsets.all(32),
         onPressed: () {
-          String publicKeyList = '';
+          String addressList = '';
           for (Address address in addresses) {
-            publicKeyList += '${address.publicKey.toJson()}\n';
+            addressList += '${address.publicAddress.toJson()}\n';
           }
-          appState.setClipboardText(context, publicKeyList);
+          appState.setClipboardText(context, addressList);
           Scaffold.of(context)
               .showSnackBar(SnackBar(content: Text(l10n.copied)));
         },
@@ -162,7 +163,7 @@ class WalletSettingsWidget extends StatelessWidget {
         int addressIndex = index - header.length - 1;
         if (addressIndex < addresses.length) {
           Address address = addresses[addressIndex];
-          String addressText = address.publicKey.toJson();
+          String addressText = address.publicAddress.toJson();
           return AddressListTile(
             wallet.currency,
             addressText,

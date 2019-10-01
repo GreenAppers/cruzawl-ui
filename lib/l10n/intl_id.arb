@@ -262,6 +262,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "copyAddresses": "Salin Alamat",
+  "@copyAddresses": {
+    "type": "text",
+    "placeholders": {}
+  },
   "copyPublicKeys": "Salin Kunci Publik",
   "@copyPublicKeys": {
     "type": "text",
@@ -726,8 +731,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "Root Daftar Hash",
-  "@hashListRoot": {
+  "hashRoot": "Hash Root",
+  "@hashRoot": {
     "type": "text",
     "placeholders": {}
   },

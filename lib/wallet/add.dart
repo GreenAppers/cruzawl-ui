@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:bip39/bip39.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
@@ -33,10 +34,12 @@ class AddWalletWidget extends StatefulWidget {
 
 class _AddWalletWidgetState extends State<AddWalletWidget> {
   final formKey = GlobalKey<FormState>();
+  final TextEditingController currencyController =
+      TextEditingController(text: cruz.ticker);
   final TextEditingController keyListController = TextEditingController();
   final TextEditingController seedPhraseController =
       TextEditingController(text: generateMnemonic());
-  String name, seedPhrase = '', currencyName = 'CRUZ';
+  String name, seedPhrase = '', currencyName;
   bool hdWallet = true, watchOnlyWallet = false;
   List<PrivateKey> keyList;
   List<PublicAddress> publicKeyList;
@@ -44,6 +47,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
   @override
   void dispose() {
     seedPhraseController.dispose();
+    keyListController.dispose();
+    currencyController.dispose();
     super.dispose();
   }
 
@@ -57,7 +62,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
       ListTile(
         subtitle: TextFormField(
           enabled: false,
-          initialValue: currencyName,
+          controller: currencyController,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: l10n.currency,
@@ -68,6 +73,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           },
           onSaved: (value) => currencyName = value,
         ),
+        onTap: chooseCurrency,
       ),
     );
 
@@ -142,7 +148,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   labelText: l10n.publicKeyList,
                 ),
                 validator: (value) {
-                  Currency cur = Currency.fromJson(currencyName);
+                  Currency cur = Currency.fromJson(currencyController.text);
                   if (cur == null) return l10n.invalidCurrency;
                   try {
                     List<PublicAddress> keys = value
@@ -161,7 +167,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   return null;
                 },
                 onSaved: (value) {
-                  Currency cur = Currency.fromJson(currencyName);
+                  Currency cur = Currency.fromJson(currencyController.text);
                   publicKeyList = cur == null
                       ? null
                       : value
@@ -186,7 +192,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   labelText: l10n.privateKeyList,
                 ),
                 validator: (value) {
-                  Currency cur = Currency.fromJson(currencyName);
+                  Currency cur = Currency.fromJson(currencyController.text);
                   if (cur == null) return l10n.invalidCurrency;
                   try {
                     List<PrivateKey> keys = value
@@ -208,7 +214,7 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
                   }
                 },
                 onSaved: (value) {
-                  Currency cur = Currency.fromJson(currencyName);
+                  Currency cur = Currency.fromJson(currencyController.text);
                   keyList = cur == null
                       ? null
                       : value
@@ -238,12 +244,12 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
           widget.appState.setState(() => widget.appState.walletsLoading++);
           await Future.delayed(Duration(seconds: 1));
 
-          if (widget.appState.preferences.unitTestBeforeCreating &&
-              widget.appState.runUnitTests() < 0) return;
-
           Currency currency = Currency.fromJson(currencyName);
           PeerNetwork network =
               findPeerNetworkForCurrency(widget.appState.networks, currency);
+
+          if (widget.appState.preferences.unitTestBeforeCreating &&
+              widget.appState.runUnitTests(currency) < 0) return;
 
           if (hdWallet) {
             await widget.appState.addWallet(Wallet.fromSeedPhrase(
@@ -289,5 +295,40 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
     );
 
     return Form(key: formKey, child: ListView(children: ret));
+  }
+
+  void chooseCurrency() async {
+    var currency = await Navigator.of(context).pushNamed('/currency');
+    if (currency == null) return;
+    debugPrint('got currency $currency');
+    widget.appState.setState(
+        () => widget.appState.setCurrency(Currency.fromJson(currency)));
+    setState(() => currencyController.text = currency);
+  }
+}
+
+class ChooseCurrencyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
+    final Localization l10n = Localization.of(context);
+    final ThemeData theme = Theme.of(context);
+
+    return SimpleScaffold(
+      ListView.builder(
+        itemCount: currencies.length,
+        itemBuilder: (BuildContext context, int index) {
+          Currency currency = currencies[index];
+          return ListTile(
+            leading: Image.asset(appState.assetPath('${currency.ticker}.png'),
+                width: 60),
+            title: Text(currency.ticker),
+            subtitle: Text(currency.name),
+            onTap: () => Navigator.of(context).pop(currency.ticker),
+          );
+        },
+      ),
+      title: l10n.currency,
+    );
   }
 }

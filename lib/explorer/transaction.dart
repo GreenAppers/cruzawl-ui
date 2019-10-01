@@ -104,13 +104,14 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       ListTile(
         onTap: nullOp,
         title: Text(l10n.from, style: labelTextStyle),
-        subtitle: CopyableText(txn.fromText, appState.setClipboardText,
+        subtitle: CopyableText(
+            txn.inputs[0].fromText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(
         onTap: nullOp,
         title: Text(l10n.to, style: labelTextStyle),
-        subtitle: CopyableText(txn.toText, appState.setClipboardText,
+        subtitle: CopyableText(txn.outputs[0].toText, appState.setClipboardText,
             style: valueTextStyle),
       ),
       ListTile(

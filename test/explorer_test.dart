@@ -390,6 +390,9 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
   });
 
   testWidgets('CruzawlNetworkSettings', (WidgetTester tester) async {
+    int baselinePeers = preferences.peers.length;
+    expect(baselinePeers > 0, true);
+
     await tester.pumpWidget(ScopedModel(
         model: appState,
         child: ScopedModel(
@@ -425,9 +428,9 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     await tester.pumpAndSettle();
     expect(find.text(peerName), findsOneWidget);
     List<PeerPreference> peers = preferences.peers;
-    expect(peers.length, 2);
-    expect(peers[1].name, peerName);
-    expect(peers[1].url, peerUrl);
+    expect(peers.length, baselinePeers + 1);
+    expect(peers[baselinePeers].name, peerName);
+    expect(peers[baselinePeers].url, peerUrl);
 
     // Open Remove Peer AlertDialog
     await tester.tap(find.text(peerName));
@@ -438,7 +441,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     // Remove the added peer
     await tester.pumpAndSettle();
     peers = preferences.peers;
-    expect(peers.length, 1);
+    expect(peers.length, baselinePeers);
   });
 
   testWidgets('CruzawlSupport', (WidgetTester tester) async {

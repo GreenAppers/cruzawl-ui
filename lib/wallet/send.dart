@@ -60,7 +60,7 @@ class _WalletSendWidgetState extends State<WalletSendWidget> {
       fromController.text = widget.wallet.addresses.values
           .toList()
           .reduce(Address.reduceBalance)
-          .publicKey
+          .publicAddress
           .toJson();
       fromController.selection = TextSelection(baseOffset: 0, extentOffset: 0);
     }

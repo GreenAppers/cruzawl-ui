@@ -89,10 +89,10 @@ class WalletBalanceWidget extends StatelessWidget {
                   wallet.currency,
                   tx,
                   WalletTransactionInfo(wallet, tx),
-                  onToTap: (tx) =>
-                      appState.navigateToAddressText(context, tx.toText),
-                  onFromTap: (tx) =>
-                      appState.navigateToAddressText(context, tx.fromText),
+                  onToTap: (tx) => appState.navigateToAddressText(
+                      context, tx.outputs[0].toText),
+                  onFromTap: (tx) => appState.navigateToAddressText(
+                      context, tx.inputs[0].fromText),
                   onTap: (tx) => appState.navigateToTransaction(context, tx),
                 );
               }),

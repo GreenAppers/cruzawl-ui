@@ -41,7 +41,8 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
     final List<Widget> ret = <Widget>[
       Container(
         height: 200,
-        child: Image.asset(appState.assetPath('cruzbit.png')),
+        child:
+            Image.asset(appState.assetPath('${appState.currency.ticker}.png')),
       ),
       ListTile(
         leading: Container(
@@ -65,9 +66,15 @@ class _CruzawlSettingsState extends State<CruzawlSettings> {
         leading: Icon(Icons.color_lens),
         title: Text(l10n.theme),
         trailing: DropdownButton<String>(
-          value: appState.preferences.theme,
+          value: appState.preferences.getThemeName(appState.currency),
           onChanged: (String val) async {
-            await appState.preferences.setTheme(val);
+            if (appState.currency == null) {
+              await appState.preferences.setTheme(val);
+            } else {
+              Map<String, String> themes = appState.preferences.themes;
+              themes[appState.currency.ticker] = val;
+              await appState.preferences.setThemes(themes);
+            }
             appState.setState(() => appState.setTheme());
           },
           items: buildDropdownMenuItem(themes.keys.toList()),
@@ -335,11 +342,11 @@ class CruzawlSupport extends StatelessWidget {
       GestureDetector(
         child: ListTile(
           leading: Icon(Icons.whatshot),
-          title: Text('cruzbit'),
+          title: Text(appState.currency.name),
           trailing:
               Text('>', style: TextStyle(color: appState.theme.linkColor)),
         ),
-        onTap: () => appState.launchUrl(context, 'https://cruzbit.github.io/'),
+        onTap: () => appState.launchUrl(context, appState.currency.url),
       ),
       GestureDetector(
         child: ListTile(

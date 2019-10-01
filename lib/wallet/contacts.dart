@@ -204,7 +204,7 @@ class SendFromWidget extends StatelessWidget {
       itemCount: addresses.length,
       itemBuilder: (BuildContext context, int index) {
         Address address = addresses[index];
-        String addressText = address.publicKey.toJson();
+        String addressText = address.publicAddress.toJson();
         return AddressListTile(appState.currency, addressText,
             appState.createIconImage(addressText),
             balance: address.balance, onTap: onTap);

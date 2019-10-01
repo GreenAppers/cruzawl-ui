@@ -262,6 +262,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "copyAddresses": "住所のコピー",
+  "@copyAddresses": {
+    "type": "text",
+    "placeholders": {}
+  },
   "copyPublicKeys": "公開鍵をコピーする",
   "@copyPublicKeys": {
     "type": "text",
@@ -726,8 +731,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "ハッシュリストルート",
-  "@hashListRoot": {
+  "hashRoot": "ハッシュルート",
+  "@hashRoot": {
     "type": "text",
     "placeholders": {}
   },

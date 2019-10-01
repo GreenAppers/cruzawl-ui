@@ -22,8 +22,6 @@ import 'package:cruzawl/wallet.dart';
 
 import 'package:cruzawl_ui/ui.dart';
 
-typedef StringFilter = String Function(String);
-typedef StringFutureFunction = Future<String> Function();
 typedef SetClipboardText = void Function(BuildContext, String);
 typedef QrImageFunction = Widget Function(String);
 typedef CruzawlCallback = void Function(Cruzawl);
@@ -58,8 +56,8 @@ class TransactionInfo {
 class WalletTransactionInfo extends TransactionInfo {
   WalletTransactionInfo(Wallet wallet, Transaction tx)
       : super(
-            toWallet: wallet.addresses.containsKey(tx.toText),
-            fromWallet: wallet.addresses.containsKey(tx.fromText));
+            toWallet: wallet.isFromWallet(tx),
+            fromWallet: wallet.isToWallet(tx));
 }
 
 /// [Model] wrapper for the pure-dart [Wallet.notifyListeners].
@@ -123,7 +121,9 @@ class Cruzawl extends Model {
     exchangeRates.checkForUpdate();
     networks = currencies
         .map((currency) => currency.createNetwork(
-            () => reloadWallets(currency), () => updateWallets(currency)))
+            peerChanged: () => reloadWallets(currency),
+            tipChanged: () => updateWallets(currency),
+            httpClient: httpClient))
         .toList();
     setTheme();
   }
@@ -139,7 +139,7 @@ class Cruzawl extends Model {
 
   /// Update for new theme.
   void setTheme() {
-    theme = themes[preferences.theme] ?? themes['teal'];
+    theme = themes[preferences.getThemeName(currency)] ?? themes['blue'];
     theme.titleFont = 'MartelSans';
     theme.titleStyle = theme.data.primaryTextTheme.title.copyWith(
       fontFamily: theme.titleFont,
@@ -191,22 +191,28 @@ class Cruzawl extends Model {
       }
     } else {
       /// Replaces [LoadingCurrency]
-      if (wallet.wallet == x) _setCurrency(x.currency);
+      if (wallet.wallet == x) setCurrency(x.currency);
       walletsLoading--;
+
+      /// Main [PeerNetwork] connection initiation.
+      if (x.network.length == 0 && preferences.networkEnabled) {
+        connectPeers(x.currency);
+      }
     }
     notifyListeners();
   }
 
   /// Set the active currency.
-  void _setCurrency(Currency x) {
+  void setCurrency(Currency x) {
     currency = x;
     network = findPeerNetworkForCurrency(networks, x);
+    setTheme();
   }
 
   /// Set the active wallet.
   void setWallet(WalletModel x) {
     wallet = x;
-    _setCurrency(wallet.wallet.currency);
+    setCurrency(wallet.wallet.currency);
   }
 
   /// Returns the filename for [walletName].
@@ -323,7 +329,7 @@ class Cruzawl extends Model {
   }
 
   /// Runs a unit test suite on-device.
-  int runUnitTests() {
+  int runUnitTests(Currency c) {
     int tests = 0;
     print('running unit tests');
     TestCallback testCallback = (n, f) {
@@ -337,8 +343,20 @@ class Cruzawl extends Model {
             exception: FormatException('unit test failure')));
       }
     };
-    CruzTester(testCallback, testCallback, expectCallback).run();
-    WalletTester(testCallback, testCallback, expectCallback).run();
+    switch (c.ticker) {
+      case 'BTC':
+        BitcoinTester(testCallback, testCallback, expectCallback).run();
+        BitcoinWalletTester(testCallback, testCallback, expectCallback).run();
+        break;
+
+      case 'CRUZ':
+        CruzTester(testCallback, testCallback, expectCallback).run();
+        CruzWalletTester(testCallback, testCallback, expectCallback).run();
+        break;
+
+      default:
+        break;
+    }
     if (fatal != null) return -1;
     print('unit tests succeeded');
     return tests;
@@ -364,7 +382,7 @@ class Cruzawl extends Model {
   void navigateToNetwork(BuildContext c) =>
       Navigator.of(c).pushNamed('/network');
   void navigateToAddress(BuildContext c, Address address) =>
-      Navigator.of(c).pushNamed('/address/${address.publicKey.toJson()}');
+      Navigator.of(c).pushNamed('/address/${address.publicAddress.toJson()}');
   void navigateToAddressText(BuildContext c, String text) =>
       Navigator.of(c).pushNamed('/address/$text');
   void navigateToBlockChart(BuildContext c) =>

@@ -262,6 +262,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "copyAddresses": "Kopírovat adresy",
+  "@copyAddresses": {
+    "type": "text",
+    "placeholders": {}
+  },
   "copyPublicKeys": "Kopírování veřejných klíčů",
   "@copyPublicKeys": {
     "type": "text",
@@ -726,8 +731,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "Hash List Root",
-  "@hashListRoot": {
+  "hashRoot": "Hash Root",
+  "@hashRoot": {
     "type": "text",
     "placeholders": {}
   },

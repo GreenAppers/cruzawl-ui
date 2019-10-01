@@ -736,7 +736,7 @@ class TransactionListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: buildLocalizationMarkupWidgets(
-                  l10n.toAddress('{@<a>}${tx.toText}{@</a>}'),
+                  l10n.toAddress('{@<a>}${tx.outputs[0].toText}{@</a>}'),
                   style: appState.theme.labelStyle,
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
@@ -749,7 +749,7 @@ class TransactionListTile extends StatelessWidget {
                 ),
               )
             : GestureDetector(
-                child: Text(l10n.toAddress(tx.toText)),
+                child: Text(l10n.toAddress(tx.outputs[0].toText)),
                 onTap: onToTap == null ? null : () => onToTap(tx)),
         subtitle: info.wideStyle
             ? Row(
@@ -757,7 +757,7 @@ class TransactionListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: buildLocalizationMarkupWidgets(
-                  l10n.fromAddress('{@<a>}${tx.fromText}{@</a>}'),
+                  l10n.fromAddress('{@<a>}${tx.inputs[0].fromText}{@</a>}'),
                   style: appState.theme.labelStyle,
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
@@ -770,7 +770,7 @@ class TransactionListTile extends StatelessWidget {
                 ),
               )
             : GestureDetector(
-                child: Text(l10n.fromAddress(tx.fromText)),
+                child: Text(l10n.fromAddress(tx.inputs[0].fromText)),
                 onTap: onFromTap == null ? null : () => onFromTap(tx)),
         trailing: HyperLinkWidget(
           text: info.amountPrefix +

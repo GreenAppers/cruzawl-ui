@@ -34,7 +34,7 @@ class _WalletReceiveWidgetState extends State<WalletReceiveWidget> {
     final Address address = wallet.receiveAddress;
     final Size screenSize = MediaQuery.of(context).size;
     final String addressText =
-        address == null ? '' : address.publicKey.toJson();
+        address == null ? '' : address.publicAddress.toJson();
     final List<Widget> children = <Widget>[];
 
     if (address != null) {

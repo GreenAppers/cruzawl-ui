@@ -188,7 +188,7 @@ void runWalletTests(
 
     // await tester.tap(find.widgetWithText(RaisedGradientButton, l10n.copyPublicKeys));
     RaisedGradientButton copy = find
-        .widgetWithText(RaisedGradientButton, l10n.copyPublicKeys)
+        .widgetWithText(RaisedGradientButton, l10n.copyAddresses)
         .evaluate()
         .first
         .widget;
@@ -370,14 +370,18 @@ void runWalletTests(
         find.byType(TransactionListTile).evaluate().toList();
     expect(transactions.length, 2);
     TransactionListTile transaction = transactions[0].widget;
-    expect(transaction.tx.from.toJson(), moneyAddr);
-    expect(transaction.tx.to.toJson(), sendTo);
+    expect(transaction.tx.inputs.length, 1);
+    expect(transaction.tx.outputs.length, 1);
+    expect(transaction.tx.inputs[0].fromText, moneyAddr);
+    expect(transaction.tx.outputs[0].toText, sendTo);
     expect(transaction.tx.amount, sendMoneyBalance);
     expect(transaction.tx.verify(), true);
 
     transaction = transactions[1].widget;
-    expect(transaction.tx.from.toJson(), moneySender);
-    expect(transaction.tx.to.toJson(), moneyAddr);
+    expect(transaction.tx.inputs.length, 1);
+    expect(transaction.tx.outputs.length, 1);
+    expect(transaction.tx.inputs[0].fromText, moneySender);
+    expect(transaction.tx.outputs[0].toText, moneyAddr);
     expect(transaction.tx.amount, moneyBalance);
     expect(transaction.tx.verify(), false);
   });

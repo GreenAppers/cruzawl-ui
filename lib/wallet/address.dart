@@ -39,11 +39,13 @@ class _AddressWidgetState extends State<AddressWidget> {
   SortedListSet<Transaction> transactions;
 
   void loadTransactions() {
-    String addressText = widget.address.publicKey.toJson();
+    String addressText = widget.address.publicAddress.toJson();
     transactions = SortedListSet(
         Transaction.timeCompare,
         widget.wallet.transactions.data
-            .where((v) => v.fromText == addressText || v.toText == addressText)
+            .where((v) =>
+                v.inputs[0].fromText == addressText ||
+                v.outputs[0].toText == addressText)
             .toList());
   }
 
@@ -56,7 +58,7 @@ class _AddressWidgetState extends State<AddressWidget> {
   @override
   Widget build(BuildContext context) {
     final Address address = widget.address;
-    final String addressText = address.publicKey.toJson();
+    final String addressText = address.publicAddress.toJson();
     final Localization l10n = Localization.of(context);
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final Size screenSize = MediaQuery.of(context).size;

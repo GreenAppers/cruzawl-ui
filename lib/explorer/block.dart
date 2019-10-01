@@ -243,8 +243,8 @@ class _BlockWidgetState extends State<BlockWidget> {
     );
 
     header.add(
-      buildListTile(Text(l10n.hashListRoot), wideStyle,
-          Text(block.header.hashListRoot.toJson())),
+      buildListTile(
+          Text(l10n.hashRoot), wideStyle, Text(block.header.hashRoot.toJson())),
     );
 
     List<Widget> footer = <Widget>[
@@ -279,10 +279,10 @@ class _BlockWidgetState extends State<BlockWidget> {
                 block.transactions[transactionIndex],
                 TransactionInfo(wideStyle: wideStyle),
                 onTap: (tx) => appState.navigateToTransaction(context, tx),
-                onFromTap: (tx) =>
-                    appState.navigateToAddressText(context, tx.fromText),
-                onToTap: (tx) =>
-                    appState.navigateToAddressText(context, tx.toText),
+                onFromTap: (tx) => appState.navigateToAddressText(
+                    context, tx.inputs[0].fromText),
+                onToTap: (tx) => appState.navigateToAddressText(
+                    context, tx.outputs[0].toText),
               );
             } else {
               int footerIndex = transactionIndex - block.transactions.length;

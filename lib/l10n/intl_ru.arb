@@ -262,6 +262,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "copyAddresses": "Копировать адреса",
+  "@copyAddresses": {
+    "type": "text",
+    "placeholders": {}
+  },
   "copyPublicKeys": "Копировать открытые ключи",
   "@copyPublicKeys": {
     "type": "text",
@@ -726,8 +731,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "Корень хэш-списка",
-  "@hashListRoot": {
+  "hashRoot": "Хэш-корень",
+  "@hashRoot": {
     "type": "text",
     "placeholders": {}
   },

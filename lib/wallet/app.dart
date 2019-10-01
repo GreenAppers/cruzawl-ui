@@ -142,12 +142,6 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
         !widget.appState.preferences.walletsEncrypted) {
       widget.appState.openWallets();
     }
-
-    if (widget.appState.preferences.networkEnabled) {
-      for (Currency currency in currencies) {
-        widget.appState.connectPeers(currency);
-      }
-    }
   }
 
   @override
@@ -220,6 +214,7 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
               '/settings/contacts': (BuildContext context) =>
                   ContactsWidget(editing: true),
               '/contacts': (BuildContext context) => ContactsWidget(),
+              '/currency': (BuildContext context) => ChooseCurrencyWidget(),
               '/sendFrom': (BuildContext context) => SimpleScaffold(
                   SendFromWidget(wallet),
                   title: Localization.of(context).from),

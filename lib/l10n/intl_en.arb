@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-25T13:00:07.116880",
+  "@@last_modified": "2019-10-01T15:48:15.586748",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -260,6 +260,11 @@
   },
   "copied": "Copied.",
   "@copied": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyAddresses": "Copy Addresses",
+  "@copyAddresses": {
     "type": "text",
     "placeholders": {}
   },
@@ -727,8 +732,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "hashListRoot": "Hash List Root",
-  "@hashListRoot": {
+  "hashRoot": "Hash Root",
+  "@hashRoot": {
     "type": "text",
     "placeholders": {}
   },
