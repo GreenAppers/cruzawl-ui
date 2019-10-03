@@ -45,53 +45,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m12(hours) => "${Intl.plural(hours, one: 'час', other: '${hours} часов')}";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(id) => "Id: ${id}";
 
-  static m14(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
+  static m15(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
 
-  static m16(item1, item2) => "${item1} , ${item2}";
+  static m16(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
 
-  static m17(cap) => "Рыночная капитализация {@<a>} ${cap} {@</a>}";
+  static m17(item1, item2) => "${item1} , ${item2}";
 
-  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m18(cap) => "Рыночная капитализация {@<a>} ${cap} {@</a>}";
 
-  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m19(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
+  static m20(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m21(amount) => "Минимальная сумма ${amount}";
+  static m21(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
 
-  static m22(fee) => "Минимальная плата ${fee}";
+  static m22(amount) => "Минимальная сумма ${amount}";
 
-  static m23(minutes, seconds) => "${minutes} ${seconds}";
+  static m23(fee) => "Минимальная плата ${fee}";
 
-  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes} минуты', other: '${minutes} минуты')}";
+  static m24(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m25(type) => "${type} Сеть";
+  static m25(minutes) => "${Intl.plural(minutes, one: '${minutes} минуты', other: '${minutes} минуты')}";
 
-  static m26(number) => "Транзакции ( ${number} )";
+  static m26(type) => "${type} Сеть";
 
-  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m27(number) => "Транзакции ( ${number} )";
 
-  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds} секунд', other: '${seconds} секунд')}";
+  static m28(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m29(transactionId) => "Отправлено ${transactionId}";
+  static m29(seconds) => "${Intl.plural(seconds, one: '${seconds} секунд', other: '${seconds} секунд')}";
 
-  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m30(transactionId) => "Отправлено ${transactionId}";
 
-  static m31(address) => "Кому: ${address}";
+  static m31(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} ${duration} {@</a2>}";
+  static m32(address) => "Кому: ${address}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}блоков{@</a1>}, ${totalTransactions} транзакции в последних {@<a2>}${duration}{@</a2>}";
+  static m33(totalBlocks, duration) => "${totalBlocks} {@<a1>} блоков {@</a1>} за последние {@<a2>} ${duration} {@</a2>}";
 
-  static m34(addressText) => "не удалось проверить: ${addressText}";
+  static m34(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}блоков{@</a1>}, ${totalTransactions} транзакции в последних {@<a2>}${duration}{@</a2>}";
 
-  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Проверенные ${goodAddresses} / ${totalAddresses} и ${goodTests} / ${totalTests} успешно";
+  static m35(addressText) => "не удалось проверить: ${addressText}";
 
-  static m36(walletName, accountId, chainIndex) => "${walletName}: Account ${accountId}, Address ${chainIndex}";
+  static m36(goodAddresses, totalAddresses, goodTests, totalTests) => "Проверенные ${goodAddresses} / ${totalAddresses} и ${goodTests} / ${totalTests} успешно";
+
+  static m37(walletName, accountId, chainIndex) => "${walletName}: Account ${accountId}, Address ${chainIndex}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -114,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("блок"),
     "blocks" : MessageLookupByLibrary.simpleMessage("Блоки"),
+    "btcTicker" : MessageLookupByLibrary.simpleMessage("BTC"),
     "cancel" : MessageLookupByLibrary.simpleMessage("отменить"),
     "cantDeleteOnlyWallet" : MessageLookupByLibrary.simpleMessage("Не могу удалить единственный кошелек."),
     "chainCode" : MessageLookupByLibrary.simpleMessage("Цепной код"),
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email" : MessageLookupByLibrary.simpleMessage("Эл. адрес"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("шифровать"),
     "encryption" : MessageLookupByLibrary.simpleMessage("шифрование"),
+    "ethTicker" : MessageLookupByLibrary.simpleMessage("ETH"),
     "exaHashPerSecond" : m6,
     "expired" : MessageLookupByLibrary.simpleMessage("Истекший"),
     "expires" : MessageLookupByLibrary.simpleMessage("Истекает"),
@@ -183,34 +187,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("Неверный закрытый ключ."),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("Неверный открытый ключ."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Неверная ссылка."),
-    "kiloHashPerSecond" : m13,
+    "itemId" : m13,
+    "kiloHashPerSecond" : m14,
     "language" : MessageLookupByLibrary.simpleMessage("язык"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("Последнее увиденное"),
     "license" : MessageLookupByLibrary.simpleMessage("Лицензия"),
-    "listOfFour" : m14,
-    "listOfThree" : m15,
-    "listOfTwo" : m16,
+    "listOfFour" : m15,
+    "listOfThree" : m16,
+    "listOfTwo" : m17,
     "loading" : MessageLookupByLibrary.simpleMessage("Loading ..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("Русский"),
-    "marketCap" : m17,
+    "marketCap" : m18,
     "matured" : MessageLookupByLibrary.simpleMessage("созревший"),
     "matures" : MessageLookupByLibrary.simpleMessage("Matures"),
     "maturing" : MessageLookupByLibrary.simpleMessage("вызревание"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Сроки погашения"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Максимальная длина заметки 100"),
-    "megaHashPerSecond" : m18,
+    "megaHashPerSecond" : m19,
     "memo" : MessageLookupByLibrary.simpleMessage("напоминание"),
-    "menuOfOne" : m19,
-    "menuOfTwo" : m20,
-    "minAmount" : m21,
-    "minFee" : m22,
-    "minutesAndSecondsDuration" : m23,
-    "minutesDuration" : m24,
+    "menuOfOne" : m20,
+    "menuOfTwo" : m21,
+    "minAmount" : m22,
+    "minFee" : m23,
+    "minutesAndSecondsDuration" : m24,
+    "minutesDuration" : m25,
     "name" : MessageLookupByLibrary.simpleMessage("название"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Имя должно быть уникальным."),
     "network" : MessageLookupByLibrary.simpleMessage("сеть"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Сеть оффлайн"),
-    "networkType" : m25,
+    "networkType" : m26,
     "newContact" : MessageLookupByLibrary.simpleMessage("Новый контакт"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("Новый пэр"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Новый кошелек"),
@@ -218,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("Нет закрытых ключей"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("Нет открытых ключей"),
     "nonce" : MessageLookupByLibrary.simpleMessage("данное время"),
-    "numTransactions" : m26,
+    "numTransactions" : m27,
     "ok" : MessageLookupByLibrary.simpleMessage("Хорошо"),
     "password" : MessageLookupByLibrary.simpleMessage("пароль"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Пароль не может быть пустым."),
@@ -227,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("Платить"),
     "peers" : MessageLookupByLibrary.simpleMessage("Сверстники"),
     "pending" : MessageLookupByLibrary.simpleMessage("в ожидании"),
-    "petaHashPerSecond" : m27,
+    "petaHashPerSecond" : m28,
     "previous" : MessageLookupByLibrary.simpleMessage("предыдущий"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("политика конфиденциальности"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("Закрытый ключ"),
@@ -238,13 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("Требовать SSL сертификат"),
     "result" : MessageLookupByLibrary.simpleMessage("Результат"),
     "search" : MessageLookupByLibrary.simpleMessage("Поиск"),
-    "secondsDuration" : m28,
+    "secondsDuration" : m29,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Семенная фраза"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("Это семя позволяет любому, кто его знает, потратить все средства с вашего кошелька. Запиши это. Держать его в безопасности."),
     "send" : MessageLookupByLibrary.simpleMessage("послать"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Не удалось отправить"),
     "sending" : MessageLookupByLibrary.simpleMessage("Посылка ..."),
-    "sentTransactionId" : m29,
+    "sentTransactionId" : m30,
     "settings" : MessageLookupByLibrary.simpleMessage("настройки"),
     "show" : MessageLookupByLibrary.simpleMessage("Шоу"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Показать название кошелька в заголовке"),
@@ -252,19 +257,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit" : MessageLookupByLibrary.simpleMessage("представить"),
     "support" : MessageLookupByLibrary.simpleMessage("Служба поддержки"),
     "target" : MessageLookupByLibrary.simpleMessage("цель"),
-    "teraHashPerSecond" : m30,
+    "teraHashPerSecond" : m31,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("Право на! Спасибо CRUZ сообществу!"),
     "theme" : MessageLookupByLibrary.simpleMessage("тема"),
     "time" : MessageLookupByLibrary.simpleMessage("Время"),
     "tip" : MessageLookupByLibrary.simpleMessage("Совет"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("к"),
-    "toAddress" : m31,
-    "totalBlocksInLastDuration" : m32,
-    "totalBlocksTransactionsInLastDuration" : m33,
+    "toAddress" : m32,
+    "totalBlocksInLastDuration" : m33,
+    "totalBlocksTransactionsInLastDuration" : m34,
     "transaction" : MessageLookupByLibrary.simpleMessage("Сделка"),
     "transactions" : MessageLookupByLibrary.simpleMessage("операции"),
     "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Предупреждение: ввод адресов вручную опасен и подвержен ошибкам. Всегда используйте кнопку копирования или QR-сканер."),
+    "unableToDecode" : MessageLookupByLibrary.simpleMessage("Невозможно декодировать"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Юнит тест перед созданием кошельков"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Ошибка модульного теста"),
     "unknown" : MessageLookupByLibrary.simpleMessage("неизвестный"),
@@ -275,12 +281,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Значение должно быть положительным"),
     "verify" : MessageLookupByLibrary.simpleMessage("проверить"),
-    "verifyAddressFailed" : m34,
+    "verifyAddressFailed" : m35,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Проверяйте пары ключей при каждой загрузке"),
-    "verifyWalletResults" : m35,
+    "verifyWalletResults" : m36,
     "verifying" : MessageLookupByLibrary.simpleMessage("Проверка ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Версия"),
-    "walletAccountName" : m36,
+    "walletAccountName" : m37,
     "wallets" : MessageLookupByLibrary.simpleMessage("бумажники"),
     "warning" : MessageLookupByLibrary.simpleMessage("Предупреждение"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Часы только кошелек"),

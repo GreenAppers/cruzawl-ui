@@ -147,6 +147,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "btcTicker": "BTC",
+  "@btcTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ethTicker": "ETH",
+  "@ethTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addressStateReserve": "Reservieren",
   "@addressStateReserve": {
     "type": "text",
@@ -756,6 +766,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "itemId": "Id: {id}",
+  "@itemId": {
+    "type": "text",
+    "placeholders": {
+      "id": {}
+    }
+  },
   "fromAddress": "Von: {address}",
   "@fromAddress": {
     "type": "text",
@@ -886,6 +903,11 @@
   },
   "unknownQuery": "Unbekannte Abfrage",
   "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unableToDecode": "Kann nicht dekodieren",
+  "@unableToDecode": {
     "type": "text",
     "placeholders": {}
   },

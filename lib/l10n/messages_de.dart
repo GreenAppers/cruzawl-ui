@@ -45,53 +45,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m12(hours) => "${Intl.plural(hours, one: 'Stunde', other: '${hours} Stunden')}";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(id) => "Id: ${id}";
 
-  static m14(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
+  static m15(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
 
-  static m16(item1, item2) => "${item1} , ${item2}";
+  static m16(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
 
-  static m17(cap) => "Marktkapitalisierung {@<a>} ${cap} {@</a>}";
+  static m17(item1, item2) => "${item1} , ${item2}";
 
-  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m18(cap) => "Marktkapitalisierung {@<a>} ${cap} {@</a>}";
 
-  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m19(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
+  static m20(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m21(amount) => "Mindestbetrag ist ${amount}";
+  static m21(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
 
-  static m22(fee) => "Die Mindestgebühr beträgt ${fee}";
+  static m22(amount) => "Mindestbetrag ist ${amount}";
 
-  static m23(minutes, seconds) => "${minutes} ${seconds}";
+  static m23(fee) => "Die Mindestgebühr beträgt ${fee}";
 
-  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes} Minute', other: '${minutes} Minuten')}";
+  static m24(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m25(type) => "${type} Netzwerk";
+  static m25(minutes) => "${Intl.plural(minutes, one: '${minutes} Minute', other: '${minutes} Minuten')}";
 
-  static m26(number) => "Transaktionen ( ${number} )";
+  static m26(type) => "${type} Netzwerk";
 
-  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m27(number) => "Transaktionen ( ${number} )";
 
-  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds} second', other: '${seconds} seconds')}";
+  static m28(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m29(transactionId) => "Gesendet ${transactionId}";
+  static m29(seconds) => "${Intl.plural(seconds, one: '${seconds} second', other: '${seconds} seconds')}";
 
-  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m30(transactionId) => "Gesendet ${transactionId}";
 
-  static m31(address) => "An: ${address}";
+  static m31(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} blockiert {@</a1>} im letzten {@<a2>} ${duration} {@</a2>}";
+  static m32(address) => "An: ${address}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} blockiert {@</a1>} , ${totalTransactions} Transaktionen in den letzten {@<a2>} ${duration} {@</a2>}";
+  static m33(totalBlocks, duration) => "${totalBlocks} {@<a1>} blockiert {@</a1>} im letzten {@<a2>} ${duration} {@</a2>}";
 
-  static m34(addressText) => "Überprüfung fehlgeschlagen: ${addressText}";
+  static m34(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} blockiert {@</a1>} , ${totalTransactions} Transaktionen in den letzten {@<a2>} ${duration} {@</a2>}";
 
-  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Überprüfte ${goodAddresses} / ${totalAddresses} und ${goodTests} / ${totalTests} -Tests waren erfolgreich";
+  static m35(addressText) => "Überprüfung fehlgeschlagen: ${addressText}";
 
-  static m36(walletName, accountId, chainIndex) => "${walletName}: Konto ${accountId}, Adresse ${chainIndex}";
+  static m36(goodAddresses, totalAddresses, goodTests, totalTests) => "Überprüfte ${goodAddresses} / ${totalAddresses} und ${goodTests} / ${totalTests} -Tests waren erfolgreich";
+
+  static m37(walletName, accountId, chainIndex) => "${walletName}: Konto ${accountId}, Adresse ${chainIndex}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -114,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("Block"),
     "blocks" : MessageLookupByLibrary.simpleMessage("Blöcke"),
+    "btcTicker" : MessageLookupByLibrary.simpleMessage("BTC"),
     "cancel" : MessageLookupByLibrary.simpleMessage("Stornieren"),
     "cantDeleteOnlyWallet" : MessageLookupByLibrary.simpleMessage("Die einzige Brieftasche kann nicht gelöscht werden."),
     "chainCode" : MessageLookupByLibrary.simpleMessage("Chain Code"),
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email" : MessageLookupByLibrary.simpleMessage("Email"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("Verschlüsseln"),
     "encryption" : MessageLookupByLibrary.simpleMessage("Verschlüsselung"),
+    "ethTicker" : MessageLookupByLibrary.simpleMessage("ETH"),
     "exaHashPerSecond" : m6,
     "expired" : MessageLookupByLibrary.simpleMessage("Abgelaufen"),
     "expires" : MessageLookupByLibrary.simpleMessage("Läuft ab"),
@@ -183,34 +187,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("Ungültiger privater Schlüssel."),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("Ungültiger öffentlicher Schlüssel."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Ungültige URL."),
-    "kiloHashPerSecond" : m13,
+    "itemId" : m13,
+    "kiloHashPerSecond" : m14,
     "language" : MessageLookupByLibrary.simpleMessage("Sprache"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("Zuletzt gesehen"),
     "license" : MessageLookupByLibrary.simpleMessage("Lizenz"),
-    "listOfFour" : m14,
-    "listOfThree" : m15,
-    "listOfTwo" : m16,
+    "listOfFour" : m15,
+    "listOfThree" : m16,
+    "listOfTwo" : m17,
     "loading" : MessageLookupByLibrary.simpleMessage("Wird geladen..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("Deutsch"),
-    "marketCap" : m17,
+    "marketCap" : m18,
     "matured" : MessageLookupByLibrary.simpleMessage("Gereift"),
     "matures" : MessageLookupByLibrary.simpleMessage("Reift"),
     "maturing" : MessageLookupByLibrary.simpleMessage("Reifung"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Fällige Transaktionen"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Die maximale Memolänge beträgt 100"),
-    "megaHashPerSecond" : m18,
+    "megaHashPerSecond" : m19,
     "memo" : MessageLookupByLibrary.simpleMessage("Memo"),
-    "menuOfOne" : m19,
-    "menuOfTwo" : m20,
-    "minAmount" : m21,
-    "minFee" : m22,
-    "minutesAndSecondsDuration" : m23,
-    "minutesDuration" : m24,
+    "menuOfOne" : m20,
+    "menuOfTwo" : m21,
+    "minAmount" : m22,
+    "minFee" : m23,
+    "minutesAndSecondsDuration" : m24,
+    "minutesDuration" : m25,
     "name" : MessageLookupByLibrary.simpleMessage("Name"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Der Name muss eindeutig sein."),
     "network" : MessageLookupByLibrary.simpleMessage("Netzwerk"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Netzwerk offline"),
-    "networkType" : m25,
+    "networkType" : m26,
     "newContact" : MessageLookupByLibrary.simpleMessage("Neuer Kontakt"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("Neuer Peer"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Neue Geldbörse"),
@@ -218,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("Keine privaten Schlüssel"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("Keine öffentlichen Schlüssel"),
     "nonce" : MessageLookupByLibrary.simpleMessage("Nonce"),
-    "numTransactions" : m26,
+    "numTransactions" : m27,
     "ok" : MessageLookupByLibrary.simpleMessage("OK"),
     "password" : MessageLookupByLibrary.simpleMessage("Passwort"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Das Passwort darf nicht leer sein."),
@@ -227,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("Zahlen an"),
     "peers" : MessageLookupByLibrary.simpleMessage("Gleichaltrigen"),
     "pending" : MessageLookupByLibrary.simpleMessage("steht aus"),
-    "petaHashPerSecond" : m27,
+    "petaHashPerSecond" : m28,
     "previous" : MessageLookupByLibrary.simpleMessage("Bisherige"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("Datenschutz-Bestimmungen"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("Privat Schlüssel"),
@@ -238,13 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("SSL-Zertifikat erforderlich"),
     "result" : MessageLookupByLibrary.simpleMessage("Ergebnis"),
     "search" : MessageLookupByLibrary.simpleMessage("Suche"),
-    "secondsDuration" : m28,
+    "secondsDuration" : m29,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Samenphrase"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("Mit dieser Saat kann jeder, der sie kennt, das gesamte Geld Ihrer Brieftasche ausgeben. Schreib es auf. Sicher aufbewahren."),
     "send" : MessageLookupByLibrary.simpleMessage("Senden"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Senden fehlgeschlagen"),
     "sending" : MessageLookupByLibrary.simpleMessage("Senden ..."),
-    "sentTransactionId" : m29,
+    "sentTransactionId" : m30,
     "settings" : MessageLookupByLibrary.simpleMessage("die Einstellungen"),
     "show" : MessageLookupByLibrary.simpleMessage("Show"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Zeigen Sie den Brieftaschennamen im Titel an"),
@@ -252,19 +257,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit" : MessageLookupByLibrary.simpleMessage("einreichen"),
     "support" : MessageLookupByLibrary.simpleMessage("Unterstützung"),
     "target" : MessageLookupByLibrary.simpleMessage("Ziel"),
-    "teraHashPerSecond" : m30,
+    "teraHashPerSecond" : m31,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("Direkt am! Danke CRUZ Community!"),
     "theme" : MessageLookupByLibrary.simpleMessage("Thema"),
     "time" : MessageLookupByLibrary.simpleMessage("Zeit"),
     "tip" : MessageLookupByLibrary.simpleMessage("Spitze"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("Zu"),
-    "toAddress" : m31,
-    "totalBlocksInLastDuration" : m32,
-    "totalBlocksTransactionsInLastDuration" : m33,
+    "toAddress" : m32,
+    "totalBlocksInLastDuration" : m33,
+    "totalBlocksTransactionsInLastDuration" : m34,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transaktion"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transaktionen"),
     "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Warnung: Das Eingeben von Adressen von Hand ist gefährlich und fehleranfällig. Verwenden Sie immer die Kopiertaste oder den QR-Scanner."),
+    "unableToDecode" : MessageLookupByLibrary.simpleMessage("Kann nicht dekodieren"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Unit-Test vor der Erstellung von Brieftaschen"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Unit-Test fehlgeschlagen"),
     "unknown" : MessageLookupByLibrary.simpleMessage("unbekannte"),
@@ -275,12 +281,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Wert muss positiv sein"),
     "verify" : MessageLookupByLibrary.simpleMessage("Überprüfen"),
-    "verifyAddressFailed" : m34,
+    "verifyAddressFailed" : m35,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Überprüfen Sie die Schlüsselpaare bei jedem Laden"),
-    "verifyWalletResults" : m35,
+    "verifyWalletResults" : m36,
     "verifying" : MessageLookupByLibrary.simpleMessage("Überprüfung läuft ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Ausführung"),
-    "walletAccountName" : m36,
+    "walletAccountName" : m37,
     "wallets" : MessageLookupByLibrary.simpleMessage("Geldbörsen"),
     "warning" : MessageLookupByLibrary.simpleMessage("Warnung"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Brieftasche nur für Armbanduhren"),

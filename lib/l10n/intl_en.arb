@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-10-01T15:48:15.586748",
+  "@@last_modified": "2019-10-02T16:33:05.445195",
   "localeLanguage": "English",
   "@localeLanguage": {
     "type": "text",
@@ -145,6 +145,16 @@
   },
   "cruzTicker": "CRUZ",
   "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "btcTicker": "BTC",
+  "@btcTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ethTicker": "ETH",
+  "@ethTicker": {
     "type": "text",
     "placeholders": {}
   },
@@ -757,6 +767,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "itemId": "Id: {id}",
+  "@itemId": {
+    "type": "text",
+    "placeholders": {
+      "id": {}
+    }
+  },
   "fromAddress": "From: {address}",
   "@fromAddress": {
     "type": "text",
@@ -887,6 +904,11 @@
   },
   "unknownQuery": "Unknown query",
   "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unableToDecode": "Unable to decode",
+  "@unableToDecode": {
     "type": "text",
     "placeholders": {}
   },

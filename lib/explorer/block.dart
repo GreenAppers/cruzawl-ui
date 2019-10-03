@@ -178,12 +178,12 @@ class _BlockWidgetState extends State<BlockWidget> {
       ),
     );
 
-    if (block.transactions[0].memo != null) {
+    if (block.transactions != null && block.transactions.first.memo != null) {
       header.add(
         buildListTile(
           Text(l10n.memo),
           wideStyle,
-          Text(block.transactions[0].memo),
+          Text(block.transactions.first.memo),
         ),
       );
     }
@@ -237,10 +237,12 @@ class _BlockWidgetState extends State<BlockWidget> {
       ),
     );
 
-    header.add(
-      buildListTile(Text(l10n.chainWork), wideStyle,
-          Text(block.header.chainWork.toJson())),
-    );
+    if (block.header.chainWork != null) {
+      header.add(
+        buildListTile(Text(l10n.chainWork), wideStyle,
+            Text(block.header.chainWork.toJson())),
+      );
+    }
 
     header.add(
       buildListTile(
@@ -274,15 +276,20 @@ class _BlockWidgetState extends State<BlockWidget> {
             }
             int transactionIndex = index - header.length - 1;
             if (transactionIndex < block.transactions.length) {
+              Transaction transaction = block.transactions[transactionIndex];
               return TransactionListTile(
                 widget.network.currency,
-                block.transactions[transactionIndex],
+                transaction,
                 TransactionInfo(wideStyle: wideStyle),
                 onTap: (tx) => appState.navigateToTransaction(context, tx),
-                onFromTap: (tx) => appState.navigateToAddressText(
-                    context, tx.inputs[0].fromText),
-                onToTap: (tx) => appState.navigateToAddressText(
-                    context, tx.outputs[0].toText),
+                onFromTap: transaction.inputs.length != 1
+                    ? null
+                    : (tx) => appState.navigateToAddressText(
+                        context, tx.inputs.first.fromText),
+                onToTap: transaction.outputs.length != 1
+                    ? null
+                    : (tx) => appState.navigateToAddressText(
+                        context, tx.outputs.first.toText),
               );
             } else {
               int footerIndex = transactionIndex - block.transactions.length;

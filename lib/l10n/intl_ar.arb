@@ -147,6 +147,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "btcTicker": "BTC",
+  "@btcTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ethTicker": "ETH",
+  "@ethTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addressStateReserve": "الاحتياطي",
   "@addressStateReserve": {
     "type": "text",
@@ -756,6 +766,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "itemId": "المعرف: {id}",
+  "@itemId": {
+    "type": "text",
+    "placeholders": {
+      "id": {}
+    }
+  },
   "fromAddress": "من: {address}",
   "@fromAddress": {
     "type": "text",
@@ -886,6 +903,11 @@
   },
   "unknownQuery": "استعلام غير معروف",
   "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unableToDecode": "غير قادر على فك شفرة",
+  "@unableToDecode": {
     "type": "text",
     "placeholders": {}
   },

@@ -147,6 +147,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "btcTicker": "BTC",
+  "@btcTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ethTicker": "ETH",
+  "@ethTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addressStateReserve": "保留",
   "@addressStateReserve": {
     "type": "text",
@@ -756,6 +766,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "itemId": "ID：{id}",
+  "@itemId": {
+    "type": "text",
+    "placeholders": {
+      "id": {}
+    }
+  },
   "fromAddress": "来自： {address}",
   "@fromAddress": {
     "type": "text",
@@ -886,6 +903,11 @@
   },
   "unknownQuery": "未知查询",
   "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unableToDecode": "无法解码",
+  "@unableToDecode": {
     "type": "text",
     "placeholders": {}
   },

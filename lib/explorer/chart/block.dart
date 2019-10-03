@@ -15,6 +15,7 @@ import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tuple/tuple.dart';
 
+import 'package:cruzawl/btc.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
@@ -63,7 +64,7 @@ class BlockChartWidget extends StatefulWidget {
 /// [fetch] some [data] then [build] dynamic [charts.TimeSeriesChart].
 class _BlockChartWidgetState extends State<BlockChartWidget> {
   SortedListSet<TimeSeriesBlocks> data;
-  int dataStartHeight, dataEndHeight, dataMaxBucketBlocks;
+  int dataStartHeight, dataEndHeight, dataMaxBucketBlocks, hashRateOverride;
   DateTime dataInit, dataStart, dataEnd, windowStart, windowEnd;
   Duration windowDuration;
   BlockChartBucketDuration bucketDuration;
@@ -115,14 +116,16 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
         TimeSeriesBlocks(truncateTime(time, bucketDuration));
     TimeSeriesBlocks prevPoint = data.find(point);
     if (prevPoint != null) {
-      prevPoint.block.add(header);
-      prevPoint.transactions += header.transactionCount;
-      dataMaxBucketBlocks = max(dataMaxBucketBlocks, prevPoint.blocks);
+      if (prevPoint.block.add(header, overwrite: false)) {
+        prevPoint.transactions += header.transactionCount ?? 0;
+        dataMaxBucketBlocks = max(dataMaxBucketBlocks, prevPoint.blocks);
+      }
     } else {
-      point.block.add(header);
-      point.transactions += header.transactionCount;
-      data.add(point);
-      dataMaxBucketBlocks = max(dataMaxBucketBlocks, point.blocks);
+      if (point.block.add(header, overwrite: false)) {
+        point.transactions += header.transactionCount ?? 0;
+        data.add(point);
+        dataMaxBucketBlocks = max(dataMaxBucketBlocks, point.blocks);
+      }
     }
   }
 
@@ -204,21 +207,32 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
 
   /// Retrieve [fetchBlock] blocks from [peer], starting with [height].
   Future<List<BlockHeader>> fetch(Peer peer, int height, int fetchBlock) async {
-    int count = 0;
-    List<Future<BlockHeaderMessage>> blocks =
-        List<Future<BlockHeaderMessage>>(fetchBlock);
-    for (/**/; count < fetchBlock && height >= 0; count++) {
-      blocks[count] = peer.getBlockHeader(height: height--);
-    }
+    if (peer is BlockchainAPI) {
+      BlockchainAPI blockchain = peer;
+      if (data.isEmpty) hashRateOverride = await blockchain.getHashRate();
+      List<BlockHeader> ret = await blockchain.getBlockHeaders(
+          data.isEmpty ? dataStart : dataStart.subtract(Duration(hours: 24)));
+      for (BlockHeader block in ret) {
+        addBlockToData(block);
+      }
+      return ret;
+    } else {
+      int count = 0;
+      List<Future<BlockHeaderMessage>> blocks =
+          List<Future<BlockHeaderMessage>>(fetchBlock);
+      for (/**/; count < fetchBlock && height >= 0; count++) {
+        blocks[count] = peer.getBlockHeader(height: height--);
+      }
 
-    List<BlockHeader> ret = List<BlockHeader>(count);
-    for (int i = 0; i < count; i++) {
-      BlockHeaderMessage message = await blocks[i];
-      if (message == null) return null;
-      addBlockToData(message.header);
-      ret[i] = message.header;
+      List<BlockHeader> ret = List<BlockHeader>(count);
+      for (int i = 0; i < count; i++) {
+        BlockHeaderMessage message = await blocks[i];
+        if (message == null) return null;
+        addBlockToData(message.header);
+        ret[i] = message.header;
+      }
+      return ret;
     }
-    return ret;
   }
 
   @override
@@ -436,14 +450,14 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
   List<Widget> buildHashRate(
       BlockHeader first, BlockHeader last, Localization l10n,
       {TextStyle titleStyle}) {
+    int hashRate = hashRateOverride ??
+        ((last == null || last.chainWork == null)
+            ? 0
+            : ((first.blockWork() + last.deltaWork(first)) ~/
+                    BigInt.from(windowDuration.inSeconds))
+                .toInt());
     return <Widget>[
-      Text(
-          l10n.formatHashRate(last == null
-              ? 0
-              : ((first.blockWork() + last.deltaWork(first)) ~/
-                      BigInt.from(windowDuration.inSeconds))
-                  .toInt()),
-          style: titleStyle),
+      Text(l10n.formatHashRate(hashRate), style: titleStyle),
     ];
   }
 
@@ -452,8 +466,10 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
       {TextStyle titleStyle, TextStyle linkStyle, Color hoverForeground}) {
     final String duration = l10n.formatDuration(windowDuration);
     return buildLocalizationMarkupWidgets(
-      l10n.totalBlocksTransactionsInLastDuration(
-          totalBlocks, totalTransactions, duration),
+      totalTransactions > 0
+          ? l10n.totalBlocksTransactionsInLastDuration(
+              totalBlocks, totalTransactions, duration)
+          : l10n.totalBlocksInLastDuration(totalBlocks, duration),
       style: titleStyle,
       tags: <String, LocalizationMarkup>{
         'a1': LocalizationMarkup(

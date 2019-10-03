@@ -45,53 +45,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m12(hours) => "${Intl.plural(hours, one: 'ساعة', other: '${hours} ساعات')}";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(id) => "المعرف: ${id}";
 
-  static m14(item1, item2, item3, item4) => "${item1} ، ${item2} ، ${item3} ، ${item4}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2, item3) => "${item1} ، ${item2} ، ${item3}";
+  static m15(item1, item2, item3, item4) => "${item1} ، ${item2} ، ${item3} ، ${item4}";
 
-  static m16(item1, item2) => "${item1} ، ${item2}";
+  static m16(item1, item2, item3) => "${item1} ، ${item2} ، ${item3}";
 
-  static m17(cap) => "سقف السوق {@<a>} ${cap} {@</a>}";
+  static m17(item1, item2) => "${item1} ، ${item2}";
 
-  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m18(cap) => "سقف السوق {@<a>} ${cap} {@</a>}";
 
-  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m19(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} ، {@<a2>} ${item2} {@</a2>} ]";
+  static m20(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m21(amount) => "الحد الأدنى للمبلغ هو ${amount}";
+  static m21(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} ، {@<a2>} ${item2} {@</a2>} ]";
 
-  static m22(fee) => "الحد الأدنى للرسوم هو ${fee}";
+  static m22(amount) => "الحد الأدنى للمبلغ هو ${amount}";
 
-  static m23(minutes, seconds) => "${minutes} ${seconds}";
+  static m23(fee) => "الحد الأدنى للرسوم هو ${fee}";
 
-  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes} دقيقة', other: '${minutes} دقيقة')}";
+  static m24(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m25(type) => "${type} الشبكة";
+  static m25(minutes) => "${Intl.plural(minutes, one: '${minutes} دقيقة', other: '${minutes} دقيقة')}";
 
-  static m26(number) => "المعاملات ( ${number} )";
+  static m26(type) => "${type} الشبكة";
 
-  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m27(number) => "المعاملات ( ${number} )";
 
-  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds} ثانية', other: '${seconds} ثانية')}";
+  static m28(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m29(transactionId) => "تم الإرسال ${transactionId}";
+  static m29(seconds) => "${Intl.plural(seconds, one: '${seconds} ثانية', other: '${seconds} ثانية')}";
 
-  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m30(transactionId) => "تم الإرسال ${transactionId}";
 
-  static m31(address) => "إلى: ${address}";
+  static m31(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} الكتل {@</a1>} في آخر {@<a2>} ${duration} {@</a2>}";
+  static m32(address) => "إلى: ${address}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} الكتل {@</a1>} ، ${totalTransactions} المعاملات في {@<a2>} ${duration} {@</a2>}";
+  static m33(totalBlocks, duration) => "${totalBlocks} {@<a1>} الكتل {@</a1>} في آخر {@<a2>} ${duration} {@</a2>}";
 
-  static m34(addressText) => "فشل التحقق: ${addressText}";
+  static m34(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} الكتل {@</a1>} ، ${totalTransactions} المعاملات في {@<a2>} ${duration} {@</a2>}";
 
-  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "تم ${goodAddresses} التحقق من ${goodAddresses} / ${totalAddresses} و ${goodTests} / ${totalTests}";
+  static m35(addressText) => "فشل التحقق: ${addressText}";
 
-  static m36(walletName, accountId, chainIndex) => "${walletName} : الحساب ${accountId} ، العنوان ${chainIndex}";
+  static m36(goodAddresses, totalAddresses, goodTests, totalTests) => "تم ${goodAddresses} التحقق من ${goodAddresses} / ${totalAddresses} و ${goodTests} / ${totalTests}";
+
+  static m37(walletName, accountId, chainIndex) => "${walletName} : الحساب ${accountId} ، العنوان ${chainIndex}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -114,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("منع"),
     "blocks" : MessageLookupByLibrary.simpleMessage("كتل"),
+    "btcTicker" : MessageLookupByLibrary.simpleMessage("BTC"),
     "cancel" : MessageLookupByLibrary.simpleMessage("إلغاء"),
     "cantDeleteOnlyWallet" : MessageLookupByLibrary.simpleMessage("لا يمكن حذف المحفظة الوحيدة."),
     "chainCode" : MessageLookupByLibrary.simpleMessage("كود السلسلة"),
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email" : MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("تشفير"),
     "encryption" : MessageLookupByLibrary.simpleMessage("التشفير"),
+    "ethTicker" : MessageLookupByLibrary.simpleMessage("ETH"),
     "exaHashPerSecond" : m6,
     "expired" : MessageLookupByLibrary.simpleMessage("منتهية الصلاحية"),
     "expires" : MessageLookupByLibrary.simpleMessage("تنتهي"),
@@ -183,34 +187,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("مفتاح خاص غير صالح."),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("المفتاح العمومي غير صالح."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("URL غير صالح."),
-    "kiloHashPerSecond" : m13,
+    "itemId" : m13,
+    "kiloHashPerSecond" : m14,
     "language" : MessageLookupByLibrary.simpleMessage("لغة"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("شوهد آخر مرة"),
     "license" : MessageLookupByLibrary.simpleMessage("رخصة"),
-    "listOfFour" : m14,
-    "listOfThree" : m15,
-    "listOfTwo" : m16,
+    "listOfFour" : m15,
+    "listOfThree" : m16,
+    "listOfTwo" : m17,
     "loading" : MessageLookupByLibrary.simpleMessage("جار التحميل..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("العربية"),
-    "marketCap" : m17,
+    "marketCap" : m18,
     "matured" : MessageLookupByLibrary.simpleMessage("نضجت"),
     "matures" : MessageLookupByLibrary.simpleMessage("نضوج"),
     "maturing" : MessageLookupByLibrary.simpleMessage("نضوج"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("المعاملات الناضجة"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("الحد الأقصى لطول المذكرة هو 100"),
-    "megaHashPerSecond" : m18,
+    "megaHashPerSecond" : m19,
     "memo" : MessageLookupByLibrary.simpleMessage("مذكرة"),
-    "menuOfOne" : m19,
-    "menuOfTwo" : m20,
-    "minAmount" : m21,
-    "minFee" : m22,
-    "minutesAndSecondsDuration" : m23,
-    "minutesDuration" : m24,
+    "menuOfOne" : m20,
+    "menuOfTwo" : m21,
+    "minAmount" : m22,
+    "minFee" : m23,
+    "minutesAndSecondsDuration" : m24,
+    "minutesDuration" : m25,
     "name" : MessageLookupByLibrary.simpleMessage("اسم"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("يجب أن يكون الاسم فريدًا."),
     "network" : MessageLookupByLibrary.simpleMessage("شبكة الاتصال"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("شبكة حاليا"),
-    "networkType" : m25,
+    "networkType" : m26,
     "newContact" : MessageLookupByLibrary.simpleMessage("جهة اتصال جديدة"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("نظير جديد"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("محفظة جديدة"),
@@ -218,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("لا مفاتيح خاصة"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("لا مفاتيح عامة"),
     "nonce" : MessageLookupByLibrary.simpleMessage("مناسبة حالية"),
-    "numTransactions" : m26,
+    "numTransactions" : m27,
     "ok" : MessageLookupByLibrary.simpleMessage("حسنا"),
     "password" : MessageLookupByLibrary.simpleMessage("كلمه السر"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("كلمة المرور لا يمكن أن تكون فارغة."),
@@ -227,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("دفع ل"),
     "peers" : MessageLookupByLibrary.simpleMessage("الأقران"),
     "pending" : MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
-    "petaHashPerSecond" : m27,
+    "petaHashPerSecond" : m28,
     "previous" : MessageLookupByLibrary.simpleMessage("السابق"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("سياسة خاصة"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("مفتاح سري"),
@@ -238,13 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("طلب شهادة SSL"),
     "result" : MessageLookupByLibrary.simpleMessage("نتيجة"),
     "search" : MessageLookupByLibrary.simpleMessage("بحث"),
-    "secondsDuration" : m28,
+    "secondsDuration" : m29,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("عبارة البذور"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("هذه البذرة تسمح لأي شخص يعرف ذلك بإنفاق كل الأموال منك. اكتبه. احتفظ بها آمنة."),
     "send" : MessageLookupByLibrary.simpleMessage("إرسال"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("فشل إرسال"),
     "sending" : MessageLookupByLibrary.simpleMessage("إرسال..."),
-    "sentTransactionId" : m29,
+    "sentTransactionId" : m30,
     "settings" : MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "show" : MessageLookupByLibrary.simpleMessage("تبين"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("إظهار اسم المحفظة في العنوان"),
@@ -252,19 +257,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit" : MessageLookupByLibrary.simpleMessage("تقديم"),
     "support" : MessageLookupByLibrary.simpleMessage("الدعم"),
     "target" : MessageLookupByLibrary.simpleMessage("استهداف"),
-    "teraHashPerSecond" : m30,
+    "teraHashPerSecond" : m31,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("الحق علي! شكرا المجتمع CRUZ!"),
     "theme" : MessageLookupByLibrary.simpleMessage("موضوع"),
     "time" : MessageLookupByLibrary.simpleMessage("زمن"),
     "tip" : MessageLookupByLibrary.simpleMessage("تلميح"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("إلى"),
-    "toAddress" : m31,
-    "totalBlocksInLastDuration" : m32,
-    "totalBlocksTransactionsInLastDuration" : m33,
+    "toAddress" : m32,
+    "totalBlocksInLastDuration" : m33,
+    "totalBlocksTransactionsInLastDuration" : m34,
     "transaction" : MessageLookupByLibrary.simpleMessage("عملية تجارية"),
     "transactions" : MessageLookupByLibrary.simpleMessage("المعاملات"),
     "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("تحذير: كتابة العناوين باليد أمر خطير وعرضة للخطأ. استخدم دائمًا زر النسخ أو الماسح الضوئي QR."),
+    "unableToDecode" : MessageLookupByLibrary.simpleMessage("غير قادر على فك شفرة"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("اختبار وحدة قبل إنشاء محافظ"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("فشل اختبار الوحدة"),
     "unknown" : MessageLookupByLibrary.simpleMessage("مجهول"),
@@ -275,12 +281,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("موقع المعلومات العالمي"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("يجب أن تكون القيمة إيجابية"),
     "verify" : MessageLookupByLibrary.simpleMessage("تحقق"),
-    "verifyAddressFailed" : m34,
+    "verifyAddressFailed" : m35,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("تحقق من أزواج المفاتيح كل حمولة"),
-    "verifyWalletResults" : m35,
+    "verifyWalletResults" : m36,
     "verifying" : MessageLookupByLibrary.simpleMessage("التحقق من ..."),
     "version" : MessageLookupByLibrary.simpleMessage("الإصدار"),
-    "walletAccountName" : m36,
+    "walletAccountName" : m37,
     "wallets" : MessageLookupByLibrary.simpleMessage("محافظ"),
     "warning" : MessageLookupByLibrary.simpleMessage("تحذير"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("مشاهدة فقط المحفظة"),

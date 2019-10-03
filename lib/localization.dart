@@ -100,10 +100,16 @@ class Localization {
       'Once you delete a wallet, there is no going back. Please be certain.',
       name: 'deleteWalletDescription');
   String get cruzTicker => Intl.message('CRUZ', name: 'cruzTicker');
+  String get btcTicker => Intl.message('BTC', name: 'btcTicker');
+  String get ethTicker => Intl.message('ETH', name: 'ethTicker');
   String ticker(String currency) {
     switch (currency) {
+      case 'BTC':
+        return btcTicker;
       case 'CRUZ':
         return cruzTicker;
+      case 'ETH':
+        return ethTicker;
       default:
         return '';
     }
@@ -313,6 +319,8 @@ class Localization {
       Intl.message('Public Key List', name: 'publicKeyList');
   String get privateKeyList =>
       Intl.message('Private Key List', name: 'privateKeyList');
+  String itemId(String id) =>
+      Intl.message('Id:\u00A0$id', name: 'itemId', args: [id]);
   String fromAddress(String address) =>
       Intl.message('From:\u00A0$address', name: 'fromAddress', args: [address]);
   String toAddress(String address) =>
@@ -362,6 +370,8 @@ class Localization {
       Intl.message('No private keys', name: 'noPrivateKeys');
   String get unknownQuery =>
       Intl.message('Unknown query', name: 'unknownQuery');
+  String get unableToDecode =>
+      Intl.message('Unable to decode', name: 'unableToDecode');
   String get thanksForDonating =>
       Intl.message('Right on!  Thanks CRUZ community!',
           name: 'thanksForDonating');

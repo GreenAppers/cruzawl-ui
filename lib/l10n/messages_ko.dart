@@ -45,53 +45,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m12(hours) => "${Intl.plural(hours, one: '시간', other: '${hours} 시간')}";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(id) => "Id : ${id}";
 
-  static m14(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
+  static m15(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
 
-  static m16(item1, item2) => "${item1} , ${item2}";
+  static m16(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
 
-  static m17(cap) => "시가 총액 {@<a>} ${cap} {@</a>}";
+  static m17(item1, item2) => "${item1} , ${item2}";
 
-  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m18(cap) => "시가 총액 {@<a>} ${cap} {@</a>}";
 
-  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m19(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
+  static m20(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m21(amount) => "최소 금액은 ${amount}";
+  static m21(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
 
-  static m22(fee) => "최소 수수료는 ${fee}";
+  static m22(amount) => "최소 금액은 ${amount}";
 
-  static m23(minutes, seconds) => "${minutes} ${seconds}";
+  static m23(fee) => "최소 수수료는 ${fee}";
 
-  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes} 분', other: '${minutes} 분')}";
+  static m24(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m25(type) => "${type} 네트워크";
+  static m25(minutes) => "${Intl.plural(minutes, one: '${minutes} 분', other: '${minutes} 분')}";
 
-  static m26(number) => "거래 ( ${number} )";
+  static m26(type) => "${type} 네트워크";
 
-  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m27(number) => "거래 ( ${number} )";
 
-  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds} 초', other: '${seconds} 초')}";
+  static m28(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m29(transactionId) => "보낸 ${transactionId}";
+  static m29(seconds) => "${Intl.plural(seconds, one: '${seconds} 초', other: '${seconds} 초')}";
 
-  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m30(transactionId) => "보낸 ${transactionId}";
 
-  static m31(address) => "받는 사람 : ${address}";
+  static m31(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} 은 마지막 {@<a2>} ${duration} {@</a2>} 에서 {@</a1>} 을 차단합니다.";
+  static m32(address) => "받는 사람 : ${address}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} 차단 {@</a1>}, 마지막 {@<a2>} ${duration} {@</a2>}의 ${totalTransactions} 거래";
+  static m33(totalBlocks, duration) => "${totalBlocks} {@<a1>} 은 마지막 {@<a2>} ${duration} {@</a2>} 에서 {@</a1>} 을 차단합니다.";
 
-  static m34(addressText) => "확인 실패 : ${addressText}";
+  static m34(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} 차단 {@</a1>}, 마지막 {@<a2>} ${duration} {@</a2>}의 ${totalTransactions} 거래";
 
-  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "확인 된 ${goodAddresses} / ${totalAddresses} 주소 및 ${goodTests} / ${totalTests} 테스트 성공";
+  static m35(addressText) => "확인 실패 : ${addressText}";
 
-  static m36(walletName, accountId, chainIndex) => "${walletName} : 계정 ${accountId}, 주소 ${chainIndex}";
+  static m36(goodAddresses, totalAddresses, goodTests, totalTests) => "확인 된 ${goodAddresses} / ${totalAddresses} 주소 및 ${goodTests} / ${totalTests} 테스트 성공";
+
+  static m37(walletName, accountId, chainIndex) => "${walletName} : 계정 ${accountId}, 주소 ${chainIndex}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -114,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("블록"),
     "blocks" : MessageLookupByLibrary.simpleMessage("블록"),
+    "btcTicker" : MessageLookupByLibrary.simpleMessage("BTC"),
     "cancel" : MessageLookupByLibrary.simpleMessage("취소"),
     "cantDeleteOnlyWallet" : MessageLookupByLibrary.simpleMessage("지갑 만 삭제할 수 없습니다."),
     "chainCode" : MessageLookupByLibrary.simpleMessage("체인 코드"),
@@ -131,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "create" : MessageLookupByLibrary.simpleMessage("몹시 떠들어 대다"),
     "creating" : MessageLookupByLibrary.simpleMessage("만드는 중 ..."),
     "creatingUsingAlgorithm" : m4,
-    "cruzTicker" : MessageLookupByLibrary.simpleMessage("크루즈"),
+    "cruzTicker" : MessageLookupByLibrary.simpleMessage("CRUZ"),
     "currency" : MessageLookupByLibrary.simpleMessage("통화"),
     "currentBalanceIs" : MessageLookupByLibrary.simpleMessage("현재 잔액은 다음과 같습니다."),
     "dangerZone" : MessageLookupByLibrary.simpleMessage("위험 지대"),
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email" : MessageLookupByLibrary.simpleMessage("이메일"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("암호화"),
     "encryption" : MessageLookupByLibrary.simpleMessage("암호화"),
+    "ethTicker" : MessageLookupByLibrary.simpleMessage("ETH"),
     "exaHashPerSecond" : m6,
     "expired" : MessageLookupByLibrary.simpleMessage("만료"),
     "expires" : MessageLookupByLibrary.simpleMessage("만료"),
@@ -183,34 +187,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("잘못된 개인 키."),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("잘못된 공개 키."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("잘못된 URL."),
-    "kiloHashPerSecond" : m13,
+    "itemId" : m13,
+    "kiloHashPerSecond" : m14,
     "language" : MessageLookupByLibrary.simpleMessage("언어"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("최근 본"),
     "license" : MessageLookupByLibrary.simpleMessage("특허"),
-    "listOfFour" : m14,
-    "listOfThree" : m15,
-    "listOfTwo" : m16,
+    "listOfFour" : m15,
+    "listOfThree" : m16,
+    "listOfTwo" : m17,
     "loading" : MessageLookupByLibrary.simpleMessage("불러오는 중 ..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("한국어"),
-    "marketCap" : m17,
+    "marketCap" : m18,
     "matured" : MessageLookupByLibrary.simpleMessage("성숙"),
     "matures" : MessageLookupByLibrary.simpleMessage("성숙하다"),
     "maturing" : MessageLookupByLibrary.simpleMessage("숙성"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("거래 성숙"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("최대 메모 길이는 100입니다"),
-    "megaHashPerSecond" : m18,
+    "megaHashPerSecond" : m19,
     "memo" : MessageLookupByLibrary.simpleMessage("메모"),
-    "menuOfOne" : m19,
-    "menuOfTwo" : m20,
-    "minAmount" : m21,
-    "minFee" : m22,
-    "minutesAndSecondsDuration" : m23,
-    "minutesDuration" : m24,
+    "menuOfOne" : m20,
+    "menuOfTwo" : m21,
+    "minAmount" : m22,
+    "minFee" : m23,
+    "minutesAndSecondsDuration" : m24,
+    "minutesDuration" : m25,
     "name" : MessageLookupByLibrary.simpleMessage("이름"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("이름은 고유해야합니다."),
     "network" : MessageLookupByLibrary.simpleMessage("회로망"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("네트워크 오프라인"),
-    "networkType" : m25,
+    "networkType" : m26,
     "newContact" : MessageLookupByLibrary.simpleMessage("새로운 연락처"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("새로운 피어"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("새 월렛"),
@@ -218,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("개인 키가 없습니다"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("공개 키가 없습니다"),
     "nonce" : MessageLookupByLibrary.simpleMessage("목하"),
-    "numTransactions" : m26,
+    "numTransactions" : m27,
     "ok" : MessageLookupByLibrary.simpleMessage("승인"),
     "password" : MessageLookupByLibrary.simpleMessage("암호"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("비밀번호는 비워 둘 수 없습니다."),
@@ -227,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("에 지불하다"),
     "peers" : MessageLookupByLibrary.simpleMessage("동료"),
     "pending" : MessageLookupByLibrary.simpleMessage("대기 중"),
-    "petaHashPerSecond" : m27,
+    "petaHashPerSecond" : m28,
     "previous" : MessageLookupByLibrary.simpleMessage("너무 이른"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("개인 정보 정책"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("개인 키"),
@@ -238,13 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("SSL 인증서 필요"),
     "result" : MessageLookupByLibrary.simpleMessage("결과"),
     "search" : MessageLookupByLibrary.simpleMessage("수색"),
-    "secondsDuration" : m28,
+    "secondsDuration" : m29,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("종자 문구"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("이 씨앗은 그것을 아는 사람이라면 누구나 당신의 지갑에서 모든 돈을 쓸 수있게합니다. 받아 적어. 안전을 유지해라."),
     "send" : MessageLookupByLibrary.simpleMessage("보내다"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("전송 실패"),
     "sending" : MessageLookupByLibrary.simpleMessage("배상..."),
-    "sentTransactionId" : m29,
+    "sentTransactionId" : m30,
     "settings" : MessageLookupByLibrary.simpleMessage("설정"),
     "show" : MessageLookupByLibrary.simpleMessage("보여 주다"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("지갑 이름 표시"),
@@ -252,19 +257,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit" : MessageLookupByLibrary.simpleMessage("제출"),
     "support" : MessageLookupByLibrary.simpleMessage("지원하다"),
     "target" : MessageLookupByLibrary.simpleMessage("목표"),
-    "teraHashPerSecond" : m30,
+    "teraHashPerSecond" : m31,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("바로! 감사합니다 CRUZ 커뮤니티!"),
     "theme" : MessageLookupByLibrary.simpleMessage("테마"),
     "time" : MessageLookupByLibrary.simpleMessage("시각"),
     "tip" : MessageLookupByLibrary.simpleMessage("팁"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("에"),
-    "toAddress" : m31,
-    "totalBlocksInLastDuration" : m32,
-    "totalBlocksTransactionsInLastDuration" : m33,
+    "toAddress" : m32,
+    "totalBlocksInLastDuration" : m33,
+    "totalBlocksTransactionsInLastDuration" : m34,
     "transaction" : MessageLookupByLibrary.simpleMessage("트랜잭션"),
     "transactions" : MessageLookupByLibrary.simpleMessage("업무"),
     "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("경고 : 직접 손으로 주소를 입력하면 위험하고 오류가 발생하기 쉽습니다. 항상 복사 버튼 또는 QR 스캐너를 사용하십시오."),
+    "unableToDecode" : MessageLookupByLibrary.simpleMessage("디코딩 할 수 없습니다"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("지갑을 만들기 전에 단위 테스트"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("단위 테스트 실패"),
     "unknown" : MessageLookupByLibrary.simpleMessage("알 수 없는"),
@@ -275,12 +281,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("값은 양수 여야합니다"),
     "verify" : MessageLookupByLibrary.simpleMessage("확인"),
-    "verifyAddressFailed" : m34,
+    "verifyAddressFailed" : m35,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("부하마다 키 페어 확인"),
-    "verifyWalletResults" : m35,
+    "verifyWalletResults" : m36,
     "verifying" : MessageLookupByLibrary.simpleMessage("확인 중 ..."),
     "version" : MessageLookupByLibrary.simpleMessage("번역"),
-    "walletAccountName" : m36,
+    "walletAccountName" : m37,
     "wallets" : MessageLookupByLibrary.simpleMessage("지갑"),
     "warning" : MessageLookupByLibrary.simpleMessage("경고"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("시계 전용 지갑"),

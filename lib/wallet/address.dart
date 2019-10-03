@@ -44,8 +44,8 @@ class _AddressWidgetState extends State<AddressWidget> {
         Transaction.timeCompare,
         widget.wallet.transactions.data
             .where((v) =>
-                v.inputs[0].fromText == addressText ||
-                v.outputs[0].toText == addressText)
+                v.containsInputText(addressText) ||
+                v.containsOutputText(addressText))
             .toList());
   }
 

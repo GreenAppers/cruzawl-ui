@@ -726,6 +726,8 @@ class TransactionListTile extends StatelessWidget {
     final bool toTap = info.wideStyle && onToTap != null;
     final bool fromTap = info.wideStyle && onFromTap != null;
     final bool amountLink = info.wideStyle && onTap != null;
+    final bool singleToAddress = tx.outputs.length == 1;
+    final bool singleFromAddress = tx.inputs.length == 1;
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16),
@@ -736,7 +738,10 @@ class TransactionListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: buildLocalizationMarkupWidgets(
-                  l10n.toAddress('{@<a>}${tx.outputs[0].toText}{@</a>}'),
+                  singleToAddress
+                      ? l10n
+                          .toAddress('{@<a>}${tx.outputs.first.toText}{@</a>}')
+                      : l10n.itemId('{@<a>}${tx.hash.toJson()}{@</a>}'),
                   style: appState.theme.labelStyle,
                   tags: <String, LocalizationMarkup>{
                     'a': LocalizationMarkup(
@@ -749,29 +754,40 @@ class TransactionListTile extends StatelessWidget {
                 ),
               )
             : GestureDetector(
-                child: Text(l10n.toAddress(tx.outputs[0].toText)),
+                child: Text(singleToAddress
+                    ? l10n.toAddress(
+                        tx.outputs.first.toText ?? l10n.unableToDecode)
+                    : l10n.itemId(tx.hash.toJson())),
                 onTap: onToTap == null ? null : () => onToTap(tx)),
-        subtitle: info.wideStyle
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: buildLocalizationMarkupWidgets(
-                  l10n.fromAddress('{@<a>}${tx.inputs[0].fromText}{@</a>}'),
-                  style: appState.theme.labelStyle,
-                  tags: <String, LocalizationMarkup>{
-                    'a': LocalizationMarkup(
-                      style: fromTap ? appState.theme.linkStyle : null,
-                      hoverForeground:
-                          toTap ? appState.theme.hoverLinkColor : null,
-                      onTap: onFromTap == null ? null : () => onFromTap(tx),
+        subtitle: (!singleToAddress && !singleFromAddress)
+            ? null
+            : (info.wideStyle
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: buildLocalizationMarkupWidgets(
+                      singleFromAddress
+                          ? l10n.fromAddress(
+                              '{@<a>}${tx.inputs.first.fromText}{@</a>}')
+                          : l10n.itemId('{@<a>}${tx.hash.toJson()}{@</a>}'),
+                      style: appState.theme.labelStyle,
+                      tags: <String, LocalizationMarkup>{
+                        'a': LocalizationMarkup(
+                          style: fromTap ? appState.theme.linkStyle : null,
+                          hoverForeground:
+                              toTap ? appState.theme.hoverLinkColor : null,
+                          onTap: onFromTap == null ? null : () => onFromTap(tx),
+                        ),
+                      },
                     ),
-                  },
-                ),
-              )
-            : GestureDetector(
-                child: Text(l10n.fromAddress(tx.inputs[0].fromText)),
-                onTap: onFromTap == null ? null : () => onFromTap(tx)),
+                  )
+                : GestureDetector(
+                    child: Text(singleFromAddress
+                        ? l10n.fromAddress(
+                            tx.inputs.first.fromText ?? l10n.unableToDecode)
+                        : l10n.itemId(tx.hash.toJson())),
+                    onTap: onFromTap == null ? null : () => onFromTap(tx))),
         trailing: HyperLinkWidget(
           text: info.amountPrefix +
               currency.format(tx.amount + (info.fromWallet ? tx.fee : 0)),

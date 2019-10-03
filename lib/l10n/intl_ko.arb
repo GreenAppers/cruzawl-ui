@@ -142,8 +142,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "cruzTicker": "크루즈",
+  "cruzTicker": "CRUZ",
   "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "btcTicker": "BTC",
+  "@btcTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ethTicker": "ETH",
+  "@ethTicker": {
     "type": "text",
     "placeholders": {}
   },
@@ -756,6 +766,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "itemId": "Id : {id}",
+  "@itemId": {
+    "type": "text",
+    "placeholders": {
+      "id": {}
+    }
+  },
   "fromAddress": "보낸 사람 : {address}",
   "@fromAddress": {
     "type": "text",
@@ -886,6 +903,11 @@
   },
   "unknownQuery": "알 수없는 검색어",
   "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unableToDecode": "디코딩 할 수 없습니다",
+  "@unableToDecode": {
     "type": "text",
     "placeholders": {}
   },

@@ -103,24 +103,30 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       ),
       ListTile(
         onTap: nullOp,
-        title: Text(l10n.from, style: labelTextStyle),
-        subtitle: CopyableText(
-            txn.inputs[0].fromText, appState.setClipboardText,
-            style: valueTextStyle),
-      ),
-      ListTile(
-        onTap: nullOp,
-        title: Text(l10n.to, style: labelTextStyle),
-        subtitle: CopyableText(txn.outputs[0].toText, appState.setClipboardText,
-            style: valueTextStyle),
-      ),
-      ListTile(
-        onTap: nullOp,
         title: Text(l10n.id, style: labelTextStyle),
         subtitle: CopyableText(txn.id().toJson(), appState.setClipboardText,
             style: valueTextStyle),
       ),
     ];
+
+    for (TransactionInput input in txn.inputs) {
+      ret.add(ListTile(
+        onTap: nullOp,
+        title: Text(l10n.from, style: labelTextStyle),
+        subtitle: CopyableText(input.fromText, appState.setClipboardText,
+            style: valueTextStyle),
+      ));
+    }
+
+    for (TransactionOutput output in txn.outputs) {
+      ret.add(ListTile(
+        onTap: nullOp,
+        title: Text(l10n.to, style: labelTextStyle),
+        subtitle: CopyableText(
+            output.toText ?? l10n.unableToDecode, appState.setClipboardText,
+            style: valueTextStyle),
+      ));
+    }
 
     if (txn.memo != null) {
       ret.add(
@@ -176,11 +182,13 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       }
     }
 
-    ret.add(ListTile(
-      onTap: nullOp,
-      title: Text(l10n.nonce, style: labelTextStyle),
-      trailing: Text(txn.nonce.toString(), style: valueTextStyle),
-    ));
+    if (txn.nonce != null) {
+      ret.add(ListTile(
+        onTap: nullOp,
+        title: Text(l10n.nonce, style: labelTextStyle),
+        trailing: Text(txn.nonce.toString(), style: valueTextStyle),
+      ));
+    }
 
     if (txn.matures != null) {
       int matures = txn.matures;

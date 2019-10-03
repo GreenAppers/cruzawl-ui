@@ -147,6 +147,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "btcTicker": "BTC",
+  "@btcTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ethTicker": "ETH",
+  "@ethTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addressStateReserve": "rizab",
   "@addressStateReserve": {
     "type": "text",
@@ -756,6 +766,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "itemId": "Id: {id}",
+  "@itemId": {
+    "type": "text",
+    "placeholders": {
+      "id": {}
+    }
+  },
   "fromAddress": "Dari: {address}",
   "@fromAddress": {
     "type": "text",
@@ -886,6 +903,11 @@
   },
   "unknownQuery": "Pertanyaan tidak diketahui",
   "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unableToDecode": "Tidak dapat menyahkod",
+  "@unableToDecode": {
     "type": "text",
     "placeholders": {}
   },

@@ -142,8 +142,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "cruzTicker": "クルス",
+  "cruzTicker": "CRUZ",
   "@cruzTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "btcTicker": "BTC",
+  "@btcTicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ethTicker": "ETH",
+  "@ethTicker": {
     "type": "text",
     "placeholders": {}
   },
@@ -756,6 +766,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "itemId": "Id：{id}",
+  "@itemId": {
+    "type": "text",
+    "placeholders": {
+      "id": {}
+    }
+  },
   "fromAddress": "From： {address}",
   "@fromAddress": {
     "type": "text",
@@ -886,6 +903,11 @@
   },
   "unknownQuery": "不明なクエリ",
   "@unknownQuery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unableToDecode": "デコードできません",
+  "@unableToDecode": {
     "type": "text",
     "placeholders": {}
   },

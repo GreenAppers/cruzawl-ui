@@ -76,7 +76,7 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
       if (results == null) break;
 
       for (Transaction transaction in results.transactions) {
-        bool toWallet = widget.addressText == transaction.outputs[0].toText;
+        bool toWallet = transaction.containsOutputText(widget.addressText);
         bool mature =
             transaction.maturity == null || transaction.maturity <= tipHeight;
         if (toWallet && !mature) {
@@ -203,15 +203,19 @@ class _ExternalAddressWidgetState extends State<ExternalAddressWidget> {
                 transaction,
                 TransactionInfo(
                     toWallet:
-                        widget.addressText == transaction.outputs[0].toText,
+                        transaction.containsOutputText(widget.addressText),
                     fromWallet:
-                        widget.addressText == transaction.inputs[0].fromText,
+                        transaction.containsInputText(widget.addressText),
                     wideStyle: wideStyle),
                 onTap: (tx) => appState.navigateToTransaction(context, tx),
-                onFromTap: (tx) => appState.navigateToAddressText(
-                    context, tx.inputs[0].fromText),
-                onToTap: (tx) => appState.navigateToAddressText(
-                    context, tx.outputs[0].toText),
+                onFromTap: transaction.inputs.length != 1
+                    ? null
+                    : (tx) => appState.navigateToAddressText(
+                        context, tx.inputs.first.fromText),
+                onToTap: transaction.outputs.length != 1
+                    ? null
+                    : (tx) => appState.navigateToAddressText(
+                        context, tx.outputs.first.toText),
               );
             }
 

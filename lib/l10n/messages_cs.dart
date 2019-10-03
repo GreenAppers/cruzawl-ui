@@ -45,53 +45,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m12(hours) => "${Intl.plural(hours, one: 'hodina', other: '${hours} hodiny')}";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(id) => "Id: ${id}";
 
-  static m14(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
+  static m15(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
 
-  static m16(item1, item2) => "${item1} , ${item2}";
+  static m16(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
 
-  static m17(cap) => "Market cap {@<a>} ${cap} {@</a>}";
+  static m17(item1, item2) => "${item1} , ${item2}";
 
-  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m18(cap) => "Market cap {@<a>} ${cap} {@</a>}";
 
-  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m19(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
+  static m20(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m21(amount) => "Minimální částka je ${amount}";
+  static m21(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
 
-  static m22(fee) => "Minimální poplatek je ${fee}";
+  static m22(amount) => "Minimální částka je ${amount}";
 
-  static m23(minutes, seconds) => "${minutes} ${seconds}";
+  static m23(fee) => "Minimální poplatek je ${fee}";
 
-  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes} minuta', other: '${minutes} minut')}";
+  static m24(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m25(type) => "${type} Síť";
+  static m25(minutes) => "${Intl.plural(minutes, one: '${minutes} minuta', other: '${minutes} minut')}";
 
-  static m26(number) => "Transakce ( ${number} )";
+  static m26(type) => "${type} Síť";
 
-  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m27(number) => "Transakce ( ${number} )";
 
-  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds} sekunda', other: '${seconds} sekund')}";
+  static m28(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m29(transactionId) => "Odesláno ${transactionId}";
+  static m29(seconds) => "${Intl.plural(seconds, one: '${seconds} sekunda', other: '${seconds} sekund')}";
 
-  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m30(transactionId) => "Odesláno ${transactionId}";
 
-  static m31(address) => "Komu: ${address}";
+  static m31(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} blokuje {@</a1>} za posledních {@<a2>} ${duration} {@</a2>}";
+  static m32(address) => "Komu: ${address}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} blokuje {@</a1>} , ${totalTransactions} transakce za posledních {@<a2>} ${duration} {@</a2>}";
+  static m33(totalBlocks, duration) => "${totalBlocks} {@<a1>} blokuje {@</a1>} za posledních {@<a2>} ${duration} {@</a2>}";
 
-  static m34(addressText) => "ověření se nezdařilo: ${addressText}";
+  static m34(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} blokuje {@</a1>} , ${totalTransactions} transakce za posledních {@<a2>} ${duration} {@</a2>}";
 
-  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "Ověřené ${goodAddresses} / ${totalAddresses} adresy a ${goodTests} / ${totalTests} testy byly úspěšné";
+  static m35(addressText) => "ověření se nezdařilo: ${addressText}";
 
-  static m36(walletName, accountId, chainIndex) => "${walletName}: Účet ${accountId}, adresa ${chainIndex}";
+  static m36(goodAddresses, totalAddresses, goodTests, totalTests) => "Ověřené ${goodAddresses} / ${totalAddresses} adresy a ${goodTests} / ${totalTests} testy byly úspěšné";
+
+  static m37(walletName, accountId, chainIndex) => "${walletName}: Účet ${accountId}, adresa ${chainIndex}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -114,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("Blok"),
     "blocks" : MessageLookupByLibrary.simpleMessage("Bloky"),
+    "btcTicker" : MessageLookupByLibrary.simpleMessage("BTC"),
     "cancel" : MessageLookupByLibrary.simpleMessage("zrušení"),
     "cantDeleteOnlyWallet" : MessageLookupByLibrary.simpleMessage("Nelze smazat pouze peněženku."),
     "chainCode" : MessageLookupByLibrary.simpleMessage("Řetězový kód"),
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email" : MessageLookupByLibrary.simpleMessage("E-mailem"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("Šifrovat"),
     "encryption" : MessageLookupByLibrary.simpleMessage("Šifrování"),
+    "ethTicker" : MessageLookupByLibrary.simpleMessage("ETH"),
     "exaHashPerSecond" : m6,
     "expired" : MessageLookupByLibrary.simpleMessage("Platnost vypršela"),
     "expires" : MessageLookupByLibrary.simpleMessage("Platnost vyprší"),
@@ -183,34 +187,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("Neplatný soukromý klíč."),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("Neplatný veřejný klíč."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Neplatná URL adresa."),
-    "kiloHashPerSecond" : m13,
+    "itemId" : m13,
+    "kiloHashPerSecond" : m14,
     "language" : MessageLookupByLibrary.simpleMessage("Jazyk"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("Naposledy viděno"),
     "license" : MessageLookupByLibrary.simpleMessage("Licence"),
-    "listOfFour" : m14,
-    "listOfThree" : m15,
-    "listOfTwo" : m16,
+    "listOfFour" : m15,
+    "listOfThree" : m16,
+    "listOfTwo" : m17,
     "loading" : MessageLookupByLibrary.simpleMessage("Načítání..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("Čeština"),
-    "marketCap" : m17,
+    "marketCap" : m18,
     "matured" : MessageLookupByLibrary.simpleMessage("Vyzrálé"),
     "matures" : MessageLookupByLibrary.simpleMessage("Zraje"),
     "maturing" : MessageLookupByLibrary.simpleMessage("Zrání"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Splatné transakce"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Maximální délka poznámky je 100"),
-    "megaHashPerSecond" : m18,
+    "megaHashPerSecond" : m19,
     "memo" : MessageLookupByLibrary.simpleMessage("Memorandum"),
-    "menuOfOne" : m19,
-    "menuOfTwo" : m20,
-    "minAmount" : m21,
-    "minFee" : m22,
-    "minutesAndSecondsDuration" : m23,
-    "minutesDuration" : m24,
+    "menuOfOne" : m20,
+    "menuOfTwo" : m21,
+    "minAmount" : m22,
+    "minFee" : m23,
+    "minutesAndSecondsDuration" : m24,
+    "minutesDuration" : m25,
     "name" : MessageLookupByLibrary.simpleMessage("název"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Název musí být jedinečný."),
     "network" : MessageLookupByLibrary.simpleMessage("Síť"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Síť offline"),
-    "networkType" : m25,
+    "networkType" : m26,
     "newContact" : MessageLookupByLibrary.simpleMessage("Nový kontakt"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("New Peer"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Nová peněženka"),
@@ -218,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("Žádné soukromé klíče"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("Žádné veřejné klíče"),
     "nonce" : MessageLookupByLibrary.simpleMessage("Nonce"),
-    "numTransactions" : m26,
+    "numTransactions" : m27,
     "ok" : MessageLookupByLibrary.simpleMessage("OK"),
     "password" : MessageLookupByLibrary.simpleMessage("Heslo"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Heslo nemůže být prázdné."),
@@ -227,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("Zaplatit"),
     "peers" : MessageLookupByLibrary.simpleMessage("Vrstevníci"),
     "pending" : MessageLookupByLibrary.simpleMessage("čekající"),
-    "petaHashPerSecond" : m27,
+    "petaHashPerSecond" : m28,
     "previous" : MessageLookupByLibrary.simpleMessage("Předchozí"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("Zásady ochrany osobních údajů"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("Soukromý klíč"),
@@ -238,13 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("Vyžadovat certifikát SSL"),
     "result" : MessageLookupByLibrary.simpleMessage("Výsledek"),
     "search" : MessageLookupByLibrary.simpleMessage("Vyhledávání"),
-    "secondsDuration" : m28,
+    "secondsDuration" : m29,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Semenná fráze"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("Toto semeno umožňuje komukoli, kdo to ví, utratit všechny finanční prostředky z vaší peněženky. Napište to. Udržuj v bezpečí."),
     "send" : MessageLookupByLibrary.simpleMessage("Poslat"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Odeslání se nezdařilo"),
     "sending" : MessageLookupByLibrary.simpleMessage("Odesílání ..."),
-    "sentTransactionId" : m29,
+    "sentTransactionId" : m30,
     "settings" : MessageLookupByLibrary.simpleMessage("Nastavení"),
     "show" : MessageLookupByLibrary.simpleMessage("Show"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Zobrazit název peněženky v názvu"),
@@ -252,19 +257,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit" : MessageLookupByLibrary.simpleMessage("Předložit"),
     "support" : MessageLookupByLibrary.simpleMessage("Podpěra, podpora"),
     "target" : MessageLookupByLibrary.simpleMessage("cílová"),
-    "teraHashPerSecond" : m30,
+    "teraHashPerSecond" : m31,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("Hned! Díky komunitě CRUZ!"),
     "theme" : MessageLookupByLibrary.simpleMessage("Téma"),
     "time" : MessageLookupByLibrary.simpleMessage("Čas"),
     "tip" : MessageLookupByLibrary.simpleMessage("Tip"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("Na"),
-    "toAddress" : m31,
-    "totalBlocksInLastDuration" : m32,
-    "totalBlocksTransactionsInLastDuration" : m33,
+    "toAddress" : m32,
+    "totalBlocksInLastDuration" : m33,
+    "totalBlocksTransactionsInLastDuration" : m34,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transakce"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transakce"),
     "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Upozornění: Ruční psaní adres je nebezpečné a náchylné k chybám. Vždy používejte tlačítko kopírování nebo QR skener."),
+    "unableToDecode" : MessageLookupByLibrary.simpleMessage("Nelze dekódovat"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Test jednotky před vytvořením peněženky"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Selhání testu jednotky"),
     "unknown" : MessageLookupByLibrary.simpleMessage("Neznámý"),
@@ -275,12 +281,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Hodnota musí být kladná"),
     "verify" : MessageLookupByLibrary.simpleMessage("Ověřte"),
-    "verifyAddressFailed" : m34,
+    "verifyAddressFailed" : m35,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Ověřte dvojice klíčů při každém načtení"),
-    "verifyWalletResults" : m35,
+    "verifyWalletResults" : m36,
     "verifying" : MessageLookupByLibrary.simpleMessage("Ověření ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Verze"),
-    "walletAccountName" : m36,
+    "walletAccountName" : m37,
     "wallets" : MessageLookupByLibrary.simpleMessage("Peněženky"),
     "warning" : MessageLookupByLibrary.simpleMessage("Varování"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Peněženka pouze pro sledování"),

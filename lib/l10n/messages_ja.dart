@@ -45,53 +45,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m12(hours) => "${Intl.plural(hours, one: '時', other: '${hours}時間')}";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(id) => "Id：${id}";
 
-  static m14(item1, item2, item3, item4) => "${item1} 、 ${item2} 、 ${item3} 、 ${item4}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2, item3) => "${item1} 、 ${item2} 、 ${item3}";
+  static m15(item1, item2, item3, item4) => "${item1} 、 ${item2} 、 ${item3} 、 ${item4}";
 
-  static m16(item1, item2) => "${item1} 、 ${item2}";
+  static m16(item1, item2, item3) => "${item1} 、 ${item2} 、 ${item3}";
 
-  static m17(cap) => "時価総額{@<a>} ${cap} {@</a>}";
+  static m17(item1, item2) => "${item1} 、 ${item2}";
 
-  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m18(cap) => "時価総額{@<a>} ${cap} {@</a>}";
 
-  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m19(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} 、 {@<a2>} ${item2} {@</a2>} ]";
+  static m20(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m21(amount) => "最小金額は${amount}";
+  static m21(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} 、 {@<a2>} ${item2} {@</a2>} ]";
 
-  static m22(fee) => "最低料金は${fee}";
+  static m22(amount) => "最小金額は${amount}";
 
-  static m23(minutes, seconds) => "${minutes} ${seconds}";
+  static m23(fee) => "最低料金は${fee}";
 
-  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes}分', other: '${minutes}分')}";
+  static m24(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m25(type) => "${type}ネットワーク";
+  static m25(minutes) => "${Intl.plural(minutes, one: '${minutes}分', other: '${minutes}分')}";
 
-  static m26(number) => "トランザクション（ ${number} ）";
+  static m26(type) => "${type}ネットワーク";
 
-  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m27(number) => "トランザクション（ ${number} ）";
 
-  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds}秒', other: '${seconds}秒')}";
+  static m28(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m29(transactionId) => "${transactionId}送信しました";
+  static m29(seconds) => "${Intl.plural(seconds, one: '${seconds}秒', other: '${seconds}秒')}";
 
-  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m30(transactionId) => "${transactionId}送信しました";
 
-  static m31(address) => "宛先： ${address}";
+  static m31(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>}ブロック{@</a1>}最後の{@<a2>} ${duration} {@</a2>}";
+  static m32(address) => "宛先： ${address}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>}、最後の{@<a2>} ${duration} {@</a2>}の${totalTransactions}トランザクション";
+  static m33(totalBlocks, duration) => "${totalBlocks} {@<a1>}ブロック{@</a1>}最後の{@<a2>} ${duration} {@</a2>}";
 
-  static m34(addressText) => "検証に失敗しました： ${addressText}";
+  static m34(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>}blocks{@</a1>}、最後の{@<a2>} ${duration} {@</a2>}の${totalTransactions}トランザクション";
 
-  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "検証済みの${goodAddresses} / ${totalAddresses}アドレスと${goodTests} / ${totalTests}テストが成功しました";
+  static m35(addressText) => "検証に失敗しました： ${addressText}";
 
-  static m36(walletName, accountId, chainIndex) => "${walletName}：アカウント${accountId}、アドレス${chainIndex}";
+  static m36(goodAddresses, totalAddresses, goodTests, totalTests) => "検証済みの${goodAddresses} / ${totalAddresses}アドレスと${goodTests} / ${totalTests}テストが成功しました";
+
+  static m37(walletName, accountId, chainIndex) => "${walletName}：アカウント${accountId}、アドレス${chainIndex}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -114,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("ブロック"),
     "blocks" : MessageLookupByLibrary.simpleMessage("ブロック"),
+    "btcTicker" : MessageLookupByLibrary.simpleMessage("BTC"),
     "cancel" : MessageLookupByLibrary.simpleMessage("キャンセル"),
     "cantDeleteOnlyWallet" : MessageLookupByLibrary.simpleMessage("唯一のウォレットを削除することはできません。"),
     "chainCode" : MessageLookupByLibrary.simpleMessage("チェーンコード"),
@@ -131,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "create" : MessageLookupByLibrary.simpleMessage("作成する"),
     "creating" : MessageLookupByLibrary.simpleMessage("作成..."),
     "creatingUsingAlgorithm" : m4,
-    "cruzTicker" : MessageLookupByLibrary.simpleMessage("クルス"),
+    "cruzTicker" : MessageLookupByLibrary.simpleMessage("CRUZ"),
     "currency" : MessageLookupByLibrary.simpleMessage("通貨"),
     "currentBalanceIs" : MessageLookupByLibrary.simpleMessage("現在の残高は次のとおりです。"),
     "dangerZone" : MessageLookupByLibrary.simpleMessage("危険区域"),
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email" : MessageLookupByLibrary.simpleMessage("Eメール"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("暗号化"),
     "encryption" : MessageLookupByLibrary.simpleMessage("暗号化"),
+    "ethTicker" : MessageLookupByLibrary.simpleMessage("ETH"),
     "exaHashPerSecond" : m6,
     "expired" : MessageLookupByLibrary.simpleMessage("期限切れ"),
     "expires" : MessageLookupByLibrary.simpleMessage("期限切れ"),
@@ -183,34 +187,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("秘密鍵が無効です。"),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("公開鍵が無効です。"),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("無効なURL。"),
-    "kiloHashPerSecond" : m13,
+    "itemId" : m13,
+    "kiloHashPerSecond" : m14,
     "language" : MessageLookupByLibrary.simpleMessage("言語"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("最新の見た"),
     "license" : MessageLookupByLibrary.simpleMessage("ライセンス"),
-    "listOfFour" : m14,
-    "listOfThree" : m15,
-    "listOfTwo" : m16,
+    "listOfFour" : m15,
+    "listOfThree" : m16,
+    "listOfTwo" : m17,
     "loading" : MessageLookupByLibrary.simpleMessage("読み込み中..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("日本語"),
-    "marketCap" : m17,
+    "marketCap" : m18,
     "matured" : MessageLookupByLibrary.simpleMessage("成熟した"),
     "matures" : MessageLookupByLibrary.simpleMessage("成熟"),
     "maturing" : MessageLookupByLibrary.simpleMessage("熟成"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("トランザクションの成熟"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("最大メモ長は100です"),
-    "megaHashPerSecond" : m18,
+    "megaHashPerSecond" : m19,
     "memo" : MessageLookupByLibrary.simpleMessage("メモ"),
-    "menuOfOne" : m19,
-    "menuOfTwo" : m20,
-    "minAmount" : m21,
-    "minFee" : m22,
-    "minutesAndSecondsDuration" : m23,
-    "minutesDuration" : m24,
+    "menuOfOne" : m20,
+    "menuOfTwo" : m21,
+    "minAmount" : m22,
+    "minFee" : m23,
+    "minutesAndSecondsDuration" : m24,
+    "minutesDuration" : m25,
     "name" : MessageLookupByLibrary.simpleMessage("名"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("名前は一意である必要があります。"),
     "network" : MessageLookupByLibrary.simpleMessage("ネットワーク"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("ネットワークオフライン"),
-    "networkType" : m25,
+    "networkType" : m26,
     "newContact" : MessageLookupByLibrary.simpleMessage("新しい連絡先"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("ニューピア"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("新しいウォレット"),
@@ -218,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("秘密鍵なし"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("公開鍵なし"),
     "nonce" : MessageLookupByLibrary.simpleMessage("ノンス"),
-    "numTransactions" : m26,
+    "numTransactions" : m27,
     "ok" : MessageLookupByLibrary.simpleMessage("OK"),
     "password" : MessageLookupByLibrary.simpleMessage("パスワード"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("パスワードを空にすることはできません。"),
@@ -227,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("に支払います"),
     "peers" : MessageLookupByLibrary.simpleMessage("仲間"),
     "pending" : MessageLookupByLibrary.simpleMessage("保留中"),
-    "petaHashPerSecond" : m27,
+    "petaHashPerSecond" : m28,
     "previous" : MessageLookupByLibrary.simpleMessage("前"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("個人情報保護方針"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("秘密鍵"),
@@ -238,13 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("SSL証明書が必要"),
     "result" : MessageLookupByLibrary.simpleMessage("結果"),
     "search" : MessageLookupByLibrary.simpleMessage("サーチ"),
-    "secondsDuration" : m28,
+    "secondsDuration" : m29,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("シードフレーズ"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("このシードにより、それを知っている誰でもあなたの財布からのすべての資金を使うことができます。それを書き留め。安全保持。"),
     "send" : MessageLookupByLibrary.simpleMessage("送る"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("送信に失敗しました"),
     "sending" : MessageLookupByLibrary.simpleMessage("送信..."),
-    "sentTransactionId" : m29,
+    "sentTransactionId" : m30,
     "settings" : MessageLookupByLibrary.simpleMessage("設定"),
     "show" : MessageLookupByLibrary.simpleMessage("ショー"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("タイトルにウォレット名を表示"),
@@ -252,19 +257,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit" : MessageLookupByLibrary.simpleMessage("提出する"),
     "support" : MessageLookupByLibrary.simpleMessage("サポート"),
     "target" : MessageLookupByLibrary.simpleMessage("ターゲット"),
-    "teraHashPerSecond" : m30,
+    "teraHashPerSecond" : m31,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("右に！ CRUZコミュニティに感謝します！"),
     "theme" : MessageLookupByLibrary.simpleMessage("テーマ"),
     "time" : MessageLookupByLibrary.simpleMessage("時間"),
     "tip" : MessageLookupByLibrary.simpleMessage("先端"),
     "title" : MessageLookupByLibrary.simpleMessage("クルザール"),
     "to" : MessageLookupByLibrary.simpleMessage("に"),
-    "toAddress" : m31,
-    "totalBlocksInLastDuration" : m32,
-    "totalBlocksTransactionsInLastDuration" : m33,
+    "toAddress" : m32,
+    "totalBlocksInLastDuration" : m33,
+    "totalBlocksTransactionsInLastDuration" : m34,
     "transaction" : MessageLookupByLibrary.simpleMessage("トランザクション"),
     "transactions" : MessageLookupByLibrary.simpleMessage("取引"),
     "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("警告：手動でアドレスを入力することは危険であり、エラーが発生しやすくなります。 常にコピーボタンまたはQRスキャナーを使用してください。"),
+    "unableToDecode" : MessageLookupByLibrary.simpleMessage("デコードできません"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("ウォレットを作成する前の単体テスト"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("単体テストの失敗"),
     "unknown" : MessageLookupByLibrary.simpleMessage("道の"),
@@ -275,12 +281,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("値は正でなければなりません"),
     "verify" : MessageLookupByLibrary.simpleMessage("確認する"),
-    "verifyAddressFailed" : m34,
+    "verifyAddressFailed" : m35,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("ロードごとにキーペアを確認する"),
-    "verifyWalletResults" : m35,
+    "verifyWalletResults" : m36,
     "verifying" : MessageLookupByLibrary.simpleMessage("確認しています..."),
     "version" : MessageLookupByLibrary.simpleMessage("バージョン"),
-    "walletAccountName" : m36,
+    "walletAccountName" : m37,
     "wallets" : MessageLookupByLibrary.simpleMessage("財布"),
     "warning" : MessageLookupByLibrary.simpleMessage("警告"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("時計専用ウォレット"),

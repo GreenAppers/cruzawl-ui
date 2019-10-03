@@ -45,53 +45,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m12(hours) => "${Intl.plural(hours, one: 'jam', other: '${hours} jam')}";
 
-  static m13(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
+  static m13(id) => "ID: ${id}";
 
-  static m14(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
+  static m14(kiloHashPerSecond) => "${kiloHashPerSecond} KH / s";
 
-  static m15(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
+  static m15(item1, item2, item3, item4) => "${item1} , ${item2} , ${item3} , ${item4}";
 
-  static m16(item1, item2) => "${item1} , ${item2}";
+  static m16(item1, item2, item3) => "${item1} , ${item2} , ${item3}";
 
-  static m17(cap) => "Kapitalisasi pasar {@<a>} ${cap} {@</a>}";
+  static m17(item1, item2) => "${item1} , ${item2}";
 
-  static m18(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
+  static m18(cap) => "Kapitalisasi pasar {@<a>} ${cap} {@</a>}";
 
-  static m19(item) => "[ {@<a>} ${item} {@</a>} ]";
+  static m19(megaHashPerSecond) => "${megaHashPerSecond} MH / s";
 
-  static m20(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
+  static m20(item) => "[ {@<a>} ${item} {@</a>} ]";
 
-  static m21(amount) => "Jumlah minimum adalah ${amount}";
+  static m21(item1, item2) => "[ {@<a1>} ${item1} {@</a1>} , {@<a2>} ${item2} {@</a2>} ]";
 
-  static m22(fee) => "Biaya minimum adalah ${fee}";
+  static m22(amount) => "Jumlah minimum adalah ${amount}";
 
-  static m23(minutes, seconds) => "${minutes} ${seconds}";
+  static m23(fee) => "Biaya minimum adalah ${fee}";
 
-  static m24(minutes) => "${Intl.plural(minutes, one: '${minutes} menit', other: '${minutes} menit')}";
+  static m24(minutes, seconds) => "${minutes} ${seconds}";
 
-  static m25(type) => "${type} Jaringan";
+  static m25(minutes) => "${Intl.plural(minutes, one: '${minutes} menit', other: '${minutes} menit')}";
 
-  static m26(number) => "Transaksi ( ${number} )";
+  static m26(type) => "${type} Jaringan";
 
-  static m27(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
+  static m27(number) => "Transaksi ( ${number} )";
 
-  static m28(seconds) => "${Intl.plural(seconds, one: '${seconds} detik', other: '${seconds} detik')}";
+  static m28(petaHashPerSecond) => "${petaHashPerSecond} PH / s";
 
-  static m29(transactionId) => "Terkirim ${transactionId}";
+  static m29(seconds) => "${Intl.plural(seconds, one: '${seconds} detik', other: '${seconds} detik')}";
 
-  static m30(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
+  static m30(transactionId) => "Terkirim ${transactionId}";
 
-  static m31(address) => "Kepada: ${address}";
+  static m31(teraHashPerSecond) => "${teraHashPerSecond} TH / s";
 
-  static m32(totalBlocks, duration) => "${totalBlocks} {@<a1>} memblokir {@</a1>} di {@<a2>} ${duration} {@</a2>}";
+  static m32(address) => "Kepada: ${address}";
 
-  static m33(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} memblokir {@</a1>} , ${totalTransactions} transaksi dalam {@<a2>} ${duration} {@</a2>}";
+  static m33(totalBlocks, duration) => "${totalBlocks} {@<a1>} memblokir {@</a1>} di {@<a2>} ${duration} {@</a2>}";
 
-  static m34(addressText) => "verifikasi gagal: ${addressText}";
+  static m34(totalBlocks, totalTransactions, duration) => "${totalBlocks} {@<a1>} memblokir {@</a1>} , ${totalTransactions} transaksi dalam {@<a2>} ${duration} {@</a2>}";
 
-  static m35(goodAddresses, totalAddresses, goodTests, totalTests) => "${goodAddresses} / ${totalAddresses} dan ${goodTests} / ${totalTests} tes berhasil";
+  static m35(addressText) => "verifikasi gagal: ${addressText}";
 
-  static m36(walletName, accountId, chainIndex) => "${walletName}: Akun ${accountId}, Alamat ${chainIndex}";
+  static m36(goodAddresses, totalAddresses, goodTests, totalTests) => "${goodAddresses} / ${totalAddresses} dan ${goodTests} / ${totalTests} tes berhasil";
+
+  static m37(walletName, accountId, chainIndex) => "${walletName}: Akun ${accountId}, Alamat ${chainIndex}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -114,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTitle" : m3,
     "block" : MessageLookupByLibrary.simpleMessage("Blok"),
     "blocks" : MessageLookupByLibrary.simpleMessage("Blok"),
+    "btcTicker" : MessageLookupByLibrary.simpleMessage("BTC"),
     "cancel" : MessageLookupByLibrary.simpleMessage("Membatalkan"),
     "cantDeleteOnlyWallet" : MessageLookupByLibrary.simpleMessage("Tidak dapat menghapus satu-satunya dompet."),
     "chainCode" : MessageLookupByLibrary.simpleMessage("Kode Rantai"),
@@ -152,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email" : MessageLookupByLibrary.simpleMessage("E-mail"),
     "encrypt" : MessageLookupByLibrary.simpleMessage("Enkripsi"),
     "encryption" : MessageLookupByLibrary.simpleMessage("Enkripsi"),
+    "ethTicker" : MessageLookupByLibrary.simpleMessage("ETH"),
     "exaHashPerSecond" : m6,
     "expired" : MessageLookupByLibrary.simpleMessage("Kedaluwarsa"),
     "expires" : MessageLookupByLibrary.simpleMessage("Kedaluwarsa"),
@@ -183,34 +187,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPrivateKey" : MessageLookupByLibrary.simpleMessage("Kunci pribadi tidak valid."),
     "invalidPublicKey" : MessageLookupByLibrary.simpleMessage("Kunci publik tidak valid."),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("URL tidak valid."),
-    "kiloHashPerSecond" : m13,
+    "itemId" : m13,
+    "kiloHashPerSecond" : m14,
     "language" : MessageLookupByLibrary.simpleMessage("Bahasa"),
     "latestSeen" : MessageLookupByLibrary.simpleMessage("Terbaru terlihat"),
     "license" : MessageLookupByLibrary.simpleMessage("Lisensi"),
-    "listOfFour" : m14,
-    "listOfThree" : m15,
-    "listOfTwo" : m16,
+    "listOfFour" : m15,
+    "listOfThree" : m16,
+    "listOfTwo" : m17,
     "loading" : MessageLookupByLibrary.simpleMessage("Pemuatan..."),
     "localeLanguage" : MessageLookupByLibrary.simpleMessage("Bahasa Indonesia"),
-    "marketCap" : m17,
+    "marketCap" : m18,
     "matured" : MessageLookupByLibrary.simpleMessage("Jatuh tempo"),
     "matures" : MessageLookupByLibrary.simpleMessage("Jatuh tempo"),
     "maturing" : MessageLookupByLibrary.simpleMessage("Jatuh tempo"),
     "maturingTransactions" : MessageLookupByLibrary.simpleMessage("Transaksi jatuh tempo"),
     "maxMemoLength" : MessageLookupByLibrary.simpleMessage("Panjang memo maksimum adalah 100"),
-    "megaHashPerSecond" : m18,
+    "megaHashPerSecond" : m19,
     "memo" : MessageLookupByLibrary.simpleMessage("Memo"),
-    "menuOfOne" : m19,
-    "menuOfTwo" : m20,
-    "minAmount" : m21,
-    "minFee" : m22,
-    "minutesAndSecondsDuration" : m23,
-    "minutesDuration" : m24,
+    "menuOfOne" : m20,
+    "menuOfTwo" : m21,
+    "minAmount" : m22,
+    "minFee" : m23,
+    "minutesAndSecondsDuration" : m24,
+    "minutesDuration" : m25,
     "name" : MessageLookupByLibrary.simpleMessage("Nama"),
     "nameMustBeUnique" : MessageLookupByLibrary.simpleMessage("Nama harus unik."),
     "network" : MessageLookupByLibrary.simpleMessage("Jaringan"),
     "networkOffline" : MessageLookupByLibrary.simpleMessage("Jaringan offline"),
-    "networkType" : m25,
+    "networkType" : m26,
     "newContact" : MessageLookupByLibrary.simpleMessage("Kontak baru"),
     "newPeer" : MessageLookupByLibrary.simpleMessage("Rekan Baru"),
     "newWallet" : MessageLookupByLibrary.simpleMessage("Dompet Baru"),
@@ -218,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noPrivateKeys" : MessageLookupByLibrary.simpleMessage("Tidak ada kunci pribadi"),
     "noPublicKeys" : MessageLookupByLibrary.simpleMessage("Tidak ada kunci publik"),
     "nonce" : MessageLookupByLibrary.simpleMessage("Nonce"),
-    "numTransactions" : m26,
+    "numTransactions" : m27,
     "ok" : MessageLookupByLibrary.simpleMessage("Baik"),
     "password" : MessageLookupByLibrary.simpleMessage("Kata sandi"),
     "passwordCantBeEmpty" : MessageLookupByLibrary.simpleMessage("Kata sandi tidak boleh kosong."),
@@ -227,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "payTo" : MessageLookupByLibrary.simpleMessage("Membayar"),
     "peers" : MessageLookupByLibrary.simpleMessage("Teman sebaya"),
     "pending" : MessageLookupByLibrary.simpleMessage("Tertunda"),
-    "petaHashPerSecond" : m27,
+    "petaHashPerSecond" : m28,
     "previous" : MessageLookupByLibrary.simpleMessage("Sebelumnya"),
     "privacyPolicy" : MessageLookupByLibrary.simpleMessage("Rahasia pribadi"),
     "privateKey" : MessageLookupByLibrary.simpleMessage("Kunci Pribadi"),
@@ -238,13 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "requireSSLCert" : MessageLookupByLibrary.simpleMessage("Membutuhkan sertifikat SSL"),
     "result" : MessageLookupByLibrary.simpleMessage("Hasil"),
     "search" : MessageLookupByLibrary.simpleMessage("Pencarian"),
-    "secondsDuration" : m28,
+    "secondsDuration" : m29,
     "seedPhrase" : MessageLookupByLibrary.simpleMessage("Frase benih"),
     "seedPhraseWarning" : MessageLookupByLibrary.simpleMessage("Benih ini memungkinkan siapa pun yang mengetahui untuk menghabiskan semua dana dari dompet Anda. Tuliskan. Jaga agar tetap aman."),
     "send" : MessageLookupByLibrary.simpleMessage("Kirim"),
     "sendFailed" : MessageLookupByLibrary.simpleMessage("Pengiriman gagal"),
     "sending" : MessageLookupByLibrary.simpleMessage("Mengirim ..."),
-    "sentTransactionId" : m29,
+    "sentTransactionId" : m30,
     "settings" : MessageLookupByLibrary.simpleMessage("Pengaturan"),
     "show" : MessageLookupByLibrary.simpleMessage("Menunjukkan"),
     "showWalletNameInTitle" : MessageLookupByLibrary.simpleMessage("Tampilkan nama dompet dalam judul"),
@@ -252,19 +257,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit" : MessageLookupByLibrary.simpleMessage("Kirimkan"),
     "support" : MessageLookupByLibrary.simpleMessage("Mendukung"),
     "target" : MessageLookupByLibrary.simpleMessage("Target"),
-    "teraHashPerSecond" : m30,
+    "teraHashPerSecond" : m31,
     "thanksForDonating" : MessageLookupByLibrary.simpleMessage("Tepat! Terima kasih komunitas CRUZ!"),
     "theme" : MessageLookupByLibrary.simpleMessage("Tema"),
     "time" : MessageLookupByLibrary.simpleMessage("Waktu"),
     "tip" : MessageLookupByLibrary.simpleMessage("Tip"),
     "title" : MessageLookupByLibrary.simpleMessage("Cruzall"),
     "to" : MessageLookupByLibrary.simpleMessage("Untuk"),
-    "toAddress" : m31,
-    "totalBlocksInLastDuration" : m32,
-    "totalBlocksTransactionsInLastDuration" : m33,
+    "toAddress" : m32,
+    "totalBlocksInLastDuration" : m33,
+    "totalBlocksTransactionsInLastDuration" : m34,
     "transaction" : MessageLookupByLibrary.simpleMessage("Transaksi"),
     "transactions" : MessageLookupByLibrary.simpleMessage("Transaksi"),
     "typingAddressesWarning" : MessageLookupByLibrary.simpleMessage("Peringatan: Mengetik alamat dengan tangan berbahaya dan rentan kesalahan. Selalu gunakan tombol salin atau pemindai QR."),
+    "unableToDecode" : MessageLookupByLibrary.simpleMessage("Tidak dapat memecahkan kode"),
     "unitTestBeforeCreatingWallets" : MessageLookupByLibrary.simpleMessage("Uji unit sebelum membuat dompet"),
     "unitTestFailure" : MessageLookupByLibrary.simpleMessage("Kegagalan uji unit"),
     "unknown" : MessageLookupByLibrary.simpleMessage("Tidak dikenal"),
@@ -275,12 +281,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "url" : MessageLookupByLibrary.simpleMessage("URL"),
     "valueMustBePositive" : MessageLookupByLibrary.simpleMessage("Nilai harus positif"),
     "verify" : MessageLookupByLibrary.simpleMessage("Memeriksa"),
-    "verifyAddressFailed" : m34,
+    "verifyAddressFailed" : m35,
     "verifyKeyPairsEveryLoad" : MessageLookupByLibrary.simpleMessage("Verifikasi pasangan kunci setiap beban"),
-    "verifyWalletResults" : m35,
+    "verifyWalletResults" : m36,
     "verifying" : MessageLookupByLibrary.simpleMessage("Memverifikasi ..."),
     "version" : MessageLookupByLibrary.simpleMessage("Versi"),
-    "walletAccountName" : m36,
+    "walletAccountName" : m37,
     "wallets" : MessageLookupByLibrary.simpleMessage("Dompet"),
     "warning" : MessageLookupByLibrary.simpleMessage("Peringatan"),
     "watchOnlyWallet" : MessageLookupByLibrary.simpleMessage("Dompet Khusus Jam Tangan"),

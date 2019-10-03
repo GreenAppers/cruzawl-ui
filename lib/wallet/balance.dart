@@ -84,15 +84,19 @@ class WalletBalanceWidget extends StatelessWidget {
           child: ListView.builder(
               itemCount: wallet.transactions.data.length,
               itemBuilder: (BuildContext context, int index) {
-                Transaction tx = wallet.transactions.data[index];
+                Transaction transaction = wallet.transactions.data[index];
                 return TransactionListTile(
                   wallet.currency,
-                  tx,
-                  WalletTransactionInfo(wallet, tx),
-                  onToTap: (tx) => appState.navigateToAddressText(
-                      context, tx.outputs[0].toText),
-                  onFromTap: (tx) => appState.navigateToAddressText(
-                      context, tx.inputs[0].fromText),
+                  transaction,
+                  WalletTransactionInfo(wallet, transaction),
+                  onToTap: transaction.inputs.length != 1
+                      ? null
+                      : (tx) => appState.navigateToAddressText(
+                          context, tx.outputs.first.toText),
+                  onFromTap: transaction.outputs.length != 1
+                      ? null
+                      : (tx) => appState.navigateToAddressText(
+                          context, tx.inputs.first.fromText),
                   onTap: (tx) => appState.navigateToTransaction(context, tx),
                 );
               }),
