@@ -13,8 +13,8 @@ import 'package:tweetnacl/tweetnacl.dart' as tweetnacl;
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/exchange.dart';
-import 'package:cruzawl/http.dart';
 import 'package:cruzawl/network.dart';
+import 'package:cruzawl/network/http.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/test.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
@@ -87,7 +87,7 @@ class Cruzawl extends Model {
   FlutterErrorDetails fatal;
   PackageInfo packageInfo;
   bool isTrustFall;
-  String dataDir, debugLog;
+  String dataDir, userAgent, debugLog;
   int debugLevel = debugLevelInfo;
   HttpClient httpClient;
   FileSystem fileSystem;
@@ -110,6 +110,7 @@ class Cruzawl extends Model {
     this.dataDir,
     this.fileSystem, {
     this.packageInfo,
+    this.userAgent,
     this.barcodeScan,
     this.httpClient,
     this.createIconImage,
@@ -123,7 +124,8 @@ class Cruzawl extends Model {
         .map((currency) => currency.createNetwork(
             peerChanged: () => reloadWallets(currency),
             tipChanged: () => updateWallets(currency),
-            httpClient: httpClient))
+            httpClient: httpClient,
+            userAgent: userAgent))
         .toList();
     setTheme();
   }

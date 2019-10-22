@@ -210,6 +210,16 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
       child: ListView(children: <Widget>[
         ListTile(
           subtitle: TextFormField(
+            enabled: false,
+            initialValue: currency.ticker,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: l10n.currency,
+            ),
+          ),
+        ),
+        ListTile(
+          subtitle: TextFormField(
             autofocus: true,
             keyboardType: TextInputType.emailAddress,
             initialValue: name,

@@ -9,6 +9,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/network.dart';
+import 'package:cruzawl/util.dart';
 
 import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
@@ -288,17 +289,9 @@ class PopupMenuBuilder {
     onSelectedCallback.add(onSelected);
     if (icon != null) {
       item.add(PopupMenuItem<int>(
-          child: Row(
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(icon, color: Colors.grey),
-              ),
-              Container(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(text),
-              ),
-            ],
+          child: IconTextWidget(
+            Icon(icon, color: Colors.grey),
+            Text(text),
           ),
           value: item.length));
     } else {
@@ -604,14 +597,37 @@ class CopyableText extends StatelessWidget {
   }
 }
 
+/// Simple [Row] with [icon] and [text].
+class IconTextWidget extends StatelessWidget {
+  final Widget icon, text;
+  IconTextWidget(this.icon, this.text);
+
+  @override
+  Widget build(BuildContext context) => Row(
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            child: icon,
+          ),
+          Container(
+            padding: const EdgeInsets.all(10.0),
+            child: text,
+          ),
+        ],
+      );
+}
+
 /// Returns list of [DropdownMenuItem] with value x, and child Text(x).
-List<DropdownMenuItem<String>> buildDropdownMenuItem(List<String> x) {
-  return x
-      .map<DropdownMenuItem<String>>((String value) => DropdownMenuItem<String>(
+List<DropdownMenuItem<String>> buildDropdownMenuItem(List<String> x,
+    [List<Image> icon]) {
+  return mapIndexed<DropdownMenuItem<String>, String>(
+      x,
+      (int i, String value) => DropdownMenuItem<String>(
             value: value,
-            child: Text(value),
-          ))
-      .toList();
+            child: icon == null
+                ? Text(value)
+                : IconTextWidget(icon[i], Text(value)),
+          )).toList();
 }
 
 /// Returns [ListTile] styled for desktop or mobile depending on [wideStyle].

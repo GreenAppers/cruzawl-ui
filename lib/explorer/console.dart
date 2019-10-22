@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:syntax_highlighter/syntax_highlighter.dart';
 
-import 'package:cruzawl/cruz.dart';
+import 'package:cruzawl/currency/cruz.dart';
 import 'package:cruzawl/network.dart';
 
 import 'package:cruzawl_ui/localization.dart';

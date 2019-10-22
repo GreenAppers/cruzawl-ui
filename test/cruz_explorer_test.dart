@@ -13,14 +13,14 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast/sembast_memory.dart';
 
 import 'package:cruzawl/currency.dart';
-import 'package:cruzawl/cruz.dart';
-import 'package:cruzawl/http.dart';
+import 'package:cruzawl/currency/cruz.dart';
+import 'package:cruzawl/network/http.dart';
+import 'package:cruzawl/network/websocket.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/sembast.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
-import 'package:cruzawl/websocket.dart';
 
 import 'package:cruzawl_ui/localization.dart';
 import 'package:cruzawl_ui/model.dart';
@@ -89,6 +89,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
             'empty.cruzall',
             'Empty wallet',
             findPeerNetworkForCurrency(appState.networks, currency),
+            'mainnet',
             Seed(randBytes(64)),
             <PublicAddress>[currency.nullAddress],
             appState.preferences,
@@ -97,7 +98,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
         store: false);
 
     peer = appState.addPeer(appState.preferences.peers[0]);
-    peer.ws = socket;
+    peer.socket = socket;
     peer.connect();
 
     expect(socket.sent.length, 2);
@@ -419,9 +420,9 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     // Add a peer
     String peerName = 'peerNameFoo', peerUrl = '127.99.99.99';
     await tester.pumpAndSettle();
-    expect(find.byType(TextFormField), findsNWidgets(2));
-    await tester.enterText(find.byType(TextFormField).at(0), peerName);
-    await tester.enterText(find.byType(TextFormField).at(1), peerUrl);
+    expect(find.byType(TextFormField), findsNWidgets(3));
+    await tester.enterText(find.byType(TextFormField).at(1), peerName);
+    await tester.enterText(find.byType(TextFormField).at(2), peerUrl);
     await tester.tap(find.byType(RaisedGradientButton));
 
     // Check added peer

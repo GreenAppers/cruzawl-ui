@@ -27,7 +27,9 @@ dependencies:
   scoped_model: ^1.0.1
   syntax_highlighter: ^0.1.0
   tuple: ^1.0.2
-  tweetnacl: ^0.3.2
+  tweetnacl:
+    git:
+      url: https://github.com/GreenAppers/tweetnacl-dart
 
 dev_dependencies:
   build_runner: ^1.4.0

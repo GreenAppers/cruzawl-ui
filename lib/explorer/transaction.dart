@@ -92,22 +92,24 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     final int tipHeight = widget.network.tipHeight ?? 0;
     final Cruzawl appState = ScopedModel.of<Cruzawl>(context);
     final TextStyle labelTextStyle = appState.theme.labelStyle;
+    final DateTime txnTime = txn.dateTime;
+    final List<Widget> ret = <Widget>[];
 
-    List<Widget> ret = <Widget>[
-      ListTile(
+    if (txnTime != null) {
+      ret.add(ListTile(
         onTap: nullOp,
         title: Text(l10n.date, style: labelTextStyle),
-        subtitle: CopyableText(
-            txn.dateTime.toString(), appState.setClipboardText,
+        subtitle: CopyableText(txnTime.toString(), appState.setClipboardText,
             style: valueTextStyle),
-      ),
-      ListTile(
-        onTap: nullOp,
-        title: Text(l10n.id, style: labelTextStyle),
-        subtitle: CopyableText(txn.id().toJson(), appState.setClipboardText,
-            style: valueTextStyle),
-      ),
-    ];
+      ));
+    }
+
+    ret.add(ListTile(
+      onTap: nullOp,
+      title: Text(l10n.id, style: labelTextStyle),
+      subtitle: CopyableText(txn.id().toJson(), appState.setClipboardText,
+          style: valueTextStyle),
+    ));
 
     for (TransactionInput input in txn.inputs) {
       ret.add(ListTile(

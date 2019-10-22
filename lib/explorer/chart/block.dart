@@ -15,8 +15,9 @@ import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tuple/tuple.dart';
 
-import 'package:cruzawl/btc.dart';
 import 'package:cruzawl/currency.dart';
+import 'package:cruzawl/currency/btc.dart';
+import 'package:cruzawl/currency/eth.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/util.dart' hide VoidCallback;
 
@@ -52,9 +53,17 @@ class BlockChartWidget extends StatefulWidget {
   BlockChartWidget(this.network,
       {this.loadingWidget,
       this.wideStyle = false,
-      this.windowDuration = const Duration(days: 1),
-      this.bucketDuration = BlockChartBucketDuration.hour,
-      this.fetchBlock = 50});
+      Duration windowDuration,
+      BlockChartBucketDuration bucketDuration,
+      this.fetchBlock = 50})
+      : this.windowDuration = windowDuration ??
+            (network.currency is ETH
+                ? Duration(minutes: 10)
+                : Duration(days: 1)),
+        this.bucketDuration = bucketDuration ??
+            (network.currency is ETH
+                ? BlockChartBucketDuration.minute
+                : BlockChartBucketDuration.hour);
 
   @override
   _BlockChartWidgetState createState() =>
@@ -169,7 +178,7 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
       windowStart ??= queryBackTo;
       windowEnd ??= dataEnd;
     } else {
-      Duration bufferDuration = const Duration(hours: 4);
+      Duration bufferDuration = windowDuration ~/ 6;
       updateDataEndTime(DateTime.now());
       int tipHeight = peer.tipHeight;
       if (tipHeight > dataEndHeight) {
@@ -200,7 +209,7 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
 
     debugPrint('load ' +
         (initialLoad ? 'initial' : 'more') +
-        ' complete - initial load $dataInit');
+        ' complete - initial load $dataInit: start=$dataStart end=$dataEnd');
     loading = false;
     setState(() {});
   }
@@ -481,16 +490,18 @@ class _BlockChartWidgetState extends State<BlockChartWidget> {
           widget: <Widget>[
             Tooltip(
                 message: l10n.duration,
-                child: (PopupMenuBuilder()
-                      ..addItem(
-                          text: l10n.formatDuration(Duration(days: 1)),
-                          onSelected: setIntervalDaily)
-                      ..addItem(
-                          text: l10n.formatDuration(Duration(hours: 1)),
-                          onSelected: setIntervalHourly))
-                    .build(
-                        child: Text('$duration', style: linkStyle),
-                        padding: null)),
+                child: widget.network.currency is ETH
+                    ? Text(duration, style: titleStyle)
+                    : (PopupMenuBuilder()
+                          ..addItem(
+                              text: l10n.formatDuration(Duration(days: 1)),
+                              onSelected: setIntervalDaily)
+                          ..addItem(
+                              text: l10n.formatDuration(Duration(hours: 1)),
+                              onSelected: setIntervalHourly))
+                        .build(
+                            child: Text('$duration', style: linkStyle),
+                            padding: null)),
           ],
         ),
       },

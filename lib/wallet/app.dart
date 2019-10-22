@@ -214,7 +214,6 @@ class WalletAppState extends State<WalletApp> with WidgetsBindingObserver {
               '/settings/contacts': (BuildContext context) =>
                   ContactsWidget(editing: true),
               '/contacts': (BuildContext context) => ContactsWidget(),
-              '/currency': (BuildContext context) => ChooseCurrencyWidget(),
               '/sendFrom': (BuildContext context) => SimpleScaffold(
                   SendFromWidget(wallet),
                   title: Localization.of(context).from),

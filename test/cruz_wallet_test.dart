@@ -12,13 +12,13 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast/sembast_memory.dart';
 
 import 'package:cruzawl/currency.dart';
-import 'package:cruzawl/cruz.dart';
-import 'package:cruzawl/http.dart';
+import 'package:cruzawl/currency/cruz.dart';
 import 'package:cruzawl/preferences.dart';
+import 'package:cruzawl/network/http.dart';
+import 'package:cruzawl/network/websocket.dart';
 import 'package:cruzawl/sembast.dart';
 import 'package:cruzawl/util.dart';
 import 'package:cruzawl/wallet.dart';
-import 'package:cruzawl/websocket.dart';
 
 import 'package:cruzawl_ui/explorer/settings.dart';
 import 'package:cruzawl_ui/localization.dart';
@@ -81,7 +81,7 @@ void runWalletTests(
   appState.debugLevel = debugLevelDebug;
   TestWebSocket socket = TestWebSocket();
   CruzPeer peer = appState.addPeer(appState.preferences.peers[0]);
-  peer.ws = socket;
+  peer.socket = socket;
   peer.connect();
 
   testWidgets('WalletApp Init', (WidgetTester tester) async {
@@ -92,7 +92,7 @@ void runWalletTests(
     await tester.pumpAndSettle();
 
     // Enter wallet name
-    await tester.enterText(find.byType(TextFormField).at(1), walletName);
+    await tester.enterText(find.byType(TextFormField).at(0), walletName);
     await tester.pumpAndSettle();
 
     await tester.tap(find.byType(RaisedGradientButton));
@@ -168,7 +168,7 @@ void runWalletTests(
     await tester.tap(find.widgetWithText(RaisedGradientButton, l10n.verify));
     await tester.pump(Duration(seconds: 1));
     await tester.pump(Duration(seconds: 2));
-    expect(find.text(l10n.verifyWalletResults(3, 3, 11, 11)), findsOneWidget);
+    expect(find.text(l10n.verifyWalletResults(3, 3, 12, 12)), findsOneWidget);
   });
 
   testWidgets('WalletSettingsWidget Copy Public Keys',
@@ -184,9 +184,11 @@ void runWalletTests(
     await tester.pumpAndSettle();
     await tester.drag(find.text(l10n.addresses), Offset(0.0, -600));
     await tester.pumpAndSettle();
+    await tester.drag(find.text(l10n.addresses), Offset(0.0, -600));
+    await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
 
-    // await tester.tap(find.widgetWithText(RaisedGradientButton, l10n.copyPublicKeys));
+    // await tester.tap(find.widgetWithText(RaisedGradientButton, l10n.copyAddresses));
     RaisedGradientButton copy = find
         .widgetWithText(RaisedGradientButton, l10n.copyAddresses)
         .evaluate()
@@ -411,10 +413,10 @@ void runWalletTests(
     await tester.pump(Duration(seconds: 1));
 
     // Enter name & private key
-    expect(find.byType(TextFormField), findsNWidgets(3));
-    await tester.enterText(find.byType(TextFormField).at(1), watchWalletName);
+    expect(find.byType(TextFormField), findsNWidgets(2));
+    await tester.enterText(find.byType(TextFormField).at(0), watchWalletName);
     await tester.pumpAndSettle();
-    await tester.enterText(find.byType(TextFormField).at(2), moneyAddr);
+    await tester.enterText(find.byType(TextFormField).at(1), moneyAddr);
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 1));
 

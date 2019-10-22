@@ -39,26 +39,42 @@ class WalletSettingsWidget extends StatelessWidget {
         trailing: Text(wallet.name),
       ),
       ListTile(
-        title: Text(l10n.accounts, style: labelTextStyle),
-        trailing: Text(wallet.accounts.length.toString()),
-      ),
-      ListTile(
-        title: Text(l10n.addresses, style: labelTextStyle),
-        trailing: Text(addresses.length.toString()),
-      ),
-      ListTile(
-        title: Text(l10n.balance, style: labelTextStyle),
-        trailing: Text(wallet.currency.format(wallet.balance)),
-      ),
-      ListTile(
-        title: Text(l10n.activeTransactions, style: labelTextStyle),
-        trailing: Text(wallet.pendingCount.toString()),
-      ),
-      ListTile(
-        title: Text(l10n.maturingTransactions, style: labelTextStyle),
-        trailing: Text(wallet.maturing.length.toString()),
+        title: Text(l10n.currency, style: labelTextStyle),
+        trailing: Text(wallet.currency.name),
       ),
     ];
+
+    if (wallet.chain != null && wallet.chain != 'mainnet') {
+      header.add(ListTile(
+        title: Text(l10n.network, style: labelTextStyle),
+        trailing: Text(wallet.chain),
+      ));
+    }
+
+    header.add(ListTile(
+      title: Text(l10n.accounts, style: labelTextStyle),
+      trailing: Text(wallet.accounts.length.toString()),
+    ));
+
+    header.add(ListTile(
+      title: Text(l10n.addresses, style: labelTextStyle),
+      trailing: Text(addresses.length.toString()),
+    ));
+
+    header.add(ListTile(
+      title: Text(l10n.balance, style: labelTextStyle),
+      trailing: Text(wallet.currency.format(wallet.balance)),
+    ));
+
+    header.add(ListTile(
+      title: Text(l10n.activeTransactions, style: labelTextStyle),
+      trailing: Text(wallet.pendingCount.toString()),
+    ));
+
+    header.add(ListTile(
+      title: Text(l10n.maturingTransactions, style: labelTextStyle),
+      trailing: Text(wallet.maturing.length.toString()),
+    ));
 
     if (wallet.hdWallet) {
       header.add(

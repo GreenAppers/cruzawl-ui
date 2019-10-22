@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:cruzawl/currency.dart';
-import 'package:cruzawl/cruz.dart';
 import 'package:cruzawl/network.dart';
 
 import 'package:cruzawl_ui/localization.dart';
@@ -73,7 +72,8 @@ class _BlockWidgetState extends State<BlockWidget> {
       if (message != null) blockId = message.id.toJson();
     } else {
       blockId = widget.blockId ?? widget.network.tipId.toJson();
-      message = await peer.getBlock(id: CruzBlockId.fromJson(blockId));
+      message = await peer.getBlock(
+          id: widget.network.currency.fromBlockIdJson(blockId));
     }
 
     if (message != null) {
@@ -174,11 +174,13 @@ class _BlockWidgetState extends State<BlockWidget> {
       ListTile(
         onTap: nullOp,
         title: Text(l10n.nonce),
-        trailing: Text(block.header.nonce.toString()),
+        trailing: Text(block.header.nonceValue.toString()),
       ),
     );
 
-    if (block.transactions != null && block.transactions.first.memo != null) {
+    if (block.transactions != null &&
+        block.transactions.isNotEmpty &&
+        block.transactions.first.memo != null) {
       header.add(
         buildListTile(
           Text(l10n.memo),
