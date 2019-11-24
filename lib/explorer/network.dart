@@ -188,12 +188,22 @@ class AddPeerWidget extends StatefulWidget {
 class _AddPeerWidgetState extends State<AddPeerWidget> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController urlController = TextEditingController();
-  String name, url;
-  bool certRequired = true;
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController credentialController = TextEditingController();
+  final TextEditingController sshUrlController = TextEditingController();
+  final TextEditingController sshUserController = TextEditingController();
+  final TextEditingController sshCredentialController = TextEditingController();
+  String name, url, user, password, peerType, sshUrl, sshUser, sshKey, sshPassword;
+  bool certRequired = true, sshTunneling = false;
 
   @override
   void dispose() {
     urlController.dispose();
+    userController.dispose();
+    credentialController.dispose();
+    sshUrlController.dispose();
+    sshUserController.dispose();
+    sshCredentialController.dispose();
     super.dispose();
   }
 
@@ -205,85 +215,194 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
     final PeerNetwork network = appState.network;
     final List<PeerPreference> peers = appState.preferences.peers;
 
+    final List<Widget> rows = <Widget>[
+      ListTile(
+        subtitle: TextFormField(
+          enabled: false,
+          initialValue: currency.ticker,
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            labelText: l10n.currency,
+          ),
+        ),
+      ),
+      ListTile(
+        subtitle: TextFormField(
+          autofocus: true,
+          keyboardType: TextInputType.emailAddress,
+          initialValue: name,
+          decoration: InputDecoration(
+            labelText: l10n.name,
+          ),
+          validator: (value) {
+            if (peers.indexWhere((v) => v.name == value) != -1) {
+              return l10n.nameMustBeUnique;
+            }
+            return null;
+          },
+          onSaved: (val) => name = val,
+        ),
+      ),
+      ListTile(
+        subtitle: PastableTextFormField(
+          keyboardType: TextInputType.emailAddress,
+          controller: urlController,
+          decoration: InputDecoration(
+            labelText: l10n.url,
+          ),
+          validator: (value) {
+            try {
+              network.createPeerWithSpec(
+                  PeerPreference('', value, currency.ticker, ''));
+            } on Exception {
+              return l10n.invalidUrl;
+            }
+            return null;
+          },
+          onSaved: (val) => url = val,
+        ),
+      ),
+    ];
+
+    if (network.peerTypes != null) {
+      if (peerType == null) peerType = network.peerTypes[0];
+      rows.add(ListTile(
+        leading: Icon(Icons.language),
+        title: Text(l10n.type),
+        trailing: DropdownButton<String>(
+          value: peerType,
+          items: buildDropdownMenuItem(network.peerTypes),
+          onChanged: (String value) => setState(() => peerType = value),
+        )));
+    }
+
+    if (peerType != null && peerType == 'BitcoinRPC') {
+      rows.add(ListTile(
+        subtitle: PastableTextFormField(
+          keyboardType: TextInputType.emailAddress,
+          controller: userController,
+          decoration: InputDecoration(labelText: l10n.username),
+          validator: (value) {
+            if (value.isEmpty) return l10n.usernameCantBeEmpty;
+            return null;
+          },
+          onSaved: (val) => user = val,
+        ),
+      ));
+
+      rows.add(ListTile(
+        subtitle: TextFormField(
+          obscureText: true,
+          keyboardType: TextInputType.emailAddress,
+          controller: credentialController,
+          decoration: InputDecoration(labelText: l10n.password),
+          validator: (value) {
+            if (value.isEmpty) return l10n.passwordCantBeEmpty;
+            return null;
+          },
+          onSaved: (val) => password = val,
+        ),
+      ));
+    }
+
+    rows.add(ListTile(
+      leading: Icon(certRequired ? Icons.lock_outline : Icons.lock_open),
+      title: Text(l10n.requireSSLCert),
+      trailing: Switch(
+        value: certRequired,
+        onChanged: (bool value) => setState(() => certRequired = value),
+      ),
+    ));
+
+    rows.add(ListTile(
+      leading: Icon(Icons.vpn_lock),
+      title: Text(l10n.sshTunneling),
+      trailing: Switch(
+        value: sshTunneling,
+        onChanged: (bool value) => setState(() => sshTunneling = value),
+      ),
+    ));
+
+    if (sshTunneling) {
+      rows.add(ListTile(
+        subtitle: PastableTextFormField(
+          keyboardType: TextInputType.emailAddress,
+          controller: sshUrlController,
+          decoration: InputDecoration(labelText: l10n.url),
+          validator: (value) {
+            try {
+              network.createPeerWithSpec(PeerPreference(
+                  '', '127.0.0.1', currency.ticker, '',
+                  sshUrl: value));
+            } on Exception {
+              return l10n.invalidUrl;
+            }
+            return null;
+          },
+          onSaved: (val) => sshUrl = val,
+        ),
+      ));
+
+      rows.add(ListTile(
+        subtitle: PastableTextFormField(
+          keyboardType: TextInputType.emailAddress,
+          controller: sshUserController,
+          decoration: InputDecoration(labelText: l10n.username),
+          validator: (value) {
+            if (value.isEmpty) return l10n.usernameCantBeEmpty;
+            return null;
+          },
+          onSaved: (val) => sshUser = val,
+        ),
+      ));
+
+      rows.add(ListTile(
+        subtitle: TextFormField(
+          obscureText: true,
+          keyboardType: TextInputType.emailAddress,
+          controller: sshCredentialController,
+          decoration: InputDecoration(labelText: l10n.password),
+          validator: (value) {
+            if (value.isEmpty) return l10n.passwordCantBeEmpty;
+            return null;
+          },
+          onSaved: (val) => sshPassword = val,
+        ),
+      ));
+    }
+
+    rows.add(RaisedGradientButton(
+      labelText: l10n.create,
+      padding: EdgeInsets.all(32),
+      onPressed: () async {
+        if (!formKey.currentState.validate()) return;
+        formKey.currentState.save();
+        formKey.currentState.reset();
+        FocusScope.of(context).requestFocus(FocusNode());
+        Scaffold.of(context)
+            .showSnackBar(SnackBar(content: Text(l10n.creating)));
+
+        String options =
+            PeerPreference.formatOptions(ignoreBadCert: !certRequired);
+        peers.add(PeerPreference(name, url, currency.ticker, options,
+            type: peerType,
+            user: user,
+            password: password,
+            sshUrl: sshTunneling ? sshUrl : null,
+            sshUser: sshTunneling ? sshUser : null,
+            sshKey: sshTunneling ? sshKey : null,
+            sshPassword: sshTunneling ? sshPassword : null));
+        await appState.preferences.setPeers(peers);
+        if (peers.length == 1) appState.connectPeers(currency);
+
+        appState.setState(() {});
+        Navigator.of(context).pop();
+      },
+    ));
+
     return Form(
       key: formKey,
-      child: ListView(children: <Widget>[
-        ListTile(
-          subtitle: TextFormField(
-            enabled: false,
-            initialValue: currency.ticker,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              labelText: l10n.currency,
-            ),
-          ),
-        ),
-        ListTile(
-          subtitle: TextFormField(
-            autofocus: true,
-            keyboardType: TextInputType.emailAddress,
-            initialValue: name,
-            decoration: InputDecoration(
-              labelText: l10n.name,
-            ),
-            validator: (value) {
-              if (peers.indexWhere((v) => v.name == value) != -1) {
-                return l10n.nameMustBeUnique;
-              }
-              return null;
-            },
-            onSaved: (val) => name = val,
-          ),
-        ),
-        ListTile(
-          subtitle: PastableTextFormField(
-            keyboardType: TextInputType.emailAddress,
-            controller: urlController,
-            decoration: InputDecoration(
-              labelText: l10n.url,
-            ),
-            validator: (value) {
-              try {
-                network.createPeerWithSpec(
-                    PeerPreference('', value, currency.ticker, ''));
-              } on Exception {
-                return l10n.invalidUrl;
-              }
-              return null;
-            },
-            onSaved: (val) => url = val,
-          ),
-        ),
-        ListTile(
-          leading: Icon(certRequired ? Icons.lock_outline : Icons.lock_open),
-          title: Text(l10n.requireSSLCert),
-          trailing: Switch(
-            value: certRequired,
-            onChanged: (bool value) => setState(() => certRequired = value),
-          ),
-        ),
-        RaisedGradientButton(
-          labelText: l10n.create,
-          padding: EdgeInsets.all(32),
-          onPressed: () async {
-            if (!formKey.currentState.validate()) return;
-            formKey.currentState.save();
-            formKey.currentState.reset();
-            FocusScope.of(context).requestFocus(FocusNode());
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text(l10n.creating)));
-
-            String options =
-                PeerPreference.formatOptions(ignoreBadCert: !certRequired);
-            peers.add(PeerPreference(name, url, currency.ticker, options));
-            await appState.preferences.setPeers(peers);
-            if (peers.length == 1) appState.connectPeers(currency);
-
-            appState.setState(() {});
-            Navigator.of(context).pop();
-          },
-        ),
-      ]),
+      child: ListView(children: rows),
     );
   }
 }

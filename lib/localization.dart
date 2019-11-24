@@ -218,6 +218,7 @@ class Localization {
   String get address => Intl.message('Address', name: 'address');
   String get addresses => Intl.message('Addresses', name: 'addresses');
   String get receive => Intl.message('Receive', name: 'receive');
+  String get username => Intl.message('Username', name: 'username');
   String get search => Intl.message('Search', name: 'search');
   String get result => Intl.message('Result', name: 'result');
   String get contacts => Intl.message('Contacts', name: 'contacts');
@@ -232,12 +233,14 @@ class Localization {
   String get connected => Intl.message('Connected', name: 'connected');
   String get peers => Intl.message('Peers', name: 'peers');
   String get deletePeer => Intl.message('Delete Peer', name: 'deletePeer');
+  String get type => Intl.message('Type', name: 'type');
   String get home => Intl.message('Home', name: 'home');
   String get block => Intl.message('Block', name: 'block');
   String get blocks => Intl.message('Blocks', name: 'blocks');
   String get encryption => Intl.message('Encryption', name: 'encryption');
   String get transaction => Intl.message('Transaction', name: 'transaction');
   String get transactions => Intl.message('Transactions', name: 'transactions');
+  String get sshTunneling => Intl.message( 'SSH Tunneling', name: 'sshTunneling');
   String get dangerZone => Intl.message('Danger Zone', name: 'dangerZone');
   String get warning => Intl.message('Warning', name: 'warning');
   String get support => Intl.message('Support', name: 'support');
@@ -346,6 +349,8 @@ class Localization {
       Intl.message('Name must be unique.', name: 'nameMustBeUnique');
   String get addressMustBeUnique =>
       Intl.message('Address must be unique.', name: 'addressMustBeUnique');
+  String get usernameCantBeEmpty =>
+      Intl.message("Username can't be empty.", name: 'usernameCantBeEmpty');
   String get passwordCantBeEmpty =>
       Intl.message("Password can't be empty.", name: 'passwordCantBeEmpty');
   String get passwordsDontMatch =>

@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:dartssh/socket.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +16,6 @@ import 'package:sembast/sembast_memory.dart';
 import 'package:cruzawl/currency.dart';
 import 'package:cruzawl/currency/cruz.dart';
 import 'package:cruzawl/network/http.dart';
-import 'package:cruzawl/network/websocket.dart';
 import 'package:cruzawl/preferences.dart';
 import 'package:cruzawl/network.dart';
 import 'package:cruzawl/sembast.dart';
@@ -66,7 +66,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
       httpClient: httpClient);
   appState.debugLevel = debugLevelDebug;
   appState.preferences.setDebugLog(true);
-  TestWebSocket socket = TestWebSocket();
+  TestSocket socket = TestSocket();
   Currency currency = Currency.fromJson('CRUZ');
   CruzPeer peer;
 
@@ -105,14 +105,14 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     var msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_tip_header');
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"tip_header","body":{"block_id":"$tipBlockId","header":{"previous":"$previousBlockId","hash_list_root":"e621df23f3d1cbf31ff55eb35b58f149e1119f9bcaaeddbfd50a0492d761b3fe","time":1567226693,"target":"0000000000005a51944cead8d0ecf64b7b699564debb11582725296e08f6907b","chain_work":"0000000000000000000000000000000000000000000000001cac236eabb61ced","nonce":1339749016450629,"height":25352,"transaction_count":20},"time_seen":1567226903}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"tip_header","body":{"block_id":"$tipBlockId","header":{"previous":"$previousBlockId","hash_list_root":"e621df23f3d1cbf31ff55eb35b58f149e1119f9bcaaeddbfd50a0492d761b3fe","time":1567226693,"target":"0000000000005a51944cead8d0ecf64b7b699564debb11582725296e08f6907b","chain_work":"0000000000000000000000000000000000000000000000001cac236eabb61ced","nonce":1339749016450629,"height":25352,"transaction_count":20},"time_seen":1567226903}}'));
 
     msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_transaction_relay_policy');
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"transaction_relay_policy","body":{"min_fee":1000000,"min_amount":1000000}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"transaction_relay_policy","body":{"min_fee":1000000,"min_amount":1000000}}'));
     expect(appState.network.tipHeight, 25352);
     await pumpEventQueue();
 
@@ -122,7 +122,7 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     expect(msg['type'], 'filter_add');
     expect(msg['body']['public_keys'][0], cruz.nullAddress.toJson());
     socket.sent.removeFirst();
-    socket.messageHandler('{"type":"filter_result"}');
+    socket.messageHandler(utf8.encode('{"type":"filter_result"}'));
     await pumpEventQueue();
 
     // get_balance
@@ -133,8 +133,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     int balance = 0;
     expect(addr, cruz.nullAddress.toJson());
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"balance","body":{"block_id":"0000000000000ab4ac72b9b6061cb19195fe1a8a6d5b961f793f6b61f6f9aa9c","height":25352,"public_key":"$addr","balance":$balance}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"balance","body":{"block_id":"0000000000000ab4ac72b9b6061cb19195fe1a8a6d5b961f793f6b61f6f9aa9c","height":25352,"public_key":"$addr","balance":$balance}}'));
     await pumpEventQueue();
 
     // get_public_key_transactions
@@ -144,8 +144,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     addr = msg['body']['public_key'];
     expect(addr, cruz.nullAddress.toJson());
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":null}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":null}}'));
     await pumpEventQueue();
 
     // get_filter_transaction_queue
@@ -153,8 +153,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_filter_transaction_queue');
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"filter_transaction_queue","body":{"transactions":null}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"filter_transaction_queue","body":{"transactions":null}}'));
     await pumpEventQueue();
   });
 
@@ -182,8 +182,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     String moneySender = 'xRL0D9U+jav9NxOwz4LsXe8yZ8KSS7Hst4/P8ChciAI=';
     expect(addr, addressText);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"balance","body":{"block_id":"0000000000000ab4ac72b9b6061cb19195fe1a8a6d5b961f793f6b61f6f9aa9c","height":25352,"public_key":"$addr","balance":$moneyBalance}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"balance","body":{"block_id":"0000000000000ab4ac72b9b6061cb19195fe1a8a6d5b961f793f6b61f6f9aa9c","height":25352,"public_key":"$addr","balance":$moneyBalance}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 1);
@@ -192,8 +192,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     addr = msg['body']['public_key'];
     expect(addr, addressText);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":[{"block_id":"00000000000555de1d28a55fd2d5d2069c61fd46c4618cfea16c5adf6d902f4d","header":{"previous":"000000000001e0313c0536e700a8e6c02b2fc6bbddb755d749d6e00746d52b2b","hash_list_root":"3c1b3f728653444e8bca498bf5a6d76a259637e592f749ad881f1f1da0087db0","time":1564553276,"target":"000000000007a38c469f3be96898a11435ea27592c2bae351147392e9cd3408d","chain_work":"00000000000000000000000000000000000000000000000000faa7649c97e894","nonce":1989109050083893,"height":17067,"transaction_count":2},"transactions":[{"time":1564550817,"nonce":1130916028,"from":"$moneySender","to":"$addr","amount":$moneyBalance,"fee":1000000,"expires":17068,"series":17,"signature":"mcvGJ59Q9U9j5Tbjk/gIKYPFmz3lXNb3t8DwkznINJWI7uFPymmywBJjE18UzL2+MMicm0xbyKVJ3XEvQiQ5BQ=="}]}]}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"public_key_transactions","body":{"public_key":"$addr","start_height":25352,"stop_height":0,"stop_index":0,"filter_blocks":[{"block_id":"00000000000555de1d28a55fd2d5d2069c61fd46c4618cfea16c5adf6d902f4d","header":{"previous":"000000000001e0313c0536e700a8e6c02b2fc6bbddb755d749d6e00746d52b2b","hash_list_root":"3c1b3f728653444e8bca498bf5a6d76a259637e592f749ad881f1f1da0087db0","time":1564553276,"target":"000000000007a38c469f3be96898a11435ea27592c2bae351147392e9cd3408d","chain_work":"00000000000000000000000000000000000000000000000000faa7649c97e894","nonce":1989109050083893,"height":17067,"transaction_count":2},"transactions":[{"time":1564550817,"nonce":1130916028,"from":"$moneySender","to":"$addr","amount":$moneyBalance,"fee":1000000,"expires":17068,"series":17,"signature":"mcvGJ59Q9U9j5Tbjk/gIKYPFmz3lXNb3t8DwkznINJWI7uFPymmywBJjE18UzL2+MMicm0xbyKVJ3XEvQiQ5BQ=="}]}]}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
@@ -221,8 +221,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     expect(msg['type'], 'get_block');
     expect(msg['body']['block_id'], tipBlockId);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"block","body":{"block_id":"$tipBlockId","block":{"header":{"previous":"$previousBlockId","hash_list_root":"32ce7385c039a70df7fd74cc19cb198ff4f1f2baa5673f2e21610b1553fcd39d","time":1567637897,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"$chainWork","nonce":190254286704880,"height":25352,"transaction_count":1},"transactions":[{"time":1567637704,"nonce":1154811886,"to":"98G12B2Gm75Klo+Z3RL1rit9jtD9ZIJCvJ6Dh4ZNHfs=","amount":5000000000,"series":27}]}}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"block","body":{"block_id":"$tipBlockId","block":{"header":{"previous":"$previousBlockId","hash_list_root":"32ce7385c039a70df7fd74cc19cb198ff4f1f2baa5673f2e21610b1553fcd39d","time":1567637897,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"$chainWork","nonce":190254286704880,"height":25352,"transaction_count":1},"transactions":[{"time":1567637704,"nonce":1154811886,"to":"98G12B2Gm75Klo+Z3RL1rit9jtD9ZIJCvJ6Dh4ZNHfs=","amount":5000000000,"series":27}]}}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 1);
@@ -230,8 +230,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     expect(msg['type'], 'get_block_header');
     expect(msg['body']['block_id'], previousBlockId);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"block_header","body":{"block_id":"$previousBlockId","header":{"previous":"00000000000016b4d4fd6a6b73b13d370023f84b9912083d2e8910a1fa1ba22b","hash_list_root":"3789ee33ed9817a99dfed1c40d2a6dc05d76cdd7a8001b7b570fcfd8f3245c43","time":1567638346,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"0000000000000000000000000000000000000000000000002a057cb894aede85","nonce":119850769305355,"height":26516,"transaction_count":1}}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"block_header","body":{"block_id":"$previousBlockId","header":{"previous":"00000000000016b4d4fd6a6b73b13d370023f84b9912083d2e8910a1fa1ba22b","hash_list_root":"3789ee33ed9817a99dfed1c40d2a6dc05d76cdd7a8001b7b570fcfd8f3245c43","time":1567638346,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"0000000000000000000000000000000000000000000000002a057cb894aede85","nonce":119850769305355,"height":26516,"transaction_count":1}}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
@@ -260,8 +260,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     var msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_tip_header');
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"tip_header","body":{"block_id":"0000000000001bfae2632eac057f090d5adcce5f3131fe36d9cdf34cc0184106","header":{"previous":"00000000000001513800d8a347a374ec33963ea06a7527677b4784b2a15753d1","hash_list_root":"133a6657cc2b68a7a495f93a26eb8ae6c9d03b61de2baef628c9c3868ce26217","time":1567651882,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"0000000000000000000000000000000000000000000000002ab99de7d319883d","nonce":105066634308909,"height":26572,"transaction_count":1},"time_seen":1567651980}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"tip_header","body":{"block_id":"0000000000001bfae2632eac057f090d5adcce5f3131fe36d9cdf34cc0184106","header":{"previous":"00000000000001513800d8a347a374ec33963ea06a7527677b4784b2a15753d1","hash_list_root":"133a6657cc2b68a7a495f93a26eb8ae6c9d03b61de2baef628c9c3868ce26217","time":1567651882,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"0000000000000000000000000000000000000000000000002ab99de7d319883d","nonce":105066634308909,"height":26572,"transaction_count":1},"time_seen":1567651980}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
@@ -297,8 +297,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     CruzBlockHeader block1 = CruzBlockHeader.fromJson(jsonDecode(blockJson1));
     expect(msg['type'], 'get_block_header_by_height');
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"block_header","body":{"block_id":"$tipBlockId","header":$blockJson1,"transactions":[{"time":1567637704,"nonce":1154811886,"to":"98G12B2Gm75Klo+Z3RL1rit9jtD9ZIJCvJ6Dh4ZNHfs=","amount":5000000000,"series":27}]}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"block_header","body":{"block_id":"$tipBlockId","header":$blockJson1,"transactions":[{"time":1567637704,"nonce":1154811886,"to":"98G12B2Gm75Klo+Z3RL1rit9jtD9ZIJCvJ6Dh4ZNHfs=","amount":5000000000,"series":27}]}}'));
 
     String blockJson2 =
         '{"previous":"00000000000016b4d4fd6a6b73b13d370023f84b9912083d2e8910a1fa1ba22b","hash_list_root":"3789ee33ed9817a99dfed1c40d2a6dc05d76cdd7a8001b7b570fcfd8f3245c43","time":$time2,"target":"0000000000004f964e22081d801e498701aba18e8203e2327984ccdf84835fca","chain_work":"0000000000000000000000000000000000000000000000002a057cb894aede85","nonce":119850769305355,"height":26516,"transaction_count":1}';
@@ -306,8 +306,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_block_header_by_height');
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"block_header","body":{"block_id":"$previousBlockId","header":$blockJson2}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"block_header","body":{"block_id":"$previousBlockId","header":$blockJson2}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
@@ -336,14 +336,14 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     expect(msg['type'], 'get_block_header');
     expect(msg['body']['block_id'], transactionId);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"block_header","body":{"block_id":"$transactionId"}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"block_header","body":{"block_id":"$transactionId"}}'));
     msg = jsonDecode(socket.sent.first);
     expect(msg['type'], 'get_transaction');
     expect(msg['body']['transaction_id'], transactionId);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}'));
 
     /// Respond to [TransactionWidget.load]
     await tester.pump(Duration(seconds: 1));
@@ -352,8 +352,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     expect(msg['type'], 'get_transaction');
     expect(msg['body']['transaction_id'], transactionId);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
@@ -381,8 +381,8 @@ void runExplorerTests(CruzawlPreferences preferences, Locale testLocale,
     expect(msg['type'], 'get_transaction');
     expect(msg['body']['transaction_id'], transactionId);
     socket.sent.removeFirst();
-    socket.messageHandler(
-        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}');
+    socket.messageHandler(utf8.encode(
+        '{"type":"transaction","body":{"block_id":"000000000000191da2e1392c323de6982a1f36fde6030776349bcad5b74770ca","height":26703,"transaction_id":"8d7356420c301d41462a2e1646f43b6841a86d4e8809439a2003e05bd2330a8f","transaction":{"time":1567693165,"nonce":$nonce,"from":"VWH6z8QrxrWMErzV0A9B7P2nltIdWXjmS0NrPJs/dZ8=","to":"+HMfJJD+RYQdnO0T4mptyTFLu+RTGMyGfS+X4rE18v8=","amount":23669655,"fee":1000000,"expires":26762,"series":27,"signature":"6NLGrXzGnhcZk2fIaTj84HDEgAfZlHolAddnKkQ4k5OvNKpt8UxjDzFeG9A7BX2iWZx5XMQkCv4M5CRZcSBjAg=="}}}'));
 
     await tester.pump(Duration(seconds: 1));
     expect(socket.sent.length, 0);
