@@ -112,19 +112,20 @@ class _WalletWidgetState extends State<WalletWidget> {
                     onSelected: () =>
                         widget.appState.navigateToNetwork(context),
                   )
-                  /*..addItem(
+                /*..addItem(
                     icon: Icons.aspect_ratio,
                     text: l10n.console,
                     onSelected: () =>
                         widget.appState.navigateToConsole(context),
                   )*/
-                  ..addItem(
+                /*..addItem(
                     icon: Icons.redeem,
                     text: l10n.donations,
                     onSelected: () => widget.appState.navigateToAddressText(
                         context,
                         'RWEgB+NQs/T83EkmIFNVJG+xK64Hm90GmQgrdR2V7BI='),
-                  ))
+                  )*/
+                )
                 .build(
               icon: Icon(Icons.more_vert),
             ),

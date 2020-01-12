@@ -193,7 +193,15 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
   final TextEditingController sshUrlController = TextEditingController();
   final TextEditingController sshUserController = TextEditingController();
   final TextEditingController sshCredentialController = TextEditingController();
-  String name, url, user, password, peerType, sshUrl, sshUser, sshKey, sshPassword;
+  String name,
+      url,
+      user,
+      password,
+      peerType,
+      sshUrl,
+      sshUser,
+      sshKey,
+      sshPassword;
   bool certRequired = true, sshTunneling = false;
 
   @override
@@ -267,13 +275,13 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
     if (network.peerTypes != null) {
       if (peerType == null) peerType = network.peerTypes[0];
       rows.add(ListTile(
-        leading: Icon(Icons.language),
-        title: Text(l10n.type),
-        trailing: DropdownButton<String>(
-          value: peerType,
-          items: buildDropdownMenuItem(network.peerTypes),
-          onChanged: (String value) => setState(() => peerType = value),
-        )));
+          leading: Icon(Icons.language),
+          title: Text(l10n.type),
+          trailing: DropdownButton<String>(
+            value: peerType,
+            items: buildDropdownMenuItem(network.peerTypes),
+            onChanged: (String value) => setState(() => peerType = value),
+          )));
     }
 
     if (peerType != null && peerType == 'BitcoinRPC') {
@@ -314,14 +322,16 @@ class _AddPeerWidgetState extends State<AddPeerWidget> {
       ),
     ));
 
-    rows.add(ListTile(
-      leading: Icon(Icons.vpn_lock),
-      title: Text(l10n.sshTunneling),
-      trailing: Switch(
-        value: sshTunneling,
-        onChanged: (bool value) => setState(() => sshTunneling = value),
-      ),
-    ));
+    if (currency == btc || currency == eth) {
+      rows.add(ListTile(
+        leading: Icon(Icons.vpn_lock),
+        title: Text(l10n.sshTunneling),
+        trailing: Switch(
+          value: sshTunneling,
+          onChanged: (bool value) => setState(() => sshTunneling = value),
+        ),
+      ));
+    }
 
     if (sshTunneling) {
       rows.add(ListTile(

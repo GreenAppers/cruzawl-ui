@@ -57,9 +57,10 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
   Widget build(BuildContext c) {
     final Localization l10n = Localization.of(c);
     if (name == null) name = l10n.defaultWalletName;
+    final List<Widget> ret = <Widget>[];
 
-    List<Widget> ret = <Widget>[
-      ListTile(
+    if (currencies.length > 1) {
+      ret.add(ListTile(
         title: Text(l10n.currency),
         trailing: DropdownButton<String>(
             value: currencyName,
@@ -75,8 +76,8 @@ class _AddWalletWidgetState extends State<AddWalletWidget> {
               widget.appState.setState(() =>
                   widget.appState.setCurrency(Currency.fromJson(currency)));
             }),
-      )
-    ];
+      ));
+    }
 
     if (currencyName == 'ETH') {
       ret.add(ListTile(

@@ -240,7 +240,8 @@ class Localization {
   String get encryption => Intl.message('Encryption', name: 'encryption');
   String get transaction => Intl.message('Transaction', name: 'transaction');
   String get transactions => Intl.message('Transactions', name: 'transactions');
-  String get sshTunneling => Intl.message( 'SSH Tunneling', name: 'sshTunneling');
+  String get sshTunneling =>
+      Intl.message('SSH Tunneling', name: 'sshTunneling');
   String get dangerZone => Intl.message('Danger Zone', name: 'dangerZone');
   String get warning => Intl.message('Warning', name: 'warning');
   String get support => Intl.message('Support', name: 'support');
