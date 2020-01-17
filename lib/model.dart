@@ -56,8 +56,8 @@ class TransactionInfo {
 class WalletTransactionInfo extends TransactionInfo {
   WalletTransactionInfo(Wallet wallet, Transaction tx)
       : super(
-            toWallet: wallet.isFromWallet(tx),
-            fromWallet: wallet.isToWallet(tx));
+            toWallet: wallet.isToWallet(tx),
+            fromWallet: wallet.isFromWallet(tx));
 }
 
 /// [Model] wrapper for the pure-dart [Wallet.notifyListeners].
